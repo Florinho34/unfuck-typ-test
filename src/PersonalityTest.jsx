@@ -478,8 +478,7 @@ body, html, #root {
   width: 100%;
   max-width: 680px;
   margin: 0 auto;
-  padding: 5.5rem 1.5rem 3rem;
-  min-height: 100vh;
+  padding: 5.5rem 1.5rem 2rem;
   display: flex;
   flex-direction: column;
 }
@@ -602,8 +601,7 @@ body, html, #root {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: auto;
-  padding-top: 2rem;
+  padding-top: 1.5rem;
   padding-bottom: 2rem;
 }
 
@@ -1102,10 +1100,14 @@ body, html, #root {
 
 /* ── Mobile tweaks ── */
 @media (max-width: 520px) {
-  .question-screen { padding: 5rem 1.15rem 2rem; }
-  .option-btn { padding: 1rem; font-size: 0.84rem; }
+  .question-screen { padding: 4.5rem 1.15rem 1.5rem; }
+  .option-btn { padding: 0.9rem; font-size: 0.84rem; }
   .progress-info { padding: 0.5rem 1rem; }
   .block-transition .answer-hint { margin-left: 0.5rem; margin-right: 0.5rem; }
+  .question-scenario { margin-bottom: 1.75rem; }
+  .options-list { gap: 0.5rem; margin-bottom: 1.25rem; }
+  .secondary-section { margin-bottom: 1rem; }
+  .nav-row { padding-top: 1rem; padding-bottom: 1.5rem; }
 }
 `;
 
@@ -1303,8 +1305,8 @@ const TYPE_META = {
 };
 
 const SCALE_LABELS = {
-  REF: "Reflexion", SL: "Selbstliebe", ETH: "Ethik & Werte", NAT: "Naturverbundenheit",
-  WV: "Weltverständnis", WS: "Weltschmerz", ML: "Machtlosigkeit", OL: "Orientierungslosigkeit",
+  REF: "Reflexion", SL: "Selbstliebe", ETH: "Ethik & Werte", NAT: "Naturverb.",
+  WV: "Weltverständnis", WS: "Weltschmerz", ML: "Machtlosigkeit", OL: "Orientierungsl.",
 };
 
 const CORE_SCALES = ["REF", "SL", "ETH", "NAT", "WV", "WS", "ML", "OL"];
@@ -1532,7 +1534,7 @@ function RadarChart({ normalized }) {
   const typePath = typePoints.map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" ") + " Z";
 
   return (
-    <svg viewBox="-20 -10 360 350" className="radar-svg">
+    <svg viewBox="-60 -10 400 350" className="radar-svg">
       {/* Grid */}
       {rings.map(val => {
         const pts = scales.map((_, i) => getPoint(i, val));
@@ -1680,17 +1682,15 @@ function CompleteScreen({ answers }) {
         doc.line(radarCx, radarCy, p.x, p.y);
       });
 
-      // Type reference profile (dashed)
+      // Type reference profile (lighter line)
       const typeProfile = TYPE_PROFILES[scoring.resultType];
       const typePts = scales.map((s, i) => getRadarPt(i, typeProfile[s]));
       doc.setDrawColor(...warmGray);
-      doc.setLineWidth(0.3);
-      doc.setLineDashPattern([1.5, 1], 0);
+      doc.setLineWidth(0.2);
       typePts.forEach((p, i) => {
         const np = typePts[(i + 1) % typePts.length];
         doc.line(p.x, p.y, np.x, np.y);
       });
-      doc.setLineDashPattern([], 0);
 
       // User profile lines
       const userPts = scales.map((s, i) => getRadarPt(i, scoring.normalized[s]));
@@ -1727,9 +1727,8 @@ function CompleteScreen({ answers }) {
       doc.text("Dein Profil", pw / 2 - 29, y, { align: "left" });
       doc.setTextColor(...warmGray);
       doc.setDrawColor(...warmGray);
-      doc.setLineDashPattern([1, 0.8], 0);
+      doc.setLineWidth(0.3);
       doc.line(pw / 2 + 5, y - 0.6, pw / 2 + 9, y - 0.6);
-      doc.setLineDashPattern([], 0);
       doc.text(meta.label + "-Referenz", pw / 2 + 11, y, { align: "left" });
       y += 14;
 
@@ -1833,11 +1832,12 @@ function CompleteScreen({ answers }) {
       // Link button
       const btnW = 80, btnH = 10;
       doc.setFillColor(...dark);
-      doc.roundedRect(pw / 2 - btnW / 2, y, btnW, btnH, 1, 1, "F");
+      doc.rect(pw / 2 - btnW / 2, y, btnW, btnH, "F");
       doc.setFont("helvetica", "bold");
       doc.setFontSize(9);
       doc.setTextColor(245, 240, 235);
-      doc.textWithLink("Masterclass ansehen", pw / 2, y + 6.8, { align: "center", url: qrUrl });
+      doc.text("Masterclass ansehen", pw / 2, y + 6.8, { align: "center" });
+      doc.link(pw / 2 - btnW / 2, y, btnW, btnH, { url: qrUrl });
       y += btnH + 6;
 
       doc.setFontSize(7);
