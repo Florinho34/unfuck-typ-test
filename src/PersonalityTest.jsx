@@ -1821,13 +1821,33 @@ function CompleteScreen({ answers }) {
       doc.text(ctaTextPdf, pw / 2, y, { align: "center", lineHeightFactor: 1.5 });
       y += ctaTextPdf.length * 4.5 + 8;
 
-      // Generate QR code
+      // Load QR code image
       const qrUrl = "https://florian-lingner.ch/kostenlose-archetyp-masterclass-anfordern/";
-      const qrCanvas = await generateQRCanvas(qrUrl);
-      const qrData = qrCanvas.toDataURL("image/png");
-      const qrSize = 32;
-      doc.addImage(qrData, "PNG", pw / 2 - qrSize / 2, y, qrSize, qrSize);
-      y += qrSize + 6;
+      try {
+        const qrImg = await new Promise((resolve, reject) => {
+          const img = new Image();
+          img.crossOrigin = "anonymous";
+          img.onload = () => resolve(img);
+          img.onerror = reject;
+          img.src = "/qr-code-mc-anfordern-pdf.png";
+        });
+        const qrData = (() => {
+          const c = document.createElement("canvas");
+          c.width = qrImg.naturalWidth;
+          c.height = qrImg.naturalHeight;
+          c.getContext("2d").drawImage(qrImg, 0, 0);
+          return c.toDataURL("image/png");
+        })();
+        const qrSize = 32;
+        doc.addImage(qrData, "PNG", pw / 2 - qrSize / 2, y, qrSize, qrSize);
+        y += qrSize + 6;
+      } catch (qrErr) {
+        console.warn("QR image load skipped:", qrErr);
+        doc.setFontSize(9);
+        doc.setTextColor(...orange);
+        doc.text(qrUrl, pw / 2, y + 4, { align: "center" });
+        y += 12;
+      }
 
       // Link button
       const btnW = 80, btnH = 10;
@@ -1848,55 +1868,10 @@ function CompleteScreen({ answers }) {
       doc.save("Persoenlichkeitstest-" + meta.label.replace(/\s+/g, "-") + ".pdf");
     } catch (err) {
       console.error("PDF generation failed:", err);
-      alert("PDF konnte nicht erstellt werden. Bitte versuche es erneut.");
+      alert("PDF-Fehler: " + (err.message || err) + "\n\nBitte versuche es am Desktop-Browser.");
     } finally {
       setPdfLoading(false);
     }
-  };
-
-  // QR Code generator
-  const generateQRCanvas = (text) => {
-    return new Promise((resolve, reject) => {
-      if (window.QRCode) {
-        renderQR(text, resolve);
-        return;
-      }
-      const s = document.createElement("script");
-      s.src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js";
-      s.onload = () => renderQR(text, resolve);
-      s.onerror = reject;
-      document.head.appendChild(s);
-    });
-  };
-
-  const renderQR = (text, resolve) => {
-    const container = document.createElement("div");
-    container.style.position = "absolute";
-    container.style.left = "-9999px";
-    document.body.appendChild(container);
-    new window.QRCode(container, {
-      text,
-      width: 256,
-      height: 256,
-      colorDark: "#1C1C1C",
-      colorLight: "#ffffff",
-      correctLevel: window.QRCode.CorrectLevel.M,
-    });
-    setTimeout(() => {
-      const canvas = container.querySelector("canvas");
-      if (canvas) resolve(canvas);
-      else {
-        const img = container.querySelector("img");
-        if (img) {
-          const c = document.createElement("canvas");
-          c.width = 256; c.height = 256;
-          const ctx = c.getContext("2d");
-          img.onload = () => { ctx.drawImage(img, 0, 0, 256, 256); resolve(c); };
-          if (img.complete) { ctx.drawImage(img, 0, 0, 256, 256); resolve(c); }
-        }
-      }
-      document.body.removeChild(container);
-    }, 200);
   };
 
   useEffect(() => {
