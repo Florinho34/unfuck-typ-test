@@ -808,23 +808,25 @@ body, html, #root {
 
 /* Pain */
 .result-pain {
-  border-left: 3px solid var(--orange);
-  padding: 1.25rem 1.5rem;
+  border-left: 4px solid var(--orange);
+  padding: 2rem 2rem;
   background: var(--orange-glow);
 }
 
 .pain-label {
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: clamp(1.1rem, 3vw, 1.35rem);
+  font-weight: 800;
   color: var(--orange);
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  line-height: 1.3;
 }
 
 .result-pain p {
-  font-size: 0.9rem;
-  line-height: 1.65;
+  font-size: 0.95rem;
+  line-height: 1.7;
   color: var(--dark);
   font-weight: 400;
 }
@@ -895,17 +897,34 @@ body, html, #root {
 /* CTA */
 .result-cta {
   text-align: center;
-  padding: 2.5rem 1.5rem;
-  border: 1.5px solid var(--sand);
-  background: rgba(245, 240, 235, 0.5);
+  padding: 3rem 2rem;
+  border: 2px solid var(--orange);
+  background: var(--orange-glow);
+  position: relative;
+}
+
+.cta-headline {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: clamp(1.5rem, 4.5vw, 2rem);
+  font-weight: 900;
+  color: var(--dark);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
 }
 
 .cta-text {
-  font-size: 0.88rem;
-  line-height: 1.65;
-  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--dark);
   max-width: 480px;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto 2rem;
+  font-weight: 400;
+}
+
+.cta-text strong {
+  color: var(--orange);
+  font-weight: 700;
 }
 
 .cta-email {
@@ -913,17 +932,17 @@ body, html, #root {
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
-  max-width: 360px;
+  max-width: 380px;
   margin: 0 auto;
 }
 
 .email-input {
   width: 100%;
-  padding: 0.9rem 1rem;
-  border: 1.5px solid var(--sand);
+  padding: 1rem 1.1rem;
+  border: 2px solid var(--sand);
   background: #fff;
   font-family: 'Inter Tight', sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--dark);
   outline: none;
   transition: border-color 0.2s;
@@ -938,6 +957,10 @@ body, html, #root {
 .btn-cta {
   width: 100%;
   text-align: center;
+  padding: 1.1rem 2.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 .btn-loading {
   opacity: 0.7;
@@ -1480,7 +1503,7 @@ function RadarChart({ normalized }) {
   const typePath = typePoints.map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" ") + " Z";
 
   return (
-    <svg viewBox="0 0 320 320" className="radar-svg">
+    <svg viewBox="-20 -10 360 350" className="radar-svg">
       {/* Grid */}
       {rings.map(val => {
         const pts = scales.map((_, i) => getPoint(i, val));
@@ -1505,12 +1528,12 @@ function RadarChart({ normalized }) {
 
       {/* Labels */}
       {scales.map((s, i) => {
-        const p = getPoint(i, 118);
+        const p = getPoint(i, 128);
         const anchor = p.x < cx - 10 ? "end" : p.x > cx + 10 ? "start" : "middle";
-        const dy = p.y < cy - 10 ? -4 : p.y > cy + 10 ? 12 : 4;
+        const dy = p.y < cy - 10 ? -6 : p.y > cy + 10 ? 14 : 4;
         return (
           <text key={s} x={p.x} y={p.y + dy} textAnchor={anchor}
-            fontSize="8.5" fontFamily="'Inter Tight', sans-serif" fontWeight="600"
+            fontSize="9.5" fontFamily="'Inter Tight', sans-serif" fontWeight="600"
             fill="var(--dark)" opacity="0.7">
             {SCALE_LABELS[s]}
           </text>
@@ -1603,7 +1626,7 @@ function CompleteScreen({ answers }) {
 
         {/* Pain points */}
         <div className="result-pain">
-          <div className="pain-label">Daran scheiterst du gerade wahrscheinlich</div>
+          <div className="pain-label">Daran scheiterst du gerade wahrscheinlich:</div>
           <p>{meta.pain}</p>
         </div>
 
@@ -1640,8 +1663,9 @@ function CompleteScreen({ answers }) {
             </div>
           ) : (
             <>
+              <h3 className="cta-headline">Willst du dein Leben nun positiv verändern?</h3>
               <p className="cta-text">
-                Exakt für diesen Persönlichkeitstyp habe ich eine eigene Masterclass entwickelt. Hier lösen wir Knoten in genau deinem Kopf und ich gebe genau deinem Typ passende Lösungen mit auf den Weg, wie du dein Leben leichter und echter machst.
+                Ich habe <strong>genau für deinen Archetyp</strong> eine eigene <strong>kostenlose Masterclass</strong> entwickelt. Hier lösen wir Knoten in genau deinem Kopf – mit Lösungen, die zu deinem Typ passen.
               </p>
               <div className="cta-email">
                 <input
