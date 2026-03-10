@@ -53,7 +53,7 @@ const QUESTIONS = [
       { key: "A", text: "Ich wäge rational alle Optionen ab, recherchiere, mache Pro-Contra-Listen.", scoring: { REF: 2, ML: 1, HA: -1 } },
       { key: "B", text: "Ich frage Menschen, deren Meinung mir wichtig ist, was sie tun würden.", scoring: { ETH_fremd: 2, OL: 1 } },
       { key: "C", text: "Ich spüre eigentlich schon länger, was richtig wäre – aber die Umsetzung ist das Problem.", scoring: { REF: 2, ML: 2, WV: 1, HA: -2 } },
-      { key: "D", text: "Ich neige dazu, schnell zu handeln und es dann einfach auszuprobieren.", scoring: { OL: 1, SL: 1, HA: 2 } },
+      { key: "D", text: "Ich neige dazu, schnell zu handeln und es dann einfach auszuprobieren.", scoring: { SL: 1, HA: 2, REF: 1 } },
     ],
   },
   {
@@ -73,7 +73,7 @@ const QUESTIONS = [
     title: "DIE INNERE STIMME",
     scenario: "Wenn du an die letzten 5 Jahre zurückdenkst – was überwiegt?",
     options: [
-      { key: "A", text: "Ich habe viel gelernt, aber wenig davon wirklich umgesetzt.", scoring: { REF: 2, ML: 2, OL: 1, HA: -3, WV: 1 } },
+      { key: "A", text: "Ich habe viel gelernt, aber wenig davon wirklich umgesetzt.", scoring: { REF: 2, ML: 2, HA: -2, WV: 1 } },
       { key: "B", text: "Ich habe das getan, was von mir erwartet wurde – und es lief ganz gut.", scoring: { ETH_fremd: 3, REF: -1, HA: 1 } },
       { key: "C", text: "Ich habe viel ausprobiert, aber noch nicht das Richtige gefunden.", scoring: { OL: 3, SL: -1, HA: 1 } },
       { key: "D", text: "Ich habe hart gearbeitet und einiges erreicht – aber glücklicher bin ich nicht.", scoring: { SL: -2, REF: 1, HA: 1, ETH_fremd: 1 } },
@@ -208,7 +208,7 @@ const QUESTIONS = [
     scenario: "Du merkst, dass du seit Monaten auf der Stelle trittst. Nichts bewegt sich. Was tust du?",
     options: [
       { key: "A", text: "Ich analysiere, woran es liegt – und finde auch Antworten. Nur umsetzen… das ist was anderes.", scoring: { REF: 3, ML: 3, WV: 1, HA: -3 } },
-      { key: "B", text: "Ich suche mir einen neuen Input – ein Buch, einen Kurs, einen Podcast, einen Coach.", scoring: { OL: 3, HA: 1 } },
+      { key: "B", text: "Ich suche mir einen neuen Input – ein Buch, einen Kurs, einen Podcast, einen Coach.", scoring: { OL: 2, HA: 1, REF: 1 } },
       { key: "C", text: "Ich arbeite härter. Wenn die Ergebnisse stimmen, kommt das Gefühl von selbst.", scoring: { SL: -2, ETH_fremd: 2, HA: 2 } },
       { key: "D", text: "Ich frage mich, ob das nicht einfach das Leben ist. Nicht jeder Tag muss besonders sein.", scoring: { ETH_fremd: 1, ML: 1 } },
     ],
@@ -256,7 +256,7 @@ const QUESTIONS = [
       { key: "A", text: 'Ich antworte routiniert – aber die Antwort fühlt sich nicht wie "ich" an.', scoring: { OL: 2, ETH_fremd: 1, REF: 1 } },
       { key: "B", text: "Ich erzähle gerne davon – da bin ich in meinem Element.", scoring: { SL: 1, ETH_fremd: 1 } },
       { key: "C", text: "Ich finde die Frage oberflächlich. Menschen sind mehr als ihr Job.", scoring: { WV: 2, REF: 1, WS: 1 } },
-      { key: "D", text: "Ich antworte, aber eigentlich würde ich gerne über etwas anderes reden – mein Job beschreibt nicht wirklich, wer ich bin.", scoring: { OL: 2, REF: 2 } },
+      { key: "D", text: "Ich antworte, aber eigentlich würde ich gerne über etwas anderes reden – mein Job beschreibt nicht wirklich, wer ich bin.", scoring: { OL: 1, REF: 2, SL: 1 } },
     ],
   },
   {
@@ -289,7 +289,7 @@ const QUESTIONS = [
       { key: "A", text: "Hör auf, es allen recht machen zu wollen.", scoring: { ETH_fremd: 2, REF: 2, SL: -1 } },
       { key: "B", text: "Dass man nicht alles perfekt durchdacht haben muss, bevor man loslegen darf.", scoring: { REF: 1, ML: 2, HA: -1 } },
       { key: "C", text: "Die Welt wird dich enttäuschen – aber gib nicht auf.", scoring: { WS: 2, ML: 1, ETH: 1 } },
-      { key: "D", text: "Such nicht im Außen, was nur im Innen zu finden ist.", scoring: { OL: 2, SL: 1, REF: 1 } },
+      { key: "D", text: "Such nicht im Außen, was nur im Innen zu finden ist.", scoring: { OL: 1, SL: 1, REF: 2 } },
     ],
   },
   {
@@ -1300,15 +1300,15 @@ const TYPE_META = {
     label: "Der Klarsichtige",
     tagline: "Du siehst klarer als die meisten – jetzt geht's darum, danach zu leben.",
     description: "Du hast schon einiges verstanden. Du hinterfragst, reflektierst, lebst bewusster als viele in deinem Umfeld. Man kann mit dir über tiefere Themen sprechen, ohne dass du abblocken musst. Aber: Auch du hast blinde Flecken. Vielleicht die Tendenz, dich für weiter zu halten, als du bist. Oder die Schwierigkeit, dein Wissen konsequent in Handlung zu übersetzen. Klar sehen und danach leben – das sind zwei verschiedene Dinge. Du bist auf dem Weg. Aber der Weg hat noch Strecke.",
-    pain: "Dein Wissen ist echt – aber es kann zur Falle werden. Du hältst dich manchmal für weiter, als du bist. Und zwischen ‚verstanden haben' und ‚danach leben' liegt genau der Unterschied, den du noch überbrücken darfst.",
+    pain: "Dein Wissen ist echt – aber es kann zur Falle werden. Du hältst dich manchmal für weiter, als du bist. Der Unterschied zwischen Wissen und Weisheit: Du brauchst keine Fakten mehr, um zu spüren, was richtig oder falsch ist. Aber dieses Spüren in echtes Handeln und Vertrauen zu übersetzen – genau daran darfst du noch arbeiten.",
     extra: "Dein größter Hebel: Sei ehrlich, wo du Erkenntnis noch als Fortschritt verkaufst – und wo dir die Umsetzung fehlt.",
   },
 };
 
 const SCALE_LABELS = {
-  REF: "Reflexion", SL: "Selbstliebe", ETH: "Eigene Werte", EF: "Fremdbestimmung",
-  NAT: "Naturverb.", WV: "Weltverständnis", WS: "Weltschmerz", ML: "Machtlosigkeit",
-  OL: "Orientierungsl.", HA: "Handlungsfähigk.",
+  REF: "Reflexion", SL: "Selbstliebe", ETH: "Eig. Werte", EF: "Fremdbest.",
+  NAT: "Naturverb.", WV: "Weltverst.", WS: "Weltschmerz", ML: "Machtlosigk.",
+  OL: "Orientierung", HA: "Handlungskraft",
 };
 
 const CORE_SCALES = ["REF", "SL", "ETH", "EF", "NAT", "WV", "WS", "ML", "OL", "HA"];
@@ -1524,7 +1524,7 @@ function RadarChart({ normalized }) {
   const typePath = typePoints.map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" ") + " Z";
 
   return (
-    <svg viewBox="-60 -10 400 350" className="radar-svg">
+    <svg viewBox="-75 -15 420 360" className="radar-svg">
       {/* Grid */}
       {rings.map(val => {
         const pts = scales.map((_, i) => getPoint(i, val));
@@ -1678,7 +1678,7 @@ function CompleteScreen({ answers }) {
       });
 
       // Radar labels
-      const shortLabels = { REF: "Reflexion", SL: "Selbstliebe", ETH: "Eigene Werte", EF: "Fremdbestimm.", NAT: "Natur", WV: "Weltverst.", WS: "Weltschmerz", ML: "Machtlosigk.", OL: "Orientierung", HA: "Handlungsfäh." };
+      const shortLabels = { REF: "Reflexion", SL: "Selbstliebe", ETH: "Eig. Werte", EF: "Fremdbest.", NAT: "Natur", WV: "Weltverst.", WS: "Weltschmerz", ML: "Machtlosigk.", OL: "Orientierung", HA: "Handlungskr." };
       doc.setFontSize(6.5);
       doc.setFont("helvetica", "normal");
       doc.setTextColor(...dark);
@@ -1752,22 +1752,22 @@ function CompleteScreen({ answers }) {
         doc.text(TYPE_META[type].label, 30, y);
 
         doc.setFillColor(232, 224, 216);
-        doc.rect(80, y - 2.5, 80, 4, "F");
-        const barW = Math.max((pct / 100) * 80, 2);
+        doc.rect(80, y - 2.5, 75, 4, "F");
+        const barW = Math.max((pct / 100) * 75, 2);
         if (isMain) { doc.setFillColor(...orange); } else { doc.setFillColor(...warmGray); }
         doc.rect(80, y - 2.5, barW, 4, "F");
 
         doc.setFont("helvetica", "bold");
         doc.setFontSize(8);
         doc.setTextColor(...gray);
-        doc.text(pct + "%", 165, y, { align: "right" });
+        doc.text(pct + "%", 170, y, { align: "right" });
         y += 9;
       });
 
       y += 8;
 
-      // Extra / Hebel section
-      doc.setFillColor(240, 238, 235);
+      // Extra / Hebel section (semi-transparent background)
+      doc.setFillColor(245, 243, 240);
       doc.rect(27, y - 2, 156, 22, "F");
       doc.setFillColor(...dark);
       doc.rect(27, y - 2, 1.2, 22, "F");
@@ -1778,17 +1778,18 @@ function CompleteScreen({ answers }) {
       doc.text(extraLines, 32, y + 5, { lineHeightFactor: 1.5 });
       y += 30;
 
-      // QR Code section
+      // QR Code section — personalized CTA
       y += 10;
       doc.setFont("helvetica", "bold");
-      doc.setFontSize(13);
+      doc.setFontSize(14);
       doc.setTextColor(...dark);
-      doc.text("Deine kostenlose Masterclass", pw / 2, y, { align: "center" });
+      const ctaTitle = "DEINE KOSTENLOSE " + meta.label.toUpperCase().replace("DER ", "").replace("DIE ", "") + "-MASTERCLASS";
+      doc.text(ctaTitle, pw / 2, y, { align: "center" });
       y += 7;
       doc.setFont("helvetica", "normal");
       doc.setFontSize(9);
       doc.setTextColor(...gray);
-      const ctaTextPdf = doc.splitTextToSize("Genau f\u00FCr deinen Archetyp habe ich eine eigene Masterclass entwickelt. Scanne den QR-Code oder klicke den Link:", 140);
+      const ctaTextPdf = doc.splitTextToSize("Hier bietet sich dir die M\u00F6glichkeit, genau deine Kernprobleme aufzul\u00F6sen. Scanne den QR-Code oder klicke den Link:", 140);
       doc.text(ctaTextPdf, pw / 2, y, { align: "center", lineHeightFactor: 1.5 });
       y += ctaTextPdf.length * 4.5 + 8;
 
@@ -1820,7 +1821,7 @@ function CompleteScreen({ answers }) {
       doc.setFont("helvetica", "bold");
       doc.setFontSize(9);
       doc.setTextColor(245, 240, 235);
-      doc.text("Masterclass ansehen", pw / 2, y + 6.8, { align: "center" });
+      doc.text("Masterclass ansehen", pw / 2, y + 5.8, { align: "center" });
       doc.link(pw / 2 - btnW / 2, y, btnW, btnH, { url: qrUrl });
       y += btnH + 6;
 
