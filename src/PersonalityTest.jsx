@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { jsPDF } from "jspdf";
 
 // ─── DATA ───────────────────────────────────────────────────────────────────────
 
@@ -1591,18 +1592,6 @@ function CompleteScreen({ answers }) {
   const generatePDF = async (scoring, meta) => {
     setPdfLoading(true);
     try {
-      // Load jsPDF from CDN
-      if (!window.jspdf) {
-        await new Promise((resolve, reject) => {
-          const s = document.createElement("script");
-          s.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js";
-          s.onload = resolve;
-          s.onerror = reject;
-          document.head.appendChild(s);
-        });
-      }
-
-      const { jsPDF } = window.jspdf;
       const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
       const pw = 210, ph = 297;
 
