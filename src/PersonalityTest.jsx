@@ -1606,21 +1606,14 @@ function CompleteScreen({ answers }) {
       const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
       const pw = 210, ph = 297;
 
-      // Load briefpapier background
-      const bgImg = await new Promise((resolve, reject) => {
-        const img = new Image();
-        img.crossOrigin = "anonymous";
-        img.onload = () => resolve(img);
-        img.onerror = reject;
-        img.src = "/Digitales-briefpapier.jpg";
+      // Load briefpapier background via fetch (avoids CORS/canvas issues)
+      const bgResponse = await fetch("/Digitales-briefpapier.jpg");
+      const bgBlob = await bgResponse.blob();
+      const bgData = await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.readAsDataURL(bgBlob);
       });
-      const bgData = (() => {
-        const c = document.createElement("canvas");
-        c.width = bgImg.naturalWidth;
-        c.height = bgImg.naturalHeight;
-        c.getContext("2d").drawImage(bgImg, 0, 0);
-        return c.toDataURL("image/jpeg", 0.92);
-      })();
       doc.addImage(bgData, "JPEG", 0, 0, pw, ph);
 
       // ── PAGE 1: Title + Radar ──
@@ -1824,20 +1817,13 @@ function CompleteScreen({ answers }) {
       // Load QR code image
       const qrUrl = "https://florian-lingner.ch/kostenlose-archetyp-masterclass-anfordern/";
       try {
-        const qrImg = await new Promise((resolve, reject) => {
-          const img = new Image();
-          img.crossOrigin = "anonymous";
-          img.onload = () => resolve(img);
-          img.onerror = reject;
-          img.src = "/qr-code-mc-anfordern-pdf.png";
+        const qrResponse = await fetch("/qr-code-mc-anfordern-pdf.png");
+        const qrBlob = await qrResponse.blob();
+        const qrData = await new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result);
+          reader.readAsDataURL(qrBlob);
         });
-        const qrData = (() => {
-          const c = document.createElement("canvas");
-          c.width = qrImg.naturalWidth;
-          c.height = qrImg.naturalHeight;
-          c.getContext("2d").drawImage(qrImg, 0, 0);
-          return c.toDataURL("image/png");
-        })();
         const qrSize = 32;
         doc.addImage(qrData, "PNG", pw / 2 - qrSize / 2, y, qrSize, qrSize);
         y += qrSize + 6;
