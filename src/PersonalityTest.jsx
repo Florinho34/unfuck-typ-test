@@ -998,6 +998,35 @@ body, html, #root {
   font-weight: 400;
 }
 
+/* PDF Download */
+.pdf-download-section {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+.btn-pdf-download {
+  background: var(--dark);
+  color: var(--cream);
+  border: none;
+  padding: 0.85rem 2.2rem;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  letter-spacing: 0.02em;
+}
+.btn-pdf-download:hover {
+  background: var(--dark-soft);
+  transform: translateY(-1px);
+}
+.btn-pdf-download:disabled {
+  opacity: 0.5;
+  cursor: wait;
+  transform: none;
+}
+
 /* CTA Success */
 .cta-success {
   display: flex;
@@ -1551,8 +1580,324 @@ function CompleteScreen({ answers }) {
   const [email, setEmail] = useState("");
   const [emailStatus, setEmailStatus] = useState("idle"); // idle | loading | success | error
   const [emailError, setEmailError] = useState("");
+  const [pdfLoading, setPdfLoading] = useState(false);
+  const [firstName, setFirstName] = useState("");
   const scoring = computeScoring(answers);
   const meta = TYPE_META[scoring.resultType];
+
+  // ─── PDF GENERATION ─────────────────────────────────────────────────────
+  const generatePDF = async (scoring, meta) => {
+    setPdfLoading(true);
+    try {
+      // Load jsPDF from CDN
+      if (!window.jspdf) {
+        await new Promise((resolve, reject) => {
+          const s = document.createElement("script");
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js";
+          s.onload = resolve;
+          s.onerror = reject;
+          document.head.appendChild(s);
+        });
+      }
+
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+      const pw = 210, ph = 297;
+
+      // Load briefpapier background
+      const bgImg = await new Promise((resolve, reject) => {
+        const img = new Image();
+        img.crossOrigin = "anonymous";
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+        img.src = "/Digitales-briefpapier.jpg";
+      });
+      const bgData = (() => {
+        const c = document.createElement("canvas");
+        c.width = bgImg.naturalWidth;
+        c.height = bgImg.naturalHeight;
+        c.getContext("2d").drawImage(bgImg, 0, 0);
+        return c.toDataURL("image/jpeg", 0.92);
+      })();
+      doc.addImage(bgData, "JPEG", 0, 0, pw, ph);
+
+      // ── PAGE 1: Title + Radar ──
+      const orange = [255, 77, 0];
+      const dark = [28, 28, 28];
+      const gray = [107, 101, 96];
+      const warmGray = [163, 155, 147];
+      let y = 38;
+
+      // Eyebrow
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(8);
+      doc.setTextColor(...warmGray);
+      doc.text("DEIN PERSÖNLICHKEITSTEST \u2013 ERGEBNIS", pw / 2, y, { align: "center" });
+      y += 12;
+
+      // Type label
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(32);
+      doc.setTextColor(...dark);
+      doc.text(meta.label, pw / 2, y, { align: "center" });
+      y += 10;
+
+      // Tagline
+      doc.setFont("helvetica", "italic");
+      doc.setFontSize(11);
+      doc.setTextColor(...orange);
+      const tagLines = doc.splitTextToSize("\u201E" + meta.tagline + "\u201C", 150);
+      doc.text(tagLines, pw / 2, y, { align: "center" });
+      y += tagLines.length * 5.5 + 10;
+
+      // ── Draw Radar Chart ──
+      const radarCx = pw / 2, radarCy = y + 42, radarR = 36;
+      const scales = CORE_SCALES;
+      const n = scales.length;
+
+      const getRadarPt = (idx, val) => {
+        const angle = (Math.PI * 2 * idx) / n - Math.PI / 2;
+        const dist = (val / 100) * radarR;
+        return { x: radarCx + dist * Math.cos(angle), y: radarCy + dist * Math.sin(angle) };
+      };
+
+      // Grid rings
+      [25, 50, 75, 100].forEach(val => {
+        const pts = scales.map((_, i) => getRadarPt(i, val));
+        doc.setDrawColor(...warmGray);
+        doc.setLineWidth(0.15);
+        pts.forEach((p, i) => {
+          const np = pts[(i + 1) % pts.length];
+          doc.line(p.x, p.y, np.x, np.y);
+        });
+      });
+
+      // Axis lines
+      scales.forEach((_, i) => {
+        const p = getRadarPt(i, 100);
+        doc.setDrawColor(220, 215, 210);
+        doc.setLineWidth(0.1);
+        doc.line(radarCx, radarCy, p.x, p.y);
+      });
+
+      // Type reference profile (dashed)
+      const typeProfile = TYPE_PROFILES[scoring.resultType];
+      const typePts = scales.map((s, i) => getRadarPt(i, typeProfile[s]));
+      doc.setDrawColor(...warmGray);
+      doc.setLineWidth(0.3);
+      doc.setLineDashPattern([1.5, 1], 0);
+      typePts.forEach((p, i) => {
+        const np = typePts[(i + 1) % typePts.length];
+        doc.line(p.x, p.y, np.x, np.y);
+      });
+      doc.setLineDashPattern([], 0);
+
+      // User profile lines
+      const userPts = scales.map((s, i) => getRadarPt(i, scoring.normalized[s]));
+      doc.setDrawColor(...orange);
+      doc.setLineWidth(0.6);
+      userPts.forEach((p, i) => {
+        const np = userPts[(i + 1) % userPts.length];
+        doc.line(p.x, p.y, np.x, np.y);
+      });
+      // Dots
+      userPts.forEach(p => {
+        doc.setFillColor(...orange);
+        doc.circle(p.x, p.y, 1, "F");
+      });
+
+      // Radar labels
+      const shortLabels = { REF: "Reflexion", SL: "Selbstliebe", ETH: "Ethik", NAT: "Natur", WV: "Weltverst.", WS: "Weltschmerz", ML: "Machtlosigk.", OL: "Orientierung" };
+      doc.setFontSize(6.5);
+      doc.setFont("helvetica", "normal");
+      doc.setTextColor(...dark);
+      scales.forEach((s, i) => {
+        const p = getRadarPt(i, 125);
+        const anchor = p.x < radarCx - 5 ? "right" : p.x > radarCx + 5 ? "left" : "center";
+        const dy = p.y < radarCy - 5 ? -1.5 : p.y > radarCy + 5 ? 3 : 0.5;
+        doc.text(shortLabels[s] || SCALE_LABELS[s], p.x, p.y + dy, { align: anchor });
+      });
+
+      // Legend
+      y = radarCy + radarR + 14;
+      doc.setFontSize(6);
+      doc.setTextColor(...orange);
+      doc.setFillColor(...orange);
+      doc.rect(pw / 2 - 35, y - 1.2, 4, 1.2, "F");
+      doc.text("Dein Profil", pw / 2 - 29, y, { align: "left" });
+      doc.setTextColor(...warmGray);
+      doc.setDrawColor(...warmGray);
+      doc.setLineDashPattern([1, 0.8], 0);
+      doc.line(pw / 2 + 5, y - 0.6, pw / 2 + 9, y - 0.6);
+      doc.setLineDashPattern([], 0);
+      doc.text(meta.label + "-Referenz", pw / 2 + 11, y, { align: "left" });
+      y += 14;
+
+      // Description
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(9.5);
+      doc.setTextColor(...dark);
+      const descLines = doc.splitTextToSize(meta.description, 155);
+      doc.text(descLines, pw / 2, y, { align: "center", lineHeightFactor: 1.6 });
+      y += descLines.length * 4.8 + 8;
+
+      // Pain section
+      if (y < ph - 60) {
+        doc.setFillColor(...orange);
+        doc.rect(27, y - 1, 1.2, 28, "F");
+        doc.setFillColor(255, 240, 235);
+        doc.rect(29, y - 2, 154, 30, "F");
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(10);
+        doc.setTextColor(...orange);
+        doc.text("Daran scheiterst du gerade wahrscheinlich:", 32, y + 4);
+
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(8.5);
+        doc.setTextColor(...dark);
+        const painLines = doc.splitTextToSize(meta.pain, 148);
+        doc.text(painLines, 32, y + 11, { lineHeightFactor: 1.55 });
+      }
+
+      // ═══════ PAGE 2 ═══════
+      doc.addPage();
+      doc.addImage(bgData, "JPEG", 0, 0, pw, ph);
+      y = 38;
+
+      // Affinities heading
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(14);
+      doc.setTextColor(...dark);
+      doc.text("Deine Typ-Verteilung", pw / 2, y, { align: "center" });
+      y += 12;
+
+      // Affinity bars
+      const sortedAffinities = Object.entries(scoring.affinities).sort((a, b) => b[1] - a[1]);
+      sortedAffinities.forEach(([type, pct]) => {
+        const isMain = type === scoring.resultType;
+        doc.setFont("helvetica", isMain ? "bold" : "normal");
+        doc.setFontSize(9);
+        doc.setTextColor(...dark);
+        doc.text(TYPE_META[type].label, 30, y);
+
+        doc.setFillColor(232, 224, 216);
+        doc.rect(80, y - 2.5, 80, 4, "F");
+        const barW = Math.max((pct / 100) * 80, 2);
+        if (isMain) { doc.setFillColor(...orange); } else { doc.setFillColor(...warmGray); }
+        doc.rect(80, y - 2.5, barW, 4, "F");
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(8);
+        doc.setTextColor(...gray);
+        doc.text(pct + "%", 165, y, { align: "right" });
+        y += 9;
+      });
+
+      y += 8;
+
+      // Extra / Hebel section
+      doc.setFillColor(240, 238, 235);
+      doc.rect(27, y - 2, 156, 22, "F");
+      doc.setFillColor(...dark);
+      doc.rect(27, y - 2, 1.2, 22, "F");
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(9);
+      doc.setTextColor(...dark);
+      const extraLines = doc.splitTextToSize(meta.extra, 148);
+      doc.text(extraLines, 32, y + 5, { lineHeightFactor: 1.5 });
+      y += 30;
+
+      // QR Code section
+      y += 10;
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(13);
+      doc.setTextColor(...dark);
+      doc.text("Deine kostenlose Masterclass", pw / 2, y, { align: "center" });
+      y += 7;
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(9);
+      doc.setTextColor(...gray);
+      const ctaTextPdf = doc.splitTextToSize("Genau f\u00FCr deinen Archetyp habe ich eine eigene Masterclass entwickelt. Scanne den QR-Code oder klicke den Link:", 140);
+      doc.text(ctaTextPdf, pw / 2, y, { align: "center", lineHeightFactor: 1.5 });
+      y += ctaTextPdf.length * 4.5 + 8;
+
+      // Generate QR code
+      const qrUrl = "https://florian-lingner.ch/kostenlose-archetyp-masterclass-anfordern/";
+      const qrCanvas = await generateQRCanvas(qrUrl);
+      const qrData = qrCanvas.toDataURL("image/png");
+      const qrSize = 32;
+      doc.addImage(qrData, "PNG", pw / 2 - qrSize / 2, y, qrSize, qrSize);
+      y += qrSize + 6;
+
+      // Link button
+      const btnW = 80, btnH = 10;
+      doc.setFillColor(...dark);
+      doc.roundedRect(pw / 2 - btnW / 2, y, btnW, btnH, 1, 1, "F");
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(9);
+      doc.setTextColor(245, 240, 235);
+      doc.textWithLink("Masterclass ansehen", pw / 2, y + 6.8, { align: "center", url: qrUrl });
+      y += btnH + 6;
+
+      doc.setFontSize(7);
+      doc.setTextColor(...warmGray);
+      doc.text(qrUrl, pw / 2, y, { align: "center" });
+
+      // Save
+      doc.save("Persoenlichkeitstest-" + meta.label.replace(/\s+/g, "-") + ".pdf");
+    } catch (err) {
+      console.error("PDF generation failed:", err);
+      alert("PDF konnte nicht erstellt werden. Bitte versuche es erneut.");
+    } finally {
+      setPdfLoading(false);
+    }
+  };
+
+  // QR Code generator
+  const generateQRCanvas = (text) => {
+    return new Promise((resolve, reject) => {
+      if (window.QRCode) {
+        renderQR(text, resolve);
+        return;
+      }
+      const s = document.createElement("script");
+      s.src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js";
+      s.onload = () => renderQR(text, resolve);
+      s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  };
+
+  const renderQR = (text, resolve) => {
+    const container = document.createElement("div");
+    container.style.position = "absolute";
+    container.style.left = "-9999px";
+    document.body.appendChild(container);
+    new window.QRCode(container, {
+      text,
+      width: 256,
+      height: 256,
+      colorDark: "#1C1C1C",
+      colorLight: "#ffffff",
+      correctLevel: window.QRCode.CorrectLevel.M,
+    });
+    setTimeout(() => {
+      const canvas = container.querySelector("canvas");
+      if (canvas) resolve(canvas);
+      else {
+        const img = container.querySelector("img");
+        if (img) {
+          const c = document.createElement("canvas");
+          c.width = 256; c.height = 256;
+          const ctx = c.getContext("2d");
+          img.onload = () => { ctx.drawImage(img, 0, 0, 256, 256); resolve(c); };
+          if (img.complete) { ctx.drawImage(img, 0, 0, 256, 256); resolve(c); }
+        }
+      }
+      document.body.removeChild(container);
+    }, 200);
+  };
 
   useEffect(() => {
     const t = setTimeout(() => setAnimateIn(true), 100);
@@ -1566,6 +1911,10 @@ function CompleteScreen({ answers }) {
   const validateEmail = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
 
   const handleEmailSubmit = async () => {
+    if (!firstName.trim()) {
+      setEmailError("Bitte gib deinen Vornamen ein.");
+      return;
+    }
     if (!validateEmail(email)) {
       setEmailError("Bitte gib eine gültige E-Mail-Adresse ein.");
       return;
@@ -1581,6 +1930,7 @@ function CompleteScreen({ answers }) {
         body: JSON.stringify({
           api_key: KIT_API_KEY,
           email: email,
+          first_name: firstName.trim(),
         }),
       });
       if (res.ok) {
@@ -1669,9 +2019,17 @@ function CompleteScreen({ answers }) {
               </p>
               <div className="cta-email">
                 <input
+                  type="text"
+                  placeholder="Dein Vorname"
+                  className={`email-input ${emailError && !firstName.trim() ? "email-input-error" : ""}`}
+                  value={firstName}
+                  onChange={(e) => { setFirstName(e.target.value); setEmailError(""); }}
+                  disabled={emailStatus === "loading"}
+                />
+                <input
                   type="email"
                   placeholder="Deine E-Mail-Adresse"
-                  className={`email-input ${emailError ? "email-input-error" : ""}`}
+                  className={`email-input ${emailError && firstName.trim() ? "email-input-error" : ""}`}
                   value={email}
                   onChange={(e) => { setEmail(e.target.value); setEmailError(""); }}
                   onKeyDown={handleKeyDown}
@@ -1693,6 +2051,17 @@ function CompleteScreen({ answers }) {
               <p className="cta-privacy">Kein Spam. Kein Bullshit. Jederzeit abmeldbar.</p>
             </>
           )}
+        </div>
+
+        {/* PDF Download */}
+        <div className="pdf-download-section">
+          <button
+            className="btn-pdf-download"
+            onClick={() => generatePDF(scoring, meta)}
+            disabled={pdfLoading}
+          >
+            {pdfLoading ? "PDF wird erstellt..." : "Ergebnis als PDF speichern"}
+          </button>
         </div>
 
         {/* Debug toggle */}
