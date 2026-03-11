@@ -7,7 +7,7 @@ const BLOCKS = [
   { id: 1, title: "Reflexion & Selbstwahrnehmung", questions: [1,2,3,4,5,6,7] },
   { id: 2, title: "Ethik, Werte & Weltbild", questions: [8,9,10,11,12,13,14] },
   { id: 3, title: "Handlung, Antrieb & Stillstand", questions: [15,16,17,18,19,20,21] },
-  { id: 4, title: "Identität & Tiefenstruktur", questions: [22,23,24,25,26,27,28] },
+  { id: 4, title: "Identität & Tiefenstruktur", questions: [22,23,24,25,26,27,28,29,30] },
 ];
 
 const QUESTIONS = [
@@ -108,7 +108,7 @@ const QUESTIONS = [
     scenario: "In einer Diskussion über ein kontroverses Thema – was beschreibt dich am besten?",
     options: [
       { key: "A", text: "Ich versuche beide Seiten zu verstehen, bevor ich eine Position beziehe.", scoring: { REF: 2, WV: 3 } },
-      { key: "B", text: "Ich habe klare Überzeugungen und vertrete sie auch.", scoring: { ETH: 2, WS: 1, HA: 1 } },
+      { key: "B", text: "Ich habe klare Überzeugungen und vertrete sie auch.", scoring: { ETH: 2, WS: 1, HA: 1, REF: 1 } },
       { key: "C", text: "Ich halte mich meistens raus – Diskussionen ändern selten etwas.", scoring: { ML: 3, OL: 1, HA: -1 } },
       { key: "D", text: "Ich passe meine Position manchmal an, je nachdem mit wem ich rede.", scoring: { ETH_fremd: 2, SL: -1 } },
     ],
@@ -152,7 +152,7 @@ const QUESTIONS = [
     scenario: "Du bist allein in der Natur – Wald, Berge, Meer. Was passiert mit dir?",
     options: [
       { key: "A", text: "Ich komme runter und werde ruhig. Es ist einer der wenigen Orte, wo das passiert.", scoring: { NAT: 3, SL: 1, HA: 1 } },
-      { key: "B", text: "Ich spüre eine tiefe Verbindung – und gleichzeitig Trauer darüber, wie wir mit ihr umgehen.", scoring: { NAT: 3, WS: 2, ETH: 1 } },
+      { key: "B", text: "Ich spüre eine tiefe Verbindung – und gleichzeitig Trauer darüber, wie wir mit ihr umgehen.", scoring: { NAT: 3, WS: 2, ETH: 1, REF: 1 } },
       { key: "C", text: "Es ist schön, aber mein Kopf schaltet selten ab – ich nehme die Gedanken mit.", scoring: { REF: 2, ML: 1, HA: -1 } },
       { key: "D", text: "Ich bin ehrlich gesagt selten in der Natur.", scoring: { NAT: -2, OL: 1, ETH_fremd: 1 } },
     ],
@@ -177,7 +177,7 @@ const QUESTIONS = [
       { key: "A", text: "Innere Klarheit – endlich wissen, was ich wirklich will und wer ich bin.", scoring: { OL: 3, REF: 1, SL: 1 } },
       { key: "B", text: "Dass mein Wissen und meine Einsichten endlich zu echten Veränderungen führen.", scoring: { REF: 2, ML: 2, HA: -1, WV: 1 } },
       { key: "C", text: "Dass ich aufhöre, mir selbst im Weg zu stehen – und einfach mache.", scoring: { HA: 2, SL: 2, ML: -1 } },
-      { key: "D", text: "Ehrlich? Dass die Welt weniger kaputt wäre. Mein persönliches Glück hängt daran.", scoring: { WS: 3, ETH: 2, NAT: 1 } },
+      { key: "D", text: "Ehrlich? Dass die Welt weniger kaputt wäre. Mein persönliches Glück hängt daran.", scoring: { WS: 3, ETH: 2, NAT: 1, REF: 1 } },
     ],
   },
   {
@@ -299,7 +299,7 @@ const QUESTIONS = [
     options: [
       { key: "A", text: "Ich genieße es – endlich Zeit zum Nachdenken, Lesen, Reflektieren.", scoring: { REF: 3, NAT: 1 } },
       { key: "B", text: "Nach zwei Stunden werde ich unruhig und suche mir etwas zu tun.", scoring: { SL: -2, OL: 1, ETH_fremd: 2, HA: 1 } },
-      { key: "C", text: "Ich würde rausgehen – Natur, frische Luft, runterkommen.", scoring: { NAT: 3, SL: 1, HA: 1 } },
+      { key: "C", text: "Ich würde rausgehen – Natur, frische Luft, runterkommen.", scoring: { NAT: 3, SL: 1, HA: 1, REF: 1 } },
       { key: "D", text: "Ehrlich? Der Gedanke bereitet mir eher Unbehagen als Freude.", scoring: { ML: 2, SL: -2, OL: 1, HA: -1 } },
     ],
   },
@@ -325,9 +325,127 @@ const QUESTIONS = [
       { key: "D", text: "Weil ich mich in vielen Fragen wiedergefunden habe und neugierig bin, was daraus wird.", scoring: { WS: 2, REF: 1 } },
     ],
   },
+  {
+    id: 29,
+    title: "DIE ERKENNTNIS",
+    scenario: "Wenn du auf dein bisheriges Leben zurückblickst — wie würdest du dein Verhältnis zu dir selbst beschreiben?",
+    options: [
+      { key: "A", text: "Ich habe mich lange nicht wirklich gekannt – und bin immer noch dabei, mich zu entdecken.", scoring: { OL: 2, SL: 1, REF: 1 } },
+      { key: "B", text: "Ich kenne mich gut – vielleicht zu gut. Manchmal wünschte ich, ich könnte weniger sehen.", scoring: { REF: 3, WV: 1, ML: 1, WS: 1 } },
+      { key: "C", text: "Ich bin mir über vieles klar geworden. Nicht durch Theorie, sondern durch ehrliche Erfahrung.", scoring: { REF: 3, SL: 2, ETH: 1, HA: 1 } },
+      { key: "D", text: "Ich funktioniere gut – aber ob ich mich wirklich kenne? Darüber denke ich selten nach.", scoring: { ETH_fremd: 2, REF: -1, SL: -1 } },
+    ],
+  },
+  {
+    id: 30,
+    title: "DAS WIEDERKEHRENDE MUSTER",
+    scenario: "Du erkennst ein wiederkehrendes Muster in deinem Verhalten – etwas, das dich immer wieder bremst. Was tust du?",
+    options: [
+      { key: "A", text: "Ich verstehe das Muster intellektuell, aber es zu durchbrechen ist etwas anderes. Ich stecke fest.", scoring: { REF: 2, ML: 2, HA: -2, WV: 1 } },
+      { key: "B", text: "Ich nehme mir konkret vor, es beim nächsten Mal anders zu machen – und meistens ziehe ich das auch durch.", scoring: { REF: 2, HA: 3, SL: 1 } },
+      { key: "C", text: "Ich bin nicht sicher, ob ich solche Muster überhaupt erkenne. Vielleicht bräuchte ich jemanden, der mir das spiegelt.", scoring: { OL: 2, ML: 1, SL: -1 } },
+      { key: "D", text: "Muster hin oder her – ich mache einfach weiter und schaue, was passiert.", scoring: { ETH_fremd: 1, HA: 1, SL: 1 } },
+    ],
+  },
 ];
 
-// ─── STYLES ─────────────────────────────────────────────────────────────────────
+// ─── FOLLOW-UP QUESTIONS ────────────────────────────────────────────────────
+// Key format: "F{questionId}{answerKey}" — triggers when that answer is chosen as primary
+// Follow-up scoring REPLACES the original scoring of the triggering answer
+
+const FOLLOW_UPS = {
+  "1B": {
+    question: "Was steckt hinter diesem Gefühl?",
+    options: [
+      { key: "a", text: "Ich weiß, dass Kritik von außen selten das ganze Bild zeigt – ich vertraue meiner Selbsteinschätzung.", scoring: { REF: 2, SL: 1, HA: 1 } },
+      { key: "b", text: "Es ist mir unangenehm und ich blocke lieber ab, als mich damit auseinanderzusetzen.", scoring: { REF: 1, ML: 1, SL: -1 } },
+    ],
+  },
+  "2B": {
+    question: "Warum brauchst du den Input zum Einschlafen?",
+    options: [
+      { key: "a", text: "Ohne Ablenkung kommen Gedanken hoch, die ich lieber vermeide.", scoring: { OL: 2, SL: -1, ML: 1 } },
+      { key: "b", text: "Ich nutze das bewusst zum Runterkommen – es ist mein Ritual, kein Vermeiden.", scoring: { SL: 1, REF: 1, HA: 1 } },
+    ],
+  },
+  "4C": {
+    question: "Wie gehst du mit diesem Wissen um?",
+    options: [
+      { key: "a", text: "Ich analysiere endlos weiter, finde aber keinen Anfang.", scoring: { REF: 2, ML: 3, WV: 1, HA: -2 } },
+      { key: "b", text: "Ich weiß, dass ich zu lange zögere – und arbeite aktiv daran, das zu ändern.", scoring: { REF: 3, SL: 1, HA: 1 } },
+    ],
+  },
+  "6C": {
+    question: "Was bedeutet dieses Ausprobieren für dich?",
+    options: [
+      { key: "a", text: "Ich springe von Sache zu Sache und finde einfach nicht, wo ich hingehöre.", scoring: { OL: 3, SL: -1, HA: 1 } },
+      { key: "b", text: "Ich habe bewusst vieles getestet und weiß inzwischen viel besser, was zu mir passt.", scoring: { REF: 2, SL: 1, ETH: 1 } },
+    ],
+  },
+  "6D": {
+    question: "Was überwiegt bei diesem Gefühl?",
+    options: [
+      { key: "a", text: "Ich habe funktioniert und die Erwartungen erfüllt – aber mich selbst dabei verloren.", scoring: { SL: -2, ETH_fremd: 2, HA: 1 } },
+      { key: "b", text: "Ich bin ehrlich zu mir: Erfolg und Glück sind verschiedene Dinge, und das wird mir immer klarer.", scoring: { REF: 2, SL: 1, ETH: 1 } },
+    ],
+  },
+  "8D": {
+    question: "Wie triffst du diese Entscheidung?",
+    options: [
+      { key: "a", text: "Ehrlich gesagt denke ich darüber nicht groß nach – ist halt so.", scoring: { OL: 1, SL: 1 } },
+      { key: "b", text: "Mir ist der Widerspruch bewusst, aber ich treffe die Entscheidung trotzdem bewusst – perfekt geht nicht.", scoring: { REF: 2, WV: 1, SL: 1 } },
+    ],
+  },
+  "10D": {
+    question: "Warum scrollst du weiter?",
+    options: [
+      { key: "a", text: "Es interessiert mich einfach nicht so – ich hab genug eigene Themen.", scoring: { SL: 1, OL: 1 } },
+      { key: "b", text: "Ich entscheide bewusst, womit ich mich beschäftige. Nicht alles verdient meine Energie.", scoring: { REF: 2, SL: 1, HA: 1 } },
+    ],
+  },
+  "14B": {
+    question: "Was steckt hinter der Traurigkeit?",
+    options: [
+      { key: "a", text: "Ich fühle mich ohnmächtig und gelähmt – ich kann doch eh nichts ändern.", scoring: { ML: 3, WS: 1, NAT: 1, HA: -1 } },
+      { key: "b", text: "Ich bin realistisch – mein Einfluss ist begrenzt, aber das heißt nicht, dass es mir egal ist.", scoring: { REF: 2, WS: 1, NAT: 1, ETH: 1 } },
+    ],
+  },
+  "16B": {
+    question: "Warum lässt die Energie nach?",
+    options: [
+      { key: "a", text: "Ich verliere das Interesse und etwas Neues zieht mich an.", scoring: { OL: 3, SL: -1, HA: 1 } },
+      { key: "b", text: "Ich merke unterwegs, was nicht stimmt, und korrigiere lieber den Kurs als blind weiterzumachen.", scoring: { REF: 2, HA: 1, SL: 1 } },
+    ],
+  },
+  "18B": {
+    question: "Was erhoffst du dir vom neuen Input?",
+    options: [
+      { key: "a", text: "Vielleicht ist diesmal die richtige Methode dabei – irgendwas muss doch helfen.", scoring: { OL: 3, ML: 1 } },
+      { key: "b", text: "Ich weiß ungefähr, was ich brauche, und suche gezielt nach dem passenden Impuls.", scoring: { REF: 2, HA: 1, WV: 1 } },
+    ],
+  },
+  "19C": {
+    question: "Was treibt dich bei der Arbeit an?",
+    options: [
+      { key: "a", text: "Wenn ich beschäftigt bin, muss ich nicht über andere Dinge nachdenken.", scoring: { SL: -2, ETH_fremd: 2, HA: 1 } },
+      { key: "b", text: "Ich liebe was ich tue – Arbeit fühlt sich für mich nicht wie Flucht an, sondern wie Ausdruck.", scoring: { SL: 1, ETH: 1, HA: 2 } },
+    ],
+  },
+  "27C": {
+    question: "Was macht das mit dir?",
+    options: [
+      { key: "a", text: "Es erinnert mich daran, wie festgefahren ich selbst bin.", scoring: { OL: 2, ML: 1, SL: -1 } },
+      { key: "b", text: "Es regt mich zum Nachdenken an – vielleicht stehen bei mir auch Veränderungen an.", scoring: { REF: 2, HA: 1 } },
+    ],
+  },
+  "28B": {
+    question: "Was für eine Hoffnung ist das?",
+    options: [
+      { key: "a", text: "Dass mir jemand oder etwas endlich die Richtung zeigt, die mir fehlt.", scoring: { OL: 3, ML: 1 } },
+      { key: "b", text: "Dass ich blinde Flecken entdecke, die ich alleine vielleicht übersehe – obwohl ich grundsätzlich weiß, wo ich stehe.", scoring: { REF: 2, SL: 1, ETH: 1 } },
+    ],
+  },
+};
 
 const css = `
 @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
@@ -551,7 +669,7 @@ body, html, #root {
   font-weight: 400;
 }
 
-.option-btn:hover {
+.option-btn:hover:not(.selected-primary):not(.selected-secondary) {
   border-color: var(--dark);
   background: rgba(28, 28, 28, 0.02);
 }
@@ -1093,6 +1211,55 @@ body, html, #root {
   overflow-x: auto;
 }
 
+/* ── Follow-Up Question ── */
+.followup-section {
+  animation: fadeUp 0.35s ease-out;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--orange);
+  background: var(--orange-glow);
+}
+
+.followup-question {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.followup-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.followup-btn {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 1.5px solid var(--sand);
+  padding: 0.75rem 1rem;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--dark);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 400;
+}
+
+.followup-btn:hover:not(.followup-selected) {
+  border-color: var(--dark);
+  background: rgba(28, 28, 28, 0.02);
+}
+
+.followup-selected {
+  border-color: var(--orange);
+  background: var(--orange-glow);
+  font-weight: 500;
+}
+
 /* ── Animations ── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(16px); }
@@ -1120,7 +1287,7 @@ function IntroScreen({ onStart }) {
       <div className="eyebrow">Dein Persönlichkeitstest</div>
       <h1>Was steht dir durch deine <span className="highlight">persönlichen Neigungen</span> im Weg?</h1>
       <p className="intro-sub">
-        28 alltagsnahe Fragen, 10 Dimensionen, 5 Archetypen – kein Schubladen-Denken, sondern ein realistischer Spiegel deines Selbst.
+        30 alltagsnahe Fragen, 10 Dimensionen, 5 Archetypen – kein Schubladen-Denken, sondern ein realistischer Spiegel deines Selbst.
       </p>
       <p className="intro-meta">~8 Minuten · anonym · Sofortergebnis</p>
       <button className="btn-primary" onClick={onStart}>
@@ -1150,7 +1317,7 @@ function BlockTransition({ block, onContinue, isFirst }) {
     <div className="block-transition">
       <div className="block-num">{block.id}</div>
       <h2>{block.title}</h2>
-      <p className="block-count">7 Fragen</p>
+      <p className="block-count">{block.questions.length} Fragen</p>
       <div className="answer-hint">
         {isFirst ? (
           <>
@@ -1167,14 +1334,24 @@ function BlockTransition({ block, onContinue, isFirst }) {
   );
 }
 
-function QuestionCard({ question, questionIndex, totalQuestions, answers, onAnswer, onNext, onBack, isLast }) {
+function QuestionCard({ question, questionIndex, totalQuestions, answers, followUpAnswers, onAnswer, onFollowUp, onNext, onBack, isLast }) {
   const currentAnswer = answers[question.id] || { primary: null, secondary: null };
   const hasPrimary = currentAnswer.primary !== null;
+
+  // Check if current primary triggers a follow-up
+  const followUpKey = hasPrimary ? `${question.id}${currentAnswer.primary}` : null;
+  const followUp = followUpKey ? FOLLOW_UPS[followUpKey] : null;
+  const followUpAnswer = followUpKey ? (followUpAnswers[followUpKey] || null) : null;
+
+  // Weiter-Button is disabled if primary not set, or if follow-up exists but not answered
+  const canProceed = hasPrimary && (!followUp || followUpAnswer !== null);
 
   const handleOptionClick = (key) => {
     if (!hasPrimary) {
       onAnswer(question.id, { primary: key, secondary: null });
     } else if (key === currentAnswer.primary) {
+      // Deselect primary — also clear any follow-up answer for old key
+      if (followUpKey) onFollowUp(followUpKey, null);
       onAnswer(question.id, { primary: null, secondary: null });
     } else if (key === currentAnswer.secondary) {
       onAnswer(question.id, { ...currentAnswer, secondary: null });
@@ -1215,7 +1392,15 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, onAnsw
           })}
         </div>
 
-        {hasPrimary && !currentAnswer.secondary && (
+        {hasPrimary && !currentAnswer.secondary && !followUp && (
+          <div className="secondary-section">
+            <p className="secondary-hint">
+              Optional: Wähle eine zweite Antwort, die auch auf dich zutrifft (wird schwächer gewichtet)
+            </p>
+          </div>
+        )}
+
+        {hasPrimary && !currentAnswer.secondary && followUp && (
           <div className="secondary-section">
             <p className="secondary-hint">
               Optional: Wähle eine zweite Antwort, die auch auf dich zutrifft (wird schwächer gewichtet)
@@ -1230,6 +1415,24 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, onAnsw
             </p>
           </div>
         )}
+
+        {/* Follow-Up Question */}
+        {followUp && hasPrimary && (
+          <div className="followup-section">
+            <div className="followup-question">{followUp.question}</div>
+            <div className="followup-options">
+              {followUp.options.map((opt) => (
+                <button
+                  key={opt.key}
+                  className={`followup-btn ${followUpAnswer === opt.key ? "followup-selected" : ""}`}
+                  onClick={() => onFollowUp(followUpKey, opt.key)}
+                >
+                  {opt.text}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="nav-row">
@@ -1238,7 +1441,7 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, onAnsw
         </button>
         <button
           className={`btn-next ${isLast ? "btn-finish" : ""}`}
-          disabled={!hasPrimary}
+          disabled={!canProceed}
           onClick={onNext}
         >
           {isLast ? "Test abschließen" : "Weiter →"}
@@ -1321,7 +1524,25 @@ function computeTheoreticalMax() {
   QUESTIONS.forEach(q => {
     const bestPerScale = {};
     const worstPerScale = {};
+
     q.options.forEach(opt => {
+      // For each option, check if it has a follow-up — if so, use follow-up scorings instead
+      const fuKey = `${q.id}${opt.key}`;
+      const followUp = FOLLOW_UPS[fuKey];
+
+      if (followUp) {
+        // This option can be replaced by either follow-up option's scoring
+        followUp.options.forEach(fuOpt => {
+          Object.entries(fuOpt.scoring).forEach(([k, v]) => {
+            const key = k === "ETH_fremd" ? "EF" : k;
+            if (!CORE_SCALES.includes(key)) return;
+            if (v > 0) bestPerScale[key] = Math.max(bestPerScale[key] || 0, v);
+            if (v < 0) worstPerScale[key] = Math.min(worstPerScale[key] || 0, v);
+          });
+        });
+      }
+
+      // Also consider the original scoring (if no follow-up is answered, original applies)
       Object.entries(opt.scoring).forEach(([k, v]) => {
         const key = k === "ETH_fremd" ? "EF" : k;
         if (!CORE_SCALES.includes(key)) return;
@@ -1396,7 +1617,7 @@ function checkSocialDesirability(answers) {
     answers[20]?.primary === "A",
     answers[24]?.primary === "C",
   ].filter(Boolean).length;
-  if (reflektiert >= 3) refPenalty = 0.15;
+  if (reflektiert >= 4) refPenalty = 0.15;
 
   // "Weltretter": F8B + F10B + F14A
   const weltretter = [
@@ -1409,7 +1630,7 @@ function checkSocialDesirability(answers) {
   return { refPenalty, ethPenalty };
 }
 
-function computeScoring(answers) {
+function computeScoring(answers, followUpAnswers = {}) {
   // 1. Raw scores
   const raw = {};
   CORE_SCALES.forEach(s => { raw[s] = 0; });
@@ -1421,10 +1642,27 @@ function computeScoring(answers) {
     const secondaryOpt = ans.secondary ? q.options.find(o => o.key === ans.secondary) : null;
 
     if (primaryOpt) {
-      Object.entries(primaryOpt.scoring).forEach(([k, v]) => {
-        const key = k === "ETH_fremd" ? "EF" : k;
-        if (CORE_SCALES.includes(key)) raw[key] += v;
-      });
+      // Check if this primary answer has a follow-up that was answered
+      const fuKey = `${q.id}${ans.primary}`;
+      const fuAnswer = followUpAnswers[fuKey];
+      const followUp = FOLLOW_UPS[fuKey];
+
+      if (followUp && fuAnswer) {
+        // Follow-up REPLACES original primary scoring
+        const fuOpt = followUp.options.find(o => o.key === fuAnswer);
+        if (fuOpt) {
+          Object.entries(fuOpt.scoring).forEach(([k, v]) => {
+            const key = k === "ETH_fremd" ? "EF" : k;
+            if (CORE_SCALES.includes(key)) raw[key] += v;
+          });
+        }
+      } else {
+        // Normal primary scoring
+        Object.entries(primaryOpt.scoring).forEach(([k, v]) => {
+          const key = k === "ETH_fremd" ? "EF" : k;
+          if (CORE_SCALES.includes(key)) raw[key] += v;
+        });
+      }
     }
     if (secondaryOpt) {
       Object.entries(secondaryOpt.scoring).forEach(([k, v]) => {
@@ -1566,7 +1804,7 @@ function RadarChart({ normalized }) {
 
 // ─── RESULT SCREEN ──────────────────────────────────────────────────────────
 
-function CompleteScreen({ answers }) {
+function CompleteScreen({ answers, followUpAnswers = {} }) {
   const [showDebug, setShowDebug] = useState(false);
   const [animateIn, setAnimateIn] = useState(false);
   const [email, setEmail] = useState("");
@@ -1574,7 +1812,7 @@ function CompleteScreen({ answers }) {
   const [emailError, setEmailError] = useState("");
   const [pdfLoading, setPdfLoading] = useState(false);
   const [firstName, setFirstName] = useState("");
-  const scoring = computeScoring(answers);
+  const scoring = computeScoring(answers, followUpAnswers);
   const meta = TYPE_META[scoring.resultType];
 
   // ─── PDF GENERATION ─────────────────────────────────────────────────────
@@ -2038,9 +2276,11 @@ function CompleteScreen({ answers }) {
             <strong>// Antworten</strong><br /><br />
             {QUESTIONS.map(q => {
               const a = answers[q.id];
+              const fuKey = a?.primary ? `${q.id}${a.primary}` : null;
+              const fuAns = fuKey ? followUpAnswers[fuKey] : null;
               return (
                 <span key={q.id}>
-                  F{q.id}: {a?.primary || "–"}{a?.secondary ? ` + ${a.secondary} (40%)` : ""}<br />
+                  F{q.id}: {a?.primary || "–"}{a?.secondary ? ` + ${a.secondary} (40%)` : ""}{fuAns ? ` → FU:${fuAns}` : ""}<br />
                 </span>
               );
             })}
@@ -2058,9 +2298,10 @@ export default function PersonalityTest() {
   const [currentBlock, setCurrentBlock] = useState(0);
   const [currentQuestionInBlock, setCurrentQuestionInBlock] = useState(0);
   const [answers, setAnswers] = useState({});
+  const [followUpAnswers, setFollowUpAnswers] = useState({});
   const appRef = useRef(null);
 
-  const totalQuestions = 28;
+  const totalQuestions = 30;
   
   const flatIndex = BLOCKS.slice(0, currentBlock).reduce((sum, b) => sum + b.questions.length, 0) + currentQuestionInBlock;
   const currentQuestion = QUESTIONS[flatIndex];
@@ -2083,6 +2324,10 @@ export default function PersonalityTest() {
 
   const handleAnswer = (qId, ans) => {
     setAnswers(prev => ({ ...prev, [qId]: ans }));
+  };
+
+  const handleFollowUp = (fuKey, optKey) => {
+    setFollowUpAnswers(prev => ({ ...prev, [fuKey]: optKey }));
   };
 
   const handleNext = () => {
@@ -2138,14 +2383,16 @@ export default function PersonalityTest() {
             questionIndex={flatIndex}
             totalQuestions={totalQuestions}
             answers={answers}
+            followUpAnswers={followUpAnswers}
             onAnswer={handleAnswer}
+            onFollowUp={handleFollowUp}
             onNext={handleNext}
             onBack={handleBack}
             isLast={isLastQuestion}
           />
         )}
         
-        {phase === "complete" && <CompleteScreen answers={answers} />}
+        {phase === "complete" && <CompleteScreen answers={answers} followUpAnswers={followUpAnswers} />}
       </div>
     </>
   );
