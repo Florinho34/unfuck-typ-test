@@ -116,7 +116,7 @@ const QUESTIONS = [
   {
     id: 10,
     title: "DIE HEADLINE",
-    scenario: "Du scrollst durch Instagram und eine Katastrophen-Headline taucht auf. Dein Impuls?",
+    scenario: "Du scrollst durch Instagram und siehst einen Beitrag über Massentierhaltung, Kinderarbeit oder Umweltzerstörung. Dein Impuls?",
     options: [
       { key: "A", text: "Ich lese den Beitrag und versuche zu verstehen, wie es dazu kommen konnte.", scoring: { REF: 2 } },
       { key: "B", text: "Es macht mich wütend und traurig – wie kann so etwas immer noch passieren?", scoring: { WS: 3, NAT: 1, ETH: 1, EX: 1 } },
@@ -322,7 +322,7 @@ const QUESTIONS = [
       { key: "A", text: "Ich habe mich lange nicht wirklich gekannt – und bin immer noch dabei, mich zu entdecken.", scoring: { OL: 2, SL: 1, REF: 1 } },
       { key: "B", text: "Ich kenne mich gut – vielleicht zu gut. Manchmal wünschte ich, ich könnte weniger sehen.", scoring: { REF: 3, ML: 1, WS: 1 } },
       { key: "C", text: "Ich bin mir über vieles klar geworden. Nicht durch Theorie, sondern durch ehrliche Erfahrung.", scoring: { REF: 3, SL: 2, ETH: 1, HA: 1 } },
-      { key: "D", text: "Ich funktioniere gut – aber ob ich mich wirklich kenne? Darüber denke ich selten nach.", scoring: { EF: 2, REF: -1, SL: -1 } },
+      { key: "D", text: "Ich habe mir bisher wenig Gedanken darüber gemacht, wer ich wirklich bin – es lief auch so ganz okay.", scoring: { EF: 2, REF: -1, SL: -1 } },
     ],
   },
   {
@@ -330,7 +330,7 @@ const QUESTIONS = [
     title: "DAS WIEDERKEHRENDE MUSTER",
     scenario: "Du erkennst ein wiederkehrendes Muster in deinem Verhalten – etwas, das dich immer wieder bremst. Was tust du?",
     options: [
-      { key: "A", text: "Ich verstehe das Muster intellektuell, aber es zu durchbrechen ist etwas anderes. Ich stecke fest.", scoring: { REF: 2, ML: 2, HA: -2 } },
+      { key: "A", text: "Ich verstehe das Muster, aber es tatsächlich zu durchbrechen fällt mir sehr schwer.", scoring: { REF: 2, ML: 2, HA: -2 } },
       { key: "B", text: "Ich nehme mir konkret vor, es beim nächsten Mal anders zu machen – und meistens ziehe ich das auch durch.", scoring: { REF: 2, HA: 3, SL: 1 } },
       { key: "C", text: "Ich bin nicht sicher, ob ich solche Muster überhaupt erkenne. Vielleicht bräuchte ich jemanden, der mir das spiegelt.", scoring: { OL: 2, ML: 1, SL: -1 } },
       { key: "D", text: "Muster hin oder her – ich mache einfach weiter und schaue, was passiert.", scoring: { EF: 1, HA: 1, SL: 1 } },
@@ -671,6 +671,11 @@ body, html, #root {
   align-items: flex-start;
   gap: 0.75rem;
   font-weight: 400;
+}
+
+.option-btn:not(.selected-primary):not(.selected-secondary) {
+  border-color: var(--sand);
+  background: transparent;
 }
 
 .option-btn:hover:not(.selected-primary):not(.selected-secondary) {
