@@ -1,6 +1,93 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { jsPDF } from "jspdf";
 
+// ─── META PIXEL & CONSENT ────────────────────────────────────────────────────
+
+const META_PIXEL_ID = "1338444391376910";
+
+function getConsent() {
+  try {
+    const c = document.cookie.split("; ").find(r => r.startsWith("fl_consent="));
+    if (c) return c.split("=")[1]; // "all" | "necessary"
+  } catch (e) {}
+  return null;
+}
+
+function setConsent(value) {
+  const d = new Date();
+  d.setFullYear(d.getFullYear() + 1);
+  document.cookie = `fl_consent=${value}; expires=${d.toUTCString()}; path=/; SameSite=Lax`;
+}
+
+function initPixel() {
+  if (window.fbq) return;
+  (function(f,b,e,v,n,t,s){
+    if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s);
+  })(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  window.fbq('init', META_PIXEL_ID);
+  window.fbq('track', 'PageView');
+}
+
+function trackEvent(eventName, params = {}) {
+  if (getConsent() === "all" && window.fbq) {
+    window.fbq('trackCustom', eventName, params);
+  }
+}
+
+function CookieConsentBanner({ onConsent }) {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const existing = getConsent();
+    if (existing) {
+      onConsent(existing);
+    } else {
+      const t = setTimeout(() => setVisible(true), 600);
+      return () => clearTimeout(t);
+    }
+  }, []);
+
+  const handleAcceptAll = () => {
+    setConsent("all");
+    onConsent("all");
+    setVisible(false);
+  };
+
+  const handleNecessaryOnly = () => {
+    setConsent("necessary");
+    onConsent("necessary");
+    setVisible(false);
+  };
+
+  if (!visible) return null;
+
+  return (
+    <div className="consent-overlay">
+      <div className="consent-banner">
+        <p className="consent-title">Deine Privatsphäre</p>
+        <p className="consent-text">
+          Wir nutzen Cookies, um dein Erlebnis zu verbessern und anonymisierte Nutzungsdaten zu erheben. 
+          Mehr dazu in unserer{" "}
+          <a href="https://florian-lingner.ch/datenschutz" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>.
+        </p>
+        <div className="consent-buttons">
+          <button className="consent-btn-accept" onClick={handleAcceptAll}>
+            Alle akzeptieren
+          </button>
+          <button className="consent-btn-necessary" onClick={handleNecessaryOnly}>
+            Nur notwendige
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── DATA ───────────────────────────────────────────────────────────────────────
 
 const BLOCKS = [
@@ -1124,13 +1211,7 @@ body, html, #root {
   font-weight: 400;
 }
 
-/* PDF Download */
-.pdf-download-section {
-  display: flex;
-  justify-content: center;
-  padding: 0.5rem 0;
-}
-
+/* PDF Download button */
 .btn-pdf-download {
   background: var(--dark);
   color: var(--cream);
@@ -1275,6 +1356,319 @@ body, html, #root {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* ── Post-Result Flow ── */
+.pdf-save-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem 0;
+}
+
+.pdf-save-hint {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.5;
+  font-style: italic;
+  max-width: 420px;
+}
+
+.recognition-box {
+  width: 100%;
+  border: 2px solid var(--sand);
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.75rem;
+}
+
+.recognition-box-title {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+.postq-screen {
+  width: 100%;
+  max-width: 620px;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  animation: fadeUp 0.5s ease-out;
+}
+
+.postq-eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.postq-title {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: clamp(1.4rem, 4.5vw, 1.9rem);
+  font-weight: 900;
+  color: var(--dark);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.postq-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  font-weight: 400;
+}
+
+/* Recognition Scale (1-5) */
+.recognition-scale {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.recognition-btn {
+  width: 56px;
+  height: 56px;
+  border: 2px solid var(--sand);
+  background: transparent;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--dark);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recognition-btn:hover:not(.recognition-selected) {
+  border-color: var(--dark);
+  background: rgba(28, 28, 28, 0.02);
+}
+
+.recognition-btn.recognition-selected {
+  border-color: var(--orange);
+  background: var(--orange);
+  color: #fff;
+}
+
+.recognition-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 320px;
+  font-size: 0.72rem;
+  color: var(--warm-gray);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+/* Pain Point Selection */
+.painpoint-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  width: 100%;
+  max-width: 540px;
+}
+
+.painpoint-btn {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 1.5px solid var(--sand);
+  padding: 1.1rem 1.25rem;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--dark);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 400;
+}
+
+.painpoint-btn:hover:not(.painpoint-selected) {
+  border-color: var(--dark);
+  background: rgba(28, 28, 28, 0.02);
+}
+
+.painpoint-btn.painpoint-selected {
+  border-color: var(--orange);
+  background: var(--orange-glow);
+  font-weight: 500;
+}
+
+/* Solo Signup Screen */
+.signup-solo {
+  padding: 3rem 1.5rem;
+}
+
+.signup-solo-header {
+  margin-bottom: 2rem;
+}
+
+.signup-solo-text {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  max-width: 480px;
+  margin: 0 auto;
+  font-weight: 400;
+}
+
+.signup-solo-text strong {
+  color: var(--dark);
+  font-weight: 700;
+}
+
+.signup-solo .cta-email {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 380px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.signup-solo .cta-privacy {
+  font-size: 0.72rem;
+  color: var(--warm-gray);
+  margin-top: 0.75rem;
+  font-weight: 400;
+}
+
+/* ── Cookie Consent Banner ── */
+.consent-overlay {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.consent-banner {
+  background: var(--dark);
+  color: var(--cream);
+  padding: 1.5rem 2rem;
+  max-width: 520px;
+  width: 100%;
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.15);
+}
+
+.consent-title {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.consent-text {
+  font-size: 0.78rem;
+  color: var(--warm-gray);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  font-weight: 400;
+}
+
+.consent-text a {
+  color: var(--orange);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.consent-text a:hover {
+  color: var(--orange-hover);
+}
+
+.consent-buttons {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.consent-btn-accept {
+  flex: 1;
+  background: #22c55e;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.02em;
+}
+
+.consent-btn-accept:hover {
+  background: #16a34a;
+  transform: translateY(-1px);
+}
+
+.consent-btn-necessary {
+  background: transparent;
+  color: var(--warm-gray);
+  border: 1.5px solid rgba(163, 155, 147, 0.3);
+  padding: 0.8rem 1.2rem;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.consent-btn-necessary:hover {
+  border-color: var(--warm-gray);
+  color: var(--cream);
+}
+
+/* ── Footer Links ── */
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1.5rem 0 2rem;
+  width: 100%;
+}
+
+.footer-links a {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 0.7rem;
+  color: var(--warm-gray);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: var(--dark);
+}
+
 /* ── Mobile tweaks ── */
 @media (max-width: 520px) {
   .question-screen { padding: 4.5rem 1.15rem 1.5rem; }
@@ -1285,6 +1679,16 @@ body, html, #root {
   .options-list { gap: 0.5rem; margin-bottom: 1.25rem; }
   .secondary-section { margin-bottom: 1rem; }
   .nav-row { padding-top: 1rem; padding-bottom: 1.5rem; }
+  .consent-overlay { padding: 0.75rem; }
+  .consent-banner { padding: 1.25rem 1.25rem; }
+  .consent-buttons { flex-direction: column; }
+  .consent-btn-accept { width: 100%; }
+  .consent-btn-necessary { width: 100%; text-align: center; }
+  .postq-screen { padding: 1.5rem 1.15rem; min-height: 50vh; }
+  .recognition-btn { width: 48px; height: 48px; font-size: 1.1rem; }
+  .recognition-scale { gap: 0.5rem; }
+  .recognition-box { padding: 1.5rem 1rem; }
+  .painpoint-btn { padding: 0.9rem 1rem; font-size: 0.84rem; }
 }
 `;
 
@@ -1811,6 +2215,36 @@ function RadarChart({ normalized }) {
   );
 }
 
+// ─── POST-RESULT QUESTIONS DATA ─────────────────────────────────────────────
+
+const PAIN_POINTS = {
+  zuschauer: [
+    "Ich weiß genau was ich ändern müsste – aber komme einfach nicht ins Handeln.",
+    "Ich hab zwar das Gefühl vieles zu verstehen, aber bin dennoch ratlos wie ich mein Leben verbessern kann.",
+    "Es fällt mir schwer mich ehrlich mit meinen inneren eigenen Themen auseinanderzusetzen.",
+  ],
+  getriebene: [
+    "Ich funktioniere nur noch – und es fühlt sich sinnlos / leer an.",
+    "Ich weiß nicht mehr, ob meine Ziele wirklich richtig für mich sind.",
+    "Ich kann gefühlt nie abschalten, selbst wenn ich gern würde – das laugt mich aus.",
+  ],
+  idealist: [
+    "Ich verspüre einen starken Weltschmerz und diese unterschwellige Frustration frisst mich langsam auf.",
+    "Ich hab das Gefühl, dass meine Werte und mein Alltag nicht zusammenpassen.",
+    "Ich fühle mich ohnmächtig und machtlos gegenüber all dem, was falsch läuft.",
+  ],
+  suchende: [
+    "Ich springe von Ding zu Ding und finde nicht, wo ich hingehöre oder hin will.",
+    "Ich bin vielfältig interessiert, doch irgendwie fehlt mir eine klare Richtung im Leben.",
+    "Ich habe das Gefühl, nicht das Leben zu leben, dass tatsächlich zu mir passen würde – weiß aber auch nicht, wie ich das ändern könnte.",
+  ],
+  klarsichtige: [
+    "Ich spüre, dass da noch etwas Tieferes wartet – aber ich komme alleine nicht ran.",
+    "Es fühlt sich an, als würde ich vieles verstehen, aber ich kann nicht konsequent danach handeln.",
+    "Mein Wissen und Erlerntes führte bisher nicht zu echtem Frieden – das frustriert mich.",
+  ],
+};
+
 // ─── RESULT SCREEN ──────────────────────────────────────────────────────────
 
 function CompleteScreen({ answers, followUpAnswers = {} }) {
@@ -1821,6 +2255,12 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
   const [emailError, setEmailError] = useState("");
   const [pdfLoading, setPdfLoading] = useState(false);
   const [firstName, setFirstName] = useState("");
+  
+  // Post-result flow: "result" → "recognition" → "painpoint" → "signup"
+  const [postPhase, setPostPhase] = useState("result");
+  const [recognitionScore, setRecognitionScore] = useState(null);
+  const [selectedPainPoint, setSelectedPainPoint] = useState(null);
+  
   const scoring = computeScoring(answers, followUpAnswers);
   const meta = TYPE_META[scoring.resultType];
 
@@ -2091,6 +2531,16 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
     return () => clearTimeout(t);
   }, []);
 
+  // Track archetype result via Meta Pixel
+  useEffect(() => {
+    trackEvent("TestCompleted", {
+      archetype: scoring.resultType,
+      archetype_label: meta.label,
+      is_reintyp: scoring.isReintyp,
+      margin: Math.round(scoring.margin),
+    });
+  }, []);
+
   // Sort affinities for secondary types
   const sortedTypes = Object.entries(scoring.affinities)
     .sort((a, b) => b[1] - a[1]);
@@ -2116,6 +2566,11 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
         api_key: KIT_API_KEY,
         email: email,
         first_name: firstName.trim(),
+        fields: {
+          recognition_score: recognitionScore !== null ? String(recognitionScore) : "",
+          pain_point: selectedPainPoint || "",
+          archetype: scoring.resultType,
+        },
       };
       // Add reintyp tag if margin is strong enough
       if (scoring.isReintyp) {
@@ -2128,6 +2583,18 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
       });
       if (res.ok) {
         setEmailStatus("success");
+        // Track Lead event via Meta Pixel
+        trackEvent("MasterclassSignup", {
+          archetype: scoring.resultType,
+          archetype_label: meta.label,
+        });
+        // Also fire standard Lead event
+        if (getConsent() === "all" && window.fbq) {
+          window.fbq('track', 'Lead', {
+            content_name: meta.label + ' Masterclass',
+            content_category: scoring.resultType,
+          });
+        }
       } else {
         const data = await res.json().catch(() => ({}));
         setEmailError(data.message || "Etwas ist schiefgelaufen. Bitte versuche es erneut.");
@@ -2143,121 +2610,202 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
     if (e.key === "Enter") handleEmailSubmit();
   };
 
+  const handleRecognitionSelect = (score) => {
+    setRecognitionScore(score);
+    trackEvent("RecognitionScore", {
+      score: score,
+      archetype: scoring.resultType,
+      archetype_label: meta.label,
+    });
+    // Go directly to pain point screen
+    setTimeout(() => {
+      setPostPhase("painpoint");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 400);
+  };
+
+  const handlePainPointSelect = (painText, index) => {
+    setSelectedPainPoint(painText);
+    trackEvent("PainPointSelected", {
+      pain_point: painText,
+      pain_index: index,
+      archetype: scoring.resultType,
+      archetype_label: meta.label,
+    });
+    // Auto-advance after a short delay
+    setTimeout(() => {
+      setPostPhase("signup");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 400);
+  };
+
   return (
     <div className={`result-screen ${animateIn ? "visible" : ""}`}>
       <div className="result-inner">
-        {/* Type result */}
-        <div className="result-header">
-          <div className="result-eyebrow">Dein Ergebnis</div>
-          <h2 className="result-type-label">{meta.label}</h2>
-          <p className="result-tagline">"{meta.tagline}"</p>
-        </div>
 
-        {/* Radar */}
-        <div className="radar-container">
-          <RadarChart normalized={scoring.normalized} />
-          <div className="radar-legend">
-            <span className="legend-item"><span className="legend-dot user" /> Dein Profil</span>
-            <span className="legend-item"><span className="legend-dot type" /> {meta.label}-Referenz</span>
-          </div>
-        </div>
-
-        {/* Description */}
-        <div className="result-description">
-          <p>{meta.description}</p>
-        </div>
-
-        {/* Pain points */}
-        <div className="result-pain">
-          <div className="pain-label">Daran scheiterst du gerade wahrscheinlich:</div>
-          <p>{meta.pain}</p>
-        </div>
-
-        {/* Affinities */}
-        <div className="result-affinities">
-          <div className="affinities-label">Typ-Verteilung</div>
-          {sortedTypes.map(([type, pct]) => (
-            <div key={type} className="affinity-row">
-              <span className="affinity-name">{TYPE_META[type].label}</span>
-              <div className="affinity-bar-track">
-                <div className="affinity-bar-fill" style={{ width: `${Math.max(pct, 3)}%`, opacity: type === scoring.resultType ? 1 : 0.5 }} />
-              </div>
-              <span className="affinity-pct">{pct}%</span>
+        {/* ═══ PHASE: RESULT ═══ */}
+        {postPhase === "result" && (
+          <>
+            {/* Type result */}
+            <div className="result-header">
+              <div className="result-eyebrow">Dein Ergebnis</div>
+              <h2 className="result-type-label">{meta.label}</h2>
+              <p className="result-tagline">"{meta.tagline}"</p>
             </div>
-          ))}
-        </div>
 
-        {/* Extra per type */}
-        <div className="result-extra">
-          <p>{meta.extra}</p>
-        </div>
-
-        {/* CTA */}
-        <div className="result-cta">
-          {emailStatus === "success" ? (
-            <div className="cta-success">
-              <div className="success-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" strokeWidth="2.5">
-                  <polyline points="20 6 9 17 4 12" />
-                </svg>
+            {/* Radar */}
+            <div className="radar-container">
+              <RadarChart normalized={scoring.normalized} />
+              <div className="radar-legend">
+                <span className="legend-item"><span className="legend-dot user" /> Dein Profil</span>
+                <span className="legend-item"><span className="legend-dot type" /> {meta.label}-Referenz</span>
               </div>
-              <p className="success-title">Check dein Postfach.</p>
-              <p className="success-sub">Deine typspezifische Masterclass ist unterwegs an <strong>{email}</strong>. Schau auch im Spam-Ordner nach, falls sie nicht sofort ankommt.</p>
             </div>
-          ) : (
-            <>
-              <h3 className="cta-headline">Willst du dein Leben nun positiv verändern?</h3>
-              <p className="cta-text">
-                Ich habe <strong>genau für deinen Archetyp</strong> eine eigene <strong>kostenlose Masterclass</strong> entwickelt. Hier lösen wir Knoten in genau deinem Kopf – mit Lösungen, die zu deinem Typ passen.
-              </p>
-              <div className="cta-email">
-                <input
-                  type="text"
-                  placeholder="Dein Vorname"
-                  className={`email-input ${emailError && !firstName.trim() ? "email-input-error" : ""}`}
-                  value={firstName}
-                  onChange={(e) => { setFirstName(e.target.value); setEmailError(""); }}
-                  disabled={emailStatus === "loading"}
-                />
-                <input
-                  type="email"
-                  placeholder="Deine E-Mail-Adresse"
-                  className={`email-input ${emailError && firstName.trim() ? "email-input-error" : ""}`}
-                  value={email}
-                  onChange={(e) => { setEmail(e.target.value); setEmailError(""); }}
-                  onKeyDown={handleKeyDown}
-                  disabled={emailStatus === "loading"}
-                />
-                {emailError && <p className="email-error-msg">{emailError}</p>}
+
+            {/* Description */}
+            <div className="result-description">
+              <p>{meta.description}</p>
+            </div>
+
+            {/* Pain points */}
+            <div className="result-pain">
+              <div className="pain-label">Daran scheiterst du gerade wahrscheinlich:</div>
+              <p>{meta.pain}</p>
+            </div>
+
+            {/* Affinities */}
+            <div className="result-affinities">
+              <div className="affinities-label">Typ-Verteilung</div>
+              {sortedTypes.map(([type, pct]) => (
+                <div key={type} className="affinity-row">
+                  <span className="affinity-name">{TYPE_META[type].label}</span>
+                  <div className="affinity-bar-track">
+                    <div className="affinity-bar-fill" style={{ width: `${Math.max(pct, 3)}%`, opacity: type === scoring.resultType ? 1 : 0.5 }} />
+                  </div>
+                  <span className="affinity-pct">{pct}%</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Extra per type */}
+            <div className="result-extra">
+              <p>{meta.extra}</p>
+            </div>
+
+            {/* PDF Download + Hint */}
+            <div className="pdf-save-section">
+              <p className="pdf-save-hint">Bevor du fortfährst, lade dir dein Ergebnis herunter – du siehst es nach dieser Seite nicht mehr.</p>
+              <button
+                className="btn-pdf-download"
+                onClick={() => generatePDF(scoring, meta)}
+                disabled={pdfLoading}
+              >
+                {pdfLoading ? "PDF wird erstellt..." : "Ergebnis als PDF speichern"}
+              </button>
+            </div>
+
+            {/* Recognition question — inline on result page */}
+            <div className="recognition-box">
+              <div className="recognition-box-title">Wie stark erkennst du dich in deinem Ergebnis wieder?</div>
+              <div className="recognition-scale">
+                {[1, 2, 3, 4, 5].map(val => (
+                  <button
+                    key={val}
+                    className={`recognition-btn ${recognitionScore === val ? "recognition-selected" : ""}`}
+                    onClick={() => handleRecognitionSelect(val)}
+                  >
+                    {val}
+                  </button>
+                ))}
+              </div>
+              <div className="recognition-labels">
+                <span>Gar nicht</span>
+                <span>Voll und ganz</span>
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* ═══ PHASE: PAIN POINT ═══ */}
+        {postPhase === "painpoint" && (
+          <div className="postq-screen" key="painpoint">
+            <div className="postq-eyebrow">Was beschäftigt dich davon gerade am meisten?</div>
+            <h2 className="postq-title">Wähle die Aussage, die sich am meisten nach dir anfühlt.</h2>
+            <div className="painpoint-options">
+              {PAIN_POINTS[scoring.resultType].map((text, i) => (
                 <button
-                  className={`btn-primary btn-cta ${emailStatus === "loading" ? "btn-loading" : ""}`}
-                  onClick={handleEmailSubmit}
-                  disabled={emailStatus === "loading"}
+                  key={i}
+                  className={`painpoint-btn ${selectedPainPoint === text ? "painpoint-selected" : ""}`}
+                  onClick={() => handlePainPointSelect(text, i)}
                 >
-                  {emailStatus === "loading" ? (
-                    <span className="loading-dots">
-                      <span>.</span><span>.</span><span>.</span>
-                    </span>
-                  ) : "Masterclass freischalten"}
+                  {text}
                 </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ═══ PHASE: SOLO SIGNUP ═══ */}
+        {postPhase === "signup" && (
+          <div className="postq-screen signup-solo" key="signup">
+            {emailStatus === "success" ? (
+              <div className="cta-success">
+                <div className="success-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" strokeWidth="2.5">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+                <p className="success-title">Check dein Postfach.</p>
+                <p className="success-sub">Deine typspezifische Masterclass ist unterwegs an <strong>{email}</strong>. Schau auch im Spam-Ordner nach, falls sie nicht sofort ankommt.</p>
               </div>
-              <p className="cta-privacy">Kein Spam. Kein Bullshit. Jederzeit abmeldbar.</p>
-            </>
-          )}
-        </div>
+            ) : (
+              <>
+                <div className="signup-solo-header">
+                  <h2 className="postq-title">Genau hier setzt deine Masterclass an.</h2>
+                  <p className="signup-solo-text">
+                    Ich habe <strong>genau für deinen Archetyp</strong> eine eigene <strong>kostenlose Masterclass</strong> entwickelt – 
+                    kein Motivationsgelaber, sondern ein ehrlicher Blick auf das, was dich gerade blockiert. 
+                    Und wie du den ersten echten Schritt raus machst.
+                  </p>
+                </div>
+                <div className="cta-email">
+                  <input
+                    type="text"
+                    placeholder="Dein Vorname"
+                    className={`email-input ${emailError && !firstName.trim() ? "email-input-error" : ""}`}
+                    value={firstName}
+                    onChange={(e) => { setFirstName(e.target.value); setEmailError(""); }}
+                    disabled={emailStatus === "loading"}
+                  />
+                  <input
+                    type="email"
+                    placeholder="Deine E-Mail-Adresse"
+                    className={`email-input ${emailError && firstName.trim() ? "email-input-error" : ""}`}
+                    value={email}
+                    onChange={(e) => { setEmail(e.target.value); setEmailError(""); }}
+                    onKeyDown={handleKeyDown}
+                    disabled={emailStatus === "loading"}
+                  />
+                  {emailError && <p className="email-error-msg">{emailError}</p>}
+                  <button
+                    className={`btn-primary btn-cta ${emailStatus === "loading" ? "btn-loading" : ""}`}
+                    onClick={handleEmailSubmit}
+                    disabled={emailStatus === "loading"}
+                  >
+                    {emailStatus === "loading" ? (
+                      <span className="loading-dots">
+                        <span>.</span><span>.</span><span>.</span>
+                      </span>
+                    ) : "Masterclass freischalten"}
+                  </button>
+                </div>
+                <p className="cta-privacy">Kein Spam. Kein Bullshit. Jederzeit abmeldbar.</p>
+              </>
+            )}
+          </div>
+        )}
 
-        {/* PDF Download */}
-        <div className="pdf-download-section">
-          <button
-            className="btn-pdf-download"
-            onClick={() => generatePDF(scoring, meta)}
-            disabled={pdfLoading}
-          >
-            {pdfLoading ? "PDF wird erstellt..." : "Ergebnis als PDF speichern"}
-          </button>
-        </div>
-
-        {/* Debug toggle */}
+        {/* Debug toggle — always visible */}
         <button className="debug-toggle" onClick={() => setShowDebug(!showDebug)}>
           {showDebug ? "Debug ausblenden" : "// Debug anzeigen"}
         </button>
@@ -2308,6 +2856,7 @@ export default function PersonalityTest() {
   const [currentQuestionInBlock, setCurrentQuestionInBlock] = useState(0);
   const [answers, setAnswers] = useState({});
   const [followUpAnswers, setFollowUpAnswers] = useState({});
+  const [consentGiven, setConsentGiven] = useState(false);
   const appRef = useRef(null);
 
   const totalQuestions = 30;
@@ -2316,6 +2865,23 @@ export default function PersonalityTest() {
   const currentQuestion = QUESTIONS[flatIndex];
   const block = BLOCKS[currentBlock];
 
+  // Handle consent callback
+  const handleConsent = useCallback((value) => {
+    if (value === "all") {
+      initPixel();
+      setConsentGiven(true);
+    }
+  }, []);
+
+  // Check existing consent on mount
+  useEffect(() => {
+    const existing = getConsent();
+    if (existing === "all") {
+      initPixel();
+      setConsentGiven(true);
+    }
+  }, []);
+
   const scrollTop = useCallback(() => {
     if (appRef.current) appRef.current.scrollTo({ top: 0, behavior: "smooth" });
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -2323,6 +2889,7 @@ export default function PersonalityTest() {
 
   const handleStart = () => {
     setPhase("block-transition");
+    trackEvent("TestStarted");
     scrollTop();
   };
 
@@ -2376,6 +2943,8 @@ export default function PersonalityTest() {
     <>
       <style>{css}</style>
       <div className="test-app" ref={appRef}>
+        <CookieConsentBanner onConsent={handleConsent} />
+        
         {phase === "intro" && <IntroScreen onStart={handleStart} />}
         
         {phase === "block-transition" && (
@@ -2402,6 +2971,11 @@ export default function PersonalityTest() {
         )}
         
         {phase === "complete" && <CompleteScreen answers={answers} followUpAnswers={followUpAnswers} />}
+
+        <div className="footer-links">
+          <a href="https://florian-lingner.ch/datenschutz" target="_blank" rel="noopener noreferrer">Datenschutz</a>
+          <a href="https://florian-lingner.ch/impressum" target="_blank" rel="noopener noreferrer">Impressum</a>
+        </div>
       </div>
     </>
   );
