@@ -96,7 +96,7 @@ const BLOCKS = [
 const QUESTIONS = [
   {
     id: 1,
-    title: "DAS FEEDBACK",
+    title: "💬 DAS FEEDBACK",
     scenario: "Ein guter Freund sagt dir ehrlich, dass du dich in letzter Zeit verändert hast – und nicht zum Positiven. Wie reagierst du?",
     options: [
       { key: "A", text: "Ich höre zu und denke ernsthaft darüber nach, auch wenn es wehtut.", scoring: { REF: 2, ML: 2 } },
@@ -107,7 +107,7 @@ const QUESTIONS = [
   },
   {
     id: 2,
-    title: "DIE NACHT",
+    title: "🌙 DIE NACHT",
     scenario: "Es ist spät, du liegst im Bett, aber dein Kopf hört nicht auf zu arbeiten. Was kreist in deinem Kopf?",
     options: [
       { key: "A", text: "Ich analysiere den Tag – was lief gut, was hätte ich besser machen können.", scoring: { REF: 3, ML: 3, HA: -1 } },
@@ -118,7 +118,7 @@ const QUESTIONS = [
   },
   {
     id: 3,
-    title: "DER DURCHBLICK",
+    title: "👁️ DER DURCHBLICK",
     scenario: "Du merkst, dass in deinem Umfeld etwas schiefläuft, aber niemand spricht es an. Was tust du?",
     options: [
       { key: "A", text: "Ich analysiere die Situation genau – aber letztlich spreche ich es nicht an, weil es zu Konflikten führen könnte.", scoring: { REF: 2, ML: 2, HA: -2 } },
@@ -129,7 +129,8 @@ const QUESTIONS = [
   },
   {
     id: 4,
-    title: "DIE ENTSCHEIDUNG",
+    title: "⚖️ DIE ENTSCHEIDUNG",
+    isCore: true,
     scenario: "Du stehst vor einer Entscheidung, die dein Leben verändern könnte – neuer Job, Umzug, Trennung. Wie gehst du damit um?",
     options: [
       { key: "A", text: "Ich recherchiere und analysiere alle Optionen, bis ich mir sicher bin – auch wenn es lange dauert.", scoring: { REF: 2, ML: 3, HA: -2 } },
@@ -140,7 +141,7 @@ const QUESTIONS = [
   },
   {
     id: 5,
-    title: "DAS MUSTER",
+    title: "🔁 DAS MUSTER",
     scenario: "Ein Kollege kritisiert deine Arbeit vor dem ganzen Team. Was passiert in dir?",
     options: [
       { key: "A", text: "Ich reagiere professionell, aber innerlich wühlt es mich emotional auf. Ich lasse mir dennoch nichts anmerken.", scoring: { REF: 1, SL: -1, ML: 1, EF: 1 } },
@@ -151,7 +152,7 @@ const QUESTIONS = [
   },
   {
     id: 6,
-    title: "DIE INNERE STIMME",
+    title: "🗣️ DIE INNERE STIMME",
     scenario: "Wenn du an die letzten 5 Jahre zurückdenkst – was überwiegt?",
     options: [
       { key: "A", text: "Ich habe viel gelernt, aber an der Umsetzung scheitert es aktuell noch.", scoring: { REF: 2, ML: 3, HA: -2 } },
@@ -162,7 +163,7 @@ const QUESTIONS = [
   },
   {
     id: 7,
-    title: "DEIN WARUM",
+    title: "❓ DEIN WARUM",
     scenario: "Warum machst du diesen Test?",
     options: [
       { key: "A", text: "Ich hoffe, dass er mir hilft zu verstehen, was in meinem Leben fehlt.", scoring: { ML: 1, OL: 2 } },
@@ -174,7 +175,7 @@ const QUESTIONS = [
   // ── BLOCK 2: Ethik, Werte & Weltbild ──
   {
     id: 8,
-    title: "DER WIDERSPRUCH",
+    title: "🤷 DER WIDERSPRUCH",
     scenario: "Du erfährst, dass ein Unternehmen, dessen Produkte du liebst, unter fragwürdigen Bedingungen produziert. Was machst du?",
     options: [
       { key: "A", text: "Ich recherchiere und bilde mir ein eigenes Urteil, bevor ich handle. Wenn es stimmt, ziehe ich Konsequenzen.", scoring: { REF: 2, ETH: 2, HA: 2 } },
@@ -185,7 +186,8 @@ const QUESTIONS = [
   },
   {
     id: 9,
-    title: "DIE DEBATTE",
+    title: "🔥 DIE DEBATTE",
+    isCore: true,
     scenario: "In einer Diskussion über ein kontroverses Thema – was beschreibt dich am besten?",
     options: [
       { key: "A", text: "Ich habe klare Überzeugungen und vertrete sie auch.", scoring: { ETH: 2, WS: 1, EX: 1, HA: 1 } },
@@ -196,7 +198,7 @@ const QUESTIONS = [
   },
   {
     id: 10,
-    title: "DAS WELTBILD",
+    title: "🌐 DAS WELTBILD",
     scenario: "Du scrollst durch Instagram und siehst einen Beitrag über Massentierhaltung, Kinderarbeit oder Umweltzerstörung. Dein Impuls?",
     options: [
       { key: "A", text: "Ich versuche einzuordnen, was davon ist Meinung, was Fakt – mich interessiert die Wahrheit dahinter.", scoring: { REF: 2 } },
@@ -207,7 +209,7 @@ const QUESTIONS = [
   },
   {
     id: 11,
-    title: "DER SPIEGEL",
+    title: "🪞 DER SPIEGEL",
     scenario: "Du begegnest einem Menschen, der dich an Eigenschaften erinnert, die du an dir selbst nicht magst. Was passiert?",
     options: [
       { key: "A", text: "Ich erkenne Parallelen zu mir und das bringt mich zum Nachdenken, ob ich nicht doch etwas ändern sollte.", scoring: { REF: 2, ML: 1 } },
@@ -218,7 +220,7 @@ const QUESTIONS = [
   },
   {
     id: 12,
-    title: "DIE VERANTWORTUNG",
+    title: "🌎 DIE VERANTWORTUNG",
     scenario: "Wenn es um die großen Probleme der Welt geht – Klima, Ungerechtigkeit, Kriege – wie stehst du dazu?",
     options: [
       { key: "A", text: "Auch wenn es mich emotional runterzieht, versuche ich einfach, meinen Teil beizutragen und ein guter Mensch zu sein.", scoring: { ML: 1, ETH: 1, WS: 1, HA: 1 } },
@@ -229,7 +231,7 @@ const QUESTIONS = [
   },
   {
     id: 13,
-    title: "DIE NATUR",
+    title: "🌿 DIE NATUR",
     scenario: "Du bist allein in der Natur. Kein Handy, keine Ablenkung. Was passiert mit dir?",
     options: [
       { key: "A", text: "Ich komme zur Ruhe. Natur ist für mich einer der wenigen Orte, wo ich wirklich abschalte.", scoring: { SL: 1, NAT: 2, HA: 1 } },
@@ -240,7 +242,7 @@ const QUESTIONS = [
   },
   {
     id: 14,
-    title: "DAS SYSTEM",
+    title: "🏛️ DAS SYSTEM",
     scenario: "Stell dir vor, du könntest ein Gesellschaftssystem komplett neu gestalten. Was ist dir am wichtigsten?",
     options: [
       { key: "A", text: "Gerechtigkeit. Jeder sollte die gleichen Chancen haben – unabhängig von Herkunft.", scoring: { ETH: 2, WS: 2, EX: 1 } },
@@ -252,7 +254,7 @@ const QUESTIONS = [
   // ── BLOCK 3: Handlung, Antrieb & Stillstand ──
   {
     id: 15,
-    title: "DIE GEWOHNHEIT",
+    title: "⚙️ DIE GEWOHNHEIT",
     scenario: "Wenn du ehrlich bist: Wie viel von deinem Alltag basiert auf bewussten Entscheidungen – und wie viel läuft auf Autopilot?",
     options: [
       { key: "A", text: "Vieles läuft automatisch – aber das ist auch okay so. Man kann nicht alles hinterfragen und es funktioniert.", scoring: { REF: 1, EF: 1 } },
@@ -263,7 +265,7 @@ const QUESTIONS = [
   },
   {
     id: 16,
-    title: "DAS PROJEKT",
+    title: "🚀 DAS PROJEKT",
     scenario: "Du hast eine Idee, die dich begeistert. Was passiert als Nächstes?",
     options: [
       { key: "A", text: "Ich denke lange darüber nach, plane im Kopf, aber meist starte ich nie wirklich.", scoring: { REF: 2, ML: 4, HA: -3 } },
@@ -274,7 +276,8 @@ const QUESTIONS = [
   },
   {
     id: 17,
-    title: "EIN GUTES PFERD...",
+    title: "🐴 EIN GUTES PFERD...",
+    isCore: true,
     scenario: "Was hält dich am ehesten davon ab, dein Leben zu verändern?",
     options: [
       { key: "A", text: "Die Angst, das Falsche zu tun.", scoring: { SL: -1, ML: 2, HA: -2 } },
@@ -285,7 +288,7 @@ const QUESTIONS = [
   },
   {
     id: 18,
-    title: "DER STILLSTAND",
+    title: "⏸️ DER STILLSTAND",
     scenario: "Du hast das Gefühl, auf der Stelle zu treten – nichts bewegt sich wirklich vorwärts. Was tust du?",
     options: [
       { key: "A", text: "Ich denke viel darüber nach, warum das so ist – und verstehe es meistens auch. Aber das ändert nichts.", scoring: { REF: 3, ML: 4, HA: -2 } },
@@ -296,7 +299,7 @@ const QUESTIONS = [
   },
   {
     id: 19,
-    title: "DIE ABLENKUNG",
+    title: "📱 DIE ABLENKUNG",
     scenario: "Wie gehst du mit Momenten um, in denen du dich leer oder orientierungslos fühlst?",
     options: [
       { key: "A", text: "Ich analysiere das Gefühl, versuche es zu verstehen – aber es bleibt trotzdem.", scoring: { REF: 2, ML: 3, HA: -1 } },
@@ -307,7 +310,7 @@ const QUESTIONS = [
   },
   {
     id: 20,
-    title: "DIE HILFE",
+    title: "🤝 DIE HILFE",
     scenario: "Jemand aus deinem Umfeld steckt in einer schwierigen Phase und bittet dich um Rat. Was machst du?",
     options: [
       { key: "A", text: "Ich höre zu und gebe ehrliches Feedback – auch wenn es nicht das ist, was die Person hören will.", scoring: { REF: 2, SL: 1, ETH: 1, HA: 1 } },
@@ -318,7 +321,7 @@ const QUESTIONS = [
   },
   {
     id: 21,
-    title: "DAS GELD",
+    title: "💰 DAS GELD",
     scenario: "Du gewinnst unerwartet 100.000€. Dein erster Gedanke?",
     options: [
       { key: "A", text: "Endlich Möglichkeiten! Reisen, Erfahrungen, all die Dinge, die ich mir immer gewünscht habe.", scoring: { OL: 1 } },
@@ -330,7 +333,7 @@ const QUESTIONS = [
   // ── BLOCK 4: Identität & Tiefenstruktur ──
   {
     id: 22,
-    title: "DIE PARTY",
+    title: "🎉 DIE PARTY",
     scenario: 'Jemand fragt: „Was machst du so?" (beruflich gemeint). Was fühlst du?',
     options: [
       { key: "A", text: 'Ich antworte routiniert – aber die Antwort fühlt sich nicht wie „ich" an, sondern mehr auswendig gelernt.', scoring: { REF: 1, OL: 1, EF: 1 } },
@@ -341,7 +344,7 @@ const QUESTIONS = [
   },
   {
     id: 23,
-    title: "DER VERGLEICH",
+    title: "📊 DER VERGLEICH",
     scenario: "Du siehst jemanden, der scheinbar genau das Leben lebt, das du dir wünschst.",
     options: [
       { key: "A", text: "Ich frage mich: Was hat diese Person, das ich nicht habe – und was müsste ich ändern?", scoring: { REF: 1, ML: 1 } },
@@ -352,7 +355,7 @@ const QUESTIONS = [
   },
   {
     id: 24,
-    title: "DIE MASKE",
+    title: "🎭 DIE MASKE",
     scenario: "Wie oft zeigst du dich so, wie du wirklich bist – ohne Filter?",
     options: [
       { key: "A", text: "Ehrlich gesagt selten. Die meisten Menschen können damit nicht umgehen.", scoring: { REF: 2, SL: -1, ML: 2, HA: -1 } },
@@ -363,7 +366,7 @@ const QUESTIONS = [
   },
   {
     id: 25,
-    title: "DER RAT",
+    title: "💡 DER RAT",
     scenario: "Wenn du an dein jüngeres Ich denkst – was hättest du dir damals gewünscht zu wissen?",
     options: [
       { key: "A", text: "Hör auf, es allen recht machen zu wollen.", scoring: { EF: 2 } },
@@ -374,7 +377,7 @@ const QUESTIONS = [
   },
   {
     id: 26,
-    title: "DIE STILLE",
+    title: "🤫 DIE STILLE",
     scenario: "Du hast einen komplett freien Tag – keine Verpflichtungen, keine Pläne. Was passiert?",
     options: [
       { key: "A", text: "Ich genieße es. Ich mache das, worauf ich Lust habe – oder auch einfach mal nichts.", scoring: { SL: 2, NAT: 1 } },
@@ -385,7 +388,7 @@ const QUESTIONS = [
   },
   {
     id: 27,
-    title: "DER NEUANFANG",
+    title: "🔄 DER NEUANFANG",
     scenario: "Jemand in deinem Umfeld gibt alles auf – Job, Beziehung, Stadt – und fängt komplett neu an. Dein erster Gedanke?",
     options: [
       { key: "A", text: "Respekt – aber ich frage mich, ob ich das jemals könnte.", scoring: { REF: 2, ML: 3, HA: -2 } },
@@ -396,7 +399,8 @@ const QUESTIONS = [
   },
   {
     id: 28,
-    title: "DIE ERKENNTNIS",
+    title: "🔮 DIE ERKENNTNIS",
+    isCore: true,
     scenario: "Wie würdest du dein Verhältnis zu dir selbst beschreiben?",
     options: [
       { key: "A", text: "Ich habe mich lange nicht wirklich gekannt – und bin immer noch dabei, mich zu entdecken.", scoring: { REF: 1, OL: 1 } },
@@ -407,7 +411,7 @@ const QUESTIONS = [
   },
   {
     id: 29,
-    title: "DAS WIEDERKEHRENDE MUSTER",
+    title: "🔁 DAS WIEDERKEHRENDE MUSTER",
     scenario: "Du erkennst ein Muster, das dich immer wieder bremst. Was tust du?",
     options: [
       { key: "A", text: "Ich verstehe das Muster komplett, aber es zu durchbrechen schaffe ich trotzdem nicht. Es ist wie eine unsichtbare Mauer.", scoring: { REF: 2, ML: 3, HA: -2 } },
@@ -418,7 +422,7 @@ const QUESTIONS = [
   },
   {
     id: 30,
-    title: "DER KERN",
+    title: "🎯 DER KERN",
     scenario: "Was hat dich bis zur letzten Frage gebracht?",
     options: [
       { key: "A", text: "Neugier. Ich will verstehen, wie ich ticke.", scoring: { REF: 2 } },
@@ -488,6 +492,60 @@ const FOLLOW_UPS = {
       { key: "2", text: "Ich glaube mich gut zu kennen, aber es passiert schon öfter, dass mich mein eigenes Verhalten überrascht oder enttäuscht.", scoring: { SL: -3, OL: 2, ML: 3 } },
     ],
   },
+};
+
+// ─── MICRO-FEEDBACKS ──────────────────────────────────────────────────────
+const MICRO_FEEDBACKS = [
+  { afterQ: 2, trigger: (ans) => ans[2]?.primary === "A" || ans[2]?.primary === "B",
+    emoji: "💭", text: "Du bist nicht allein damit. Rund 88% unserer täglichen Handlungen laufen auf Autopilot* – aber nachts, wenn der Autopilot pausiert, holt uns das Unverarbeitete ein.",
+    footnote: "*Rebar et al. (2025), Psychology & Health – University of South Carolina" },
+  { afterQ: 5, trigger: (ans) => ans[5]?.primary === "A" || ans[5]?.primary === "C",
+    emoji: "🪞", text: "Ehrliche Selbsteinschätzung ist seltener als man denkt. 95% der Menschen halten sich für selbstreflektiert – tatsächlich sind es nur 10–15%.*",
+    footnote: "*Dr. Tasha Eurich (2017), Organisationspsychologin – mehrjährige Forschung" },
+  { afterQ: 10, trigger: (ans) => ans[10]?.primary === "C",
+    emoji: "📵", text: "Du bemerkst deine eigene Abstumpfung – das allein ist schon mehr Bewusstsein als die meisten aufbringen. Weltweit vermeiden mittlerweile 39% der Menschen aktiv die Nachrichten – ein Rekordwert.* Abschalten ist manchmal Selbstschutz.",
+    footnote: "*Reuters Institute Digital News Report 2024, Oxford University – 95.000 Befragte, 47 Länder" },
+  { afterQ: 10, trigger: (ans) => ans[10]?.primary === "B",
+    emoji: "🌍", text: "Dein Gerechtigkeitssinn ist ausgeprägt. Das kann ein Antrieb sein – oder eine Last. 36% der unter 35-Jährigen sagen, Nachrichten drücken ihre Stimmung.* Wer trotzdem hinschaut und etwas empfindet, statt abzuschalten, ist nicht nur in der Minderheit, sondern setzt sich somit auch höherer mentaler Belastung aus.",
+    footnote: "*Reuters Institute Digital News Report 2024, Oxford University" },
+  { afterQ: 13, trigger: (ans) => ans[13]?.primary === "A" || ans[13]?.primary === "B",
+    emoji: "🌿", text: "Dein Verhältnis zur Natur sagt mehr über dich aus, als du vielleicht denkst. Schon 10 Minuten in der Natur reduzieren messbar Stress, Angst und depressive Symptome.*",
+    footnote: "*Bettmann et al. (2024), University of Utah – Meta-Analyse, 78 Studien, ~5.000 Teilnehmer" },
+  { afterQ: 17, trigger: (ans) => ans[17]?.primary === "A" || ans[17]?.primary === "B",
+    emoji: "🧠", text: "Viele Menschen spüren genau das. Psychologen nennen es „Status-quo-Bias": Die Tendenz, am Vertrauten festzuhalten – selbst wenn wir wissen, dass Veränderung besser wäre. Klingt erst mal wie Selbstbetrug – doch am Ende ist es ein tief eingebranntes neurologisches Muster.*",
+    footnote: "*Samuelson & Zeckhauser (1988), Journal of Risk and Uncertainty" },
+  { afterQ: 21, trigger: (ans) => ans[21]?.primary === "B",
+    emoji: "💼", text: "Spannend: Dein erster Impuls geht Richtung Sicherheit. Weltweit sind nur 21% aller Arbeitnehmer wirklich engagiert bei dem was sie tun. 62% funktionieren. Vielleicht weil die meisten irgendwann angefangen haben, Sicherheit über Erfüllung zu stellen.*",
+    footnote: "*Gallup State of the Global Workplace 2025 – 160+ Länder, Daten aus 2024" },
+  { afterQ: 21, trigger: (ans) => ans[21]?.primary === "A",
+    emoji: "✈️", text: "Du bevorzugst Freiheit und Erfahrungen über Absicherung – ein gutes Zeichen? Weltweit sind nur 21% der Arbeitnehmer tatsächlich engagiert in ihrem Job. 62% funktionieren nur.* Vielleicht, weil zu viele die Sicherheit über die persönliche Erfüllung gestellt haben.",
+    footnote: "*Gallup State of the Global Workplace 2025 – 160+ Länder, Daten aus 2024" },
+  { afterQ: 24, trigger: (ans) => ans[24]?.primary === "A",
+    emoji: "🎭", text: "Sich nicht zu zeigen ist oft kein Zeichen von Schwäche – sondern ein gelernter Schutzmechanismus. Forschung zeigt: Selbstbewusste Menschen mit hoher interner Selbstwahrnehmung sind kreativer, treffen bessere Entscheidungen und sind nachweislich zufriedener.* Der erste Schritt zu einem „echteren" Leben? Ehrlich hinschauen – und genau das tust du gerade.",
+    footnote: "*Eurich (2017) / Korn Ferry International" },
+  { afterQ: 24, trigger: (ans) => ans[24]?.primary === "D",
+    emoji: "🔍", text: "Diese Unsicherheit ist ehrlicher als jede schnelle Antwort. Die meisten Menschen haben nie gelernt, sich diese Frage überhaupt zu stellen. Dass du es tust, zeigt mehr Bewusstsein, als du dir vielleicht zugestehst.",
+    footnote: null },
+];
+
+function getMicroFeedback(questionId, answers) {
+  const matching = MICRO_FEEDBACKS.filter(mf => mf.afterQ === questionId && mf.trigger(answers));
+  return matching.length > 0 ? matching[0] : null;
+}
+
+// ─── NARRATIVE BLOCK-TRANSITIONS ─────────────────────────────────────────
+const BLOCK_NARRATIVES = {
+  1: { headline: "Wie ehrlich bist du mit dir selbst?", sub: "Die nächsten Fragen zeigen, wie du denkst, fühlst und mit dir umgehst – wenn niemand zuschaut." },
+  2: { headline: "Was glaubst du wirklich?", sub: "Jetzt wird's unbequemer. Die nächsten Fragen zeigen, woran du festhältst – und ob deine Werte mehr sind als schöne Worte." },
+  3: { headline: "Tust du, was du weißt?", sub: "Erkenntnis ohne Handlung ist Unterhaltung. Hier zeigt sich, ob du ins Machen kommst – oder ob etwas dich bremst." },
+  4: { headline: "Wer bist du, wenn alles wegfällt?", sub: "Die letzten Fragen gehen tiefer. Hier geht's nicht mehr um Verhalten – sondern um das, was darunter liegt." },
+};
+
+// ─── PROGRESS MILESTONES ────────────────────────────────────────────────
+const MILESTONES = {
+  25: "Viertel geschafft. Bleib ehrlich – es lohnt sich.",
+  50: "Halbzeit. Wenn du bis hier ehrlich warst, wird das Ergebnis unbequem gut.",
+  75: "Fast da. Die letzten Fragen gehen tiefer – genau da wird's spannend.",
 };
 
 // ─── SCORING ENGINE ─────────────────────────────────────────────────────────
@@ -994,6 +1052,44 @@ body, html, #root {
 
 @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 
+/* ─── NARRATIVE BLOCK-TRANSITION ─── */
+.block-narrative-sub { font-size: 0.92rem; color: var(--text-muted); font-style: italic; line-height: 1.6; max-width: 420px; margin-bottom: 1.5rem; font-weight: 400; }
+
+/* ─── MICRO-FEEDBACK ─── */
+.micro-feedback { width: 100%; min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 2rem; animation: fadeUp 0.5s ease-out; cursor: pointer; }
+.micro-feedback-inner { max-width: 500px; text-align: center; padding: 2.5rem 2rem; border-left: 3px solid var(--orange); background: var(--orange-glow); }
+.micro-feedback-emoji { font-size: 2rem; display: block; margin-bottom: 1rem; }
+.micro-feedback-text { font-size: 0.95rem; line-height: 1.7; color: var(--dark); font-weight: 400; margin-bottom: 1rem; }
+.micro-feedback-footnote { font-size: 0.68rem; color: var(--warm-gray); font-style: italic; line-height: 1.5; }
+.micro-feedback-dismiss { background: var(--dark); color: var(--cream); border: none; padding: 0.75rem 2rem; font-family: 'Inter Tight', sans-serif; font-size: 0.82rem; font-weight: 600; cursor: pointer; margin-top: 1.25rem; transition: all 0.2s ease; }
+.micro-feedback-dismiss:hover { background: var(--dark-soft); }
+
+/* ─── KERNFRAGEN ─── */
+.question-screen-core { background: rgba(28, 28, 28, 0.03); }
+.core-badge { font-size: 0.72rem; font-weight: 700; color: var(--orange); letter-spacing: 0.06em; text-align: center; padding: 0.6rem 1rem; margin-bottom: 0.5rem; animation: fadeUp 0.3s ease-out; }
+.question-title-core { color: var(--dark) !important; font-size: 0.85rem !important; font-weight: 800 !important; }
+
+/* ─── MILESTONES ─── */
+.milestone-bar { font-size: 0.75rem; color: var(--orange); font-weight: 600; text-align: center; padding: 0.5rem 1rem; font-style: italic; animation: fadeUp 0.4s ease-out; margin-bottom: 0.25rem; }
+
+/* ─── COUNTDOWN TEASER ─── */
+.countdown-teaser { margin-top: 1.5rem; text-align: center; padding: 1.25rem; border: 1.5px dashed var(--sand); animation: fadeUp 0.4s ease-out; }
+.countdown-teaser-finetuning { border: 1.5px solid rgba(255, 77, 0, 0.25); background: rgba(255, 77, 0, 0.015); }
+.countdown-teaser-title { font-size: 0.82rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem; }
+.countdown-teaser-sub { font-size: 0.75rem; color: var(--warm-gray); font-style: italic; margin-top: 0.25rem; }
+
+/* ─── CALCULATING SCREEN ─── */
+.calculating-overlay { text-align: center; padding: 2rem 1.5rem; animation: fadeUp 0.5s ease-out; }
+.calculating-title { font-size: 0.92rem; font-weight: 800; color: var(--dark); margin-bottom: 0.5rem; }
+.calculating-wheel-wrap { width: 56px; height: 56px; margin: 1.25rem auto 1rem; position: relative; }
+.calculating-ring { position: absolute; inset: 0; border-radius: 50%; border: 2.5px solid var(--sand); border-top-color: var(--orange); animation: spinWheel 0.9s linear infinite; }
+.calculating-ring-done { animation: none; border-color: var(--orange); }
+.calculating-check { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transform: scale(0.5); transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.calculating-check-visible { opacity: 1; transform: scale(1); }
+.calculating-status { font-size: 1.05rem; font-weight: 700; transition: color 0.4s ease; }
+.calculating-detail { display: flex; justify-content: center; gap: 12px; margin-top: 0.75rem; font-size: 0.7rem; color: var(--warm-gray); }
+@keyframes spinWheel { to { transform: rotate(360deg); } }
+
 @media (max-width: 520px) {
   .question-screen { padding: 4.5rem 1.15rem 1.5rem; }
   .option-btn { padding: 0.9rem; font-size: 0.84rem; }
@@ -1045,10 +1141,12 @@ function ProgressBar({ current, total }) {
 }
 
 function BlockTransition({ block, onContinue, isFirst }) {
+  const narrative = BLOCK_NARRATIVES[block.id];
   return (
     <div className="block-transition">
       <div className="block-num">{block.id}</div>
-      <h2>{block.title}</h2>
+      <h2>{narrative.headline}</h2>
+      <p className="block-narrative-sub">{narrative.sub}</p>
       <p className="block-count">{block.questions.length} Fragen</p>
       <div className="answer-hint">
         {isFirst ? (
@@ -1066,6 +1164,83 @@ function BlockTransition({ block, onContinue, isFirst }) {
   );
 }
 
+// ─── MICRO-FEEDBACK COMPONENT ─────────────────────────────────────────────
+function MicroFeedbackCard({ feedback, onDismiss }) {
+  return (
+    <div className="micro-feedback" onClick={onDismiss}>
+      <div className="micro-feedback-inner">
+        <span className="micro-feedback-emoji">{feedback.emoji}</span>
+        <p className="micro-feedback-text">{feedback.text}</p>
+        {feedback.footnote && <p className="micro-feedback-footnote">{feedback.footnote}</p>}
+        <button className="micro-feedback-dismiss">Weiter →</button>
+      </div>
+    </div>
+  );
+}
+
+// ─── COUNTDOWN TEASER RADAR ──────────────────────────────────────────────
+function CountdownRadar({ activePoints, showContour }) {
+  const cx = 80, cy = 80, r = 62;
+  const n = 10;
+  const profileShape = [65, 40, 72, 25, 55, 30, 60, 15, 20, 78];
+  const grayVal = 40;
+  const getPoint = (i, val) => {
+    const angle = (Math.PI * 2 * i) / n - Math.PI / 2;
+    const dist = (val / 100) * r;
+    return { x: cx + dist * Math.cos(angle), y: cy + dist * Math.sin(angle) };
+  };
+  const rings = [33, 66, 100];
+  const spokes = Array.from({ length: n }, (_, i) => getPoint(i, 100));
+  const contourVals = profileShape.map((v, i) => i < activePoints ? v : grayVal);
+  const contourPts = contourVals.map((v, i) => getPoint(i, v));
+  const contourPath = contourPts.map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" ") + " Z";
+  return (
+    <svg width="160" height="160" viewBox="0 0 160 160" style={{ display: "block", margin: "0 auto" }}>
+      {spokes.map((p, i) => (<line key={`s${i}`} x1={cx} y1={cy} x2={p.x} y2={p.y} stroke="var(--sand)" strokeWidth="0.5" opacity="0.45" />))}
+      {rings.map((val, ri) => {
+        const pts = Array.from({ length: n }, (_, i) => getPoint(i, val));
+        const d = pts.map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" ") + " Z";
+        return <path key={`r${ri}`} d={d} fill="none" stroke="var(--sand)" strokeWidth="0.5" opacity="0.4" />;
+      })}
+      {showContour && <path d={contourPath} fill={activePoints >= 10 ? "rgba(255,77,0,0.06)" : "rgba(255,77,0,0.03)"} stroke={activePoints >= 10 ? "rgba(255,77,0,0.5)" : "rgba(255,77,0,0.2)"} strokeWidth="1" strokeDasharray={activePoints >= 10 ? "none" : "4 3"} />}
+      {contourPts.map((p, i) => {
+        const isActive = i < activePoints;
+        return (<g key={`d${i}`}>
+          {!isActive && <circle cx={p.x} cy={p.y} r="3" fill="none" stroke="var(--sand)" strokeWidth="1" opacity="0.45" />}
+          {isActive && <><circle cx={p.x} cy={p.y} r="5" fill="rgba(255,77,0,0.1)" /><circle cx={p.x} cy={p.y} r="2.8" fill="var(--orange)" /></>}
+        </g>);
+      })}
+    </svg>
+  );
+}
+
+// ─── CALCULATING SCREEN (F30 post-answer) ─────────────────────────────────
+function CalculatingOverlay({ onReady }) {
+  const [phase, setPhase] = useState("loading");
+  useEffect(() => {
+    const t = setTimeout(() => { setPhase("done"); setTimeout(onReady, 600); }, 2200);
+    return () => clearTimeout(t);
+  }, []);
+  const done = phase === "done";
+  return (
+    <div className="calculating-overlay">
+      <div className="calculating-title">Dein Archetyp steht fest.</div>
+      <div className="calculating-wheel-wrap">
+        <div className={`calculating-ring ${done ? "calculating-ring-done" : ""}`} />
+        <svg width="56" height="56" viewBox="0 0 56 56" style={{ position: "absolute", inset: 0 }}>
+          <circle cx="28" cy="28" r="22" fill="none" stroke="var(--sand)" strokeWidth="2" opacity="0.3" />
+          <circle cx="28" cy="28" r="22" fill="none" stroke="var(--orange)" strokeWidth="2.5" strokeLinecap="round" strokeDasharray={`${2 * Math.PI * 22}`} strokeDashoffset={done ? 0 : 2 * Math.PI * 22} transform="rotate(-90 28 28)" style={{ transition: "stroke-dashoffset 2s cubic-bezier(0.4,0,0.2,1)" }} />
+        </svg>
+        <div className={`calculating-check ${done ? "calculating-check-visible" : ""}`}>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="var(--orange)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="24" strokeDashoffset={done ? 0 : 24} style={{ transition: "stroke-dashoffset 0.5s ease 0.2s" }} /></svg>
+        </div>
+      </div>
+      <div className="calculating-status" style={{ color: done ? "var(--dark)" : "var(--warm-gray)" }}>{done ? "Auswertung abgeschlossen" : "Ergebnis wird berechnet..."}</div>
+      {!done && <div className="calculating-detail"><span>10 Dimensionen</span><span style={{ opacity: 0.4 }}>|</span><span>5 Archetypen</span><span style={{ opacity: 0.4 }}>|</span><span>30 Antworten</span></div>}
+    </div>
+  );
+}
+
 function QuestionCard({ question, questionIndex, totalQuestions, answers, followUpAnswers, onAnswer, onFollowUp, onNext, onBack, isLast }) {
   const currentAnswer = answers[question.id] || { primary: null, secondary: null };
   const hasPrimary = currentAnswer.primary !== null;
@@ -1073,6 +1248,21 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, follow
   const followUp = followUpKey ? FOLLOW_UPS[followUpKey] : null;
   const followUpAnswer = followUpKey ? (followUpAnswers[followUpKey] || null) : null;
   const canProceed = hasPrimary && (!followUp || followUpAnswer !== null);
+  const [showMicroFeedback, setShowMicroFeedback] = useState(null);
+  const [showCalculating, setShowCalculating] = useState(false);
+  const [feedbackShown, setFeedbackShown] = useState({});
+
+  const pct = Math.round(((questionIndex + 1) / totalQuestions) * 100);
+  const milestone = MILESTONES[pct];
+  const isCore = question.isCore;
+
+  // Countdown teaser logic
+  const qNum = questionIndex + 1;
+  const remaining = totalQuestions - qNum;
+  let teaserState = null;
+  if (qNum >= 25 && qNum <= 26) teaserState = { activePoints: 2, showContour: false, title: "Dein Profil nimmt Form an...", sub: `Noch ${remaining} Fragen bis zu deinem Ergebnis` };
+  else if (qNum >= 27 && qNum <= 28) teaserState = { activePoints: 6, showContour: true, title: "Dein Profil wird deutlicher...", sub: `Noch ${remaining} Fragen – gleich siehst du dein Ergebnis` };
+  else if (qNum === 29) teaserState = { activePoints: 10, showContour: true, title: "Letztes Feintuning...", sub: null, isFinetuning: true };
 
   const handleOptionClick = (key) => {
     if (!hasPrimary) {
@@ -1087,11 +1277,41 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, follow
     }
   };
 
+  const handleNext = () => {
+    // Check for micro-feedback
+    const fb = getMicroFeedback(question.id, answers);
+    if (fb && !feedbackShown[question.id]) {
+      setFeedbackShown(prev => ({ ...prev, [question.id]: true }));
+      setShowMicroFeedback(fb);
+      return;
+    }
+    // Check for calculating screen on last question
+    if (isLast) {
+      setShowCalculating(true);
+      return;
+    }
+    onNext();
+  };
+
+  if (showMicroFeedback) {
+    return <MicroFeedbackCard feedback={showMicroFeedback} onDismiss={() => { setShowMicroFeedback(null); if (isLast) { setShowCalculating(true); } else { onNext(); } }} />;
+  }
+
+  if (showCalculating) {
+    return (
+      <div className="question-screen" style={{ justifyContent: "center", minHeight: "80vh" }}>
+        <CalculatingOverlay onReady={onNext} />
+      </div>
+    );
+  }
+
   return (
-    <div className="question-screen">
+    <div className={`question-screen ${isCore ? "question-screen-core" : ""}`}>
       <ProgressBar current={questionIndex + 1} total={totalQuestions} />
+      {isCore && <div className="core-badge">⚡ Kernfrage – Antwort besonders durchdacht und ehrlich.</div>}
+      {milestone && <div className="milestone-bar">{milestone}</div>}
       <div className="question-wrapper" key={question.id}>
-        <div className="question-title-small">{question.title}</div>
+        <div className={`question-title-small ${isCore ? "question-title-core" : ""}`}>{question.title}</div>
         <p className="question-scenario">{question.scenario}</p>
         <div className="answer-label">{!hasPrimary ? "Wähle deine Antwort" : "Deine Antwort"}</div>
         <div className="options-list">
@@ -1131,11 +1351,18 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, follow
             </div>
           </div>
         )}
+        {teaserState && (
+          <div className={`countdown-teaser ${teaserState.isFinetuning ? "countdown-teaser-finetuning" : ""}`}>
+            <div className="countdown-teaser-title">{teaserState.title}</div>
+            <CountdownRadar activePoints={teaserState.activePoints} showContour={teaserState.showContour} />
+            {teaserState.sub && <div className="countdown-teaser-sub">{teaserState.sub}</div>}
+          </div>
+        )}
       </div>
       <div className="nav-row">
         <button className="btn-back" onClick={onBack}>{questionIndex === 0 ? "" : "← Zurück"}</button>
-        <button className={`btn-next ${isLast ? "btn-finish" : ""}`} disabled={!canProceed} onClick={onNext}>
-          {isLast ? "Test abschließen" : "Weiter →"}
+        <button className={`btn-next ${isLast ? "btn-finish" : ""}`} disabled={!canProceed} onClick={handleNext}>
+          {teaserState?.isFinetuning ? "Jetzt zur abschließenden Frage →" : isLast ? "Test abschließen" : "Weiter →"}
         </button>
       </div>
     </div>
