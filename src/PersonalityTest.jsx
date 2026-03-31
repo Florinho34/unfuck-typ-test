@@ -1188,7 +1188,6 @@ function BlockTransition({ block, onContinue, isFirst }) {
             <div className="hint-item"><span className="hint-icon">➕</span><span>Optional: Wähle eine <strong>zweite Antwort</strong> – sie wird schwächer gewichtet, macht dein Ergebnis aber genauer.</span></div>
             <div className="hint-item"><span className="hint-icon">💡</span><span>Wenn nur eine Antwort passt, <strong>reicht das völlig</strong>.</span></div>
           </div>
-          </>
         ) : (
           <>
             Weiterhin gilt: Wähle die Antwort, die <strong>am ehesten auf dich zutrifft</strong>. Eine optionale Zweitantwort verfeinert dein Ergebnis – ist aber kein Muss.
