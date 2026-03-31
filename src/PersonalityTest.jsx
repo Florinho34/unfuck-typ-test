@@ -210,12 +210,12 @@ const QUESTIONS = [
   {
     id: 11,
     title: "🪞 DER SPIEGEL",
-    scenario: "Du begegnest einem Menschen, der dich an Eigenschaften erinnert, die du an dir selbst nicht magst. Was passiert?",
+    scenario: "Du merkst, dass deine Meinung zu einem Thema sich komplett von der deines Umfelds unterscheidet. Wie gehst du damit um?",
     options: [
-      { key: "A", text: "Ich erkenne Parallelen zu mir und das bringt mich zum Nachdenken, ob ich nicht doch etwas ändern sollte.", scoring: { REF: 2, ML: 1 } },
-      { key: "B", text: "Das macht nichts mit mir. Ich versuche, darüber hinwegzusehen.", scoring: { REF: -1, EF: 1 } },
-      { key: "C", text: "Ich lasse das so stehen. Ich bin mir bewusst, dass wenn mich etwas an anderen triggert, das meistens mehr über mich aussagt als über die Person.", scoring: { REF: 3, SL: 1 } },
-      { key: "D", text: "Ich erkenne selten meine eigenen Verhaltensmuster in anderen. Doch wenn jemand Eigenschaften hat, die ich nicht schätze, ist er mir meist unsympathisch.", scoring: { HA: -1 } },
+      { key: "A", text: "Ich behalte meine Meinung für mich – es lohnt sich nicht, anzuecken.", scoring: { SL: -1, EF: 2, HA: -1 } },
+      { key: "B", text: "Ich vertrete meine Position – respektvoll, aber klar. Meine Meinung ist mir wichtiger als Harmonie.", scoring: { REF: 1, SL: 2, ETH: 1, HA: 2 } },
+      { key: "C", text: "Ich hinterfrage zuerst meine eigene Position ehrlich, bevor ich entscheide, ob ich sie teile.", scoring: { REF: 3, SL: 1 } },
+      { key: "D", text: "Ich merke, dass ich meine ursprüngliche Meinung häufig ändere – auch weil ich die Meinung meines Umfelds (zu) sehr schätze.", scoring: { EF: 3, ML: 1, HA: -1 } },
     ],
   },
   {
@@ -304,8 +304,8 @@ const QUESTIONS = [
     options: [
       { key: "A", text: "Ich analysiere das Gefühl, versuche es zu verstehen – aber es bleibt trotzdem.", scoring: { REF: 2, ML: 3, HA: -1 } },
       { key: "B", text: "Ich suche nach dem nächsten Impuls – einem Buch, einem Podcast, einer neuen Richtung.", scoring: { OL: 2 } },
-      { key: "C", text: "Ich such nach Beschäftigung – Sport, Arbeit, Social Media. Einfach irgendwas, das mich davon ablenkt.", scoring: { SL: -1, EF: 1, HA: 1 } },
-      { key: "D", text: "Ich halte das Gefühl aus und lasse es da sein. Es geht vorbei – und meistens zeigt es mir etwas.", scoring: { REF: 1, SL: 2, NAT: 1, HA: 1 } },
+      { key: "C", text: "Ich halte das Gefühl aus und lasse es da sein. Es geht vorbei – und meistens zeigt es mir etwas.", scoring: { REF: 1, SL: 2, NAT: 1, HA: 1 } },
+      { key: "D", text: "Ehrlich gesagt fühle ich das selten. Ich bin grundsätzlich zufrieden mit meiner Richtung.", scoring: { SL: 2, HA: 1 } },
     ],
   },
   {
@@ -315,7 +315,7 @@ const QUESTIONS = [
     options: [
       { key: "A", text: "Ich höre zu und gebe ehrliches Feedback – auch wenn es nicht das ist, was die Person hören will.", scoring: { REF: 2, SL: 1, ETH: 1, HA: 1 } },
       { key: "B", text: "Ich bin für die Person da, aber halte mich mit Ratschlägen zurück. Ich will nicht übergriffig sein.", scoring: { REF: 1, ML: 1, ETH: 1, HA: -1 } },
-      { key: "C", text: "Ich helfe gerne und proaktiv – manchmal habe ich das Gefühl aber über's Ziel hinauszuschießen.", scoring: { ETH: 1, WS: 1, HA: 2 } },
+      { key: "C", text: "Ich helfe gerne und proaktiv – es könnte sein, dass ich manchmal dabei über's Ziel hinausschieße.", scoring: { ETH: 1, WS: 1, HA: 2 } },
       { key: "D", text: "Ich versuche zu helfen, aber merke, dass ich selbst nicht genug Stabilität habe, um andere aufzufangen.", scoring: { SL: -1, ML: 1, HA: -1 } },
     ],
   },
@@ -476,6 +476,14 @@ const FOLLOW_UPS = {
       { key: "2", text: "Wenn ich ehrlich bin: Ich verstehe meistens beide Seiten so gut, dass ich mich am Ende gar nicht festlegen kann – oder will.", scoring: { HA: -3, ML: 3, REF: 1 } },
     ],
   },
+  // F19 D → Ehrlichkeits-Check: Selten leer/orientierungslos
+  "19D": {
+    question: "Warum denkst du, dieses Gefühl selten zu haben?",
+    options: [
+      { key: "1", text: "Ich habe mich bewusst mit mir auseinandergesetzt und bin an einem guten Punkt.", scoring: { REF: 2, SL: 2, HA: 1 } },
+      { key: "2", text: "Ich beschäftige mich ehrlich gesagt nicht so intensiv mit solchen Fragen.", scoring: { REF: -1, EF: 2 } },
+    ],
+  },
   // F20 A → Ehrlichkeits-Check: Ehrlichkeit gegenüber anderen
   "20A": {
     question: "Du sagst, du gibst ehrliches Feedback. Wie reagieren die Menschen in deinem Umfeld darauf?",
@@ -496,6 +504,18 @@ const FOLLOW_UPS = {
 
 // ─── MICRO-FEEDBACKS ──────────────────────────────────────────────────────
 const MICRO_FEEDBACKS = [
+  { afterQ: 3, trigger: (ans) => ans[3]?.primary === "A",
+    emoji: "🪞", text: "Du siehst, was andere übersehen – und schluckst es trotzdem runter. Das kostet mehr Energie, als du vielleicht denkst. Studien zeigen: Wer regelmäßig eigene Wahrnehmungen unterdrückt, erhöht messbar das Risiko für chronischen Stress und emotionale Erschöpfung.",
+    footnote: "*Gross & Levenson (1997), Journal of Personality and Social Psychology" },
+  { afterQ: 3, trigger: (ans) => ans[3]?.primary === "B",
+    emoji: "🪞", text: "Du gehst dahin, wo's unbequem wird – das können die wenigsten. Respekt! Aber Mut zur Konfrontation ist nicht dasselbe wie gute Konfrontation. Die Frage ist nicht ob du es ansprichst, sondern warum. Aus echtem Verantwortungsgefühl? Oder weil Schweigen sich für dich noch unangenehmer anfühlt? Lass uns noch mehr deines wahren Charakters freilegen...",
+    footnote: null },
+  { afterQ: 3, trigger: (ans) => ans[3]?.primary === "C",
+    emoji: "🪞", text: "Du ziehst eine klare Grenze zwischen deiner Verantwortung und der anderer. Das kann Weisheit sein – oder eine bequeme Ausrede. Der Unterschied? Ob du dich danach wirklich frei fühlst, oder ob es dich dennoch weiterhin beschäftigt.",
+    footnote: null },
+  { afterQ: 3, trigger: (ans) => ans[3]?.primary === "D",
+    emoji: "🪞", text: "Du prüfst zuerst, ob dein Impuls wirklich der Situation gilt oder dir selbst. Das ist seltener als du denkst! Die meisten Menschen reagieren auf äußere Probleme, ohne zu merken, dass eigentlich ein eigenes inneres Thema getriggert wurde. Dass du diesen Schritt machst, zeigt echte Reflexionstiefe.",
+    footnote: null },
   { afterQ: 2, trigger: (ans) => ans[2]?.primary === "A" || ans[2]?.primary === "B",
     emoji: "💭", text: "Du bist nicht allein damit. Rund 88% unserer täglichen Handlungen laufen auf Autopilot* – aber nachts, wenn der Autopilot pausiert, holt uns das Unverarbeitete ein.",
     footnote: "*Rebar et al. (2025), Psychology & Health – University of South Carolina" },
@@ -535,7 +555,7 @@ function getMicroFeedback(questionId, answers) {
 
 // ─── NARRATIVE BLOCK-TRANSITIONS ─────────────────────────────────────────
 const BLOCK_NARRATIVES = {
-  1: { headline: "Wie ehrlich bist du mit dir selbst?", sub: "Die nächsten Fragen zeigen, wie du denkst, fühlst und mit dir umgehst – wenn niemand zuschaut." },
+  1: { headline: "Wie gut kennst du dich wirklich?", sub: "Die nächsten Fragen zeigen, wie du denkst, fühlst und mit dir umgehst – wenn niemand zuschaut." },
   2: { headline: "Was glaubst du wirklich?", sub: "Jetzt wird's unbequemer. Die nächsten Fragen zeigen, woran du festhältst – und ob deine Werte mehr sind als schöne Worte." },
   3: { headline: "Tust du, was du weißt?", sub: "Erkenntnis ohne Handlung ist Unterhaltung. Hier zeigt sich, ob du ins Machen kommst – oder ob etwas dich bremst." },
   4: { headline: "Wer bist du, wenn alles wegfällt?", sub: "Die letzten Fragen gehen tiefer. Hier geht's nicht mehr um Verhalten – sondern um das, was darunter liegt." },
@@ -821,7 +841,7 @@ function RadarChart({ normalized, resultType }) {
   const typePath = typePoints.map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" ") + " Z";
 
   return (
-    <svg viewBox="-75 -15 420 360" className="radar-svg">
+    <svg viewBox="-90 -15 460 360" className="radar-svg">
       {rings.map(val => {
         const pts = scales.map((_, i) => getPoint(i, val));
         const d = pts.map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" ") + " Z";
@@ -890,6 +910,10 @@ body, html, #root {
 
 .btn-primary { background: var(--orange); color: #fff; border: none; padding: 1rem 2.5rem; font-family: 'Inter Tight', sans-serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.03em; cursor: pointer; transition: all 0.25s ease; }
 .btn-primary:hover { background: var(--orange-hover); transform: translateY(-1px); }
+
+.btn-float { animation: floatBtn 2.5s ease-in-out infinite; }
+@keyframes floatBtn { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.btn-float:hover { animation: none; transform: translateY(-2px); }
 
 .progress-container { position: fixed; top: 0; left: 0; width: 100%; z-index: 100; background: var(--cream); }
 .progress-bar-track { width: 100%; height: 3px; background: var(--sand); }
@@ -1055,6 +1079,13 @@ body, html, #root {
 /* ─── NARRATIVE BLOCK-TRANSITION ─── */
 .block-narrative-sub { font-size: 0.92rem; color: var(--text-muted); font-style: italic; line-height: 1.6; max-width: 420px; margin-bottom: 1.5rem; font-weight: 400; }
 
+/* ─── HINT BULLETS ─── */
+.hint-bullets { display: flex; flex-direction: column; gap: 0.65rem; }
+.hint-title { font-weight: 700; color: var(--dark); margin-bottom: 0.25rem; font-size: 0.88rem; }
+.hint-item { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.82rem; line-height: 1.55; color: var(--text-muted); }
+.hint-item strong { color: var(--dark); font-weight: 700; }
+.hint-icon { flex-shrink: 0; font-size: 0.9rem; line-height: 1.55; }
+
 /* ─── MICRO-FEEDBACK ─── */
 .micro-feedback { width: 100%; min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 2rem; animation: fadeUp 0.5s ease-out; cursor: pointer; }
 .micro-feedback-inner { max-width: 500px; text-align: center; padding: 2.5rem 2rem; border-left: 3px solid var(--orange); background: var(--orange-glow); }
@@ -1067,7 +1098,7 @@ body, html, #root {
 /* ─── KERNFRAGEN ─── */
 .question-screen-core { background: rgba(28, 28, 28, 0.03); }
 .core-badge { font-size: 0.72rem; font-weight: 700; color: var(--orange); letter-spacing: 0.06em; text-align: center; padding: 0.6rem 1rem; margin-bottom: 0.5rem; animation: fadeUp 0.3s ease-out; }
-.question-title-core { color: var(--dark) !important; font-size: 0.85rem !important; font-weight: 800 !important; }
+.question-title-core { font-size: 0.85rem !important; font-weight: 800 !important; }
 
 /* ─── MILESTONES ─── */
 .milestone-bar { font-size: 0.75rem; color: var(--orange); font-weight: 600; text-align: center; padding: 0.5rem 1rem; font-style: italic; animation: fadeUp 0.4s ease-out; margin-bottom: 0.25rem; }
@@ -1080,6 +1111,7 @@ body, html, #root {
 
 /* ─── CALCULATING SCREEN ─── */
 .calculating-overlay { text-align: center; padding: 2rem 1.5rem; animation: fadeUp 0.5s ease-out; }
+.calculating-inline { margin-top: 2rem; padding-top: 1.5rem; border-top: 1.5px dashed var(--sand); animation: fadeUp 0.5s ease-out; }
 .calculating-title { font-size: 0.92rem; font-weight: 800; color: var(--dark); margin-bottom: 0.5rem; }
 .calculating-wheel-wrap { width: 56px; height: 56px; margin: 1.25rem auto 1rem; position: relative; }
 .calculating-ring { position: absolute; inset: 0; border-radius: 50%; border: 2.5px solid var(--sand); border-top-color: var(--orange); animation: spinWheel 0.9s linear infinite; }
@@ -1120,7 +1152,7 @@ function IntroScreen({ onStart }) {
       <h1>Was steht dir durch deine <span className="highlight">persönlichen Neigungen</span> im Weg?</h1>
       <p className="intro-sub">30 alltagsnahe Fragen, 10 Dimensionen, 5 Archetypen</p>
       <p className="intro-meta">~8 Minuten · anonym · Sofortergebnis</p>
-      <button className="btn-primary" onClick={onStart}>Test starten</button>
+      <button className="btn-primary btn-float" onClick={onStart}>TEST STARTEN</button>
     </div>
   );
 }
@@ -1150,8 +1182,12 @@ function BlockTransition({ block, onContinue, isFirst }) {
       <p className="block-count">{block.questions.length} Fragen</p>
       <div className="answer-hint">
         {isFirst ? (
-          <>
-            <strong>So funktioniert's:</strong> Wähle pro Frage die Antwort, die am besten zu dir passt. Du kannst optional eine <strong>zweite Antwort</strong> wählen, die ebenfalls auf dich zutrifft – sie wird schwächer gewichtet, macht dein Ergebnis aber genauer. Wenn nur eine Antwort passt, reicht das völlig.
+          <div className="hint-bullets">
+            <div className="hint-title">So funktioniert's</div>
+            <div className="hint-item"><span className="hint-icon">🎯</span><span>Wähle pro Frage die Antwort, die <strong>am besten zu dir passt</strong>.</span></div>
+            <div className="hint-item"><span className="hint-icon">➕</span><span>Optional: Wähle eine <strong>zweite Antwort</strong> – sie wird schwächer gewichtet, macht dein Ergebnis aber genauer.</span></div>
+            <div className="hint-item"><span className="hint-icon">💡</span><span>Wenn nur eine Antwort passt, <strong>reicht das völlig</strong>.</span></div>
+          </div>
           </>
         ) : (
           <>
@@ -1202,7 +1238,7 @@ function CountdownRadar({ activePoints, showContour }) {
         const d = pts.map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" ") + " Z";
         return <path key={`r${ri}`} d={d} fill="none" stroke="var(--sand)" strokeWidth="0.5" opacity="0.4" />;
       })}
-      {showContour && <path d={contourPath} fill={activePoints >= 10 ? "rgba(255,77,0,0.06)" : "rgba(255,77,0,0.03)"} stroke={activePoints >= 10 ? "rgba(255,77,0,0.5)" : "rgba(255,77,0,0.2)"} strokeWidth="1" strokeDasharray={activePoints >= 10 ? "none" : "4 3"} />}
+      {showContour && <path d={contourPath} fill={activePoints >= 10 ? "rgba(255,77,0,0.12)" : "rgba(255,77,0,0.08)"} stroke={activePoints >= 10 ? "rgba(255,77,0,0.7)" : "rgba(255,77,0,0.45)"} strokeWidth="1.5" strokeDasharray={activePoints >= 10 ? "none" : "4 3"} />}
       {contourPts.map((p, i) => {
         const isActive = i < activePoints;
         return (<g key={`d${i}`}>
@@ -1260,8 +1296,10 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, follow
   const qNum = questionIndex + 1;
   const remaining = totalQuestions - qNum;
   let teaserState = null;
-  if (qNum >= 25 && qNum <= 26) teaserState = { activePoints: 2, showContour: false, title: "Dein Profil nimmt Form an...", sub: `Noch ${remaining} Fragen bis zu deinem Ergebnis` };
-  else if (qNum >= 27 && qNum <= 28) teaserState = { activePoints: 6, showContour: true, title: "Dein Profil wird deutlicher...", sub: `Noch ${remaining} Fragen – gleich siehst du dein Ergebnis` };
+  if (qNum === 25) teaserState = { activePoints: 2, showContour: false, title: "Dein Profil nimmt Form an...", sub: `Noch ${remaining} Fragen bis zu deinem Ergebnis` };
+  else if (qNum === 26) teaserState = { activePoints: 4, showContour: true, title: "Dein Profil nimmt Form an...", sub: `Noch ${remaining} Fragen bis zu deinem Ergebnis` };
+  else if (qNum === 27) teaserState = { activePoints: 6, showContour: true, title: "Dein Profil wird deutlicher...", sub: `Noch ${remaining} Fragen – gleich siehst du dein Ergebnis` };
+  else if (qNum === 28) teaserState = { activePoints: 8, showContour: true, title: "Dein Profil wird deutlicher...", sub: `Noch ${remaining} Fragen – gleich siehst du dein Ergebnis` };
   else if (qNum === 29) teaserState = { activePoints: 10, showContour: true, title: "Letztes Feintuning...", sub: null, isFinetuning: true };
 
   const handleOptionClick = (key) => {
@@ -1285,7 +1323,7 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, follow
       setShowMicroFeedback(fb);
       return;
     }
-    // Check for calculating screen on last question
+    // For last question, show calculating inline
     if (isLast) {
       setShowCalculating(true);
       return;
@@ -1295,14 +1333,6 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, follow
 
   if (showMicroFeedback) {
     return <MicroFeedbackCard feedback={showMicroFeedback} onDismiss={() => { setShowMicroFeedback(null); if (isLast) { setShowCalculating(true); } else { onNext(); } }} />;
-  }
-
-  if (showCalculating) {
-    return (
-      <div className="question-screen" style={{ justifyContent: "center", minHeight: "80vh" }}>
-        <CalculatingOverlay onReady={onNext} />
-      </div>
-    );
   }
 
   return (
@@ -1358,13 +1388,20 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, follow
             {teaserState.sub && <div className="countdown-teaser-sub">{teaserState.sub}</div>}
           </div>
         )}
+        {showCalculating && (
+          <div className="calculating-inline">
+            <CalculatingOverlay onReady={onNext} />
+          </div>
+        )}
       </div>
-      <div className="nav-row">
-        <button className="btn-back" onClick={onBack}>{questionIndex === 0 ? "" : "← Zurück"}</button>
-        <button className={`btn-next ${isLast ? "btn-finish" : ""}`} disabled={!canProceed} onClick={handleNext}>
-          {teaserState?.isFinetuning ? "Jetzt zur abschließenden Frage →" : isLast ? "Test abschließen" : "Weiter →"}
-        </button>
-      </div>
+      {!showCalculating && (
+        <div className="nav-row">
+          <button className="btn-back" onClick={onBack}>{questionIndex === 0 ? "" : "← Zurück"}</button>
+          <button className={`btn-next ${isLast ? "btn-finish" : ""}`} disabled={!canProceed} onClick={handleNext}>
+            {teaserState?.isFinetuning ? "Jetzt zur abschließenden Frage →" : isLast ? "Test abschließen" : "Weiter →"}
+          </button>
+        </div>
+      )}
     </div>
   );
 }
