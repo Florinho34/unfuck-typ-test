@@ -597,57 +597,47 @@ const KIT_FORM_IDS = {
 
 const TYPE_META = {
   zuschauer: {
-    label: "Der Zuschauer",
+    label: "Zuschauer",
     avatar: "/Archetypen-Zuschauer.png",
-    potenzial: "Der Weise",
-    potenzialText: "Du siehst mehr als die meisten. Wenn du anfängst zu handeln statt nur zu verstehen, wirst du unaufhaltbar.",
-    tagline: "Du siehst mehr als die meisten – aber du stehst am Rand deines eigenen Lebens.",
+    tagline: "Du siehst mehr als die meisten – doch merkt man das an deinem Verhalten nur selten.",
     ctaText: "Du verstehst längst, was sich ändern müsste – jetzt ist der Moment, es auch zu tun. In dieser Masterclass zeige ich dir, wie du vom Erkennen ins Handeln kommst.",
-    description: "Du denkst viel, verstehst Zusammenhänge, analysierst. Während andere einfach machen, durchschaust du die Muster dahinter. Das Problem: Irgendwann ist Verstehen zum Ersatz für Leben geworden. Du weißt genau, was du ändern müsstest – aber zwischen Erkenntnis und Handlung liegt ein Graben, der jedes Jahr breiter wird. Das Gute: Deine Klarheit ist eine echte Stärke. Du musst nur lernen, sie als Startrampe zu nutzen statt als Aussichtsplattform.",
+    description: "Du bist weise! Doch während andere einfach machen, denkst du zu viel! Du verstehst Zusammenhänge und analysierst Probleme – du durchschaust Muster, die andere nicht sehen. Das ist eine Gabe! Doch ohne Umsetzung bleibt Wissen theoretisch und kann keine Effekte in der Realität entfalten. Als Zuschauer weißt du genau, was du ändern müsstest – aber zwischen Erkenntnis und Handlung liegt ein Graben, der jedes Jahr breiter wird. Das Gute: Deine Klarheit ist eine echte Stärke. Du musst nur lernen, sie als Startrampe zu nutzen statt als Aussichtsplattform.",
     pain: "Du analysierst dich im Kreis. Du weißt, was sich ändern müsste – aber du verwechselst Erkenntnis mit Fortschritt. Und jeder Tag, an dem du nicht handelst, macht den nächsten Schritt schwerer.",
     extra: "Dein größter Hebel: Eine einzige Handlung, die du seit Wochen aufschiebst. Nicht perfekt – einfach anfangen.",
   },
   getriebener: {
-    label: "Der Getriebene",
+    label: "Getrieben",
     avatar: "/Archetypen-Getriebener.png",
-    potenzial: "Der Macher",
-    potenzialText: "Deine Energie ist deine Superkraft. Wenn du lernst, sie bewusst einzusetzen statt vor dir selbst wegzurennen, erreichst du alles.",
     tagline: "Du bist ständig in Bewegung – aber wer hat eigentlich das Ziel bestimmt?",
     ctaText: "Du funktionierst – aber für wen eigentlich? In dieser Masterclass zeige ich dir, wie du deine Energie endlich für das einsetzt, was dich wirklich glücklich machen kann.",
-    description: "Du funktionierst. Zuverlässig, produktiv, immer beschäftigt. Von außen sieht das nach Disziplin und Erfolg aus. Aber dahinter steckt eine Vermeidungsstrategie: Solange du funktionierst, musst du nicht hinschauen. Manche Getriebene folgen einem Drehbuch, das andere geschrieben haben – und merken es nicht. In den ruhigen Momenten – wenn die Ablenkung wegfällt – ist da eine Unruhe, die du nicht benennen kannst. Das Gute: Dein Antrieb ist real. Deine Disziplin ist eine Stärke. Aber sie braucht ein Ziel, das wirklich deins ist.",
-    pain: "Du bist so beschäftigt mit Funktionieren, dass du gar nicht merkst, wie weit du dich von dir selbst entfernt hast. Und die Stimme, die fragt ‚Ist das wirklich alles?', wird leiser, je mehr du sie übertönst.",
+    description: "Du bist ein wahrer Macher! Du funktionierst – zuverlässig, produktiv, immer beschäftigt. Von außen sieht das nach Disziplin und Erfolg aus. Aber dahinter steckt eine Vermeidungsstrategie: Solange du funktionierst, musst du nicht hinschauen. Manche Getriebene folgen einem Drehbuch, das andere geschrieben haben – und merken es nicht. In den ruhigen Momenten – wenn die Ablenkung wegfällt – ist da eine Unruhe, die du nicht benennen kannst. Und weil das unangenehm ist, greifst du direkt wieder zur Beschäftigung. Doch keine Sorge: Dein Antrieb und deine Disziplin sind eine unersetzliche Stärke. Wenn du diese nutzt, wirst du es weit bringen – doch du brauchst ein Ziel, das wirklich deins ist.",
+    pain: "Du bist so beschäftigt mit Funktionieren, dass du gar nicht merkst, wie weit du dich von dir selbst entfernt hast. Und die Stimme, die fragt \u201EIst das wirklich alles?\u201C, wird leiser, je mehr du sie übertönst.",
     extra: "Dein größter Hebel: Einen ganzen Abend lang nichts tun – und aushalten, was dann hochkommt.",
   },
   idealist: {
-    label: "Der Idealist",
+    label: "Idealist",
     avatar: "/Archetypen-Idealist.png",
-    potenzial: "Der Veränderer",
-    potenzialText: "Dein Feuer für eine bessere Welt ist echt. Wenn du lernst, bei dir selbst anzufangen, statt die Welt zu reparieren, wird dein Impact riesig.",
     tagline: "Du spürst, was in der Welt schiefläuft – und es frisst dich auf.",
     ctaText: "Dein Feuer für eine bessere Welt ist echt und ehrenwert – doch es birgt die Gefahr, dich innerlich aufzufressen. In dieser Masterclass zeige ich dir, wie du für eine bessere Welt sorgst – zuerst bei dir, um anschließend auch die Kraft zu finden weiterzumachen.",
-    description: "Ungerechtigkeit, Oberflächlichkeit, Zerstörung – du siehst es überall und es lässt dich nicht kalt. Diese Intensität ist selten und wertvoll. Aber sie hat eine Schattenseite: Deine Energie fließt in Wut, Frustration und Ohnmacht über Dinge, die du nicht kontrollieren kannst – und für dein eigenes Leben bleibt wenig übrig. Nicht weil du egoistisch wärst, sondern weil du nie gelernt hast, dass bei dir selbst anfangen kein Verrat an der Welt ist. Sondern die Voraussetzung.",
+    description: "Du willst wahrhaftig etwas verändern! Doch dein eigenes Leben und Glück steht hinten an. Ungerechtigkeit, Oberflächlichkeit, Zerstörung – du siehst es überall und es lässt dich nicht kalt. Deine Intensität ist selten und wertvoll. Aber sie hat eine Schattenseite: Deine Energie fließt in Wut, Frustration und Ohnmacht über Dinge, die du nicht kontrollieren kannst – und für dein eigenes Leben bleibt am Ende zu wenig Kraft übrig, da du gelähmt bist. Wahrscheinlich hast du nie gelernt, dass bei dir selbst anfangen kein Verrat an der Welt ist. Sondern die Voraussetzung, um überhaupt etwas verändern zu können.",
     pain: "Dein Gerechtigkeitssinn ist echt – aber er frisst dich auf. Du gibst so viel Energie an die Welt, dass für dich selbst nichts übrig bleibt. Und das Paradoxe: Genau dadurch veränderst du weniger, als du könntest.",
     extra: "Dein größter Hebel: Erkenne, dass Selbstfürsorge kein Egoismus ist – sondern die Voraussetzung, wirklich etwas zu bewegen.",
   },
   suchender: {
-    label: "Der Suchende",
+    label: "Suchend",
     avatar: "/Archetypen-Suchende.png",
-    potenzial: "Der Entdecker",
-    potenzialText: "Deine Offenheit ist ein Geschenk. Wenn du lernst, tiefer zu gehen statt breiter, findest du, was du suchst.",
     tagline: "Du weißt, dass etwas fehlt – du weißt nur noch nicht, was.",
     ctaText: "Du spürst, dass da mehr ist – aber die nächste \u201EMethode nach Guru XY\u201C wird\u2019s auch nicht richten. In dieser Masterclass zeige ich dir, wo du wirklich hinschauen musst.",
-    description: "Du hast schon einiges probiert. Bücher, Podcasts, vielleicht Seminare. Manche Dinge haben kurz resoniert, aber nichts hat wirklich gehalten. Das liegt nicht daran, dass du sprunghaft bist – sondern daran, dass du intuitiv spürst, wenn etwas nicht echt ist. Das Problem ist nur: Du suchst die Antwort im Außen, während sie im Innen liegt. Der erste Schritt ist nicht die nächste Methode – sondern ehrlich hinschauen, warum keine bisherige gereicht hat.",
+    description: "In dir schlummert ein neugieriger Entdecker! Doch zufrieden ist er nicht. Du hast schon so vieles probiert: Bücher, Podcasts, vielleicht Seminare. Manche Dinge haben kurz resoniert, aber nichts hat wirklich gehalten. Das liegt nicht daran, dass du sprunghaft bist – sondern daran, dass du intuitiv spürst, wenn etwas nicht echt ist. Das Problem ist nur: Du suchst die Antwort im Außen, während sie im Innen liegt. Der erste Schritt ist nicht die nächste Methode – sondern ehrlich hinschauen, warum keine bisherige gereicht hat.",
     pain: "Du springst von Impuls zu Impuls, von Methode zu Methode – und verwechselst Bewegung mit Fortschritt. Die unbequeme Wahrheit: Es liegt nicht an den Methoden. Es liegt daran, dass du nicht tief genug gräbst.",
     extra: "Dein größter Hebel: Hör auf, nach der nächsten Antwort zu suchen. Setz dich mit der Frage hin.",
   },
   klarsichtiger: {
-    label: "Der Klarsichtige",
+    label: "Klarsichtig",
     avatar: "/Archetypen-Klarsichtiger.png",
-    potenzial: "Der Freie",
-    potenzialText: "Du lebst bereits bewusster als die meisten. Dein nächster Schritt ist nicht mehr Erkenntnis – sondern ehrliche Tiefe und Umsetzung.",
     tagline: "Du siehst klarer als die meisten – jetzt geht's darum, danach zu leben.",
     ctaText: "Du bist weiter als die meisten – doch das allein reicht nicht. In dieser Masterclass zeige ich dir, wie du dein Wissen endlich in dein Leben integrierst.",
-    description: "Du hast schon einiges verstanden. Du hinterfragst, reflektierst, lebst bewusster als viele in deinem Umfeld. Man kann mit dir über tiefere Themen sprechen, ohne dass du abblocken musst. Aber: Auch du hast blinde Flecken. Vielleicht die Tendenz, dich für weiter zu halten, als du bist. Oder die Schwierigkeit, dein Wissen konsequent in Handlung zu übersetzen. Klar sehen und danach leben – das sind zwei verschiedene Dinge. Du bist auf dem Weg. Aber der Weg hat noch Strecke.",
+    description: "Du bist weiter als die meisten! Doch auch du hast blinde Flecken. Vielleicht die Tendenz, dich für weiter zu halten, als du bist? Oder die Schwierigkeit, dein Wissen konsequent in Handlung zu übersetzen? Du hinterfragst, reflektierst, lebst bewusster als viele in deinem Umfeld. Man kann mit dir über tiefere Themen sprechen, ohne dass du abblocken musst. Klar sehen und danach leben – das sind zwei verschiedene Dinge. Du bist auf dem Weg. Aber der Weg hat noch Strecke.",
     pain: "Dein Wissen ist echt – aber es kann zur Falle werden. Du hältst dich manchmal für weiter, als du bist. Der Unterschied zwischen Wissen und Weisheit: Du brauchst keine Fakten mehr, um zu spüren, was richtig oder falsch ist. Aber dieses Spüren in echtes Handeln und Vertrauen zu übersetzen – genau daran darfst du noch arbeiten.",
     extra: "Dein größter Hebel: Sei ehrlich, wo du Erkenntnis noch als Fortschritt verkaufst – und wo dir die Umsetzung fehlt.",
   },
@@ -917,7 +907,7 @@ body, html, #root {
 .intro-screen h1 { font-family: 'Inter Tight', sans-serif; font-size: clamp(1.5rem, 5vw, 2.5rem); font-weight: 900; line-height: 1.2; color: var(--dark); max-width: 520px; margin-bottom: 1rem; letter-spacing: -0.01em; }
 .highlight { color: var(--orange); font-style: italic; font-weight: 900; }
 .intro-avatars { margin-bottom: 1rem; }
-.intro-avatars-img { width: 100%; max-width: 400px; height: auto; border-radius: 12px; background: #fff; padding: 0.5rem 0.75rem; }
+.intro-avatars-img { width: 100%; max-width: 400px; height: auto; }
 .intro-screen .intro-meta { font-size: 0.78rem; color: var(--warm-gray); margin-bottom: 1.5rem; font-weight: 400; letter-spacing: 0.02em; }
 
 .fullscreen-footer { position: absolute; bottom: 0; left: 0; width: 100%; display: flex; justify-content: center; gap: 1.5rem; padding: 1rem 0; }
@@ -984,8 +974,8 @@ body, html, #root {
 .result-inner { width: 100%; max-width: 620px; display: flex; flex-direction: column; gap: 2.5rem; }
 .result-header { text-align: center; }
 .result-eyebrow { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 0.75rem; font-weight: 500; }
-.result-avatar-wrap { display: flex; justify-content: center; margin-bottom: 1rem; }
-.result-avatar { height: 200px; width: auto; border-radius: 12px; background: #fff; padding: 0.5rem; }
+.result-avatar-wrap { display: flex; justify-content: center; margin-bottom: 0.75rem; }
+.result-avatar { height: 200px; width: auto; }
 .result-type-label { font-family: 'Inter Tight', sans-serif; font-size: clamp(2rem, 6vw, 3.2rem); font-weight: 900; color: var(--dark); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 0.75rem; }
 .result-tagline { font-family: 'Inter Tight', sans-serif; font-size: clamp(0.95rem, 2.5vw, 1.1rem); color: var(--orange); font-style: italic; font-weight: 500; line-height: 1.5; max-width: 500px; margin: 0 auto; }
 
@@ -1573,7 +1563,7 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
 
       y += 10;
       doc.setFont("helvetica", "bold"); doc.setFontSize(14); doc.setTextColor(...dark);
-      const ctaTitle = "DEINE KOSTENLOSE " + meta.label.toUpperCase().replace("DER ", "").replace("DIE ", "") + "-MASTERCLASS";
+      const ctaTitle = "DEINE KOSTENLOSE " + meta.label.toUpperCase() + "-MASTERCLASS";
       doc.text(ctaTitle, pw / 2, y, { align: "center" }); y += 7;
       doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...gray);
       const ctaTextPdf = doc.splitTextToSize("Hier bietet sich dir die M\u00F6glichkeit, genau deine Kernprobleme aufzul\u00F6sen. Scanne den QR-Code oder klicke den Link:", 140);
@@ -1600,11 +1590,6 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
           <div className="result-type-label">{meta.label}</div>
           <div className="result-tagline">{meta.tagline}</div>
         </div>
-        <div className="potenzial-box">
-          <div className="potenzial-eyebrow">Dein Potenzial-Gegenstück</div>
-          <div className="potenzial-label">{meta.potenzial}</div>
-          <div className="potenzial-text">{meta.potenzialText}</div>
-        </div>
         <div className="radar-container">
           <RadarChart normalized={scoring.normalized} resultType={scoring.resultType} />
           <div className="radar-legend">
@@ -1630,13 +1615,13 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
             <div className="cta-success">
               <div className="success-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg></div>
               <div className="success-title">Drin.</div>
-              <p className="success-sub">Check deine Inbox – deine <strong>Masterclass für {meta.label.replace("Der ", "den ").replace("Die ", "die ")}</strong> wartet auf dich.</p>
+              <p className="success-sub">Check deine Inbox – deine <strong>Masterclass für {meta.label}</strong> wartet auf dich.</p>
             </div>
           ) : (
             <>
               <div className="signup-solo-header">
                 <div className="postq-eyebrow">Dein nächster Schritt</div>
-                <div className="postq-title">Deine kostenlose<br />Masterclass für {meta.label.replace("Der ", "den ").replace("Die ", "die ")}</div>
+                <div className="postq-title">Deine kostenlose<br />Masterclass für {meta.label}</div>
                 <p className="signup-solo-text">{meta.ctaText}</p>
               </div>
               <div className="cta-email">
