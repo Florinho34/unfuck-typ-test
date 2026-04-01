@@ -897,22 +897,23 @@ const css = `
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body, html, #root {
-  width: 100%; min-height: 100vh;
+  width: 100%; height: 100%;
   background: var(--cream);
   color: var(--dark);
   font-family: 'Inter Tight', sans-serif;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-.test-app { width: 100%; min-height: 100vh; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; }
+.test-app { width: 100%; min-height: 100%; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; }
 
-.intro-screen { width: 100%; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; text-align: center; animation: fadeUp 0.8s ease-out; position: relative; overflow: hidden; }
+.intro-screen { width: 100%; height: 100vh; height: 100dvh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem 2rem 0; text-align: center; animation: fadeUp 0.8s ease-out; position: relative; overflow: hidden; }
 .intro-content { display: flex; flex-direction: column; align-items: center; }
-.intro-screen h1 { font-family: 'Inter Tight', sans-serif; font-size: clamp(1.6rem, 5vw, 2.6rem); font-weight: 900; line-height: 1.2; color: var(--dark); max-width: 520px; margin-bottom: 1.5rem; letter-spacing: -0.01em; }
+.intro-screen h1 { font-family: 'Inter Tight', sans-serif; font-size: clamp(1.6rem, 5vw, 2.6rem); font-weight: 900; line-height: 1.2; color: var(--dark); max-width: 520px; margin-bottom: 1.25rem; letter-spacing: -0.01em; }
 .highlight { color: var(--orange); font-style: italic; font-weight: 900; }
-.intro-screen .intro-meta { font-size: 0.78rem; color: var(--warm-gray); margin-bottom: 2rem; font-weight: 400; letter-spacing: 0.02em; }
+.intro-screen .intro-meta { font-size: 0.78rem; color: var(--warm-gray); margin-bottom: 1.5rem; font-weight: 400; letter-spacing: 0.02em; }
 
-.fullscreen-footer { position: absolute; bottom: 0; left: 0; width: 100%; display: flex; justify-content: center; gap: 1.5rem; padding: 1.25rem 0; }
+.fullscreen-footer { position: absolute; bottom: 0; left: 0; width: 100%; display: flex; justify-content: center; gap: 1.5rem; padding: 1rem 0; }
 .fullscreen-footer a { font-family: 'Inter Tight', sans-serif; font-size: 0.7rem; color: var(--warm-gray); text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
 .fullscreen-footer a:hover { color: var(--dark); }
 
@@ -963,7 +964,7 @@ body, html, #root {
 .btn-finish { background: var(--orange); color: #fff; }
 .btn-finish:hover { background: var(--orange-hover); }
 
-.block-transition { width: 100%; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; text-align: center; animation: fadeUp 0.6s ease-out; position: relative; overflow: hidden; }
+.block-transition { width: 100%; height: 100vh; height: 100dvh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem 2rem 0; text-align: center; animation: fadeUp 0.6s ease-out; position: relative; overflow: hidden; }
 .block-transition-content { display: flex; flex-direction: column; align-items: center; }
 .block-transition .block-num { font-family: 'Inter Tight', sans-serif; font-size: 5.5rem; color: var(--sand); margin-bottom: 0.75rem; font-weight: 900; line-height: 1; }
 .block-transition h2 { font-family: 'Inter Tight', sans-serif; font-size: clamp(1.3rem, 4vw, 1.8rem); font-weight: 900; color: var(--dark); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
