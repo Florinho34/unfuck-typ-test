@@ -904,14 +904,17 @@ body, html, #root {
   -webkit-font-smoothing: antialiased;
 }
 
-.test-app { width: 100%; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+.test-app { width: 100%; min-height: 100vh; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; }
 
-.intro-screen { width: 100%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; text-align: center; animation: fadeUp 0.8s ease-out; }
-.intro-screen .eyebrow { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 1.5rem; font-weight: 500; }
-.intro-screen h1 { font-family: 'Inter Tight', sans-serif; font-size: clamp(1.9rem, 5.5vw, 3rem); font-weight: 900; line-height: 1.15; color: var(--dark); max-width: 600px; margin-bottom: 1.5rem; letter-spacing: -0.01em; }
+.intro-screen { width: 100%; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; text-align: center; animation: fadeUp 0.8s ease-out; position: relative; overflow: hidden; }
+.intro-content { display: flex; flex-direction: column; align-items: center; }
+.intro-screen h1 { font-family: 'Inter Tight', sans-serif; font-size: clamp(1.6rem, 5vw, 2.6rem); font-weight: 900; line-height: 1.2; color: var(--dark); max-width: 520px; margin-bottom: 1.5rem; letter-spacing: -0.01em; }
 .highlight { color: var(--orange); font-style: italic; font-weight: 900; }
-.intro-screen .intro-sub { font-size: 0.95rem; font-weight: 400; color: var(--text-muted); max-width: 480px; line-height: 1.65; margin-bottom: 2.5rem; }
-.intro-screen .intro-meta { font-size: 0.78rem; color: var(--warm-gray); margin-bottom: 1.5rem; font-weight: 400; letter-spacing: 0.02em; }
+.intro-screen .intro-meta { font-size: 0.78rem; color: var(--warm-gray); margin-bottom: 2rem; font-weight: 400; letter-spacing: 0.02em; }
+
+.fullscreen-footer { position: absolute; bottom: 0; left: 0; width: 100%; display: flex; justify-content: center; gap: 1.5rem; padding: 1.25rem 0; }
+.fullscreen-footer a { font-family: 'Inter Tight', sans-serif; font-size: 0.7rem; color: var(--warm-gray); text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+.fullscreen-footer a:hover { color: var(--dark); }
 
 .btn-primary { background: var(--orange); color: #fff; border: none; padding: 1rem 2.5rem; font-family: 'Inter Tight', sans-serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.03em; cursor: pointer; transition: all 0.25s ease; }
 .btn-primary:hover { background: var(--orange-hover); transform: translateY(-1px); }
@@ -960,7 +963,8 @@ body, html, #root {
 .btn-finish { background: var(--orange); color: #fff; }
 .btn-finish:hover { background: var(--orange-hover); }
 
-.block-transition { width: 100%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; text-align: center; animation: fadeUp 0.6s ease-out; }
+.block-transition { width: 100%; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; text-align: center; animation: fadeUp 0.6s ease-out; position: relative; overflow: hidden; }
+.block-transition-content { display: flex; flex-direction: column; align-items: center; }
 .block-transition .block-num { font-family: 'Inter Tight', sans-serif; font-size: 5.5rem; color: var(--sand); margin-bottom: 0.75rem; font-weight: 900; line-height: 1; }
 .block-transition h2 { font-family: 'Inter Tight', sans-serif; font-size: clamp(1.3rem, 4vw, 1.8rem); font-weight: 900; color: var(--dark); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
 .block-transition .block-count { font-size: 0.78rem; color: var(--warm-gray); letter-spacing: 0.06em; margin-bottom: 2rem; font-weight: 400; }
@@ -1153,11 +1157,15 @@ body, html, #root {
 function IntroScreen({ onStart }) {
   return (
     <div className="intro-screen">
-      <div className="eyebrow">Dein Persönlichkeitstest</div>
-      <h1>Was steht dir durch deine <span className="highlight">persönlichen Neigungen</span> im Weg?</h1>
-      <p className="intro-sub">30 alltagsnahe Fragen, 10 Dimensionen, 5 Archetypen</p>
-      <p className="intro-meta">~8 Minuten · anonym · Sofortergebnis</p>
-      <button className="btn-primary btn-float" onClick={onStart}>TEST STARTEN</button>
+      <div className="intro-content">
+        <h1>Finde in 8 Minuten heraus, was zwischen dir und dem Leben steht, das du <span className="highlight">eigentlich willst.</span></h1>
+        <p className="intro-meta">anonym · Sofortergebnis · kostenlos</p>
+        <button className="btn-primary btn-float" onClick={onStart}>TEST STARTEN</button>
+      </div>
+      <div className="fullscreen-footer">
+        <a href="https://florian-lingner.ch/datenschutz" target="_blank" rel="noopener noreferrer">Datenschutz</a>
+        <a href="https://florian-lingner.ch/impressum" target="_blank" rel="noopener noreferrer">Impressum</a>
+      </div>
     </div>
   );
 }
@@ -1181,25 +1189,31 @@ function BlockTransition({ block, onContinue, isFirst }) {
   const narrative = BLOCK_NARRATIVES[block.id];
   return (
     <div className="block-transition">
-      <div className="block-num">{block.id}</div>
-      <h2>{narrative.headline}</h2>
-      <p className="block-narrative-sub">{narrative.sub}</p>
-      <p className="block-count">{block.questions.length} Fragen</p>
-      <div className="answer-hint">
-        {isFirst ? (
-          <div className="hint-bullets">
-            <div className="hint-title">So funktioniert's</div>
-            <div className="hint-item"><span className="hint-icon">🎯</span><span>Wähle pro Frage die Antwort, die <strong>am besten zu dir passt</strong>.</span></div>
-            <div className="hint-item"><span className="hint-icon">➕</span><span>Optional: Wähle eine <strong>zweite Antwort</strong> – sie wird schwächer gewichtet, macht dein Ergebnis aber genauer.</span></div>
-            <div className="hint-item"><span className="hint-icon">💡</span><span>Wenn nur eine Antwort passt, <strong>reicht das völlig</strong>.</span></div>
-          </div>
-        ) : (
-          <>
-            Weiterhin gilt: Wähle die Antwort, die <strong>am ehesten auf dich zutrifft</strong>. Eine optionale Zweitantwort verfeinert dein Ergebnis – ist aber kein Muss.
-          </>
-        )}
+      <div className="block-transition-content">
+        <div className="block-num">{block.id}</div>
+        <h2>{narrative.headline}</h2>
+        <p className="block-narrative-sub">{narrative.sub}</p>
+        <p className="block-count">{block.questions.length} Fragen</p>
+        <div className="answer-hint">
+          {isFirst ? (
+            <div className="hint-bullets">
+              <div className="hint-title">So funktioniert's</div>
+              <div className="hint-item"><span className="hint-icon">🎯</span><span>Wähle pro Frage die Antwort, die <strong>am besten zu dir passt</strong>.</span></div>
+              <div className="hint-item"><span className="hint-icon">➕</span><span>Optional: Wähle eine <strong>zweite Antwort</strong> – sie wird schwächer gewichtet, macht dein Ergebnis aber genauer.</span></div>
+              <div className="hint-item"><span className="hint-icon">💡</span><span>Wenn nur eine Antwort passt, <strong>reicht das völlig</strong>.</span></div>
+            </div>
+          ) : (
+            <>
+              Weiterhin gilt: Wähle die Antwort, die <strong>am ehesten auf dich zutrifft</strong>. Eine optionale Zweitantwort verfeinert dein Ergebnis – ist aber kein Muss.
+            </>
+          )}
+        </div>
+        <button className="btn-primary" onClick={onContinue}>Weiter</button>
       </div>
-      <button className="btn-primary" onClick={onContinue}>Weiter</button>
+      <div className="fullscreen-footer">
+        <a href="https://florian-lingner.ch/datenschutz" target="_blank" rel="noopener noreferrer">Datenschutz</a>
+        <a href="https://florian-lingner.ch/impressum" target="_blank" rel="noopener noreferrer">Impressum</a>
+      </div>
     </div>
   );
 }
@@ -1714,10 +1728,12 @@ export default function PersonalityTest() {
           <QuestionCard question={currentQuestion} questionIndex={flatIndex} totalQuestions={totalQuestions} answers={answers} followUpAnswers={followUpAnswers} onAnswer={handleAnswer} onFollowUp={handleFollowUp} onNext={handleNext} onBack={handleBack} isLast={isLastQuestion} />
         )}
         {phase === "complete" && <CompleteScreen answers={answers} followUpAnswers={followUpAnswers} />}
-        <div className="footer-links">
-          <a href="https://florian-lingner.ch/datenschutz" target="_blank" rel="noopener noreferrer">Datenschutz</a>
-          <a href="https://florian-lingner.ch/impressum" target="_blank" rel="noopener noreferrer">Impressum</a>
-        </div>
+        {phase !== "intro" && phase !== "block-transition" && (
+          <div className="footer-links">
+            <a href="https://florian-lingner.ch/datenschutz" target="_blank" rel="noopener noreferrer">Datenschutz</a>
+            <a href="https://florian-lingner.ch/impressum" target="_blank" rel="noopener noreferrer">Impressum</a>
+          </div>
+        )}
       </div>
     </>
   );
