@@ -136,7 +136,7 @@ const QUESTIONS = [
       { key: "A", text: "Ich recherchiere und analysiere alle Optionen, bis ich mir sicher bin – auch wenn es lange dauert.", scoring: { REF: 2, ML: 3, HA: -2 } },
       { key: "B", text: "Ich folge meinem Bauchgefühl und mache einfach. Langes Nachdenken macht es meistens nur komplizierter.", scoring: { NAT: 1, HA: 2 } },
       { key: "C", text: "Ich höre auf mein Bauchgefühl und gleiche es mit relevanten Fakten ab – und dann entscheide ich, ohne ewig zu zögern.", scoring: { REF: 1, SL: 1, NAT: 1, HA: 2 } },
-      { key: "D", text: "Ich spüre eigentlich schon länger, was richtig wäre – aber die Umsetzung ist das Problem.", scoring: { REF: 1, ML: 2, HA: -2 } },
+      { key: "D", text: "Meist spüre ich eigentlich schon länger, was richtig wäre – aber die Umsetzung ist das Problem.", scoring: { REF: 1, ML: 2, HA: -2 } },
     ],
   },
   {
@@ -212,7 +212,7 @@ const QUESTIONS = [
     title: "🪞 DER SPIEGEL",
     scenario: "Du merkst, dass deine Meinung zu einem Thema sich komplett von der deines Umfelds unterscheidet. Wie gehst du damit um?",
     options: [
-      { key: "A", text: "Ich behalte meine Meinung für mich – es lohnt sich nicht, anzuecken.", scoring: { SL: -1, EF: 2, HA: -1 } },
+      { key: "A", text: "Ich behalte meine Meinung für mich – es lohnt sich fast nie große Diskussionen loszutreten und anzuecken.", scoring: { SL: -1, EF: 2, HA: -1 } },
       { key: "B", text: "Ich vertrete meine Position – respektvoll, aber klar. Meine Meinung ist mir wichtiger als Harmonie.", scoring: { REF: 1, SL: 2, ETH: 1, HA: 2 } },
       { key: "C", text: "Ich hinterfrage zuerst meine eigene Position ehrlich, bevor ich entscheide, ob ich sie teile.", scoring: { REF: 3, SL: 1 } },
       { key: "D", text: "Ich merke, dass ich meine ursprüngliche Meinung häufig ändere – auch weil ich die Meinung meines Umfelds (zu) sehr schätze.", scoring: { EF: 3, ML: 1, HA: -1 } },
@@ -223,8 +223,8 @@ const QUESTIONS = [
     title: "🌎 DIE VERANTWORTUNG",
     scenario: "Wenn es um die großen Probleme der Welt geht – Klima, Ungerechtigkeit, Kriege – wie stehst du dazu?",
     options: [
-      { key: "A", text: "Auch wenn es mich emotional runterzieht, versuche ich einfach, meinen Teil beizutragen und ein guter Mensch zu sein.", scoring: { ML: 1, ETH: 1, WS: 1, HA: 1 } },
-      { key: "B", text: "Es macht mich sauer. Es kann doch nicht sein, dass alle einfach nur zuschauen.", scoring: { ETH: 2, WS: 3, EX: 2 } },
+      { key: "A", text: "Es macht mich sauer. Es kann doch nicht sein, dass alle einfach nur zuschauen.", scoring: { ETH: 2, WS: 3, EX: 2 } },
+      { key: "B", text: "Es belastet mich emotional, doch ich versuche einfach, meinen Teil beizutragen und ein guter Mensch zu sein.", scoring: { ML: 1, ETH: 1, WS: 1, HA: 1 } },
       { key: "C", text: "Ich versuche, rational zu bleiben und meinen Teil beizutragen, wo es sinnvoll ist.", scoring: { REF: 1, ETH: 1, HA: 1 } },
       { key: "D", text: "Ich versuche, meinen Teil beizutragen, ohne mich von den großen Problemen lähmen zu lassen – und ohne mich dafür schuldig zu fühlen, dass ich trotzdem mein Leben lebe.", scoring: { REF: 1, SL: 1, ETH: 1, HA: 1 } },
     ],
@@ -247,7 +247,7 @@ const QUESTIONS = [
     options: [
       { key: "A", text: "Gerechtigkeit. Jeder sollte die gleichen Chancen haben – unabhängig von Herkunft.", scoring: { ETH: 2, WS: 2, EX: 1 } },
       { key: "B", text: "Freiheit. Menschen sollten selbst entscheiden dürfen, wie sie leben, ohne bevormundet zu werden.", scoring: { SL: 1, ETH: 1, HA: 1 } },
-      { key: "C", text: "Ein kluges Gleichgewicht: Freiheit, aber mit Verantwortung. Strukturen, die funktionieren, ohne Menschen zu bevormunden.", scoring: { REF: 2, ETH: 2, HA: 1 } },
+      { key: "C", text: "Transparenz. Ein System, in dem nichts verschleiert wird – wo jeder sehen kann, wer profitiert und wer nicht.", scoring: { REF: 2, ETH: 1, WS: 2, HA: 1 } },
       { key: "D", text: "Gemeinschaft. Weniger Ego, mehr Miteinander – die Gesellschaft muss zusammenhalten.", scoring: { ETH: 1, WS: 1, NAT: 1 } },
     ],
   },
@@ -257,10 +257,10 @@ const QUESTIONS = [
     title: "⚙️ DIE GEWOHNHEIT",
     scenario: "Wenn du ehrlich bist: Wie viel von deinem Alltag basiert auf bewussten Entscheidungen – und wie viel läuft auf Autopilot?",
     options: [
-      { key: "A", text: "Vieles läuft automatisch – aber das ist auch okay so. Man kann nicht alles hinterfragen und es funktioniert.", scoring: { REF: 1, EF: 1 } },
-      { key: "B", text: "Ich mache mir darüber ehrlich gesagt wenig Gedanken. Mein Alltag ist halt wie er ist.", scoring: { REF: -1, EF: 1 } },
+      { key: "A", text: "Vieles läuft automatisch – aber ich habe das bewusst so eingerichtet, weil es funktioniert.", scoring: { REF: 1, SL: 1, HA: 1 } },
+      { key: "B", text: "Ich mache mir darüber ehrlich gesagt wenig Gedanken. Mein Alltag ist halt wie er ist.", scoring: { REF: -1, EF: 2 } },
       { key: "C", text: "Ich hinterfrage regelmäßig, ob das, was ich tue, noch zu mir passt – und versuche es zu ändern, wenn nicht.", scoring: { REF: 2, SL: 1, HA: 2 } },
-      { key: "D", text: "Ich arbeite hart und funktioniere – aber ob ich bewusst lebe, weiß ich ehrlich gesagt nicht.", scoring: { EF: 2, HA: 1 } },
+      { key: "D", text: "Ich spüre, dass vieles auf Autopilot läuft – und das stört mich, aber ich weiß nicht, wie ich es ändern soll.", scoring: { REF: 1, ML: 2, OL: 1, HA: -1 } },
     ],
   },
   {
@@ -270,7 +270,7 @@ const QUESTIONS = [
     options: [
       { key: "A", text: "Ich denke lange darüber nach, plane im Kopf, aber meist starte ich nie wirklich.", scoring: { REF: 2, ML: 4, HA: -3 } },
       { key: "B", text: "Ich springe sofort rein – Energie ist da, der Rest ergibt sich. Oder auch nicht.", scoring: { HA: 2 } },
-      { key: "C", text: "Ich ziehe es fast immer durch. Wird sich schon zeigen, ob es das Richtige ist. Aufgeben ist keine Option.", scoring: { EF: 1, HA: 2 } },
+      { key: "C", text: "Ich ziehe es fast immer durch. Wird sich schon zeigen, ob es das Richtige ist. Aufgeben ist jedenfalls keine Option.", scoring: { EF: 1, HA: 2 } },
       { key: "D", text: "Ich starte, wenn es sich richtig anfühlt, und ziehe es durch – mit Pausen, aber ohne den Faden zu verlieren.", scoring: { REF: 1, SL: 1, HA: 3 } },
     ],
   },
@@ -438,10 +438,10 @@ const QUESTIONS = [
 const FOLLOW_UPS = {
   // F1 A → Differenzierung: Echte Reflexion vs. Abwehr
   "1A": {
-    question: "Bezüglich deiner Antwort: Wie gehst du mit solchem Feedback um?",
+    question: "Bezüglich deiner Antwort: Wie gehst du danach mit solchem Feedback um?",
     options: [
-      { key: "1", text: "Ich weiß, dass Kritik von außen häufig mehr über die Leute selbst aussagt als über mich. Außerdem vertraue ich meiner Selbsteinschätzung.", scoring: { REF: 1, SL: 1 } },
-      { key: "2", text: "Ehrlich gesagt: Es ist mir unangenehm und ich lasse dieses Feedback nicht wirklich an mich ran, weil ich keine Lust habe, mich damit zu beschäftigen.", scoring: { REF: -1, ML: 2, EF: 1, HA: -1 } },
+      { key: "1", text: "Ich nehme mir Zeit, das ehrlich zu reflektieren – und wenn was dran ist, versuche ich aktiv daran zu arbeiten.", scoring: { REF: 2, SL: 1, HA: 1 } },
+      { key: "2", text: "Es beschäftigt mich lange, aber am Ende fällt es mir schwer etwas daran zu ändern.", scoring: { REF: 1, ML: 2, HA: -2 } },
     ],
   },
   // F2 C → Differenzierung: Vermeidung vs. bewusstes Ritual
@@ -465,7 +465,7 @@ const FOLLOW_UPS = {
     question: "Bezüglich deiner Antwort: Wie triffst du diese Entscheidung?",
     options: [
       { key: "1", text: "Ehrlich gesagt denke ich darüber nicht groß nach – ist halt so.", scoring: { REF: -1, EF: 2, HA: -1 } },
-      { key: "2", text: "Mir ist der Widerspruch bewusst, aber ich treffe die Entscheidung trotzdem bewusst – perfekt geht nicht.", scoring: { REF: 1, HA: 1 } },
+      { key: "2", text: "Ich sehe den Widerspruch, aber ich treffe die Entscheidung trotzdem bewusst – perfekt geht halt nicht.", scoring: { REF: 1, HA: 1 } },
     ],
   },
   // F9 C → Ehrlichkeits-Check: Meinungsstärke
@@ -601,6 +601,7 @@ const TYPE_META = {
     potenzial: "Der Weise",
     potenzialText: "Du siehst mehr als die meisten. Wenn du anfängst zu handeln statt nur zu verstehen, wirst du unaufhaltbar.",
     tagline: "Du siehst mehr als die meisten – aber du stehst am Rand deines eigenen Lebens.",
+    ctaText: "Du verstehst längst, was sich ändern müsste – jetzt ist der Moment, es auch zu tun. In dieser Masterclass zeige ich dir, wie du vom Erkennen ins Handeln kommst.",
     description: "Du denkst viel, verstehst Zusammenhänge, analysierst. Während andere einfach machen, durchschaust du die Muster dahinter. Das Problem: Irgendwann ist Verstehen zum Ersatz für Leben geworden. Du weißt genau, was du ändern müsstest – aber zwischen Erkenntnis und Handlung liegt ein Graben, der jedes Jahr breiter wird. Das Gute: Deine Klarheit ist eine echte Stärke. Du musst nur lernen, sie als Startrampe zu nutzen statt als Aussichtsplattform.",
     pain: "Du analysierst dich im Kreis. Du weißt, was sich ändern müsste – aber du verwechselst Erkenntnis mit Fortschritt. Und jeder Tag, an dem du nicht handelst, macht den nächsten Schritt schwerer.",
     extra: "Dein größter Hebel: Eine einzige Handlung, die du seit Wochen aufschiebst. Nicht perfekt – einfach anfangen.",
@@ -610,6 +611,7 @@ const TYPE_META = {
     potenzial: "Der Macher",
     potenzialText: "Deine Energie ist deine Superkraft. Wenn du lernst, sie bewusst einzusetzen statt vor dir selbst wegzurennen, erreichst du alles.",
     tagline: "Du bist ständig in Bewegung – aber wer hat eigentlich das Ziel bestimmt?",
+    ctaText: "Du funktionierst – aber für wen eigentlich? In dieser Masterclass zeige ich dir, wie du deine Energie endlich für das einsetzt, was dich wirklich glücklich machen kann.",
     description: "Du funktionierst. Zuverlässig, produktiv, immer beschäftigt. Von außen sieht das nach Disziplin und Erfolg aus. Aber dahinter steckt eine Vermeidungsstrategie: Solange du funktionierst, musst du nicht hinschauen. Manche Getriebene folgen einem Drehbuch, das andere geschrieben haben – und merken es nicht. In den ruhigen Momenten – wenn die Ablenkung wegfällt – ist da eine Unruhe, die du nicht benennen kannst. Das Gute: Dein Antrieb ist real. Deine Disziplin ist eine Stärke. Aber sie braucht ein Ziel, das wirklich deins ist.",
     pain: "Du bist so beschäftigt mit Funktionieren, dass du gar nicht merkst, wie weit du dich von dir selbst entfernt hast. Und die Stimme, die fragt ‚Ist das wirklich alles?', wird leiser, je mehr du sie übertönst.",
     extra: "Dein größter Hebel: Einen ganzen Abend lang nichts tun – und aushalten, was dann hochkommt.",
@@ -619,6 +621,7 @@ const TYPE_META = {
     potenzial: "Der Veränderer",
     potenzialText: "Dein Feuer für eine bessere Welt ist echt. Wenn du lernst, bei dir selbst anzufangen, statt die Welt zu reparieren, wird dein Impact riesig.",
     tagline: "Du spürst, was in der Welt schiefläuft – und es frisst dich auf.",
+    ctaText: "Dein Feuer für eine bessere Welt ist echt und ehrenwert – doch es birgt die Gefahr, dich innerlich aufzufressen. In dieser Masterclass zeige ich dir, wie du für eine bessere Welt sorgst – zuerst bei dir, um anschließend auch die Kraft zu finden weiterzumachen.",
     description: "Ungerechtigkeit, Oberflächlichkeit, Zerstörung – du siehst es überall und es lässt dich nicht kalt. Diese Intensität ist selten und wertvoll. Aber sie hat eine Schattenseite: Deine Energie fließt in Wut, Frustration und Ohnmacht über Dinge, die du nicht kontrollieren kannst – und für dein eigenes Leben bleibt wenig übrig. Nicht weil du egoistisch wärst, sondern weil du nie gelernt hast, dass bei dir selbst anfangen kein Verrat an der Welt ist. Sondern die Voraussetzung.",
     pain: "Dein Gerechtigkeitssinn ist echt – aber er frisst dich auf. Du gibst so viel Energie an die Welt, dass für dich selbst nichts übrig bleibt. Und das Paradoxe: Genau dadurch veränderst du weniger, als du könntest.",
     extra: "Dein größter Hebel: Erkenne, dass Selbstfürsorge kein Egoismus ist – sondern die Voraussetzung, wirklich etwas zu bewegen.",
@@ -628,6 +631,7 @@ const TYPE_META = {
     potenzial: "Der Entdecker",
     potenzialText: "Deine Offenheit ist ein Geschenk. Wenn du lernst, tiefer zu gehen statt breiter, findest du, was du suchst.",
     tagline: "Du weißt, dass etwas fehlt – du weißt nur noch nicht, was.",
+    ctaText: "Du spürst, dass da mehr ist – aber die nächste \u201EMethode nach Guru XY\u201C wird\u2019s auch nicht richten. In dieser Masterclass zeige ich dir, wo du wirklich hinschauen musst.",
     description: "Du hast schon einiges probiert. Bücher, Podcasts, vielleicht Seminare. Manche Dinge haben kurz resoniert, aber nichts hat wirklich gehalten. Das liegt nicht daran, dass du sprunghaft bist – sondern daran, dass du intuitiv spürst, wenn etwas nicht echt ist. Das Problem ist nur: Du suchst die Antwort im Außen, während sie im Innen liegt. Der erste Schritt ist nicht die nächste Methode – sondern ehrlich hinschauen, warum keine bisherige gereicht hat.",
     pain: "Du springst von Impuls zu Impuls, von Methode zu Methode – und verwechselst Bewegung mit Fortschritt. Die unbequeme Wahrheit: Es liegt nicht an den Methoden. Es liegt daran, dass du nicht tief genug gräbst.",
     extra: "Dein größter Hebel: Hör auf, nach der nächsten Antwort zu suchen. Setz dich mit der Frage hin.",
@@ -637,6 +641,7 @@ const TYPE_META = {
     potenzial: "Der Freie",
     potenzialText: "Du lebst bereits bewusster als die meisten. Dein nächster Schritt ist nicht mehr Erkenntnis – sondern ehrliche Tiefe und Umsetzung.",
     tagline: "Du siehst klarer als die meisten – jetzt geht's darum, danach zu leben.",
+    ctaText: "Du bist weiter als die meisten – doch das allein reicht nicht. In dieser Masterclass zeige ich dir, wie du dein Wissen endlich in dein Leben integrierst.",
     description: "Du hast schon einiges verstanden. Du hinterfragst, reflektierst, lebst bewusster als viele in deinem Umfeld. Man kann mit dir über tiefere Themen sprechen, ohne dass du abblocken musst. Aber: Auch du hast blinde Flecken. Vielleicht die Tendenz, dich für weiter zu halten, als du bist. Oder die Schwierigkeit, dein Wissen konsequent in Handlung zu übersetzen. Klar sehen und danach leben – das sind zwei verschiedene Dinge. Du bist auf dem Weg. Aber der Weg hat noch Strecke.",
     pain: "Dein Wissen ist echt – aber es kann zur Falle werden. Du hältst dich manchmal für weiter, als du bist. Der Unterschied zwischen Wissen und Weisheit: Du brauchst keine Fakten mehr, um zu spüren, was richtig oder falsch ist. Aber dieses Spüren in echtes Handeln und Vertrauen zu übersetzen – genau daran darfst du noch arbeiten.",
     extra: "Dein größter Hebel: Sei ehrlich, wo du Erkenntnis noch als Fortschritt verkaufst – und wo dir die Umsetzung fehlt.",
@@ -1434,9 +1439,7 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
   const [emailError, setEmailError] = useState("");
   const [pdfLoading, setPdfLoading] = useState(false);
   const [firstName, setFirstName] = useState("");
-  const [postPhase, setPostPhase] = useState("result");
   const [recognitionScore, setRecognitionScore] = useState(null);
-  const [selectedPainPoint, setSelectedPainPoint] = useState(null);
 
   const scoring = computeScoring(answers, followUpAnswers);
   const meta = TYPE_META[scoring.resultType];
@@ -1458,7 +1461,7 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
     setEmailStatus("loading"); setEmailError("");
     const formId = KIT_FORM_IDS[scoring.resultType];
     try {
-      const body = { api_key: KIT_API_KEY, email, first_name: firstName.trim(), fields: { recognition_score: recognitionScore !== null ? String(recognitionScore) : "", pain_point: selectedPainPoint || "", archetype: scoring.resultType } };
+      const body = { api_key: KIT_API_KEY, email, first_name: firstName.trim(), fields: { recognition_score: recognitionScore !== null ? String(recognitionScore) : "", archetype: scoring.resultType } };
       if (scoring.isReintyp) body.tags = [REINTYP_TAG_ID];
       const res = await fetch(`https://api.convertkit.com/v3/forms/${formId}/subscribe`, { method: "POST", headers: { "Content-Type": "application/json; charset=utf-8" }, body: JSON.stringify(body) });
       if (res.ok) { setEmailStatus("success"); trackEvent("EmailSubmitted", { archetype: scoring.resultType, recognition_score: recognitionScore }); }
@@ -1587,59 +1590,43 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
           ))}
         </div>
         <div className="result-extra">{meta.extra}</div>
+        <div className="postq-screen signup-solo">
+          {emailStatus === "success" ? (
+            <div className="cta-success">
+              <div className="success-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg></div>
+              <div className="success-title">Drin.</div>
+              <p className="success-sub">Check deine Inbox – deine <strong>Masterclass für {meta.label.replace("Der ", "den ").replace("Die ", "die ")}</strong> wartet auf dich.</p>
+            </div>
+          ) : (
+            <>
+              <div className="signup-solo-header">
+                <div className="postq-eyebrow">Dein nächster Schritt</div>
+                <div className="postq-title">Deine kostenlose<br />Masterclass für {meta.label.replace("Der ", "den ").replace("Die ", "die ")}</div>
+                <p className="signup-solo-text">{meta.ctaText}</p>
+              </div>
+              <div className="cta-email">
+                <input type="text" placeholder="Dein Vorname" className={`email-input ${emailError && !firstName.trim() ? "email-input-error" : ""}`} value={firstName} onChange={(e) => { setFirstName(e.target.value); setEmailError(""); }} disabled={emailStatus === "loading"} />
+                <input type="email" placeholder="Deine E-Mail-Adresse" className={`email-input ${emailError && firstName.trim() ? "email-input-error" : ""}`} value={email} onChange={(e) => { setEmail(e.target.value); setEmailError(""); }} onKeyDown={handleKeyDown} disabled={emailStatus === "loading"} />
+                {emailError && <p className="email-error-msg">{emailError}</p>}
+                <button className={`btn-primary btn-cta ${emailStatus === "loading" ? "btn-loading" : ""}`} onClick={handleEmailSubmit} disabled={emailStatus === "loading"}>
+                  {emailStatus === "loading" ? (<span className="loading-dots"><span>.</span><span>.</span><span>.</span></span>) : "Masterclass freischalten"}
+                </button>
+              </div>
+              <p className="cta-privacy" style={{ textAlign: "center" }}>Kein Spam. Kein Bullshit. Jederzeit abmeldbar.</p>
+            </>
+          )}
+        </div>
+        <div className="recognition-box">
+          <div className="recognition-box-title">Wie gut erkennst du dich in diesem Ergebnis wieder?</div>
+          <div className="recognition-scale">
+            {[1,2,3,4,5].map(n => (<button key={n} className={`recognition-btn ${recognitionScore === n ? "recognition-selected" : ""}`} onClick={() => { setRecognitionScore(n); trackEvent("RecognitionScore", { score: n, archetype: scoring.resultType }); }}>{n}</button>))}
+          </div>
+          <div className="recognition-labels"><span>Gar nicht</span><span>Sehr</span></div>
+        </div>
         <div className="pdf-save-section">
           <p className="pdf-save-hint">Speichere dein Ergebnis als PDF – inkl. Radar-Chart und personalisierten Impulsen.</p>
           <button className="btn-pdf-download" onClick={generatePDF} disabled={pdfLoading}>{pdfLoading ? "PDF wird erstellt..." : "Ergebnis als PDF speichern"}</button>
         </div>
-        {postPhase === "result" && (
-          <div className="recognition-box">
-            <div className="recognition-box-title">Wie gut erkennst du dich in diesem Ergebnis wieder?</div>
-            <div className="recognition-scale">
-              {[1,2,3,4,5].map(n => (<button key={n} className={`recognition-btn ${recognitionScore === n ? "recognition-selected" : ""}`} onClick={() => { setRecognitionScore(n); setTimeout(() => setPostPhase("painpoint"), 400); }}>{n}</button>))}
-            </div>
-            <div className="recognition-labels"><span>Gar nicht</span><span>Sehr</span></div>
-          </div>
-        )}
-        {postPhase === "painpoint" && (
-          <div className="postq-screen">
-            <div className="postq-eyebrow">Noch eine Frage</div>
-            <div className="postq-title">Was beschreibt deine aktuelle Situation am besten?</div>
-            <div className="postq-subtitle">Wähle den Satz, der am ehesten auf dich zutrifft.</div>
-            <div className="painpoint-options">
-              {(PAIN_POINTS[scoring.resultType] || []).map((pp, i) => (
-                <button key={i} className={`painpoint-btn ${selectedPainPoint === pp ? "painpoint-selected" : ""}`} onClick={() => { setSelectedPainPoint(pp); setTimeout(() => setPostPhase("signup"), 400); }}>{pp}</button>
-              ))}
-            </div>
-          </div>
-        )}
-        {postPhase === "signup" && (
-          <div className="postq-screen signup-solo">
-            {emailStatus === "success" ? (
-              <div className="cta-success">
-                <div className="success-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg></div>
-                <div className="success-title">Drin.</div>
-                <p className="success-sub">Check deine Inbox – deine <strong>{meta.label}-Masterclass</strong> wartet auf dich.</p>
-              </div>
-            ) : (
-              <>
-                <div className="signup-solo-header">
-                  <div className="postq-eyebrow">Dein nächster Schritt</div>
-                  <div className="postq-title">Deine kostenlose {meta.label.replace("Der ", "").replace("Die ", "")}-Masterclass</div>
-                  <p className="signup-solo-text">Ich habe <strong>genau für deinen Archetyp</strong> eine eigene <strong>kostenlose Masterclass</strong> entwickelt – kein Motivationsgelaber, sondern ein ehrlicher Blick auf das, was dich gerade blockiert. Und wie du den ersten echten Schritt raus machst.</p>
-                </div>
-                <div className="cta-email">
-                  <input type="text" placeholder="Dein Vorname" className={`email-input ${emailError && !firstName.trim() ? "email-input-error" : ""}`} value={firstName} onChange={(e) => { setFirstName(e.target.value); setEmailError(""); }} disabled={emailStatus === "loading"} />
-                  <input type="email" placeholder="Deine E-Mail-Adresse" className={`email-input ${emailError && firstName.trim() ? "email-input-error" : ""}`} value={email} onChange={(e) => { setEmail(e.target.value); setEmailError(""); }} onKeyDown={handleKeyDown} disabled={emailStatus === "loading"} />
-                  {emailError && <p className="email-error-msg">{emailError}</p>}
-                  <button className={`btn-primary btn-cta ${emailStatus === "loading" ? "btn-loading" : ""}`} onClick={handleEmailSubmit} disabled={emailStatus === "loading"}>
-                    {emailStatus === "loading" ? (<span className="loading-dots"><span>.</span><span>.</span><span>.</span></span>) : "Masterclass freischalten"}
-                  </button>
-                </div>
-                <p className="cta-privacy" style={{ textAlign: "center" }}>Kein Spam. Kein Bullshit. Jederzeit abmeldbar.</p>
-              </>
-            )}
-          </div>
-        )}
         <button className="debug-toggle" onClick={() => setShowDebug(!showDebug)}>{showDebug ? "Debug ausblenden" : "// Debug anzeigen"}</button>
         {showDebug && (
           <div className="score-debug">
