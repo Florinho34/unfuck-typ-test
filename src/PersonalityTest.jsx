@@ -598,6 +598,7 @@ const KIT_FORM_IDS = {
 const TYPE_META = {
   zuschauer: {
     label: "Der Zuschauer",
+    avatar: "/Archetypen-Zuschauer.png",
     potenzial: "Der Weise",
     potenzialText: "Du siehst mehr als die meisten. Wenn du anfängst zu handeln statt nur zu verstehen, wirst du unaufhaltbar.",
     tagline: "Du siehst mehr als die meisten – aber du stehst am Rand deines eigenen Lebens.",
@@ -608,6 +609,7 @@ const TYPE_META = {
   },
   getriebener: {
     label: "Der Getriebene",
+    avatar: "/Archetypen-Getriebener.png",
     potenzial: "Der Macher",
     potenzialText: "Deine Energie ist deine Superkraft. Wenn du lernst, sie bewusst einzusetzen statt vor dir selbst wegzurennen, erreichst du alles.",
     tagline: "Du bist ständig in Bewegung – aber wer hat eigentlich das Ziel bestimmt?",
@@ -618,6 +620,7 @@ const TYPE_META = {
   },
   idealist: {
     label: "Der Idealist",
+    avatar: "/Archetypen-Idealist.png",
     potenzial: "Der Veränderer",
     potenzialText: "Dein Feuer für eine bessere Welt ist echt. Wenn du lernst, bei dir selbst anzufangen, statt die Welt zu reparieren, wird dein Impact riesig.",
     tagline: "Du spürst, was in der Welt schiefläuft – und es frisst dich auf.",
@@ -628,6 +631,7 @@ const TYPE_META = {
   },
   suchender: {
     label: "Der Suchende",
+    avatar: "/Archetypen-Suchende.png",
     potenzial: "Der Entdecker",
     potenzialText: "Deine Offenheit ist ein Geschenk. Wenn du lernst, tiefer zu gehen statt breiter, findest du, was du suchst.",
     tagline: "Du weißt, dass etwas fehlt – du weißt nur noch nicht, was.",
@@ -638,6 +642,7 @@ const TYPE_META = {
   },
   klarsichtiger: {
     label: "Der Klarsichtige",
+    avatar: "/Archetypen-Klarsichtiger.png",
     potenzial: "Der Freie",
     potenzialText: "Du lebst bereits bewusster als die meisten. Dein nächster Schritt ist nicht mehr Erkenntnis – sondern ehrliche Tiefe und Umsetzung.",
     tagline: "Du siehst klarer als die meisten – jetzt geht's darum, danach zu leben.",
@@ -909,15 +914,17 @@ body, html, #root {
 
 .intro-screen { width: 100%; height: 100vh; height: 100dvh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem 2rem 0; text-align: center; animation: fadeUp 0.8s ease-out; position: relative; overflow: hidden; }
 .intro-content { display: flex; flex-direction: column; align-items: center; }
-.intro-screen h1 { font-family: 'Inter Tight', sans-serif; font-size: clamp(1.6rem, 5vw, 2.6rem); font-weight: 900; line-height: 1.2; color: var(--dark); max-width: 520px; margin-bottom: 1.25rem; letter-spacing: -0.01em; }
+.intro-screen h1 { font-family: 'Inter Tight', sans-serif; font-size: clamp(1.5rem, 5vw, 2.5rem); font-weight: 900; line-height: 1.2; color: var(--dark); max-width: 520px; margin-bottom: 1rem; letter-spacing: -0.01em; }
 .highlight { color: var(--orange); font-style: italic; font-weight: 900; }
+.intro-avatars { margin-bottom: 1rem; }
+.intro-avatars-img { width: 100%; max-width: 400px; height: auto; border-radius: 12px; background: #fff; padding: 0.5rem 0.75rem; }
 .intro-screen .intro-meta { font-size: 0.78rem; color: var(--warm-gray); margin-bottom: 1.5rem; font-weight: 400; letter-spacing: 0.02em; }
 
 .fullscreen-footer { position: absolute; bottom: 0; left: 0; width: 100%; display: flex; justify-content: center; gap: 1.5rem; padding: 1rem 0; }
 .fullscreen-footer a { font-family: 'Inter Tight', sans-serif; font-size: 0.7rem; color: var(--warm-gray); text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
 .fullscreen-footer a:hover { color: var(--dark); }
 
-.btn-primary { background: var(--orange); color: #fff; border: none; padding: 1rem 2.5rem; font-family: 'Inter Tight', sans-serif; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.03em; cursor: pointer; transition: all 0.25s ease; }
+.btn-primary { background: var(--orange); color: #fff; border: none; padding: 1.15rem 2.8rem; font-family: 'Inter Tight', sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: 0.03em; cursor: pointer; transition: all 0.25s ease; }
 .btn-primary:hover { background: var(--orange-hover); transform: translateY(-1px); }
 
 .btn-float { animation: floatBtn 2.5s ease-in-out infinite; }
@@ -956,9 +963,9 @@ body, html, #root {
 .followup-selected { border-color: var(--orange); background: var(--orange-glow); font-weight: 500; }
 
 .nav-row { display: flex; justify-content: space-between; align-items: center; padding-top: 1.5rem; padding-bottom: 2rem; }
-.btn-back { background: none; border: none; font-family: 'Inter Tight', sans-serif; font-size: 0.82rem; color: var(--warm-gray); cursor: pointer; padding: 0.5rem 0; transition: color 0.2s; font-weight: 500; }
+.btn-back { background: none; border: none; font-family: 'Inter Tight', sans-serif; font-size: 0.92rem; color: var(--warm-gray); cursor: pointer; padding: 0.6rem 0; transition: color 0.2s; font-weight: 500; }
 .btn-back:hover { color: var(--dark); }
-.btn-next { background: var(--dark); color: var(--cream); border: none; padding: 0.85rem 2rem; font-family: 'Inter Tight', sans-serif; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.25s ease; letter-spacing: 0.02em; }
+.btn-next { background: var(--dark); color: var(--cream); border: none; padding: 1rem 2.3rem; font-family: 'Inter Tight', sans-serif; font-size: 0.92rem; font-weight: 600; cursor: pointer; transition: all 0.25s ease; letter-spacing: 0.02em; }
 .btn-next:hover { background: var(--dark-soft); transform: translateY(-1px); }
 .btn-next:disabled { opacity: 0.3; cursor: default; transform: none; }
 .btn-finish { background: var(--orange); color: #fff; }
@@ -977,6 +984,8 @@ body, html, #root {
 .result-inner { width: 100%; max-width: 620px; display: flex; flex-direction: column; gap: 2.5rem; }
 .result-header { text-align: center; }
 .result-eyebrow { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 0.75rem; font-weight: 500; }
+.result-avatar-wrap { display: flex; justify-content: center; margin-bottom: 1rem; }
+.result-avatar { height: 200px; width: auto; border-radius: 12px; background: #fff; padding: 0.5rem; }
 .result-type-label { font-family: 'Inter Tight', sans-serif; font-size: clamp(2rem, 6vw, 3.2rem); font-weight: 900; color: var(--dark); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 0.75rem; }
 .result-tagline { font-family: 'Inter Tight', sans-serif; font-size: clamp(0.95rem, 2.5vw, 1.1rem); color: var(--orange); font-style: italic; font-weight: 500; line-height: 1.5; max-width: 500px; margin: 0 auto; }
 
@@ -1034,7 +1043,7 @@ body, html, #root {
 .email-input::placeholder { color: var(--warm-gray); }
 .email-input-error { border-color: #c0392b !important; }
 .email-error-msg { font-size: 0.78rem; color: #c0392b; margin-top: -0.25rem; font-weight: 500; }
-.btn-cta { width: 100%; text-align: center; padding: 1.1rem 2.5rem; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.02em; }
+.btn-cta { width: 100%; text-align: center; padding: 1.2rem 2.5rem; font-size: 1.05rem; font-weight: 700; letter-spacing: 0.02em; }
 .btn-loading { opacity: 0.7; cursor: wait !important; }
 .loading-dots span { animation: dotPulse 1.2s infinite; font-size: 1.4rem; letter-spacing: 0.15em; }
 .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
@@ -1107,7 +1116,9 @@ body, html, #root {
 
 /* ─── KERNFRAGEN ─── */
 .question-screen-core { background: rgba(28, 28, 28, 0.03); }
-.core-badge { font-size: 0.72rem; font-weight: 700; color: var(--orange); letter-spacing: 0.06em; text-align: center; padding: 0.6rem 1rem; margin-bottom: 0.5rem; animation: fadeUp 0.3s ease-out; }
+.core-badge { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; text-align: center; padding: 0.6rem 1rem; margin-bottom: 0.5rem; animation: fadeUp 0.3s ease-out; }
+.core-badge-pill { display: inline-block; background: var(--orange); color: #fff; font-size: 0.78rem; font-weight: 700; padding: 0.3rem 0.85rem; letter-spacing: 0.04em; }
+.core-badge-sub { font-size: 0.72rem; font-weight: 500; color: var(--text-muted); font-style: italic; }
 .question-title-core { font-size: 0.85rem !important; font-weight: 800 !important; }
 
 /* ─── MILESTONES ─── */
@@ -1150,6 +1161,8 @@ body, html, #root {
   .recognition-scale { gap: 0.5rem; }
   .recognition-box { padding: 1.5rem 1rem; }
   .painpoint-btn { padding: 0.9rem 1rem; font-size: 0.84rem; }
+  .result-avatar { height: 160px; }
+  .intro-avatars-img { max-width: 320px; }
 }
 `;
 
@@ -1160,6 +1173,9 @@ function IntroScreen({ onStart }) {
     <div className="intro-screen">
       <div className="intro-content">
         <h1>Finde in 8 Minuten heraus, was zwischen dir und dem Leben steht, das du <span className="highlight">eigentlich willst.</span></h1>
+        <div className="intro-avatars">
+          <img src="/Archetypen-nebeneinander.png" alt="5 Archetypen" className="intro-avatars-img" />
+        </div>
         <p className="intro-meta">anonym · Sofortergebnis · kostenlos</p>
         <button className="btn-primary btn-float" onClick={onStart}>TEST STARTEN</button>
       </div>
@@ -1200,12 +1216,13 @@ function BlockTransition({ block, onContinue, isFirst }) {
             <div className="hint-bullets">
               <div className="hint-title">So funktioniert's</div>
               <div className="hint-item"><span className="hint-icon">🎯</span><span>Wähle pro Frage die Antwort, die <strong>am besten zu dir passt</strong>.</span></div>
-              <div className="hint-item"><span className="hint-icon">➕</span><span>Optional: Wähle eine <strong>zweite Antwort</strong> – sie wird schwächer gewichtet, macht dein Ergebnis aber genauer.</span></div>
+              <div className="hint-item"><span className="hint-icon">🔄</span><span>Optional: Wähle eine <strong>zweite Antwort</strong> – sie wird schwächer gewichtet, macht dein Ergebnis aber genauer.</span></div>
               <div className="hint-item"><span className="hint-icon">💡</span><span>Wenn nur eine Antwort passt, <strong>reicht das völlig</strong>.</span></div>
+              <div className="hint-item"><span className="hint-icon">⚡</span><span>Folge deinem <strong>ersten Impuls</strong> – nicht zu lange nachdenken. Die ehrlichste Antwort ist meistens die erste.</span></div>
             </div>
           ) : (
             <>
-              Weiterhin gilt: Wähle die Antwort, die <strong>am ehesten auf dich zutrifft</strong>. Eine optionale Zweitantwort verfeinert dein Ergebnis – ist aber kein Muss.
+              Weiterhin gilt: Wähle die Antwort, die <strong>am ehesten auf dich zutrifft</strong>. Folge deinem <strong>ersten Impuls</strong>. Eine optionale Zweitantwort verfeinert dein Ergebnis – ist aber kein Muss.
             </>
           )}
         </div>
@@ -1357,7 +1374,7 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, follow
   return (
     <div className={`question-screen ${isCore ? "question-screen-core" : ""}`}>
       <ProgressBar current={questionIndex + 1} total={totalQuestions} />
-      {isCore && <div className="core-badge">⚡ Kernfrage – Antwort besonders durchdacht und ehrlich.</div>}
+      {isCore && <div className="core-badge"><span className="core-badge-pill">🔥 Kernfrage</span><span className="core-badge-sub">Antworte besonders durchdacht und ehrlich.</span></div>}
       {milestone && <div className="milestone-bar">{milestone}</div>}
       <div className="question-wrapper" key={question.id}>
         <div className={`question-title-small ${isCore ? "question-title-core" : ""}`}>{question.title}</div>
@@ -1577,6 +1594,9 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
       <div className="result-inner">
         <div className="result-header">
           <div className="result-eyebrow">Dein Ergebnis</div>
+          <div className="result-avatar-wrap">
+            <img src={meta.avatar} alt={meta.label} className="result-avatar" />
+          </div>
           <div className="result-type-label">{meta.label}</div>
           <div className="result-tagline">{meta.tagline}</div>
         </div>
