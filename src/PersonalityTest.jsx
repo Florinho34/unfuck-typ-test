@@ -603,7 +603,8 @@ const TYPE_META = {
     ctaText: "Du verstehst längst, was sich ändern müsste – jetzt ist der Moment, es auch zu tun. In dieser Masterclass zeige ich dir, wie du vom Erkennen ins Handeln kommst.",
     description: "<strong>Du bist weise!</strong> Doch während andere einfach machen, <strong>denkst du zu viel.</strong> Du verstehst Zusammenhänge und analysierst Probleme, du durchschaust Muster, die andere nicht sehen. Das ist eine echte Gabe!<br/><br/>Doch ohne Umsetzung bleibt Wissen theoretisch und kann keine Effekte in der Realität entfalten. Als Zuschauer weißt du genau, was du ändern müsstest, aber zwischen <strong>Erkenntnis und Handlung</strong> liegt ein Graben, der jedes Jahr breiter wird.<br/><br/>Das Gute: Deine Klarheit ist eine echte Stärke. Du musst nur lernen, sie als <strong>Startrampe</strong> zu nutzen statt als Aussichtsplattform.",
     pain: "Du analysierst dich im Kreis. Du weißt, was sich ändern müsste, aber du verwechselst Erkenntnis mit Fortschritt. Und jeder Tag, an dem du nicht handelst, macht den nächsten Schritt schwerer.",
-    extra: "Dein größter Hebel: Eine einzige Handlung, die du seit Wochen aufschiebst. Nicht perfekt – einfach anfangen.",
+    hebel: "Akzeptiere, dass Erkenntnis ohne Handlung wertlos ist. Du weißt genug. Es fehlt nicht an Wissen, sondern an Mut.",
+    schritt: "Tu heute die eine Sache, die du seit Wochen aufschiebst. Nicht perfekt, einfach anfangen.",
   },
   getriebener: {
     label: "Getrieben",
@@ -612,7 +613,8 @@ const TYPE_META = {
     ctaText: "Du funktionierst – aber für wen eigentlich? In dieser Masterclass zeige ich dir, wie du deine Energie endlich für das einsetzt, was dich wirklich glücklich machen kann.",
     description: "<strong>Du bist ein wahrer Macher!</strong> Du funktionierst, zuverlässig, produktiv, immer beschäftigt. Von außen sieht das nach <strong>Disziplin und Erfolg</strong> aus. Aber dahinter steckt eine Vermeidungsstrategie: Solange du funktionierst, musst du nicht hinschauen.<br/><br/>Manche Getriebene folgen einem Drehbuch, das andere geschrieben haben, und merken es nicht. In den ruhigen Momenten, wenn die Ablenkung wegfällt, ist da eine <strong>Unruhe</strong>, die du nicht benennen kannst. Und weil das unangenehm ist, greifst du direkt wieder zur Beschäftigung.<br/><br/>Doch keine Sorge: Dein Antrieb und deine Disziplin sind eine <strong>unersetzliche Stärke</strong>. Wenn du diese nutzt, wirst du es weit bringen, doch du brauchst ein Ziel, das wirklich deins ist.",
     pain: "Du bist so beschäftigt mit Funktionieren, dass du gar nicht merkst, wie weit du dich von dir selbst entfernt hast. Und die Stimme, die fragt \u201EIst das wirklich alles?\u201C, wird leiser, je mehr du sie übertönst.",
-    extra: "Dein größter Hebel: Einen ganzen Abend lang nichts tun – und aushalten, was dann hochkommt.",
+    hebel: "Verstehe, dass Leistung allein nicht zu Glück führt. Dein hohes Pensum ist in Wahrheit deine Vermeidungsstrategie, die wirklich wichtigen Themen nicht anzuschauen.",
+    schritt: "Nimm dir diese Woche an einem Abend bewusst nichts vor. Kein Handy, keine Aufgaben. Setz dich auf die Couch oder leg dich in die Wiese und schau in den Himmel. Mache NICHTS. Und halte aus, was dann hochkommt.",
   },
   idealist: {
     label: "Idealist",
@@ -621,7 +623,8 @@ const TYPE_META = {
     ctaText: "Dein Feuer für eine bessere Welt ist echt und ehrenwert – doch es birgt die Gefahr, dich innerlich aufzufressen. In dieser Masterclass zeige ich dir, wie du für eine bessere Welt sorgst – zuerst bei dir, um anschließend auch die Kraft zu finden weiterzumachen.",
     description: "<strong>Du willst wahrhaftig etwas verändern!</strong> Doch dein eigenes Leben und Glück steht hinten an. Ungerechtigkeit, Oberflächlichkeit, Zerstörung, du siehst es überall und es lässt dich nicht kalt. Deine <strong>Intensität ist selten und wertvoll</strong>.<br/><br/>Aber sie hat eine Schattenseite: Deine Energie fließt in Wut, Frustration und Ohnmacht über Dinge, die du nicht kontrollieren kannst, und für dein eigenes Leben bleibt am Ende zu wenig Kraft übrig, da du gelähmt bist.<br/><br/>Wahrscheinlich hast du nie gelernt, dass bei dir selbst anfangen <strong>kein Verrat an der Welt ist</strong>. Sondern die Voraussetzung, um überhaupt etwas verändern zu können.",
     pain: "Dein Gerechtigkeitssinn ist echt – aber er frisst dich auf. Du gibst so viel Energie an die Welt, dass für dich selbst nichts übrig bleibt. Und das Paradoxe: Genau dadurch veränderst du weniger, als du könntest.",
-    extra: "Dein größter Hebel: Erkenne, dass Selbstfürsorge kein Egoismus ist – sondern die Voraussetzung, wirklich etwas zu bewegen.",
+    hebel: "Erkenne, erstens, dass Selbstfürsorge kein Egoismus ist, sondern die Voraussetzung, um überhaupt etwas verändern zu können und zweitens, dass der Wunsch nach Perfektion einer positiven Entwicklung im Wege stehen kann.",
+    schritt: "Tu heute eine Sache nur für dich. Ohne schlechtes Gewissen. Ohne Rechtfertigung.",
   },
   suchender: {
     label: "Suchend",
@@ -630,7 +633,8 @@ const TYPE_META = {
     ctaText: "Du spürst, dass da mehr ist – aber die nächste \u201EMethode nach Guru XY\u201C wird\u2019s auch nicht richten. In dieser Masterclass zeige ich dir, wo du wirklich hinschauen musst.",
     description: "<strong>In dir schlummert ein neugieriger Entdecker!</strong> Doch zufrieden ist er nicht. Du hast schon so vieles probiert: Bücher, Podcasts, vielleicht Seminare. Manche Dinge haben kurz resoniert, aber <strong>nichts hat wirklich gehalten</strong>.<br/><br/>Das liegt nicht daran, dass du sprunghaft bist, sondern daran, dass du intuitiv spürst, wenn etwas nicht echt ist. Das Problem ist nur: Du suchst die Antwort im Außen, während sie <strong>im Innen</strong> liegt.<br/><br/>Der erste Schritt ist nicht die nächste Methode, sondern ehrlich hinschauen, warum keine bisherige gereicht hat.",
     pain: "Du springst von Impuls zu Impuls, von Methode zu Methode – und verwechselst Bewegung mit Fortschritt. Die unbequeme Wahrheit: Es liegt nicht an den Methoden. Es liegt daran, dass du nicht tief genug gräbst.",
-    extra: "Dein größter Hebel: Hör auf, nach der nächsten Antwort zu suchen. Setz dich mit der Frage hin.",
+    hebel: "Verstehe, dass die Antwort nicht im nächsten Buch oder Podcast zu finden ist. Sie liegt in der konsequenten Umsetzung dessen, was du eigentlich schon lange weißt.",
+    schritt: "Nimm die eine Erkenntnis, die dich zuletzt wirklich berührt hat, und wende sie diese Woche bewusst in einer Situation deines Lebens an. Nur diese eine.",
   },
   klarsichtiger: {
     label: "Klarsichtig",
@@ -639,7 +643,8 @@ const TYPE_META = {
     ctaText: "Du bist weiter als die meisten – doch das allein reicht nicht. In dieser Masterclass zeige ich dir, wie du dein Wissen endlich in dein Leben integrierst.",
     description: "<strong>Du bist weiter als die meisten!</strong> Doch auch du hast blinde Flecken. Vielleicht die Tendenz, dich für weiter zu halten, als du bist? Oder die Schwierigkeit, dein Wissen konsequent in <strong>Handlung zu übersetzen</strong>?<br/><br/>Du hinterfragst, reflektierst, lebst bewusster als viele in deinem Umfeld. Man kann mit dir über tiefere Themen sprechen, ohne dass du abblocken musst.<br/><br/><strong>Klar sehen</strong> und <strong>danach leben</strong>, das sind zwei verschiedene Dinge. Du bist auf dem Weg. Aber der Weg hat noch Strecke.",
     pain: "Dein Wissen ist echt – aber es kann zur Falle werden. Du hältst dich manchmal für weiter, als du bist. Der Unterschied zwischen Wissen und Weisheit: Du brauchst keine Fakten mehr, um zu spüren, was richtig oder falsch ist. Aber dieses Spüren in echtes Handeln und Vertrauen zu übersetzen – genau daran darfst du noch arbeiten.",
-    extra: "Dein größter Hebel: Sei ehrlich, wo du Erkenntnis noch als Fortschritt verkaufst – und wo dir die Umsetzung fehlt.",
+    hebel: "Vielleicht ist es an der Zeit, sich einzugestehen, dass du deine Weisheit und deine Erkenntnisse mit Fortschritt verwechselst. Dein Wissen ist erst etwas wert, wenn du auch wirklich danach lebst.",
+    schritt: "Geh heute Abend mal in maximal ehrliche Reflektion und schreibe dir auf, wo du Erkenntnis als Fortschritt verkaufst, obwohl du weißt, dass dir die Umsetzung fehlt.",
   },
 };
 
@@ -1027,7 +1032,11 @@ body, html, #root {
 .affinity-bar-track { flex: 1; height: 6px; background: var(--sand); overflow: hidden; }
 .affinity-bar-fill { height: 100%; background: var(--orange); transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1); }
 .affinity-pct { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); min-width: 32px; text-align: right; font-variant-numeric: tabular-nums; }
-.result-extra { font-size: 0.92rem; line-height: 1.65; color: var(--dark); padding: 1.25rem 1.5rem; border-left: 3px solid var(--dark); background: rgba(28, 28, 28, 0.03); font-weight: 500; }
+.result-hebel { padding: 1.5rem 1.5rem; border-left: 3px solid var(--dark); background: rgba(28, 28, 28, 0.03); }
+.result-hebel p { font-size: 0.92rem; line-height: 1.65; color: var(--dark); font-weight: 400; margin: 0 0 1rem 0; }
+.result-hebel p:last-child { margin-bottom: 0; }
+.hebel-label { font-family: 'Inter Tight', sans-serif; font-size: 0.95rem; font-weight: 800; color: var(--dark); margin-bottom: 0.4rem; }
+.schritt-label { font-family: 'Inter Tight', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--orange); margin-bottom: 0.3rem; letter-spacing: 0.02em; }
 
 .postq-screen { width: 100%; max-width: 620px; min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem 1.5rem; animation: fadeUp 0.5s ease-out; }
 .postq-eyebrow { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 1rem; font-weight: 500; }
@@ -1172,7 +1181,7 @@ body, html, #root {
 
 /* ─── MISCHTYP SECTION ─── */
 .mischtyp-divider { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.5rem 0; gap: 0.5rem; }
-.mischtyp-icon { width: 44px; height: 44px; border-radius: 50%; background: #c0392b; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 700; line-height: 1; animation: fadeUp 0.5s ease-out; }
+.mischtyp-icon { width: 44px; height: 44px; border-radius: 50%; background: transparent; border: 2.5px solid #c0392b; color: #c0392b; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 700; line-height: 1; animation: fadeUp 0.5s ease-out; }
 .mischtyp-divider-text { font-family: 'Inter Tight', sans-serif; font-size: clamp(1rem, 3vw, 1.2rem); font-weight: 800; color: var(--dark); letter-spacing: -0.01em; }
 .mischtyp-section { padding: 2rem; background: rgba(28, 28, 28, 0.025); border: 1.5px solid var(--sand); }
 .mischtyp-eyebrow { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 0.35rem; font-weight: 600; }
@@ -1645,10 +1654,17 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
         doc.rect(80, y - 2.5, barW, 4, "F");
         doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.setTextColor(...gray); doc.text(pct + "%", 170, y, { align: "right" }); y += 9;
       }); y += 8;
-      doc.setFillColor(245, 243, 240); doc.rect(27, y - 2, 156, 22, "F");
-      doc.setFillColor(...dark); doc.rect(27, y - 2, 1.2, 22, "F");
+      doc.setFillColor(245, 243, 240); doc.rect(27, y - 2, 156, 36, "F");
+      doc.setFillColor(...dark); doc.rect(27, y - 2, 1.2, 36, "F");
       doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...dark);
-      const extraLines = doc.splitTextToSize(meta.extra, 148); doc.text(extraLines, 32, y + 5, { lineHeightFactor: 1.5 }); y += 30;
+      doc.text("Dein gr\u00f6\u00dfter Hebel:", 32, y + 5);
+      doc.setFont("helvetica", "normal");
+      const hebelLines = doc.splitTextToSize(meta.hebel, 148); doc.text(hebelLines, 32, y + 11, { lineHeightFactor: 1.5 });
+      const hebelH = hebelLines.length * 4.5;
+      doc.setFont("helvetica", "bold"); doc.setFontSize(8.5); doc.setTextColor(...orange);
+      doc.text("Ein erster Schritt:", 32, y + 11 + hebelH + 3);
+      doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...dark);
+      const schrittLines = doc.splitTextToSize(meta.schritt, 148); doc.text(schrittLines, 32, y + 11 + hebelH + 9, { lineHeightFactor: 1.5 }); y += 44;
 
       y += 10;
       doc.setFont("helvetica", "bold"); doc.setFontSize(14); doc.setTextColor(...dark);
@@ -1688,7 +1704,12 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
         </div>
         <div className="result-description" dangerouslySetInnerHTML={{ __html: meta.description }} />
         <div className="result-pain"><div className="pain-label">Daran scheiterst du gerade wahrscheinlich:</div><p>{meta.pain}</p></div>
-        <div className="result-extra">{meta.extra}</div>
+        <div className="result-hebel">
+          <div className="hebel-label">Dein größter Hebel:</div>
+          <p>{meta.hebel}</p>
+          <div className="schritt-label">Ein erster Schritt:</div>
+          <p>{meta.schritt}</p>
+        </div>
         {showMischtyp && (
           <div className="mischtyp-divider">
             <div className="mischtyp-icon">❗</div>
