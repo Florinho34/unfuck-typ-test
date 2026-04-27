@@ -1366,25 +1366,34 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, follow
   const [showCalculating, setShowCalculating] = useState(false);
   const [feedbackShown, setFeedbackShown] = useState({});
   const autoAdvanceRef = useRef(null);
+  const [freshPrimary, setFreshPrimary] = useState(false);
 
-  // Auto-advance: after primary selection, wait 400ms then advance (if no follow-up needed)
+  // Cancel any pending auto-advance
+  const cancelAutoAdvance = useCallback(() => {
+    if (autoAdvanceRef.current) { clearTimeout(autoAdvanceRef.current); autoAdvanceRef.current = null; }
+    setFreshPrimary(false);
+  }, []);
+
+  // Reset freshPrimary when question changes (e.g. navigating back)
+  useEffect(() => { cancelAutoAdvance(); }, [question.id]);
+
+  // Auto-advance: only on FRESH primary selection, 1.5s delay, no follow-up, not last question
   useEffect(() => {
     if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current);
-    if (hasPrimary && !followUp && !currentAnswer.secondary) {
+    if (freshPrimary && hasPrimary && !followUp && !currentAnswer.secondary && !isLast) {
       autoAdvanceRef.current = setTimeout(() => {
-        if (!isLast) {
-          const fb = getMicroFeedback(question.id, answers);
-          if (fb && !feedbackShown[question.id]) {
-            setFeedbackShown(prev => ({ ...prev, [question.id]: true }));
-            setShowMicroFeedback(fb);
-          } else {
-            onNext();
-          }
+        setFreshPrimary(false);
+        const fb = getMicroFeedback(question.id, answers);
+        if (fb && !feedbackShown[question.id]) {
+          setFeedbackShown(prev => ({ ...prev, [question.id]: true }));
+          setShowMicroFeedback(fb);
+        } else {
+          onNext();
         }
-      }, 500);
+      }, 1500);
     }
     return () => { if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current); };
-  }, [currentAnswer.primary, currentAnswer.secondary]);
+  }, [freshPrimary, currentAnswer.primary, currentAnswer.secondary]);
 
   // Keyboard shortcuts (desktop)
   useEffect(() => {
@@ -1421,18 +1430,26 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, follow
 
   const handleOptionClick = (key) => {
     if (!hasPrimary) {
+      // New primary selection: trigger auto-advance
+      setFreshPrimary(true);
       onAnswer(question.id, { primary: key, secondary: null });
     } else if (key === currentAnswer.primary) {
+      // Deselect primary: cancel auto-advance
+      cancelAutoAdvance();
       if (followUpKey) onFollowUp(followUpKey, null);
       onAnswer(question.id, { primary: null, secondary: null });
     } else if (key === currentAnswer.secondary) {
+      // Deselect secondary
       onAnswer(question.id, { ...currentAnswer, secondary: null });
     } else {
+      // Select secondary: cancel auto-advance (user wants to refine)
+      cancelAutoAdvance();
       onAnswer(question.id, { ...currentAnswer, secondary: key });
     }
   };
 
   const handleNext = () => {
+    cancelAutoAdvance();
     // Check for micro-feedback
     const fb = getMicroFeedback(question.id, answers);
     if (fb && !feedbackShown[question.id]) {
