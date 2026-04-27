@@ -601,8 +601,8 @@ const TYPE_META = {
     avatar: "/Archetypen-Zuschauer.png",
     tagline: "Du siehst mehr als die meisten – doch merkt man das an deinem Verhalten nur selten.",
     ctaText: "Du verstehst längst, was sich ändern müsste – jetzt ist der Moment, es auch zu tun. In dieser Masterclass zeige ich dir, wie du vom Erkennen ins Handeln kommst.",
-    description: "Du bist weise! Doch während andere einfach machen, denkst du zu viel! Du verstehst Zusammenhänge und analysierst Probleme – du durchschaust Muster, die andere nicht sehen. Das ist eine Gabe! Doch ohne Umsetzung bleibt Wissen theoretisch und kann keine Effekte in der Realität entfalten. Als Zuschauer weißt du genau, was du ändern müsstest – aber zwischen Erkenntnis und Handlung liegt ein Graben, der jedes Jahr breiter wird. Das Gute: Deine Klarheit ist eine echte Stärke. Du musst nur lernen, sie als Startrampe zu nutzen statt als Aussichtsplattform.",
-    pain: "Du analysierst dich im Kreis. Du weißt, was sich ändern müsste – aber du verwechselst Erkenntnis mit Fortschritt. Und jeder Tag, an dem du nicht handelst, macht den nächsten Schritt schwerer.",
+    description: "<strong>Du bist weise!</strong> Doch während andere einfach machen, <strong>denkst du zu viel.</strong> Du verstehst Zusammenhänge und analysierst Probleme, du durchschaust Muster, die andere nicht sehen. Das ist eine echte Gabe!<br/><br/>Doch ohne Umsetzung bleibt Wissen theoretisch und kann keine Effekte in der Realität entfalten. Als Zuschauer weißt du genau, was du ändern müsstest, aber zwischen <strong>Erkenntnis und Handlung</strong> liegt ein Graben, der jedes Jahr breiter wird.<br/><br/>Das Gute: Deine Klarheit ist eine echte Stärke. Du musst nur lernen, sie als <strong>Startrampe</strong> zu nutzen statt als Aussichtsplattform.",
+    pain: "Du analysierst dich im Kreis. Du weißt, was sich ändern müsste, aber du verwechselst Erkenntnis mit Fortschritt. Und jeder Tag, an dem du nicht handelst, macht den nächsten Schritt schwerer.",
     extra: "Dein größter Hebel: Eine einzige Handlung, die du seit Wochen aufschiebst. Nicht perfekt – einfach anfangen.",
   },
   getriebener: {
@@ -610,7 +610,7 @@ const TYPE_META = {
     avatar: "/Archetypen-Getriebener.png",
     tagline: "Du bist ständig in Bewegung – aber wer hat eigentlich das Ziel bestimmt?",
     ctaText: "Du funktionierst – aber für wen eigentlich? In dieser Masterclass zeige ich dir, wie du deine Energie endlich für das einsetzt, was dich wirklich glücklich machen kann.",
-    description: "Du bist ein wahrer Macher! Du funktionierst – zuverlässig, produktiv, immer beschäftigt. Von außen sieht das nach Disziplin und Erfolg aus. Aber dahinter steckt eine Vermeidungsstrategie: Solange du funktionierst, musst du nicht hinschauen. Manche Getriebene folgen einem Drehbuch, das andere geschrieben haben – und merken es nicht. In den ruhigen Momenten – wenn die Ablenkung wegfällt – ist da eine Unruhe, die du nicht benennen kannst. Und weil das unangenehm ist, greifst du direkt wieder zur Beschäftigung. Doch keine Sorge: Dein Antrieb und deine Disziplin sind eine unersetzliche Stärke. Wenn du diese nutzt, wirst du es weit bringen – doch du brauchst ein Ziel, das wirklich deins ist.",
+    description: "<strong>Du bist ein wahrer Macher!</strong> Du funktionierst, zuverlässig, produktiv, immer beschäftigt. Von außen sieht das nach <strong>Disziplin und Erfolg</strong> aus. Aber dahinter steckt eine Vermeidungsstrategie: Solange du funktionierst, musst du nicht hinschauen.<br/><br/>Manche Getriebene folgen einem Drehbuch, das andere geschrieben haben, und merken es nicht. In den ruhigen Momenten, wenn die Ablenkung wegfällt, ist da eine <strong>Unruhe</strong>, die du nicht benennen kannst. Und weil das unangenehm ist, greifst du direkt wieder zur Beschäftigung.<br/><br/>Doch keine Sorge: Dein Antrieb und deine Disziplin sind eine <strong>unersetzliche Stärke</strong>. Wenn du diese nutzt, wirst du es weit bringen, doch du brauchst ein Ziel, das wirklich deins ist.",
     pain: "Du bist so beschäftigt mit Funktionieren, dass du gar nicht merkst, wie weit du dich von dir selbst entfernt hast. Und die Stimme, die fragt \u201EIst das wirklich alles?\u201C, wird leiser, je mehr du sie übertönst.",
     extra: "Dein größter Hebel: Einen ganzen Abend lang nichts tun – und aushalten, was dann hochkommt.",
   },
@@ -619,7 +619,7 @@ const TYPE_META = {
     avatar: "/Archetypen-Idealist.png",
     tagline: "Du spürst, was in der Welt schiefläuft – und es frisst dich auf.",
     ctaText: "Dein Feuer für eine bessere Welt ist echt und ehrenwert – doch es birgt die Gefahr, dich innerlich aufzufressen. In dieser Masterclass zeige ich dir, wie du für eine bessere Welt sorgst – zuerst bei dir, um anschließend auch die Kraft zu finden weiterzumachen.",
-    description: "Du willst wahrhaftig etwas verändern! Doch dein eigenes Leben und Glück steht hinten an. Ungerechtigkeit, Oberflächlichkeit, Zerstörung – du siehst es überall und es lässt dich nicht kalt. Deine Intensität ist selten und wertvoll. Aber sie hat eine Schattenseite: Deine Energie fließt in Wut, Frustration und Ohnmacht über Dinge, die du nicht kontrollieren kannst – und für dein eigenes Leben bleibt am Ende zu wenig Kraft übrig, da du gelähmt bist. Wahrscheinlich hast du nie gelernt, dass bei dir selbst anfangen kein Verrat an der Welt ist. Sondern die Voraussetzung, um überhaupt etwas verändern zu können.",
+    description: "<strong>Du willst wahrhaftig etwas verändern!</strong> Doch dein eigenes Leben und Glück steht hinten an. Ungerechtigkeit, Oberflächlichkeit, Zerstörung, du siehst es überall und es lässt dich nicht kalt. Deine <strong>Intensität ist selten und wertvoll</strong>.<br/><br/>Aber sie hat eine Schattenseite: Deine Energie fließt in Wut, Frustration und Ohnmacht über Dinge, die du nicht kontrollieren kannst, und für dein eigenes Leben bleibt am Ende zu wenig Kraft übrig, da du gelähmt bist.<br/><br/>Wahrscheinlich hast du nie gelernt, dass bei dir selbst anfangen <strong>kein Verrat an der Welt ist</strong>. Sondern die Voraussetzung, um überhaupt etwas verändern zu können.",
     pain: "Dein Gerechtigkeitssinn ist echt – aber er frisst dich auf. Du gibst so viel Energie an die Welt, dass für dich selbst nichts übrig bleibt. Und das Paradoxe: Genau dadurch veränderst du weniger, als du könntest.",
     extra: "Dein größter Hebel: Erkenne, dass Selbstfürsorge kein Egoismus ist – sondern die Voraussetzung, wirklich etwas zu bewegen.",
   },
@@ -628,7 +628,7 @@ const TYPE_META = {
     avatar: "/Archetypen-Suchende.png",
     tagline: "Du weißt, dass etwas fehlt – du weißt nur noch nicht, was.",
     ctaText: "Du spürst, dass da mehr ist – aber die nächste \u201EMethode nach Guru XY\u201C wird\u2019s auch nicht richten. In dieser Masterclass zeige ich dir, wo du wirklich hinschauen musst.",
-    description: "In dir schlummert ein neugieriger Entdecker! Doch zufrieden ist er nicht. Du hast schon so vieles probiert: Bücher, Podcasts, vielleicht Seminare. Manche Dinge haben kurz resoniert, aber nichts hat wirklich gehalten. Das liegt nicht daran, dass du sprunghaft bist – sondern daran, dass du intuitiv spürst, wenn etwas nicht echt ist. Das Problem ist nur: Du suchst die Antwort im Außen, während sie im Innen liegt. Der erste Schritt ist nicht die nächste Methode – sondern ehrlich hinschauen, warum keine bisherige gereicht hat.",
+    description: "<strong>In dir schlummert ein neugieriger Entdecker!</strong> Doch zufrieden ist er nicht. Du hast schon so vieles probiert: Bücher, Podcasts, vielleicht Seminare. Manche Dinge haben kurz resoniert, aber <strong>nichts hat wirklich gehalten</strong>.<br/><br/>Das liegt nicht daran, dass du sprunghaft bist, sondern daran, dass du intuitiv spürst, wenn etwas nicht echt ist. Das Problem ist nur: Du suchst die Antwort im Außen, während sie <strong>im Innen</strong> liegt.<br/><br/>Der erste Schritt ist nicht die nächste Methode, sondern ehrlich hinschauen, warum keine bisherige gereicht hat.",
     pain: "Du springst von Impuls zu Impuls, von Methode zu Methode – und verwechselst Bewegung mit Fortschritt. Die unbequeme Wahrheit: Es liegt nicht an den Methoden. Es liegt daran, dass du nicht tief genug gräbst.",
     extra: "Dein größter Hebel: Hör auf, nach der nächsten Antwort zu suchen. Setz dich mit der Frage hin.",
   },
@@ -637,7 +637,7 @@ const TYPE_META = {
     avatar: "/Archetypen-Klarsichtiger.png",
     tagline: "Du siehst klarer als die meisten – jetzt geht's darum, danach zu leben.",
     ctaText: "Du bist weiter als die meisten – doch das allein reicht nicht. In dieser Masterclass zeige ich dir, wie du dein Wissen endlich in dein Leben integrierst.",
-    description: "Du bist weiter als die meisten! Doch auch du hast blinde Flecken. Vielleicht die Tendenz, dich für weiter zu halten, als du bist? Oder die Schwierigkeit, dein Wissen konsequent in Handlung zu übersetzen? Du hinterfragst, reflektierst, lebst bewusster als viele in deinem Umfeld. Man kann mit dir über tiefere Themen sprechen, ohne dass du abblocken musst. Klar sehen und danach leben – das sind zwei verschiedene Dinge. Du bist auf dem Weg. Aber der Weg hat noch Strecke.",
+    description: "<strong>Du bist weiter als die meisten!</strong> Doch auch du hast blinde Flecken. Vielleicht die Tendenz, dich für weiter zu halten, als du bist? Oder die Schwierigkeit, dein Wissen konsequent in <strong>Handlung zu übersetzen</strong>?<br/><br/>Du hinterfragst, reflektierst, lebst bewusster als viele in deinem Umfeld. Man kann mit dir über tiefere Themen sprechen, ohne dass du abblocken musst.<br/><br/><strong>Klar sehen</strong> und <strong>danach leben</strong>, das sind zwei verschiedene Dinge. Du bist auf dem Weg. Aber der Weg hat noch Strecke.",
     pain: "Dein Wissen ist echt – aber es kann zur Falle werden. Du hältst dich manchmal für weiter, als du bist. Der Unterschied zwischen Wissen und Weisheit: Du brauchst keine Fakten mehr, um zu spüren, was richtig oder falsch ist. Aber dieses Spüren in echtes Handeln und Vertrauen zu übersetzen – genau daran darfst du noch arbeiten.",
     extra: "Dein größter Hebel: Sei ehrlich, wo du Erkenntnis noch als Fortschritt verkaufst – und wo dir die Umsetzung fehlt.",
   },
@@ -995,7 +995,7 @@ body, html, #root {
 
 .result-screen { width: 100%; display: flex; flex-direction: column; align-items: center; padding: 3rem 1.5rem 4rem; opacity: 0; transform: translateY(20px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
 .result-screen.visible { opacity: 1; transform: translateY(0); }
-.result-inner { width: 100%; max-width: 620px; display: flex; flex-direction: column; gap: 2.5rem; }
+.result-inner { width: 100%; max-width: 620px; display: flex; flex-direction: column; gap: 2rem; }
 .result-header { text-align: center; }
 .result-eyebrow { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 0.75rem; font-weight: 500; }
 .result-avatar-wrap { display: flex; justify-content: center; margin-bottom: 0.75rem; }
@@ -1171,10 +1171,18 @@ body, html, #root {
 .question-screen { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; }
 
 /* ─── MISCHTYP SECTION ─── */
-.mischtyp-section { border-left: 4px solid var(--sand); padding: 2rem; background: rgba(28, 28, 28, 0.02); }
-.mischtyp-eyebrow { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.5rem; font-weight: 600; }
+.mischtyp-divider { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1.5rem 0; gap: 0.5rem; }
+.mischtyp-icon { width: 44px; height: 44px; border-radius: 50%; background: #c0392b; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: 700; line-height: 1; animation: fadeUp 0.5s ease-out; }
+.mischtyp-divider-text { font-family: 'Inter Tight', sans-serif; font-size: clamp(1rem, 3vw, 1.2rem); font-weight: 800; color: var(--dark); letter-spacing: -0.01em; }
+.mischtyp-section { padding: 2rem; background: rgba(28, 28, 28, 0.025); border: 1.5px solid var(--sand); }
+.mischtyp-eyebrow { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 0.35rem; font-weight: 600; }
+.mischtyp-secondary-label { font-family: 'Inter Tight', sans-serif; font-size: clamp(1.3rem, 4vw, 1.7rem); font-weight: 900; color: var(--dark); margin-bottom: 1rem; letter-spacing: -0.02em; }
 .mischtyp-bridge { font-size: 0.92rem; line-height: 1.65; color: var(--dark); font-weight: 500; margin-bottom: 1rem; }
 .mischtyp-text { font-size: 0.92rem; line-height: 1.7; color: var(--text-muted); font-weight: 400; }
+
+/* ─── RESULT DESCRIPTION FORMATTING ─── */
+.result-description { font-size: 0.95rem; line-height: 1.75; color: var(--dark); font-weight: 400; }
+.result-description strong { color: var(--dark); font-weight: 700; }
 
 @media (max-width: 520px) {
   .question-screen { padding: 4.5rem 1.15rem 1.5rem; }
@@ -1365,35 +1373,6 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, follow
   const [showMicroFeedback, setShowMicroFeedback] = useState(null);
   const [showCalculating, setShowCalculating] = useState(false);
   const [feedbackShown, setFeedbackShown] = useState({});
-  const autoAdvanceRef = useRef(null);
-  const [freshPrimary, setFreshPrimary] = useState(false);
-
-  // Cancel any pending auto-advance
-  const cancelAutoAdvance = useCallback(() => {
-    if (autoAdvanceRef.current) { clearTimeout(autoAdvanceRef.current); autoAdvanceRef.current = null; }
-    setFreshPrimary(false);
-  }, []);
-
-  // Reset freshPrimary when question changes (e.g. navigating back)
-  useEffect(() => { cancelAutoAdvance(); }, [question.id]);
-
-  // Auto-advance: only on FRESH primary selection, 1.5s delay, no follow-up, not last question
-  useEffect(() => {
-    if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current);
-    if (freshPrimary && hasPrimary && !followUp && !currentAnswer.secondary && !isLast) {
-      autoAdvanceRef.current = setTimeout(() => {
-        setFreshPrimary(false);
-        const fb = getMicroFeedback(question.id, answers);
-        if (fb && !feedbackShown[question.id]) {
-          setFeedbackShown(prev => ({ ...prev, [question.id]: true }));
-          setShowMicroFeedback(fb);
-        } else {
-          onNext();
-        }
-      }, 1500);
-    }
-    return () => { if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current); };
-  }, [freshPrimary, currentAnswer.primary, currentAnswer.secondary]);
 
   // Keyboard shortcuts (desktop)
   useEffect(() => {
@@ -1430,26 +1409,18 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, follow
 
   const handleOptionClick = (key) => {
     if (!hasPrimary) {
-      // New primary selection: trigger auto-advance
-      setFreshPrimary(true);
       onAnswer(question.id, { primary: key, secondary: null });
     } else if (key === currentAnswer.primary) {
-      // Deselect primary: cancel auto-advance
-      cancelAutoAdvance();
       if (followUpKey) onFollowUp(followUpKey, null);
       onAnswer(question.id, { primary: null, secondary: null });
     } else if (key === currentAnswer.secondary) {
-      // Deselect secondary
       onAnswer(question.id, { ...currentAnswer, secondary: null });
     } else {
-      // Select secondary: cancel auto-advance (user wants to refine)
-      cancelAutoAdvance();
       onAnswer(question.id, { ...currentAnswer, secondary: key });
     }
   };
 
   const handleNext = () => {
-    cancelAutoAdvance();
     // Check for micro-feedback
     const fb = getMicroFeedback(question.id, answers);
     if (fb && !feedbackShown[question.id]) {
@@ -1715,26 +1686,33 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
             <div className="legend-item"><span className="legend-dot type" /> {meta.label}-Referenz</div>
           </div>
         </div>
-        <div className="result-description">{meta.description}</div>
+        <div className="result-description" dangerouslySetInnerHTML={{ __html: meta.description }} />
+        <div className="result-pain"><div className="pain-label">Daran scheiterst du gerade wahrscheinlich:</div><p>{meta.pain}</p></div>
+        <div className="result-extra">{meta.extra}</div>
         {showMischtyp && (
-          <div className="mischtyp-section">
-            <div className="mischtyp-eyebrow">Aber da ist noch was.</div>
-            <div className="mischtyp-bridge">Du bist nicht nur {meta.label}, dein Profil zeigt auch deutliche {TYPE_META[secondaryType]?.label}-Anteile. Und genau diese Mischung macht's spannend:</div>
-            <div className="mischtyp-text">{comboText}</div>
+          <div className="mischtyp-divider">
+            <div className="mischtyp-icon">❗</div>
+            <div className="mischtyp-divider-text">Da ist noch was in dir...</div>
           </div>
         )}
-        <div className="result-pain"><div className="pain-label">Daran scheiterst du gerade wahrscheinlich:</div><p>{meta.pain}</p></div>
         <div className="result-affinities">
           <div className="affinities-label">Deine Typ-Verteilung</div>
           {sortedTypes.map(([type, pct]) => (
             <div className="affinity-row" key={type}>
               <span className="affinity-name">{TYPE_META[type].label}</span>
-              <div className="affinity-bar-track"><div className="affinity-bar-fill" style={{ width: `${pct}%`, background: type === scoring.resultType ? "var(--orange)" : "var(--warm-gray)" }} /></div>
+              <div className="affinity-bar-track"><div className="affinity-bar-fill" style={{ width: `${pct}%`, background: type === scoring.resultType ? "var(--orange)" : type === secondaryType && showMischtyp ? "var(--dark)" : "var(--warm-gray)" }} /></div>
               <span className="affinity-pct">{pct}%</span>
             </div>
           ))}
         </div>
-        <div className="result-extra">{meta.extra}</div>
+        {showMischtyp && (
+          <div className="mischtyp-section">
+            <div className="mischtyp-eyebrow">Dein Sekundär-Archetyp</div>
+            <div className="mischtyp-secondary-label">{TYPE_META[secondaryType]?.label}</div>
+            <div className="mischtyp-bridge">Du bist nicht nur {meta.label}, dein Profil zeigt auch deutliche {TYPE_META[secondaryType]?.label}-Anteile. Und genau diese Mischung macht's spannend:</div>
+            <div className="mischtyp-text">{comboText}</div>
+          </div>
+        )}
         <div className="postq-screen signup-solo">
           {emailStatus === "success" ? (
             <div className="cta-success">
