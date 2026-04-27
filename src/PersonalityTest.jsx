@@ -97,12 +97,12 @@ const QUESTIONS = [
   {
     id: 1,
     title: "💬 DAS FEEDBACK",
-    scenario: "Ein guter Freund sagt dir ehrlich, dass du dich in letzter Zeit verändert hast – und nicht zum Positiven. Wie reagierst du?",
+    scenario: "Ein guter Freund sagt dir, du hättest dich verändert. Nicht zum Positiven. Wie reagierst du?",
     options: [
       { key: "A", text: "Ich höre zu und denke ernsthaft darüber nach, auch wenn es wehtut.", scoring: { REF: 2, ML: 2 } },
-      { key: "B", text: "Ich nehme es zur Kenntnis, aber innerlich denke ich: So schlimm wird's schon nicht sein.", scoring: { SL: 1, EF: 1 } },
-      { key: "C", text: "Ich höre es mir offen an und schätze es. Solches Feedback ist selten. Wenn ich ehrlich reflektiere und etwas wiederfinde, arbeite ich gern daran.", scoring: { REF: 2, SL: 2, HA: 1 } },
-      { key: "D", text: "Ich sage nichts, lächle – und denke dennoch den ganzen Abend darüber nach.", scoring: { REF: 1, SL: -1, ML: 2, HA: -1 } },
+      { key: "B", text: "Ich nehme es zur Kenntnis. Innerlich denke ich: So schlimm wird's nicht sein.", scoring: { SL: 1, EF: 1 } },
+      { key: "C", text: "Ich schätze solch ehrliches Feedback. Ich reflektiere es und wenn etwas dran ist, arbeite ich aktiv daran.", scoring: { REF: 2, SL: 2, HA: 1 } },
+      { key: "D", text: "Ich sage nichts und lächle. Aber ich denke den ganzen Abend darüber nach.", scoring: { REF: 1, SL: -1, ML: 2, HA: -1 } },
     ],
   },
   {
@@ -119,12 +119,12 @@ const QUESTIONS = [
   {
     id: 3,
     title: "👁️ DER DURCHBLICK",
-    scenario: "Du merkst, dass in deinem Umfeld etwas schiefläuft, aber niemand spricht es an. Was tust du?",
+    scenario: "In deinem Umfeld läuft etwas schief, aber niemand spricht es an. Was tust du?",
     options: [
-      { key: "A", text: "Ich analysiere die Situation genau – aber letztlich spreche ich es nicht an, weil es zu Konflikten führen könnte.", scoring: { REF: 2, ML: 2, HA: -2 } },
-      { key: "B", text: "Ich handle, denn einer muss es ja ansprechen. Mir fällt es leichter als den meisten.", scoring: { ETH: 1, HA: 3 } },
-      { key: "C", text: "Ich sehe das Problem, aber ich finde, es ist nicht meine Aufgabe, es anzusprechen. Die Leute müssen selbst drauf kommen.", scoring: { ETH: 1, WS: 1, EX: 2, HA: -1 } },
-      { key: "D", text: "Ich überlege gründlich, ob ich das Problem sehe, weil das eigentlich mein Thema ist. Und wenn nicht, frage ich mich, ob es überhaupt in meiner Verantwortung liegt, das anzusprechen – wenn ja, tue ich das auch.", scoring: { REF: 2, SL: 1, HA: 2 } },
+      { key: "A", text: "Ich analysiere die Situation, aber spreche es nicht an. Zu viel Konfliktpotenzial.", scoring: { REF: 2, ML: 2, HA: -2 } },
+      { key: "B", text: "Ich spreche es an. Einer muss es ja tun. Mir fällt das leichter als den meisten.", scoring: { ETH: 1, HA: 3 } },
+      { key: "C", text: "Ich sehe das Problem, aber die Leute müssen selbst drauf kommen. Nicht meine Aufgabe.", scoring: { ETH: 1, WS: 1, EX: 2, HA: -1 } },
+      { key: "D", text: "Ich prüfe erst: Ist das wirklich ein Problem oder mein eigenes Thema? Wenn es eins ist und ich verantwortlich bin, spreche ich es an.", scoring: { REF: 2, SL: 1, HA: 2 } },
     ],
   },
   {
@@ -144,21 +144,21 @@ const QUESTIONS = [
     title: "🔁 DAS MUSTER",
     scenario: "Ein Kollege kritisiert deine Arbeit vor dem ganzen Team. Was passiert in dir?",
     options: [
-      { key: "A", text: "Ich reagiere professionell, aber innerlich wühlt es mich emotional auf. Ich lasse mir dennoch nichts anmerken.", scoring: { REF: 1, SL: -1, ML: 1, EF: 1 } },
-      { key: "B", text: "Ich nehme es an, auch wenn's unangenehm ist. Wenn was dran ist, will ich das wissen – wenn nicht, prallt es ab.", scoring: { REF: 1, SL: 2, HA: 1 } },
-      { key: "C", text: "Es trifft mich, und ich brauche eine Weile, bis ich mich davon erholt habe.", scoring: { SL: -2, ML: 2, HA: -1 } },
-      { key: "D", text: "Ich verspüre sofort Druck, werde nervös und versuche mich zu rechtfertigen – auch wenn ich gar nicht muss.", scoring: { SL: -2, ML: 1, OL: 2, HA: -1 } },
+      { key: "A", text: "Professionelle Reaktion nach außen, aber innerlich wühlt es mich auf.", scoring: { REF: 1, SL: -1, ML: 1, EF: 1 } },
+      { key: "B", text: "Wenn was dran ist, will ich das wissen. Wenn nicht, prallt es ab.", scoring: { REF: 1, SL: 2, HA: 1 } },
+      { key: "C", text: "Es trifft mich, und ich brauche eine Weile, bis ich mich davon erhole.", scoring: { SL: -2, ML: 2, HA: -1 } },
+      { key: "D", text: "Sofort Druck und Nervosität. Ich versuche mich zu rechtfertigen, auch wenn ich nicht müsste.", scoring: { SL: -2, ML: 1, OL: 2, HA: -1 } },
     ],
   },
   {
     id: 6,
     title: "🗣️ DIE INNERE STIMME",
-    scenario: "Wenn du an die letzten 5 Jahre zurückdenkst – was überwiegt?",
+    scenario: "Wenn du an die letzten fünf Jahre zurückdenkst: Was überwiegt?",
     options: [
       { key: "A", text: "Ich habe viel gelernt, aber an der Umsetzung scheitert es aktuell noch.", scoring: { REF: 2, ML: 3, HA: -2 } },
       { key: "B", text: "Overall habe ich das getan, was von mir erwartet wurde – und es lief ganz gut.", scoring: { EF: 2, HA: 1 } },
-      { key: "C", text: "Ich habe viel ausprobiert, aber wohl noch nicht den richtigen Weg für mich gefunden.", scoring: { OL: 3, SL: -1 } },
-      { key: "D", text: "Ich habe bewusste Entscheidungen getroffen, dazugelernt, mich entwickelt und bin zufriedener als vorher.", scoring: { REF: 1, SL: 2, HA: 2 } },
+      { key: "C", text: "Ich habe viel ausprobiert, aber den richtigen Weg noch nicht gefunden.", scoring: { OL: 3, SL: -1 } },
+      { key: "D", text: "Bewusste Entscheidungen, dazugelernt, entwickelt. Zufriedener als vorher.", scoring: { REF: 1, SL: 2, HA: 2 } },
     ],
   },
   {
@@ -166,67 +166,67 @@ const QUESTIONS = [
     title: "❓ DEIN WARUM",
     scenario: "Warum machst du diesen Test?",
     options: [
-      { key: "A", text: "Ich hoffe, dass er mir hilft zu verstehen, was in meinem Leben fehlt.", scoring: { ML: 1, OL: 2 } },
-      { key: "B", text: "Weil Freunde oder jemand aus meinem Umfeld ihn gemacht haben und meinten, ich sollte es auch mal probieren.", scoring: { EF: 2, HA: -1 } },
-      { key: "C", text: "Weil mich ehrliches Feedback über mich selbst interessiert – auch wenn's unbequem wird.", scoring: { REF: 1, SL: 1, HA: 1 } },
-      { key: "D", text: "Aus Neugier – ich analysiere gerne, wie ich ticke. Ob ich dann wirklich was damit mache, ist eine andere Frage.", scoring: { REF: 2, ML: 2, HA: -1 } },
+      { key: "A", text: "Ich hoffe, er zeigt mir, was in meinem Leben fehlt.", scoring: { ML: 1, OL: 2 } },
+      { key: "B", text: "Weil Freunde ihn gemacht haben und meinten, ich sollte es auch probieren.", scoring: { EF: 2, HA: -1 } },
+      { key: "C", text: "Weil mich ehrliches Feedback über mich interessiert, auch wenn's unbequem wird.", scoring: { REF: 1, SL: 1, HA: 1 } },
+      { key: "D", text: "Neugier. Ich analysiere gerne, wie ich ticke. Ob ich was damit mache, ist eine andere Frage.", scoring: { REF: 2, ML: 2, HA: -1 } },
     ],
   },
   // ── BLOCK 2: Ethik, Werte & Weltbild ──
   {
     id: 8,
     title: "🤷 DER WIDERSPRUCH",
-    scenario: "Du erfährst, dass ein Unternehmen, dessen Produkte du liebst, unter fragwürdigen Bedingungen produziert. Was machst du?",
+    scenario: "Ein Unternehmen, dessen Produkte du liebst, produziert unter fragwürdigen Bedingungen. Was machst du?",
     options: [
-      { key: "A", text: "Ich recherchiere und bilde mir ein eigenes Urteil, bevor ich handle. Wenn es stimmt, ziehe ich Konsequenzen.", scoring: { REF: 2, ETH: 2, HA: 2 } },
-      { key: "B", text: "Ich boykottiere sofort – selbst wenn nur ein bisschen dran ist, so etwas kann ich nicht unterstützen.", scoring: { ETH: 3, WS: 1, EX: 1, HA: 1 } },
+      { key: "A", text: "Erst recherchieren, eigenes Urteil bilden. Wenn es stimmt, ziehe ich Konsequenzen.", scoring: { REF: 2, ETH: 2, HA: 2 } },
+      { key: "B", text: "Sofort boykottieren. Selbst wenn nur ein bisschen dran ist, kann ich das nicht unterstützen.", scoring: { ETH: 3, WS: 1, EX: 1, HA: 1 } },
       { key: "C", text: "Ich finde es schlimm, aber mein Verhalten als Einzelner wird ja nichts ändern.", scoring: { ML: 2, EX: 1, HA: -1 } },
-      { key: "D", text: "Ich find's nicht gut, aber am Ende kaufe ich trotzdem, was mir gefällt – man kann ja nicht bei allem das Gewissen einschalten.", scoring: { SL: 1, EF: 1 } },
+      { key: "D", text: "Ich find's nicht gut, aber ich kaufe trotzdem. Man kann nicht bei allem das Gewissen einschalten.", scoring: { SL: 1, EF: 1 } },
     ],
   },
   {
     id: 9,
     title: "🔥 DIE DEBATTE",
     isCore: true,
-    scenario: "In einer Diskussion über ein kontroverses Thema – was beschreibt dich am besten?",
+    scenario: "Eine Diskussion über ein kontroverses Thema. Was beschreibt dich am besten?",
     options: [
       { key: "A", text: "Ich habe klare Überzeugungen und vertrete sie auch.", scoring: { ETH: 2, WS: 1, EX: 1, HA: 1 } },
       { key: "B", text: "Ich halte mich meistens raus – Diskussionen ändern selten etwas.", scoring: { ML: 2, HA: -2 } },
-      { key: "C", text: "Ich versuche beide Seiten ehrlich zu verstehen, bilde mir dann eine Meinung – und stehe auch dazu.", scoring: { REF: 2, SL: 1, ETH: 1, HA: 1 } },
-      { key: "D", text: "Ich passe meine Position manchmal an, je nachdem mit wem ich rede.", scoring: { SL: -1, EF: 2 } },
+      { key: "C", text: "Beide Seiten verstehen, eigene Meinung bilden, dazu stehen.", scoring: { REF: 2, SL: 1, ETH: 1, HA: 1 } },
+      { key: "D", text: "Ich passe meine Position manchmal an, je nachdem, mit wem ich rede.", scoring: { SL: -1, EF: 2 } },
     ],
   },
   {
     id: 10,
     title: "🌐 DAS WELTBILD",
-    scenario: "Du scrollst durch Instagram und siehst einen Beitrag über Massentierhaltung, Kinderarbeit oder Umweltzerstörung. Dein Impuls?",
+    scenario: "Du siehst auf Instagram einen Beitrag über Massentierhaltung, Kinderarbeit oder Umweltzerstörung. Dein Impuls?",
     options: [
-      { key: "A", text: "Ich versuche einzuordnen, was davon ist Meinung, was Fakt – mich interessiert die Wahrheit dahinter.", scoring: { REF: 2 } },
-      { key: "B", text: "Es macht mich wütend. Die Welt braucht dringend mehr Menschen, die aufstehen und etwas verändern.", scoring: { ETH: 1, WS: 3, EX: 1 } },
-      { key: "C", text: "Ich merke, dass ich abgestumpft bin – es gibt einfach zu viele schlechte Nachrichten.", scoring: { SL: -1, ML: 1, HA: -1 } },
-      { key: "D", text: "Ich versuche, Medien bewusst und dosiert zu konsumieren. Ich will zwar grundlegend informiert sein, aber lasse mich davon nicht runterziehen.", scoring: { REF: 1, SL: 1, HA: 1 } },
+      { key: "A", text: "Mich interessiert: Was ist Meinung, was Fakt? Ich will die Wahrheit dahinter.", scoring: { REF: 2 } },
+      { key: "B", text: "Es macht mich wütend. Die Welt braucht Menschen, die aufstehen und handeln.", scoring: { ETH: 1, WS: 3, EX: 1 } },
+      { key: "C", text: "Ich merke, dass ich abgestumpft bin. Zu viele schlechte Nachrichten.", scoring: { SL: -1, ML: 1, HA: -1 } },
+      { key: "D", text: "Ich konsumiere Medien bewusst und dosiert. Informieren ja, runterziehen lassen nein.", scoring: { REF: 1, SL: 1, HA: 1 } },
     ],
   },
   {
     id: 11,
     title: "🪞 DER SPIEGEL",
-    scenario: "Du merkst, dass deine Meinung zu einem Thema sich komplett von der deines Umfelds unterscheidet. Wie gehst du damit um?",
+    scenario: "Deine Meinung unterscheidet sich komplett von der deines Umfelds. Wie gehst du damit um?",
     options: [
-      { key: "A", text: "Ich behalte meine Meinung für mich – es lohnt sich fast nie große Diskussionen loszutreten und anzuecken.", scoring: { SL: -1, EF: 2, HA: -1 } },
-      { key: "B", text: "Ich vertrete meine Position – respektvoll, aber klar. Meine Meinung ist mir wichtiger als Harmonie.", scoring: { REF: 1, SL: 2, ETH: 1, HA: 2 } },
+      { key: "A", text: "Ehrlicherweise behalte ich sie meist für mich. Große Diskussionen loszutreten lohnt sich fast nie.", scoring: { SL: -1, EF: 2, HA: -1 } },
+      { key: "B", text: "Ich vertrete meine Position. Respektvoll, aber klar. Meine Position ist mir wichtiger als Harmonie.", scoring: { REF: 1, SL: 2, ETH: 1, HA: 2 } },
       { key: "C", text: "Ich hinterfrage zuerst meine eigene Position ehrlich, bevor ich entscheide, ob ich sie teile.", scoring: { REF: 3, SL: 1 } },
-      { key: "D", text: "Ich merke, dass ich meine ursprüngliche Meinung häufig ändere – auch weil ich die Meinung meines Umfelds (zu) sehr schätze.", scoring: { EF: 3, ML: 1, HA: -1 } },
+      { key: "D", text: "Ich ändere meine Meinung oft, weil ich die meines Umfelds zu sehr schätze.", scoring: { EF: 3, ML: 1, HA: -1 } },
     ],
   },
   {
     id: 12,
     title: "🌎 DIE VERANTWORTUNG",
-    scenario: "Wenn es um die großen Probleme der Welt geht – Klima, Ungerechtigkeit, Kriege – wie stehst du dazu?",
+    scenario: "Klima, Ungerechtigkeit, Kriege. Wie stehst du zu den großen Problemen der Welt?",
     options: [
-      { key: "A", text: "Es macht mich sauer. Es kann doch nicht sein, dass alle einfach nur zuschauen.", scoring: { ETH: 2, WS: 3, EX: 2 } },
-      { key: "B", text: "Es belastet mich emotional, doch ich versuche einfach, meinen Teil beizutragen und ein guter Mensch zu sein.", scoring: { ML: 1, ETH: 1, WS: 1, HA: 1 } },
-      { key: "C", text: "Ich versuche, rational zu bleiben und meinen Teil beizutragen, wo es sinnvoll ist.", scoring: { REF: 1, ETH: 1, HA: 1 } },
-      { key: "D", text: "Ich versuche, meinen Teil beizutragen, ohne mich von den großen Problemen lähmen zu lassen – und ohne mich dafür schuldig zu fühlen, dass ich trotzdem mein Leben lebe.", scoring: { REF: 1, SL: 1, ETH: 1, HA: 1 } },
+      { key: "A", text: "Es macht mich sauer. Es kann nicht sein, dass alle nur zuschauen.", scoring: { ETH: 2, WS: 3, EX: 2 } },
+      { key: "B", text: "Es belastet mich. Ich versuche ein guter Mensch zu sein, aber das Gefühl, dass es nicht reicht, bleibt.", scoring: { ML: 1, ETH: 1, WS: 1, HA: 1 } },
+      { key: "C", text: "Ich informiere mich, aber lasse mich emotional nicht reinziehen. Ich helfe, wo es konkret Sinn macht.", scoring: { REF: 1, ETH: 1, HA: 1 } },
+      { key: "D", text: "Ich engagiere mich, wo ich kann, ohne Schuldgefühle dafür, dass ich trotzdem mein Leben lebe.", scoring: { REF: 1, SL: 1, ETH: 1, HA: 1 } },
     ],
   },
   {
@@ -255,12 +255,12 @@ const QUESTIONS = [
   {
     id: 15,
     title: "⚙️ DIE GEWOHNHEIT",
-    scenario: "Wenn du ehrlich bist: Wie viel von deinem Alltag basiert auf bewussten Entscheidungen – und wie viel läuft auf Autopilot?",
+    scenario: "Wie viel von deinem Alltag basiert auf bewussten Entscheidungen, wie viel läuft auf Autopilot?",
     options: [
-      { key: "A", text: "Vieles läuft automatisch – aber ich habe das bewusst so eingerichtet, weil es funktioniert.", scoring: { REF: 1, SL: 1, HA: 1 } },
+      { key: "A", text: "Vieles läuft automatisch, aber ich habe das bewusst so eingerichtet.", scoring: { REF: 1, SL: 1, HA: 1 } },
       { key: "B", text: "Ich mache mir darüber ehrlich gesagt wenig Gedanken. Mein Alltag ist halt wie er ist.", scoring: { REF: -1, EF: 2 } },
-      { key: "C", text: "Ich hinterfrage regelmäßig, ob das, was ich tue, noch zu mir passt – und versuche es zu ändern, wenn nicht.", scoring: { REF: 2, SL: 1, HA: 2 } },
-      { key: "D", text: "Ich spüre, dass vieles auf Autopilot läuft – und das stört mich, aber ich weiß nicht, wie ich es ändern soll.", scoring: { REF: 1, ML: 2, OL: 1, HA: -1 } },
+      { key: "C", text: "Ich hinterfrage regelmäßig, ob mein Alltag noch zu mir passt. Wenn nicht versuche ich, es zu ändern.", scoring: { REF: 2, SL: 1, HA: 2 } },
+      { key: "D", text: "Vieles läuft auf Autopilot. Das stört mich, aber ich weiß nicht, wie ich es ändere.", scoring: { REF: 1, ML: 2, OL: 1, HA: -1 } },
     ],
   },
   {
@@ -268,10 +268,10 @@ const QUESTIONS = [
     title: "🚀 DAS PROJEKT",
     scenario: "Du hast eine Idee, die dich begeistert. Was passiert als Nächstes?",
     options: [
-      { key: "A", text: "Ich denke lange darüber nach, plane im Kopf, aber meist starte ich nie wirklich.", scoring: { REF: 2, ML: 4, HA: -3 } },
-      { key: "B", text: "Ich springe sofort rein – Energie ist da, der Rest ergibt sich. Oder auch nicht.", scoring: { HA: 2 } },
-      { key: "C", text: "Ich ziehe es fast immer durch. Wird sich schon zeigen, ob es das Richtige ist. Aufgeben ist jedenfalls keine Option.", scoring: { EF: 1, HA: 2 } },
-      { key: "D", text: "Ich starte, wenn es sich richtig anfühlt, und ziehe es durch – mit Pausen, aber ohne den Faden zu verlieren.", scoring: { REF: 1, SL: 1, HA: 3 } },
+      { key: "A", text: "Lange nachdenken, im Kopf planen, aber meistens starte ich nie wirklich.", scoring: { REF: 2, ML: 4, HA: -3 } },
+      { key: "B", text: "Ich springe sofort rein. Energie ist da, der Rest ergibt sich. Oder auch nicht.", scoring: { HA: 2 } },
+      { key: "C", text: "Ich ziehe es durch. Ob es das Richtige ist, wird sich zeigen. Aufgeben ist keine Option.", scoring: { EF: 1, HA: 2 } },
+      { key: "D", text: "Ich starte, wenn es sich richtig anfühlt, und ziehe es durch. Evtl. mit Pausen, aber ohne Faden zu verlieren.", scoring: { REF: 1, SL: 1, HA: 3 } },
     ],
   },
   {
@@ -281,53 +281,53 @@ const QUESTIONS = [
     scenario: "Was hält dich am ehesten davon ab, dein Leben zu verändern?",
     options: [
       { key: "A", text: "Die Angst, das Falsche zu tun.", scoring: { SL: -1, ML: 2, HA: -2 } },
-      { key: "B", text: "Ich glaube, ich habe mich an meinen Status quo zu sehr gewöhnt.", scoring: { ML: 1, EF: 2, HA: -1 } },
-      { key: "C", text: "Ehrlich? Nicht viel. Wenn ich merke, dass etwas nicht stimmt, ändere ich es – auch wenn's dauert.", scoring: { SL: 2, HA: 2 } },
-      { key: "D", text: "Ich ändere ständig etwas, aber es fühlt sich trotzdem an, als käme ich nicht wirklich voran.", scoring: { OL: 2, HA: 1 } },
+      { key: "B", text: "Ich habe mich wohl sehr an meinen Status quo gewöhnt.", scoring: { ML: 1, EF: 2, HA: -1 } },
+      { key: "C", text: "Ehrlich? Nicht viel. Wenn etwas nicht stimmt, ändere ich es.", scoring: { SL: 2, HA: 2 } },
+      { key: "D", text: "Ich ändere ständig etwas, aber komme trotzdem nicht wirklich voran.", scoring: { OL: 2, HA: 1 } },
     ],
   },
   {
     id: 18,
     title: "⏸️ DER STILLSTAND",
-    scenario: "Du hast das Gefühl, auf der Stelle zu treten – nichts bewegt sich wirklich vorwärts. Was tust du?",
+    scenario: "Du trittst auf der Stelle, nichts bewegt sich. Was tust du?",
     options: [
-      { key: "A", text: "Ich denke viel darüber nach, warum das so ist – und verstehe es meistens auch. Aber das ändert nichts.", scoring: { REF: 3, ML: 4, HA: -2 } },
-      { key: "B", text: "Ich arbeite härter. Mit der richtigen Motivation kommen die Ergebnisse und Veränderungen von selbst.", scoring: { EF: 1, HA: 2 } },
-      { key: "C", text: "Ich frage mich, ob ich vielleicht einfach noch nicht das Richtige gefunden habe – und schaue mich weiter um.", scoring: { OL: 2 } },
-      { key: "D", text: "Ich schaue ehrlich hin, was blockiert – und setze dort an, auch wenn es unbequem ist.", scoring: { REF: 2, SL: 1, HA: 3 } },
+      { key: "A", text: "Ich verstehe meistens, warum das so ist. Aber das ändert nichts.", scoring: { REF: 3, ML: 4, HA: -2 } },
+      { key: "B", text: "Härter arbeiten. Mit der richtigen Motivation kommen die Ergebnisse von selbst.", scoring: { EF: 1, HA: 2 } },
+      { key: "C", text: "Vielleicht habe ich einfach noch nicht das Richtige gefunden. Ich schaue weiter.", scoring: { OL: 2 } },
+      { key: "D", text: "Ehrlich hinschauen, was blockiert, und dort ansetzen. Auch wenn's unbequem ist.", scoring: { REF: 2, SL: 1, HA: 3 } },
     ],
   },
   {
     id: 19,
     title: "📱 DIE ABLENKUNG",
-    scenario: "Wie gehst du mit Momenten um, in denen du dich leer oder orientierungslos fühlst?",
+    scenario: "Du fühlst dich leer oder orientierungslos. Wie gehst du damit um?",
     options: [
-      { key: "A", text: "Ich analysiere das Gefühl, versuche es zu verstehen – aber es bleibt trotzdem.", scoring: { REF: 2, ML: 3, HA: -1 } },
-      { key: "B", text: "Ich suche nach dem nächsten Impuls – einem Buch, einem Podcast, einer neuen Richtung.", scoring: { OL: 2 } },
-      { key: "C", text: "Ich halte das Gefühl aus und lasse es da sein. Es geht vorbei – und meistens zeigt es mir etwas.", scoring: { REF: 1, SL: 2, NAT: 1, HA: 1 } },
-      { key: "D", text: "Ehrlich gesagt fühle ich das selten. Ich bin grundsätzlich zufrieden mit meiner Richtung.", scoring: { SL: 2, HA: 1 } },
+      { key: "A", text: "Ich analysiere das Gefühl und versuche es zu verstehen. Aber es bleibt.", scoring: { REF: 2, ML: 3, HA: -1 } },
+      { key: "B", text: "Ich suche den nächsten Impuls: Buch, Podcast, neue Richtung.", scoring: { OL: 2 } },
+      { key: "C", text: "Ich halte es aus und lasse es da sein. Es geht vorbei und zeigt mir meistens etwas.", scoring: { REF: 1, SL: 2, NAT: 1, HA: 1 } },
+      { key: "D", text: "Fühle ich selten. Ich bin grundsätzlich zufrieden mit meiner Richtung.", scoring: { SL: 2, HA: 1 } },
     ],
   },
   {
     id: 20,
     title: "🤝 DIE HILFE",
-    scenario: "Jemand aus deinem Umfeld steckt in einer schwierigen Phase und bittet dich um Rat. Was machst du?",
+    scenario: "Jemand steckt in einer schwierigen Phase und bittet dich um Rat. Was machst du?",
     options: [
-      { key: "A", text: "Ich höre zu und gebe ehrliches Feedback – auch wenn es nicht das ist, was die Person hören will.", scoring: { REF: 2, SL: 1, ETH: 1, HA: 1 } },
-      { key: "B", text: "Ich bin für die Person da, aber halte mich mit Ratschlägen zurück. Ich will nicht übergriffig sein.", scoring: { REF: 1, ML: 1, ETH: 1, HA: -1 } },
-      { key: "C", text: "Ich helfe gerne und proaktiv – es könnte sein, dass ich manchmal dabei über's Ziel hinausschieße.", scoring: { ETH: 1, WS: 1, HA: 2 } },
-      { key: "D", text: "Ich versuche zu helfen, aber merke, dass ich selbst nicht genug Stabilität habe, um andere aufzufangen.", scoring: { SL: -1, ML: 1, HA: -1 } },
+      { key: "A", text: "Ehrliches Feedback, auch wenn es nicht das ist, was die Person hören will.", scoring: { REF: 2, SL: 1, ETH: 1, HA: 1 } },
+      { key: "B", text: "Ich bin da, halte mich aber mit Ratschlägen zurück. Nicht übergriffig sein.", scoring: { REF: 1, ML: 1, ETH: 1, HA: -1 } },
+      { key: "C", text: "Ich helfe gerne und proaktiv. Manchmal schieße ich dabei evtl. über's Ziel hinaus.", scoring: { ETH: 1, WS: 1, HA: 2 } },
+      { key: "D", text: "Ich will helfen, merke aber, dass mir selbst die Stabilität fehlt, andere aufzufangen.", scoring: { SL: -1, ML: 1, HA: -1 } },
     ],
   },
   {
     id: 21,
     title: "💰 DAS GELD",
-    scenario: "Du gewinnst unerwartet 100.000€. Dein erster Gedanke?",
+    scenario: "Du gewinnst unerwartet 100.000 Euro. Dein erster Gedanke?",
     options: [
-      { key: "A", text: "Endlich Möglichkeiten! Reisen, Erfahrungen, all die Dinge, die ich mir immer gewünscht habe.", scoring: { OL: 1 } },
-      { key: "B", text: "Investieren, absichern, klug anlegen. Das ist schließlich eine einmalige Sache, damit sollte ich besonnen umgehen.", scoring: { ML: 1, EF: 1 } },
-      { key: "C", text: "Geld ist schön und gut, aber mir nicht so wichtig. Ein Teil wird definitiv gespendet.", scoring: { ETH: 2, WS: 1, NAT: 1 } },
-      { key: "D", text: "Ich bremse meine Euphorie und wäge gründlich ab, was die sinnvollsten Verwendungszwecke sind.", scoring: { REF: 2, SL: 1, HA: 1 } },
+      { key: "A", text: "Endlich Möglichkeiten! Reisen, Erfahrungen, alles, was ich mir immer gewünscht habe.", scoring: { OL: 1 } },
+      { key: "B", text: "Investieren, absichern, klug anlegen. Mit einer einmaligen Chance besonnen umgehen.", scoring: { ML: 1, EF: 1 } },
+      { key: "C", text: "Geld ist mir nicht so wichtig. Ein Teil wird definitiv gespendet.", scoring: { ETH: 2, WS: 1, NAT: 1 } },
+      { key: "D", text: "Euphorie bremsen und gründlich abwägen, was am sinnvollsten ist.", scoring: { REF: 2, SL: 1, HA: 1 } },
     ],
   },
   // ── BLOCK 4: Identität & Tiefenstruktur ──
@@ -345,56 +345,56 @@ const QUESTIONS = [
   {
     id: 23,
     title: "📊 DER VERGLEICH",
-    scenario: "Du siehst jemanden, der scheinbar genau das Leben lebt, das du dir wünschst.",
+    scenario: "Jemand lebt scheinbar genau das Leben, das du dir wünschst.",
     options: [
-      { key: "A", text: "Ich frage mich: Was hat diese Person, das ich nicht habe – und was müsste ich ändern?", scoring: { REF: 1, ML: 1 } },
-      { key: "B", text: "Es motiviert mich – wenn die das kann, kann ich es auch.", scoring: { SL: 1, HA: 1 } },
-      { key: "C", text: "Es sticht. Nicht aus Neid, sondern weil es mich daran erinnert, wo ich nicht bin.", scoring: { SL: -2, ML: 2, OL: 1 } },
-      { key: "D", text: "Ich hinterfrage, ob dieses Leben wirklich so toll ist, wie es aussieht – und ob es überhaupt das ist, was ich wirklich will, oder nur das, was gerade attraktiv wirkt.", scoring: { REF: 3, SL: 1 } },
+      { key: "A", text: "Was hat die Person, das ich nicht habe? Und was müsste ich ändern?", scoring: { REF: 1, ML: 1 } },
+      { key: "B", text: "Es motiviert mich. Wenn die das kann, kann ich es auch.", scoring: { SL: 1, HA: 1 } },
+      { key: "C", text: "Es sticht. Nicht Neid, aber es erinnert mich daran, wo ich nicht bin.", scoring: { SL: -2, ML: 2, OL: 1 } },
+      { key: "D", text: "Jetzt wo ich es in Realität sehe, frage ich mich, ob es wirklich so erstrebenswert ist.", scoring: { REF: 3, SL: 1 } },
     ],
   },
   {
     id: 24,
     title: "🎭 DIE MASKE",
-    scenario: "Wie oft zeigst du dich so, wie du wirklich bist – ohne Filter?",
+    scenario: "Wie oft zeigst du dich so, wie du wirklich bist? Ohne Filter?",
     options: [
-      { key: "A", text: "Ehrlich gesagt selten. Die meisten Menschen können damit nicht umgehen.", scoring: { REF: 2, SL: -1, ML: 2, HA: -1 } },
-      { key: "B", text: "Ich zeige mich meistens so, wie ich bin. Verstellen kostet zu viel Energie.", scoring: { SL: 2, HA: 2 } },
-      { key: "C", text: "Bei wenigen, ausgewählten Menschen – die haben mein Vertrauen erarbeitet.", scoring: { SL: 1, ETH: 1 } },
+      { key: "A", text: "Selten. Die meisten können damit nicht umgehen.", scoring: { REF: 2, SL: -1, ML: 2, HA: -1 } },
+      { key: "B", text: "Meistens so, wie ich bin. Verstellen kostet zu viel Energie.", scoring: { SL: 2, HA: 2 } },
+      { key: "C", text: "Bei wenigen Menschen, die mein Vertrauen erarbeitet haben.", scoring: { SL: 1, ETH: 1 } },
       { key: "D", text: 'Ich bin mir nicht sicher, was „wirklich ich" überhaupt bedeutet.', scoring: { OL: 1 } },
     ],
   },
   {
     id: 25,
     title: "💡 DER RAT",
-    scenario: "Wenn du an dein jüngeres Ich denkst – was hättest du dir damals gewünscht zu wissen?",
+    scenario: "Was hättest du deinem jüngeren Ich gerne gesagt?",
     options: [
       { key: "A", text: "Hör auf, es allen recht machen zu wollen.", scoring: { EF: 2 } },
-      { key: "B", text: "Dass man nicht alles perfekt durchdacht haben muss, bevor man loslegen darf.", scoring: { REF: 2, ML: 2, HA: -1 } },
-      { key: "C", text: "Die Welt wird dich enttäuschen – aber gib nicht auf.", scoring: { ETH: 1, WS: 2, EX: 1 } },
+      { key: "B", text: "Du musst nicht alles perfekt durchdacht haben, bevor du loslegst.", scoring: { REF: 2, ML: 2, HA: -1 } },
+      { key: "C", text: "Die Welt wird dich enttäuschen. Aber gib nicht auf.", scoring: { ETH: 1, WS: 2, EX: 1 } },
       { key: "D", text: "Such nicht im Außen, was nur im Innen zu finden ist.", scoring: { REF: 1, SL: 2, NAT: 1 } },
     ],
   },
   {
     id: 26,
     title: "🤫 DIE STILLE",
-    scenario: "Du hast einen komplett freien Tag – keine Verpflichtungen, keine Pläne. Was passiert?",
+    scenario: "Komplett freier Tag. Keine Verpflichtungen, keine Pläne. Was passiert?",
     options: [
-      { key: "A", text: "Ich genieße es. Ich mache das, worauf ich Lust habe – oder auch einfach mal nichts.", scoring: { SL: 2, NAT: 1 } },
-      { key: "B", text: "Ich fange an, Dinge zu erledigen, die liegen geblieben sind – Freizeit fühlt sich unproduktiv an.", scoring: { SL: -1, EF: 2, HA: 1 } },
-      { key: "C", text: "Ich verbringe Zeit in der Natur, meditiere oder mache etwas, das mich wieder erdet.", scoring: { ETH: 1, NAT: 3 } },
-      { key: "D", text: "Ich merke schnell, dass mir die Decke auf den Kopf fällt – und suche mir was zum Tun oder jemanden zum Treffen.", scoring: { SL: -1, EF: 1 } },
+      { key: "A", text: "Ich genieße es und mache worauf ich Lust habe oder auch einfach nichts.", scoring: { SL: 2, NAT: 1 } },
+      { key: "B", text: "Ich erledige Liegengebliebenes. Freizeit fühlt sich unproduktiv an.", scoring: { SL: -1, EF: 2, HA: 1 } },
+      { key: "C", text: "Zeit in der Natur, meditieren oder etwas, das mich erdet.", scoring: { ETH: 1, NAT: 3 } },
+      { key: "D", text: "Schnell fällt mir die Decke auf den Kopf. Ich suche mir was zum Tun oder Gesellschaft.", scoring: { SL: -1, EF: 1 } },
     ],
   },
   {
     id: 27,
     title: "🔄 DER NEUANFANG",
-    scenario: "Jemand in deinem Umfeld gibt alles auf – Job, Beziehung, Stadt – und fängt komplett neu an. Dein erster Gedanke?",
+    scenario: "Jemand gibt alles auf: Job, Beziehung, Wohnort. Fängt komplett neu an. Dein erster Gedanke?",
     options: [
-      { key: "A", text: "Respekt – aber ich frage mich, ob ich das jemals könnte.", scoring: { REF: 2, ML: 3, HA: -2 } },
-      { key: "B", text: "Ich finde es mutig, aber auch riskant. Manche Dinge, die man sich lang aufgebaut hat, gibt man besser nicht auf.", scoring: { ML: 1, EF: 1 } },
-      { key: "C", text: "Es inspiriert mich – und gleichzeitig macht es mir meine eigene Situation bewusster.", scoring: { OL: 1 } },
-      { key: "D", text: "Stark. Ich gönne es der Person – und wenn bei mir so ein Schritt ansteht, traue ich mir das auch zu.", scoring: { SL: 2, HA: 1 } },
+      { key: "A", text: "Respekt! Aber ich frage mich, ob ich das jemals könnte.", scoring: { REF: 2, ML: 3, HA: -2 } },
+      { key: "B", text: "Mutig, aber riskant. Manches, das man sich aufgebaut hat, gibt man besser nicht auf.", scoring: { ML: 1, EF: 1 } },
+      { key: "C", text: "Es inspiriert mich und macht mir meine eigene Situation bewusster.", scoring: { OL: 1 } },
+      { key: "D", text: "Stark. Ich gönne es ihr. Und wenn bei mir so ein Schritt ansteht, traue ich mir das auch zu.", scoring: { SL: 2, HA: 1 } },
     ],
   },
   {
@@ -403,10 +403,10 @@ const QUESTIONS = [
     isCore: true,
     scenario: "Wie würdest du dein Verhältnis zu dir selbst beschreiben?",
     options: [
-      { key: "A", text: "Ich habe mich lange nicht wirklich gekannt – und bin immer noch dabei, mich zu entdecken.", scoring: { REF: 1, OL: 1 } },
-      { key: "B", text: "Ich kenne mich gut – vielleicht zu gut. Manchmal wünschte ich, ich könnte weniger sehen.", scoring: { REF: 3, ML: 3, WS: 1 } },
-      { key: "C", text: "Ich kenne mich gut – nicht perfekt, aber gut genug, um gute Entscheidungen für mich zu treffen.", scoring: { REF: 2, SL: 2, HA: 1 } },
-      { key: "D", text: "Ich habe mir bisher wenig Gedanken darüber gemacht – es lief auch so ganz okay.", scoring: { REF: -1, EF: 2 } },
+      { key: "A", text: "Ich habe mich lange nicht gekannt und bin noch dabei, mich zu entdecken.", scoring: { REF: 1, OL: 1 } },
+      { key: "B", text: "Ich kenne mich gut, vielleicht zu gut. Manchmal wünschte ich, ich könnte weniger sehen.", scoring: { REF: 3, ML: 3, WS: 1 } },
+      { key: "C", text: "Ich kenne mich gut genug, um gute Entscheidungen für mich zu treffen.", scoring: { REF: 2, SL: 2, HA: 1 } },
+      { key: "D", text: "Habe mir bisher wenig Gedanken darüber gemacht. Lief auch so ganz okay.", scoring: { REF: -1, EF: 2 } },
     ],
   },
   {
@@ -414,10 +414,10 @@ const QUESTIONS = [
     title: "🔁 DAS WIEDERKEHRENDE MUSTER",
     scenario: "Du erkennst ein Muster, das dich immer wieder bremst. Was tust du?",
     options: [
-      { key: "A", text: "Ich verstehe das Muster komplett, aber es zu durchbrechen schaffe ich trotzdem nicht. Es ist wie eine unsichtbare Mauer.", scoring: { REF: 2, ML: 3, HA: -2 } },
-      { key: "B", text: "Ich nehme mir vor, es anders zu machen – und meistens ziehe ich das auch durch. Nicht perfekt, aber besser als vorher.", scoring: { REF: 2, SL: 1, HA: 2 } },
-      { key: "C", text: "Ich bin nicht sicher, ob ich solche Muster überhaupt erkenne. Vielleicht bräuchte ich jemanden, der mir das spiegelt.", scoring: { OL: 1, HA: -1 } },
-      { key: "D", text: "Ich ahne, dass da ein Muster ist – aber ich weiß noch nicht, wie ich es greifen oder ändern kann. Mir fehlt der Ansatzpunkt.", scoring: { REF: 1, ML: 1, OL: 1, HA: -1 } },
+      { key: "A", text: "Ich verstehe das Muster, aber es zu durchbrechen schaffe ich nicht. Wie eine unsichtbare Mauer.", scoring: { REF: 2, ML: 3, HA: -2 } },
+      { key: "B", text: "Ich nehme mir vor, es anders zu machen, und ziehe es meistens durch. Nicht perfekt, aber besser.", scoring: { REF: 2, SL: 1, HA: 2 } },
+      { key: "C", text: "Ich bin nicht sicher, ob ich solche Muster überhaupt erkenne.", scoring: { OL: 1, HA: -1 } },
+      { key: "D", text: "Ich ahne ein Muster, aber weiß nicht, wie ich es greifen oder ändern kann.", scoring: { REF: 1, ML: 1, OL: 1, HA: -1 } },
     ],
   },
   {
@@ -426,9 +426,9 @@ const QUESTIONS = [
     scenario: "Was hat dich bis zur letzten Frage gebracht?",
     options: [
       { key: "A", text: "Neugier. Ich will verstehen, wie ich ticke.", scoring: { REF: 2 } },
-      { key: "B", text: "Die Hoffnung, dass mir das hier etwas zeigt, das ich alleine nicht sehen kann.", scoring: { ML: 1, OL: 1 } },
-      { key: "C", text: "Ich will an mir arbeiten – und dachte, vielleicht hilft das hier.", scoring: { HA: 2 } },
-      { key: "D", text: "Eine Mischung aus Interesse und Spaß an der Sache. Ich bin gespannt, was rauskommt – ohne riesige Erwartungen.", scoring: { SL: 1, HA: 1 } },
+      { key: "B", text: "Die Hoffnung, dass mir das hier etwas zeigt, das ich alleine nicht sehe.", scoring: { ML: 1, OL: 1 } },
+      { key: "C", text: "Ich will an mir arbeiten und dachte, vielleicht hilft das hier.", scoring: { HA: 2 } },
+      { key: "D", text: "Aus Neugier und Spaß. Ohne große Erwartungen.", scoring: { SL: 1, HA: 1 } },
     ],
   },
 ];
@@ -669,6 +669,30 @@ const PAIN_POINTS = {
     "Es fühlt sich an, als würde ich vieles verstehen, aber ich kann nicht konsequent danach handeln.",
     "Mein Wissen und Erlerntes führte bisher nicht zu echtem Frieden – das frustriert mich.",
   ],
+};
+
+// ─── MISCHTYP COMBO TEXTS (Margin < 20) ──────────────────────────────────
+const COMBO_TEXTS = {
+  "zuschauer+getriebener": "Wahrscheinlich ist dein Kalender genauso voll wie dein Kopf. Du bist fast st\u00e4ndig in Bewegung und kommst selten zur Ruhe. Dein analytischer Zuschauer-Anteil erkennt bereits vieles, doch du bist \u201Ezu besch\u00e4ftigt\u201C, um auch wirklich aktiv in der Praxis Vorteile aus deinen theoretischen Erkenntnissen zu ziehen und mit ihnen zu arbeiten.",
+  "zuschauer+idealist": "Du gr\u00fcbelst wahrscheinlich nicht nur \u00fcber dich selbst, sondern auch \u00fcber Dinge, die du nicht kontrollieren kannst. Die Welt, die Ungerechtigkeit, das gro\u00dfe Ganze. Das eine f\u00fcttert das andere. Und beides zusammen erzeugt eine Art Weltschmerz. Eine Art L\u00e4hmung. Und diese macht es dir schwerer, \u00fcberhaupt bei dir selbst anzufangen.",
+  "zuschauer+suchender": "Statt ins Handeln zu kommen, suchst du vermutlich eher weiter: das n\u00e4chste Buch, den n\u00e4chsten Podcast, die n\u00e4chste Erkenntnis. Du hoffst, dass irgendwann der entscheidende Impuls kommt. Aber vielleicht ist mehr Wissen gar nicht die L\u00f6sung, sondern der Moment, in dem du mit dem anf\u00e4ngst, was du schon wei\u00dft.",
+  "zuschauer+klarsichtiger": "Du bist wahrscheinlich n\u00e4her dran, als du denkst. Dein Verst\u00e4ndnis f\u00fcr dich selbst ist weiter als bei den meisten. Aber vielleicht kennst du das: Zwischen \u201EIch k\u00f6nnte\u201C und \u201EIch tue es\u201C liegt bei dir noch eine L\u00fccke, die du lieber nicht zu genau anschaust.",
+  "getriebener+zuschauer": "Vielleicht kennst du das: In ruhigen Momenten taucht ein subtiles Gef\u00fchl auf, dass hinter deinem hohen Pensum etwas wartet, dem du dich nicht so gerne stellst. Und statt hinzuschauen, drehst du die Geschwindigkeit meist dann doch wieder hoch. Dein analytischer Verstand erkennt das vermutlich sogar. Aber das Erkennen allein \u00e4ndert noch nichts.",
+  "getriebener+idealist": "Du gibst wahrscheinlich viel Energie f\u00fcr andere und f\u00fcr eine \u201Egute Sache\u201C, w\u00e4hrend deine eigenen Bed\u00fcrfnisse oft hinten anstehen. Vielleicht tust du sie sogar als egoistisch ab. Du funktionierst und k\u00e4mpfst gleichzeitig und wunderst dich manchmal, warum du dich trotzdem noch nicht angekommen oder erf\u00fcllt f\u00fchlst.",
+  "getriebener+suchender": "Du gibst Vollgas und bist irgendwie auch stolz drauf. Doch dann kommen, nicht st\u00e4ndig, doch immer wieder, Zweifel ob du eigentlich in die richtige Richtung rennst. Mal funktionierst du wie eine Maschine, dann fragst du dich pl\u00f6tzlich: \u201EWof\u00fcr eigentlich?\u201C Aber bevor du wirklich auf die Suche nach der Antwort gehst, st\u00fcrzt du dich schon in den n\u00e4chsten Sprint.",
+  "getriebener+klarsichtiger": "Entweder du bist bereits voll im Selbstoptimierungswahn, denn du siehst deine Potenziale und Schw\u00e4chen genau so klar wie die anderer, oder du nutzt dieses Wissen durch Selbstreflektion manchmal, um dein Funktionieren zu rechtfertigen. \u201EIch wei\u00df ja, warum ich so bin.\u201C Und dann machst du so weiter. Nicht blind f\u00fcr deine Muster, aber ziemlich gut darin, sie zu rationalisieren und dir selbst vorzumachen, weshalb die wirklich unangenehme Ver\u00e4nderung gerade nicht n\u00f6tig ist.",
+  "idealist+zuschauer": "Vielleicht merkst du, dass sich dein Weltschmerz manchmal mit Selbstanalyse vermischt. Du w\u00fcnschst dir tief in deinem Inneren eine utopische Optimall\u00f6sung f\u00fcr die Welt, doch erkennst in deinem Leben, aber auch in deinem Umfeld zu viel, das diesem Wunsch entgegenwirkt. Das f\u00fchrt zu Frustration und L\u00e4hmung. Du verurteilst dich selbst, Teil des Problems zu sein, doch es f\u00fchlt sich an, als w\u00e4ren dir die H\u00e4nde gebunden dein Leben entsprechend zu ver\u00e4ndern.",
+  "idealist+getriebener": "Dein Idealismus gibt dir vermutlich eine Richtung. Einen moralischen Kompass. Dein Getriebener-Anteil gibt dir zus\u00e4tzlich Antrieb. Das kann produktiv sein. Aber vielleicht verwechselst du manchmal Aktivismus mit echtem Fortschritt und bist so besch\u00e4ftigt, gegen das Falsche zu k\u00e4mpfen, dass f\u00fcr den Aufbau von etwas Eigenem wenig Raum und Energie bleibt. Vielleicht lohnt es sich ja mehr, langfristig zu denken und zu handeln, um am Ende wahre Ver\u00e4nderung zu bewirken. Verbrenne dich nicht selbst im Namen der Sache, die Welt braucht Menschen wie dich.",
+  "idealist+suchender": "Du suchst nicht nur nach M\u00f6glichkeiten die Welt besser zu machen, sondern auch nach der richtigen Richtung f\u00fcr dich. Du willst ein guter Mensch sein. Ein hoher Anspruch. Und vielleicht f\u00fchrt genau das dazu, dass nichts wirklich gen\u00fcgt. Jede Methode, jeder Ansatz f\u00e4llt irgendwann durch dein Raster. Vielleicht liegt es nicht am Raster der Welt, sondern daran, dass deins etwas zu eng ist. Zu eng dir auch mal selbst zu verzeihen. Zu eng, auch mal die 80-20-L\u00f6sung als Erfolg zu sehen. Manchmal ist auch kleiner Fortschritt besser als eine theoretische Optimall\u00f6sung, die nie Realit\u00e4t wird.",
+  "idealist+klarsichtiger": "Du hast echte Reflexionsf\u00e4higkeit und einen klaren Blick auf vieles. Aber vielleicht ist f\u00fcr deinen Idealisten-Anteil diese Klarheit eher Treibstoff f\u00fcr Frustration statt f\u00fcr Ver\u00e4nderung. Du erkennst ziemlich scharf, was falsch l\u00e4uft, und vergisst dabei manchmal, dass Klarheit ohne Selbstf\u00fcrsorge auf Dauer nicht tr\u00e4gt.",
+  "suchender+zuschauer": "Vielleicht kennst du das: Du merkst, dass du springst, und du ahnst sogar warum. Aber dieses Meta-Wissen hilft dir nicht unbedingt, es zu \u00e4ndern. Im Gegenteil: Es gibt dir das Gef\u00fchl von Neugier, Horizont-Erweitern und Fortschritt. Doch in Wahrheit drehst du dich im Kreis, da du nicht wirklich wei\u00dft, wohin es f\u00fcr dich gehen soll.",
+  "suchender+getriebener": "W\u00e4hrend andere Suchende eher gr\u00fcbeln, springst du vermutlich immer wieder zum n\u00e4chsten Ding. Neues Projekt, neues Hobby, neuer Ansatz. Von au\u00dfen sieht das nach Energie, Neugier, Entwicklung aus. Doch wenn du mal genau hinschaust, f\u00fchlt es sich vielleicht eher an, als w\u00fcrdest du vor etwas davonlaufen, das dich einholt, sobald du stehen bleibst. Ein Zeichen, weniger im Au\u00dfen nach neuen Wahrheiten zu suchen und stattdessen in dein Inneres zu schauen.",
+  "suchender+idealist": "Du willst wahrscheinlich nicht nur dich selbst finden, sondern auch den Sinn im gro\u00dfen Ganzen. Klingt tiefgr\u00fcndig, f\u00fchlt sich aber f\u00fcr viele h\u00e4ufig schnell ersch\u00f6pfend an. Vielleicht liegt es nicht am Raster der Welt, sondern daran, dass der Anspruch, beides gleichzeitig und optimal zu l\u00f6sen, dich eher blockiert als befl\u00fcgelt.",
+  "suchender+klarsichtiger": "Vielleicht kennst du den Moment: Du bist einen Schritt weiter, und dann kommt die Frage: \u201EAber was, wenn das noch nicht das Richtige ist?\u201C Gesunde Neugier und Sprunghaftigkeit liegen manchmal nah beieinander. Vielleicht ist es manchmal besser erstmal bei Themen mit denen du in Resonanz gehst oder du profitierst zu bleiben und auf deine Entwicklung zu vertrauen, statt st\u00e4ndig in einer Art Selbstoptimierungswahn von einem zu n\u00e4chsten zu springen.",
+  "klarsichtiger+zuschauer": "Vielleicht genie\u00dft du die Erkenntnis manchmal fast zu sehr. Du durchschaust vieles, bei dir und bei anderen. Aber vielleicht nutzt du diese Klarheit gelegentlich als Ausrede zur Bequemlichkeit? Eine Ausrede, um nichts ver\u00e4ndern zu m\u00fcssen, weil \u201EIch hab's ja durchschaut\u201C sich anf\u00fchlt wie Fortschritt, es aber nicht immer ist.",
+  "klarsichtiger+getriebener": "Du erkennst vieles und dazu geh\u00f6rt wahrscheinlich auch, wo du langsamer machen solltest. Aber dein innerer Getriebener kann das nicht so gut aushalten. Vielleicht reflektierst du abends, was du tags\u00fcber eigentlich schon wusstest, und am n\u00e4chsten Morgen funktionierst du trotzdem wieder gleich. Die Frage ist weniger, ob du es siehst. Sondern ob du es dir erlaubst, danach zu leben.",
+  "klarsichtiger+idealist": "Statt dein Wissen f\u00fcr dein eigenes Leben zu nutzen, flie\u00dft deine Energie vielleicht oft eher in irgendeine Art der Kompensation deines Weltschmerzes. Vielleicht verstehst du nicht nur wie du, sondern auch die Welt tickt. Oder besser ticken sollte. Und diese Diskrepanz zwischen Wunschvorstellung und Realit\u00e4t frustriert dich. Verst\u00e4ndlich. Als Klarsichtiger mit einem gut ausgerichteten Wertekompass bist du schon auf einem guten Weg, doch achte darauf, dich nicht zu sehr von deinem Wunsch nach einer Ideall\u00f6sung ausbremsen zu lassen.",
+  "klarsichtiger+suchender": "Vielleicht kennst du die Frage: \u201EWas, wenn das noch nicht alles war?\u201C Das kann gesund sein, solange es nicht zur Dauerschleife wird. Es gibt viele interessante Theorien, h\u00f6renswerte Reden, lesenswerte B\u00fccher. Doch verliere dich nicht in der Vielfalt deiner M\u00f6glichkeiten. Du lebst bereits reflektierter als die meisten, also lass deinen Erkenntnissen Taten folgen. Bringt die eine Richtung nach einem ordentlichen St\u00fcck auf diesem Weg noch keinen Erfolg, kannst du ihn immer noch jederzeit wechseln.",
 };
 
 // ─── SESSION PERSISTENCE ────────────────────────────────────────────────────
@@ -1133,6 +1157,25 @@ body, html, #root {
 .calculating-detail { display: flex; justify-content: center; gap: 12px; margin-top: 0.75rem; font-size: 0.7rem; color: var(--warm-gray); }
 @keyframes spinWheel { to { transform: rotate(360deg); } }
 
+/* ─── BLOCK BADGE ─── */
+.block-badge { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); font-weight: 600; padding: 0.4rem 1rem; border: 1.5px solid var(--orange); margin-bottom: 1.5rem; animation: fadeUp 0.4s ease-out; }
+
+/* ─── SAVE STATE HINT ─── */
+.save-hint { font-size: 0.68rem; color: var(--warm-gray); text-align: center; padding: 0.5rem 1rem; font-style: italic; opacity: 0.7; }
+
+/* ─── KEYBOARD LEGEND ─── */
+.keyboard-legend { display: none; font-size: 0.65rem; color: var(--warm-gray); text-align: center; padding: 0.25rem 0; opacity: 0.5; letter-spacing: 0.02em; }
+@media (hover: hover) and (pointer: fine) { .keyboard-legend { display: block; } }
+
+/* ─── VIEWPORT LOCK ─── */
+.question-screen { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; }
+
+/* ─── MISCHTYP SECTION ─── */
+.mischtyp-section { border-left: 4px solid var(--sand); padding: 2rem; background: rgba(28, 28, 28, 0.02); }
+.mischtyp-eyebrow { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.5rem; font-weight: 600; }
+.mischtyp-bridge { font-size: 0.92rem; line-height: 1.65; color: var(--dark); font-weight: 500; margin-bottom: 1rem; }
+.mischtyp-text { font-size: 0.92rem; line-height: 1.7; color: var(--text-muted); font-weight: 400; }
+
 @media (max-width: 520px) {
   .question-screen { padding: 4.5rem 1.15rem 1.5rem; }
   .option-btn { padding: 0.9rem; font-size: 0.84rem; }
@@ -1179,6 +1222,13 @@ function IntroScreen({ onStart }) {
 
 function ProgressBar({ current, total }) {
   const pct = Math.round((current / total) * 100);
+  const remaining = total - current;
+  const estMinutes = Math.ceil(remaining * 0.27); // ~16s per question avg
+  let timeLabel;
+  if (remaining <= 2) timeLabel = "Fast da";
+  else if (remaining <= 7) timeLabel = "Noch ~2 Min";
+  else if (remaining <= 14) timeLabel = "Noch ~4 Min";
+  else timeLabel = `Noch ~${estMinutes} Min`;
   return (
     <div className="progress-container">
       <div className="progress-bar-track">
@@ -1186,7 +1236,7 @@ function ProgressBar({ current, total }) {
       </div>
       <div className="progress-info">
         <span>Frage {current} von {total}</span>
-        <span className="progress-pct">{pct}%</span>
+        <span className="progress-pct">{timeLabel}</span>
       </div>
     </div>
   );
@@ -1194,9 +1244,11 @@ function ProgressBar({ current, total }) {
 
 function BlockTransition({ block, onContinue, isFirst }) {
   const narrative = BLOCK_NARRATIVES[block.id];
+  const blockBadge = block.id === 2 ? "Block 1 geschafft" : block.id === 3 ? "Halbzeit" : block.id === 4 ? "Letzter Block" : null;
   return (
     <div className="block-transition">
       <div className="block-transition-content">
+        {blockBadge && <div className="block-badge">{blockBadge}</div>}
         <div className="block-num">{block.id}</div>
         <h2>{narrative.headline}</h2>
         <p className="block-narrative-sub">{narrative.sub}</p>
@@ -1313,6 +1365,45 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, follow
   const [showMicroFeedback, setShowMicroFeedback] = useState(null);
   const [showCalculating, setShowCalculating] = useState(false);
   const [feedbackShown, setFeedbackShown] = useState({});
+  const autoAdvanceRef = useRef(null);
+
+  // Auto-advance: after primary selection, wait 400ms then advance (if no follow-up needed)
+  useEffect(() => {
+    if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current);
+    if (hasPrimary && !followUp && !currentAnswer.secondary) {
+      autoAdvanceRef.current = setTimeout(() => {
+        if (!isLast) {
+          const fb = getMicroFeedback(question.id, answers);
+          if (fb && !feedbackShown[question.id]) {
+            setFeedbackShown(prev => ({ ...prev, [question.id]: true }));
+            setShowMicroFeedback(fb);
+          } else {
+            onNext();
+          }
+        }
+      }, 500);
+    }
+    return () => { if (autoAdvanceRef.current) clearTimeout(autoAdvanceRef.current); };
+  }, [currentAnswer.primary, currentAnswer.secondary]);
+
+  // Keyboard shortcuts (desktop)
+  useEffect(() => {
+    const handler = (e) => {
+      if (showMicroFeedback || showCalculating) return;
+      const keys = ["1", "2", "3", "4"];
+      const idx = keys.indexOf(e.key);
+      if (idx >= 0 && idx < question.options.length) {
+        e.preventDefault();
+        handleOptionClick(question.options[idx].key);
+      }
+      if (e.key === " " && canProceed) {
+        e.preventDefault();
+        handleNext();
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [hasPrimary, canProceed, showMicroFeedback, showCalculating, currentAnswer]);
 
   const pct = Math.round(((questionIndex + 1) / totalQuestions) * 100);
   const milestone = MILESTONES[pct];
@@ -1428,6 +1519,8 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, follow
           </button>
         </div>
       )}
+      <div className="keyboard-legend">Tastatur: 1–4 = Antwort wählen · Leertaste = Weiter</div>
+      <div className="save-hint">Antworten werden automatisch gespeichert.</div>
     </div>
   );
 }
@@ -1473,6 +1566,14 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
   }, []);
 
   const sortedTypes = Object.entries(scoring.affinities).sort((a, b) => b[1] - a[1]);
+
+  // Mischtyp: find second-place type and combo text
+  const sortedDistances = Object.entries(scoring.distances).sort((a, b) => a[1] - b[1]);
+  const secondaryType = sortedDistances.length >= 2 ? sortedDistances[1][0] : null;
+  const comboKey = secondaryType ? `${scoring.resultType}+${secondaryType}` : null;
+  const comboText = comboKey ? COMBO_TEXTS[comboKey] : null;
+  const showMischtyp = !scoring.isReintyp && comboText && secondaryType;
+
   const validateEmail = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
   const handleKeyDown = (e) => { if (e.key === "Enter") handleEmailSubmit(); };
   const REINTYP_TAG_ID = 17381951;
@@ -1598,6 +1699,13 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
           </div>
         </div>
         <div className="result-description">{meta.description}</div>
+        {showMischtyp && (
+          <div className="mischtyp-section">
+            <div className="mischtyp-eyebrow">Aber da ist noch was.</div>
+            <div className="mischtyp-bridge">Du bist nicht nur {meta.label}, dein Profil zeigt auch deutliche {TYPE_META[secondaryType]?.label}-Anteile. Und genau diese Mischung macht's spannend:</div>
+            <div className="mischtyp-text">{comboText}</div>
+          </div>
+        )}
         <div className="result-pain"><div className="pain-label">Daran scheiterst du gerade wahrscheinlich:</div><p>{meta.pain}</p></div>
         <div className="result-affinities">
           <div className="affinities-label">Deine Typ-Verteilung</div>
