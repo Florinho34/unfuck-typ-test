@@ -598,6 +598,7 @@ const KIT_FORM_IDS = {
 const TYPE_META = {
   zuschauer: {
     label: "Zuschauer",
+    labelFuer: "Zuschauer",
     avatar: "/Archetypen-Zuschauer.png",
     tagline: "Du siehst mehr als die meisten – doch merkt man das an deinem Verhalten nur selten.",
     ctaText: "Du verstehst längst, was sich ändern müsste – jetzt ist der Moment, es auch zu tun. In dieser Masterclass zeige ich dir, wie du vom Erkennen ins Handeln kommst.",
@@ -608,6 +609,7 @@ const TYPE_META = {
   },
   getriebener: {
     label: "Getrieben",
+    labelFuer: "Getriebene",
     avatar: "/Archetypen-Getriebener.png",
     tagline: "Du bist ständig in Bewegung – aber wer hat eigentlich das Ziel bestimmt?",
     ctaText: "Du funktionierst – aber für wen eigentlich? In dieser Masterclass zeige ich dir, wie du deine Energie endlich für das einsetzt, was dich wirklich glücklich machen kann.",
@@ -618,6 +620,7 @@ const TYPE_META = {
   },
   idealist: {
     label: "Idealist",
+    labelFuer: "Idealisten",
     avatar: "/Archetypen-Idealist.png",
     tagline: "Du spürst, was in der Welt schiefläuft – und es frisst dich auf.",
     ctaText: "Dein Feuer für eine bessere Welt ist echt und ehrenwert – doch es birgt die Gefahr, dich innerlich aufzufressen. In dieser Masterclass zeige ich dir, wie du für eine bessere Welt sorgst – zuerst bei dir, um anschließend auch die Kraft zu finden weiterzumachen.",
@@ -628,6 +631,7 @@ const TYPE_META = {
   },
   suchender: {
     label: "Suchend",
+    labelFuer: "Suchende",
     avatar: "/Archetypen-Suchende.png",
     tagline: "Du weißt, dass etwas fehlt – du weißt nur noch nicht, was.",
     ctaText: "Du spürst, dass da mehr ist – aber die nächste \u201EMethode nach Guru XY\u201C wird\u2019s auch nicht richten. In dieser Masterclass zeige ich dir, wo du wirklich hinschauen musst.",
@@ -638,6 +642,7 @@ const TYPE_META = {
   },
   klarsichtiger: {
     label: "Klarsichtig",
+    labelFuer: "Klarsichtige",
     avatar: "/Archetypen-Klarsichtiger.png",
     tagline: "Du siehst klarer als die meisten – jetzt geht's darum, danach zu leben.",
     ctaText: "Du bist weiter als die meisten – doch das allein reicht nicht. In dieser Masterclass zeige ich dir, wie du dein Wissen endlich in dein Leben integrierst.",
@@ -939,7 +944,7 @@ body, html, #root {
 .intro-avatars-img { width: 100%; max-width: 400px; height: auto; }
 .intro-screen .intro-meta { font-size: 0.78rem; color: var(--warm-gray); margin-bottom: 1.5rem; font-weight: 400; letter-spacing: 0.02em; }
 
-.fullscreen-footer { position: absolute; bottom: 0; left: 0; width: 100%; display: flex; justify-content: center; gap: 1.5rem; padding: 1rem 0; }
+.fullscreen-footer { width: 100%; display: flex; justify-content: center; gap: 1.5rem; padding: 1rem 0; margin-top: auto; }
 .fullscreen-footer a { font-family: 'Inter Tight', sans-serif; font-size: 0.7rem; color: var(--warm-gray); text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
 .fullscreen-footer a:hover { color: var(--dark); }
 
@@ -990,8 +995,8 @@ body, html, #root {
 .btn-finish { background: var(--orange); color: #fff; }
 .btn-finish:hover { background: var(--orange-hover); }
 
-.block-transition { width: 100%; height: 100vh; height: 100dvh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem 2rem 0; text-align: center; animation: fadeUp 0.6s ease-out; position: relative; overflow: hidden; }
-.block-transition-content { display: flex; flex-direction: column; align-items: center; }
+.block-transition { width: 100%; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem 2rem 3.5rem; text-align: center; animation: fadeUp 0.6s ease-out; position: relative; overflow: hidden; }
+.block-transition-content { display: flex; flex-direction: column; align-items: center; flex: 1; justify-content: center; }
 .block-transition .block-num { font-family: 'Inter Tight', sans-serif; font-size: 5.5rem; color: var(--sand); margin-bottom: 0.75rem; font-weight: 900; line-height: 1; }
 .block-transition h2 { font-family: 'Inter Tight', sans-serif; font-size: clamp(1.3rem, 4vw, 1.8rem); font-weight: 900; color: var(--dark); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
 .block-transition .block-count { font-size: 0.78rem; color: var(--warm-gray); letter-spacing: 0.06em; margin-bottom: 2rem; font-weight: 400; }
@@ -1037,6 +1042,20 @@ body, html, #root {
 .result-hebel p:last-child { margin-bottom: 0; }
 .hebel-label { font-family: 'Inter Tight', sans-serif; font-size: 0.95rem; font-weight: 800; color: var(--dark); margin-bottom: 0.4rem; }
 .schritt-label { font-family: 'Inter Tight', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--orange); margin-bottom: 0.3rem; letter-spacing: 0.02em; }
+
+/* ─── SHARE SECTION ─── */
+.share-section { text-align: center; padding: 1.5rem 0; }
+.share-title { font-family: 'Inter Tight', sans-serif; font-size: 1.05rem; font-weight: 800; color: var(--dark); margin-bottom: 0.25rem; }
+.share-sub { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem; }
+.share-buttons { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; }
+.share-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.2rem; font-family: 'Inter Tight', sans-serif; font-size: 0.82rem; font-weight: 600; border: none; cursor: pointer; transition: all 0.2s ease; text-decoration: none; }
+.share-btn:hover { transform: translateY(-1px); }
+.share-whatsapp { background: #25D366; color: #fff; }
+.share-whatsapp:hover { background: #1da851; }
+.share-telegram { background: #0088cc; color: #fff; }
+.share-telegram:hover { background: #006da3; }
+.share-copy { background: var(--dark); color: var(--cream); }
+.share-copy:hover { background: var(--dark-soft); }
 
 .postq-screen { width: 100%; max-width: 620px; min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem 1.5rem; animation: fadeUp 0.5s ease-out; }
 .postq-eyebrow { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 1rem; font-weight: 500; }
@@ -1222,11 +1241,11 @@ function IntroScreen({ onStart }) {
   return (
     <div className="intro-screen">
       <div className="intro-content">
-        <h1>Finde in 8 Minuten heraus, was zwischen dir und dem Leben steht, das du <span className="highlight">eigentlich willst.</span></h1>
+        <h1>Finde in 12 Minuten heraus, was zwischen dir und dem Leben steht, das du <span className="highlight">eigentlich willst.</span></h1>
         <div className="intro-avatars">
           <img src="/Archetypen-nebeneinander.png" alt="5 Archetypen" className="intro-avatars-img" />
         </div>
-        <p className="intro-meta">anonym · Sofortergebnis · kostenlos</p>
+        <p className="intro-meta">Sofortergebnis · anonym · 100% kostenlos</p>
         <button className="btn-primary btn-float" onClick={onStart}>TEST STARTEN</button>
       </div>
       <div className="fullscreen-footer">
@@ -1495,6 +1514,14 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, follow
             </div>
           </div>
         )}
+        {!showCalculating && (
+          <div className="nav-row">
+            <button className="btn-back" onClick={onBack}>{questionIndex === 0 ? "" : "← Zurück"}</button>
+            <button className={`btn-next ${isLast ? "btn-finish" : ""}`} disabled={!canProceed} onClick={handleNext}>
+              {teaserState?.isFinetuning ? "Jetzt zur abschließenden Frage →" : isLast ? "Test abschließen" : "Weiter →"}
+            </button>
+          </div>
+        )}
         {teaserState && (
           <div className={`countdown-teaser ${teaserState.isFinetuning ? "countdown-teaser-finetuning" : ""}`}>
             <div className="countdown-teaser-title">{teaserState.title}</div>
@@ -1508,14 +1535,6 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, follow
           </div>
         )}
       </div>
-      {!showCalculating && (
-        <div className="nav-row">
-          <button className="btn-back" onClick={onBack}>{questionIndex === 0 ? "" : "← Zurück"}</button>
-          <button className={`btn-next ${isLast ? "btn-finish" : ""}`} disabled={!canProceed} onClick={handleNext}>
-            {teaserState?.isFinetuning ? "Jetzt zur abschließenden Frage →" : isLast ? "Test abschließen" : "Weiter →"}
-          </button>
-        </div>
-      )}
       <div className="keyboard-legend">Tastatur: 1–4 = Antwort wählen · Leertaste = Weiter</div>
       <div className="save-hint">Antworten werden automatisch gespeichert.</div>
     </div>
@@ -1668,7 +1687,7 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
 
       y += 10;
       doc.setFont("helvetica", "bold"); doc.setFontSize(14); doc.setTextColor(...dark);
-      const ctaTitle = "DEINE KOSTENLOSE " + meta.label.toUpperCase() + "-MASTERCLASS";
+      const ctaTitle = "DEINE KOSTENLOSE " + meta.labelFuer.toUpperCase() + "-MASTERCLASS";
       doc.text(ctaTitle, pw / 2, y, { align: "center" }); y += 7;
       doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...gray);
       const ctaTextPdf = doc.splitTextToSize("Hier bietet sich dir die M\u00F6glichkeit, genau deine Kernprobleme aufzul\u00F6sen. Scanne den QR-Code oder klicke den Link:", 140);
@@ -1739,13 +1758,13 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
             <div className="cta-success">
               <div className="success-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg></div>
               <div className="success-title">Drin.</div>
-              <p className="success-sub">Check deine Inbox – deine <strong>Masterclass für {meta.label}</strong> wartet auf dich.</p>
+              <p className="success-sub">Check deine Inbox – deine <strong>Masterclass für {meta.labelFuer}</strong> wartet auf dich.</p>
             </div>
           ) : (
             <>
               <div className="signup-solo-header">
                 <div className="postq-eyebrow">Dein nächster Schritt</div>
-                <div className="postq-title">Deine kostenlose<br />Masterclass für {meta.label}</div>
+                <div className="postq-title">Deine kostenlose<br />Masterclass für {meta.labelFuer}</div>
                 <p className="signup-solo-text">{meta.ctaText}</p>
               </div>
               <div className="cta-email">
@@ -1770,6 +1789,24 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
         <div className="pdf-save-section">
           <p className="pdf-save-hint">Speichere dein Ergebnis als PDF – inkl. Radar-Chart und personalisierten Impulsen.</p>
           <button className="btn-pdf-download" onClick={generatePDF} disabled={pdfLoading}>{pdfLoading ? "PDF wird erstellt..." : "Ergebnis als PDF speichern"}</button>
+        </div>
+        <div className="share-section">
+          <div className="share-title">Dir hat der Test gefallen?</div>
+          <div className="share-sub">Teile ihn mit deinen Freunden:</div>
+          <div className="share-buttons">
+            <a className="share-btn share-whatsapp" href={`https://wa.me/?text=${encodeURIComponent("Ich habe grade diesen Persönlichkeitstest gemacht und war echt beeindruckt! Kann ihn nur empfehlen, wenn man mal genauer hinsehen möchte!\n\nhttps://test.florianlingner.de")}`} target="_blank" rel="noopener noreferrer">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              WhatsApp
+            </a>
+            <a className="share-btn share-telegram" href={`https://t.me/share/url?url=${encodeURIComponent("https://test.florianlingner.de")}&text=${encodeURIComponent("Ich habe grade diesen Persönlichkeitstest gemacht und war echt beeindruckt! Kann ihn nur empfehlen, wenn man mal genauer hinsehen möchte!")}`} target="_blank" rel="noopener noreferrer">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+              Telegram
+            </a>
+            <button className="share-btn share-copy" onClick={() => { navigator.clipboard.writeText("Ich habe grade diesen Persönlichkeitstest gemacht und war echt beeindruckt! Kann ihn nur empfehlen, wenn man mal genauer hinsehen möchte!\n\nhttps://test.florianlingner.de"); const btn = document.querySelector('.share-copy'); const orig = btn.textContent; btn.textContent = "✓ Kopiert!"; setTimeout(() => btn.textContent = orig, 2000); }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Link kopieren
+            </button>
+          </div>
         </div>
         <button className="debug-toggle" onClick={() => setShowDebug(!showDebug)}>{showDebug ? "Debug ausblenden" : "// Debug anzeigen"}</button>
         {showDebug && (
