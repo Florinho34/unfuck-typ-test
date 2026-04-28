@@ -1722,12 +1722,17 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
     try {
       const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
       const pw = 210, ph = 297;
-      const orange = [255, 77, 0], dark = [28, 28, 28], gray = [107, 101, 96], warmGray = [163, 155, 147];
+      const orange = [255, 77, 0], dark = [28, 28, 28], gray = [107, 101, 96], warmGray = [163, 155, 147], green = [45, 122, 58];
+      const stripHtml = (html) => html.replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, '');
       const bgResponse = await fetch("/Digitales-briefpapier.jpg");
       const bgBlob = await bgResponse.blob();
       const bgData = await new Promise((resolve) => { const reader = new FileReader(); reader.onloadend = () => resolve(reader.result); reader.readAsDataURL(bgBlob); });
-      doc.addImage(bgData, "JPEG", 0, 0, pw, ph);
+      const addBg = () => doc.addImage(bgData, "JPEG", 0, 0, pw, ph);
+      const checkPage = (needed) => { if (y + needed > ph - 25) { doc.addPage(); addBg(); y = 38; } };
+      addBg();
       let y = 38;
+
+      // ─── PAGE 1: Header + Radar + Description + Pain ───
       doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(...warmGray);
       doc.text("DEIN PERSÖNLICHKEITSTEST \u2013 ERGEBNIS", pw / 2, y, { align: "center" }); y += 12;
       doc.setFont("helvetica", "bold"); doc.setFontSize(32); doc.setTextColor(...dark);
@@ -1751,50 +1756,120 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
       const shortLabels = { REF: "Reflexion", SL: "Selbstliebe", ML: "Machtlosigk.", OL: "Orient.losigk.", ETH: "Eig. Werte", WS: "Weltschmerz", NAT: "Natur", EX: "Externalis.", EF: "Fremdbest.", HA: "Handlungskr." };
       doc.setFontSize(6.5); doc.setFont("helvetica", "normal"); doc.setTextColor(...dark);
       scales.forEach((s, i) => { const p = getRadarPt(i, 125); const anchor = p.x < radarCx - 5 ? "right" : p.x > radarCx + 5 ? "left" : "center"; const dy = p.y < radarCy - 5 ? -1.5 : p.y > radarCy + 5 ? 3 : 0.5; doc.text(shortLabels[s] || SCALE_LABELS[s], p.x, p.y + dy, { align: anchor }); });
-      y = radarCy + radarR + 14;
+      y = radarCy + radarR + 10;
       doc.setFontSize(6); doc.setTextColor(...orange); doc.setFillColor(...orange);
       doc.rect(pw / 2 - 35, y - 1.2, 4, 1.2, "F"); doc.text("Dein Profil", pw / 2 - 29, y, { align: "left" });
       doc.setTextColor(...warmGray); doc.setDrawColor(...warmGray); doc.setLineWidth(0.3);
-      doc.line(pw / 2 + 5, y - 0.6, pw / 2 + 9, y - 0.6); doc.text(meta.label + "-Referenz", pw / 2 + 11, y, { align: "left" }); y += 14;
-      doc.setFont("helvetica", "normal"); doc.setFontSize(9.5); doc.setTextColor(...dark);
-      const descLines = doc.splitTextToSize(meta.description, 155);
-      doc.text(descLines, pw / 2, y, { align: "center", lineHeightFactor: 1.6 }); y += descLines.length * 4.8 + 8;
-      if (y < ph - 60) {
-        doc.setFillColor(...orange); doc.rect(27, y - 1, 1.2, 28, "F");
-        doc.setFillColor(255, 240, 235); doc.rect(29, y - 2, 154, 30, "F");
-        doc.setFont("helvetica", "bold"); doc.setFontSize(10); doc.setTextColor(...orange);
-        doc.text("Daran scheiterst du gerade wahrscheinlich:", 32, y + 4);
-        doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(...dark);
-        const painLines = doc.splitTextToSize(meta.pain, 148); doc.text(painLines, 32, y + 11, { lineHeightFactor: 1.55 });
-      }
+      doc.line(pw / 2 + 5, y - 0.6, pw / 2 + 9, y - 0.6); doc.text(meta.label + "-Referenz", pw / 2 + 11, y, { align: "left" }); y += 18;
 
-      // Page 2
-      doc.addPage(); doc.addImage(bgData, "JPEG", 0, 0, pw, ph); y = 38;
+      // Description (HTML stripped, split by paragraphs)
+      const descPlain = stripHtml(meta.description);
+      const descParas = descPlain.split('\n').filter(p => p.trim());
+      doc.setFont("helvetica", "normal"); doc.setFontSize(9.5); doc.setTextColor(...dark);
+      descParas.forEach(para => {
+        const lines = doc.splitTextToSize(para.trim(), 155);
+        checkPage(lines.length * 4.2 + 4);
+        doc.text(lines, 27, y, { lineHeightFactor: 1.55 }); y += lines.length * 4.2 + 4;
+      });
+      y += 4;
+
+      // Pain section
+      checkPage(35);
+      doc.setFillColor(...orange); doc.rect(27, y, 1.2, 28, "F");
+      doc.setFillColor(255, 240, 235); doc.rect(29, y - 1, 154, 30, "F");
+      doc.setFont("helvetica", "bold"); doc.setFontSize(10); doc.setTextColor(...orange);
+      doc.text("Daran scheiterst du gerade wahrscheinlich:", 32, y + 5);
+      doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(...dark);
+      const painLines = doc.splitTextToSize(meta.pain, 148); doc.text(painLines, 32, y + 12, { lineHeightFactor: 1.55 }); y += 36;
+
+      // ─── PAGE 2: Hebel + Stärken + Potenziale ───
+      doc.addPage(); addBg(); y = 38;
+
+      // Hebel
+      doc.setFont("helvetica", "bold"); doc.setFontSize(14); doc.setTextColor(...dark);
+      doc.text("Dein gr\u00F6\u00DFter Hebel:", 27, y); y += 8;
+      doc.setFillColor(245, 243, 240); doc.rect(27, y - 2, 156, 36, "F");
+      doc.setFillColor(...dark); doc.rect(27, y - 2, 1.2, 36, "F");
+      doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...dark);
+      const hebelLines = doc.splitTextToSize(meta.hebel, 148); doc.text(hebelLines, 32, y + 5, { lineHeightFactor: 1.5 });
+      const hebelH = hebelLines.length * 4.5;
+      doc.setFont("helvetica", "bold"); doc.setFontSize(8.5); doc.setTextColor(...orange);
+      doc.text("Ein erster Schritt:", 32, y + 5 + hebelH + 3);
+      doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...dark);
+      const schrittLines = doc.splitTextToSize(meta.schritt, 148); doc.text(schrittLines, 32, y + 5 + hebelH + 9, { lineHeightFactor: 1.5 }); y += 44;
+
+      // Top 3 Stärken
+      y += 6;
+      doc.setFont("helvetica", "bold"); doc.setFontSize(13); doc.setTextColor(...green);
+      doc.text("Deine Top 3 St\u00E4rken", 27, y); y += 8;
+      strengths.forEach(s => {
+        const textLines = doc.splitTextToSize(s.text, 148);
+        const cardH = 14 + textLines.length * 4;
+        checkPage(cardH + 4);
+        doc.setFillColor(240, 248, 242); doc.rect(27, y - 2, 156, cardH, "F");
+        doc.setFillColor(...green); doc.rect(27, y - 2, 1.2, cardH, "F");
+        doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...dark);
+        doc.text(s.name, 32, y + 4);
+        const barW = Math.max((s.strengthScore / 100) * 100, 5);
+        doc.setFillColor(232, 224, 216); doc.rect(32, y + 7, 100, 2.5, "F");
+        doc.setFillColor(...green); doc.rect(32, y + 7, barW, 2.5, "F");
+        doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(...dark);
+        doc.text(textLines, 32, y + 14, { lineHeightFactor: 1.45 }); y += cardH + 4;
+      });
+
+      // Top 3 Potenziale
+      y += 6;
+      checkPage(20);
+      doc.setFont("helvetica", "bold"); doc.setFontSize(13); doc.setTextColor(...orange);
+      doc.text("Deine 3 gr\u00F6\u00DFten Potenziale", 27, y); y += 8;
+      potentials.forEach(p => {
+        const textLines = doc.splitTextToSize(p.text, 148);
+        const cardH = 14 + textLines.length * 4;
+        checkPage(cardH + 4);
+        doc.setFillColor(255, 245, 240); doc.rect(27, y - 2, 156, cardH, "F");
+        doc.setFillColor(...orange); doc.rect(27, y - 2, 1.2, cardH, "F");
+        doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...dark);
+        doc.text(p.name, 32, y + 4);
+        const barW = Math.max(((100 - p.strengthScore) / 100) * 100, 5);
+        doc.setFillColor(232, 224, 216); doc.rect(32, y + 7, 100, 2.5, "F");
+        doc.setFillColor(...orange); doc.rect(32, y + 7, barW, 2.5, "F");
+        doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(...dark);
+        doc.text(textLines, 32, y + 14, { lineHeightFactor: 1.45 }); y += cardH + 4;
+      });
+
+      // ─── PAGE 3: Typ-Verteilung + Mischtyp + CTA ───
+      doc.addPage(); addBg(); y = 38;
+
+      // Typ-Verteilung
       doc.setFont("helvetica", "bold"); doc.setFontSize(14); doc.setTextColor(...dark);
       doc.text("Deine Typ-Verteilung", pw / 2, y, { align: "center" }); y += 12;
       const sortedAffinities = Object.entries(scoring.affinities).sort((a, b) => b[1] - a[1]);
       sortedAffinities.forEach(([type, pct]) => {
         const isMain = type === scoring.resultType;
+        const isSec = type === secondaryType && showMischtyp;
         doc.setFont("helvetica", isMain ? "bold" : "normal"); doc.setFontSize(9); doc.setTextColor(...dark); doc.text(TYPE_META[type].label, 30, y);
         doc.setFillColor(232, 224, 216); doc.rect(80, y - 2.5, 75, 4, "F");
         const barW = Math.max((pct / 100) * 75, 2);
-        if (isMain) doc.setFillColor(...orange); else doc.setFillColor(...warmGray);
+        if (isMain) doc.setFillColor(...orange); else if (isSec) doc.setFillColor(...dark); else doc.setFillColor(...warmGray);
         doc.rect(80, y - 2.5, barW, 4, "F");
         doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.setTextColor(...gray); doc.text(pct + "%", 170, y, { align: "right" }); y += 9;
-      }); y += 8;
-      doc.setFillColor(245, 243, 240); doc.rect(27, y - 2, 156, 36, "F");
-      doc.setFillColor(...dark); doc.rect(27, y - 2, 1.2, 36, "F");
-      doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...dark);
-      doc.text("Dein gr\u00f6\u00dfter Hebel:", 32, y + 5);
-      doc.setFont("helvetica", "normal");
-      const hebelLines = doc.splitTextToSize(meta.hebel, 148); doc.text(hebelLines, 32, y + 11, { lineHeightFactor: 1.5 });
-      const hebelH = hebelLines.length * 4.5;
-      doc.setFont("helvetica", "bold"); doc.setFontSize(8.5); doc.setTextColor(...orange);
-      doc.text("Ein erster Schritt:", 32, y + 11 + hebelH + 3);
-      doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...dark);
-      const schrittLines = doc.splitTextToSize(meta.schritt, 148); doc.text(schrittLines, 32, y + 11 + hebelH + 9, { lineHeightFactor: 1.5 }); y += 44;
+      }); y += 10;
 
-      y += 10;
+      // Mischtyp / Sekundär-Archetyp
+      if (showMischtyp) {
+        doc.setFont("helvetica", "bold"); doc.setFontSize(12); doc.setTextColor(...dark);
+        doc.text("Dein Sekund\u00E4r-Archetyp: " + TYPE_META[secondaryType]?.label, 27, y); y += 8;
+        doc.setFont("helvetica", "italic"); doc.setFontSize(9); doc.setTextColor(...gray);
+        const bridgeText = "Du bist nicht nur " + meta.label + ", dein Profil zeigt auch deutliche " + TYPE_META[secondaryType]?.label + "-Anteile. Und genau diese Mischung macht's spannend:";
+        const bridgeLines = doc.splitTextToSize(bridgeText, 155);
+        doc.text(bridgeLines, 27, y, { lineHeightFactor: 1.5 }); y += bridgeLines.length * 4.5 + 4;
+        doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...dark);
+        const comboLines = doc.splitTextToSize(comboText, 155);
+        doc.text(comboLines, 27, y, { lineHeightFactor: 1.55 }); y += comboLines.length * 4.2 + 10;
+      }
+
+      // CTA
+      checkPage(70);
       doc.setFont("helvetica", "bold"); doc.setFontSize(14); doc.setTextColor(...dark);
       const ctaTitle = "DEINE KOSTENLOSE " + meta.labelFuer.toUpperCase() + "-MASTERCLASS";
       doc.text(ctaTitle, pw / 2, y, { align: "center" }); y += 7;
