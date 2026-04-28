@@ -1721,7 +1721,7 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
     setPdfLoading(true);
     try {
       const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
-      const pw = 210, ph = 297, ml = 27, mr = 27, cw = pw - ml - mr;
+      const pw = 210, ph = 297, ml = 27, cw = pw - ml - 27;
       const orange = [255, 77, 0], dark = [28, 28, 28], gray = [107, 101, 96], warmGray = [163, 155, 147], green = [45, 122, 58];
       const bgResponse = await fetch("/Digitales-briefpapier.jpg");
       const bgBlob = await bgResponse.blob();
@@ -1730,7 +1730,6 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
       let y = 38;
       const np = (need) => { if (y + need > ph - 22) { doc.addPage(); addBg(); y = 38; } };
 
-      // Rich text renderer with <strong> support
       const renderRich = (html, x, maxW, fontSize, lineH) => {
         doc.setFontSize(fontSize); doc.setTextColor(...dark);
         const segs = [];
@@ -1759,7 +1758,9 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
 
       addBg();
 
-      // ── HEADER ──
+      // ════════════════════════════════════════════════
+      // PAGE 1: Header + Radar + Description + Pain
+      // ════════════════════════════════════════════════
       doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(...warmGray);
       doc.text("DEIN PERS\u00D6NLICHKEITSTEST \u2013 ERGEBNIS", pw / 2, y, { align: "center" }); y += 12;
       doc.setFont("helvetica", "bold"); doc.setFontSize(32); doc.setTextColor(...dark);
@@ -1768,7 +1769,7 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
       const tagLines = doc.splitTextToSize("\u201E" + meta.tagline + "\u201C", 150);
       doc.text(tagLines, pw / 2, y, { align: "center" }); y += tagLines.length * 5.5 + 10;
 
-      // ── RADAR ──
+      // Radar
       const rCx = pw / 2, rCy = y + 42, rR = 36;
       const scales = CORE_SCALES, sn = scales.length;
       const gp = (idx, val) => { const a = (Math.PI * 2 * idx) / sn - Math.PI / 2; const d2 = (val / 100) * rR; return { x: rCx + d2 * Math.cos(a), y: rCy + d2 * Math.sin(a) }; };
@@ -1789,7 +1790,7 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
       doc.setTextColor(...warmGray); doc.setDrawColor(...warmGray); doc.setLineWidth(0.3);
       doc.line(pw / 2 + 5, y - 0.6, pw / 2 + 9, y - 0.6); doc.text(meta.label + "-Referenz", pw / 2 + 11, y); y += 16;
 
-      // ── DESCRIPTION (with bold) ──
+      // Description
       meta.description.split(/<br\s*\/?>/gi).filter(p => p.trim()).forEach(para => {
         const plain = para.replace(/<[^>]+>/g, '');
         const est = Math.ceil(doc.splitTextToSize(plain, cw).length);
@@ -1799,7 +1800,7 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
       });
       y += 4;
 
-      // ── PAIN ──
+      // Pain
       const painL = doc.splitTextToSize(meta.pain, cw - 10);
       const painH = painL.length * 3.8 + 14;
       np(painH + 4);
@@ -1810,8 +1811,12 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
       doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(...dark);
       doc.text(painL, ml + 6, y + 12, { lineHeightFactor: 1.5 }); y += painH + 8;
 
-      // ── HEBEL ──
-      np(50);
+      // ════════════════════════════════════════════════
+      // PAGE 2: Hebel + Typ-Verteilung + Sekundärtyp
+      // ════════════════════════════════════════════════
+      doc.addPage(); addBg(); y = 38;
+
+      // Hebel
       doc.setFont("helvetica", "bold"); doc.setFontSize(13); doc.setTextColor(...dark);
       doc.text("Dein gr\u00F6\u00DFter Hebel:", ml, y); y += 8;
       const hL = doc.splitTextToSize(meta.hebel, cw - 10);
@@ -1825,10 +1830,41 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
       doc.setFont("helvetica", "bold"); doc.setFontSize(8.5); doc.setTextColor(...orange);
       doc.text("Ein erster Schritt:", ml + 6, afterH);
       doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...dark);
-      doc.text(scL, ml + 6, afterH + 6, { lineHeightFactor: 1.5 }); y += hbH + 10;
+      doc.text(scL, ml + 6, afterH + 6, { lineHeightFactor: 1.5 }); y += hbH + 14;
 
-      // ── TOP 3 ST\u00C4RKEN ──
-      np(30);
+      // Typ-Verteilung
+      doc.setFont("helvetica", "bold"); doc.setFontSize(13); doc.setTextColor(...dark);
+      doc.text("Deine Typ-Verteilung", ml, y); y += 10;
+      Object.entries(scoring.affinities).sort((a, b) => b[1] - a[1]).forEach(([type, pct]) => {
+        const isMain = type === scoring.resultType;
+        const isSec = type === secondaryType && showMischtyp;
+        doc.setFont("helvetica", isMain ? "bold" : "normal"); doc.setFontSize(9); doc.setTextColor(...dark); doc.text(TYPE_META[type].label, ml, y);
+        doc.setFillColor(232, 224, 216); doc.rect(ml + 55, y - 2.5, 80, 4, "F");
+        const bw = Math.max((pct / 100) * 80, 2);
+        if (isMain) doc.setFillColor(...orange); else if (isSec) doc.setFillColor(...dark); else doc.setFillColor(...warmGray);
+        doc.rect(ml + 55, y - 2.5, bw, 4, "F");
+        doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.setTextColor(...gray); doc.text(pct + "%", ml + cw, y, { align: "right" }); y += 9;
+      }); y += 12;
+
+      // Sekundär-Archetyp
+      if (showMischtyp) {
+        doc.setFont("helvetica", "bold"); doc.setFontSize(12); doc.setTextColor(...dark);
+        doc.text("Dein Sekund\u00E4r-Archetyp: " + TYPE_META[secondaryType]?.label, ml, y); y += 7;
+        doc.setFont("helvetica", "italic"); doc.setFontSize(9); doc.setTextColor(...gray);
+        const bt = "Du bist nicht nur " + meta.label + ", dein Profil zeigt auch deutliche " + TYPE_META[secondaryType]?.label + "-Anteile. Und genau diese Mischung macht's spannend:";
+        const bl = doc.splitTextToSize(bt, cw);
+        doc.text(bl, ml, y, { lineHeightFactor: 1.5 }); y += bl.length * 4.5 + 4;
+        doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...dark);
+        const cl = doc.splitTextToSize(comboText, cw);
+        doc.text(cl, ml, y, { lineHeightFactor: 1.55 }); y += cl.length * 4.2 + 10;
+      }
+
+      // ════════════════════════════════════════════════
+      // PAGE 3: Top 3 Stärken + Top 3 Potenziale
+      // ════════════════════════════════════════════════
+      doc.addPage(); addBg(); y = 38;
+
+      // Stärken
       doc.setFont("helvetica", "bold"); doc.setFontSize(13); doc.setTextColor(...green);
       doc.text("Deine Top 3 St\u00E4rken", ml, y); y += 8;
       strengths.forEach(s => {
@@ -1846,9 +1882,8 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
         doc.text(tl, ml + 6, y + 14, { lineHeightFactor: 1.45 }); y += ch + 4;
       });
 
-      // ── TOP 3 POTENZIALE ──
-      y += 4;
-      np(30);
+      // Potenziale
+      y += 6;
       doc.setFont("helvetica", "bold"); doc.setFontSize(13); doc.setTextColor(...orange);
       doc.text("Deine 3 gr\u00F6\u00DFten Potenziale", ml, y); y += 8;
       potentials.forEach(p => {
@@ -1866,53 +1901,59 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
         doc.text(tl, ml + 6, y + 14, { lineHeightFactor: 1.45 }); y += ch + 4;
       });
 
-      // ── TYP-VERTEILUNG ──
-      y += 6;
-      np(65);
-      doc.setFont("helvetica", "bold"); doc.setFontSize(13); doc.setTextColor(...dark);
-      doc.text("Deine Typ-Verteilung", ml, y); y += 10;
-      Object.entries(scoring.affinities).sort((a, b) => b[1] - a[1]).forEach(([type, pct]) => {
-        const isMain = type === scoring.resultType;
-        const isSec = type === secondaryType && showMischtyp;
-        doc.setFont("helvetica", isMain ? "bold" : "normal"); doc.setFontSize(9); doc.setTextColor(...dark); doc.text(TYPE_META[type].label, ml, y);
-        doc.setFillColor(232, 224, 216); doc.rect(ml + 55, y - 2.5, 80, 4, "F");
-        const bw = Math.max((pct / 100) * 80, 2);
-        if (isMain) doc.setFillColor(...orange); else if (isSec) doc.setFillColor(...dark); else doc.setFillColor(...warmGray);
-        doc.rect(ml + 55, y - 2.5, bw, 4, "F");
-        doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.setTextColor(...gray); doc.text(pct + "%", ml + cw, y, { align: "right" }); y += 9;
-      }); y += 8;
+      // ════════════════════════════════════════════════
+      // PAGE 4: Personal CTA with photo
+      // ════════════════════════════════════════════════
+      doc.addPage(); addBg(); y = 38;
 
-      // ── MISCHTYP ──
-      if (showMischtyp) {
-        np(50);
-        doc.setFont("helvetica", "bold"); doc.setFontSize(12); doc.setTextColor(...dark);
-        doc.text("Dein Sekund\u00E4r-Archetyp: " + TYPE_META[secondaryType]?.label, ml, y); y += 7;
-        doc.setFont("helvetica", "italic"); doc.setFontSize(9); doc.setTextColor(...gray);
-        const bt = "Du bist nicht nur " + meta.label + ", dein Profil zeigt auch deutliche " + TYPE_META[secondaryType]?.label + "-Anteile. Und genau diese Mischung macht's spannend:";
-        const bl = doc.splitTextToSize(bt, cw);
-        doc.text(bl, ml, y, { lineHeightFactor: 1.5 }); y += bl.length * 4.5 + 4;
-        doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...dark);
-        const cl = doc.splitTextToSize(comboText, cw);
-        doc.text(cl, ml, y, { lineHeightFactor: 1.55 }); y += cl.length * 4.2 + 10;
+      // Florian photo
+      try {
+        const imgR = await fetch("https://florian-lingner.ch/wp-content/uploads/2026/04/Flo-im-Kreis-orange.png");
+        const imgB = await imgR.blob();
+        const imgD = await new Promise((r) => { const rd = new FileReader(); rd.onloadend = () => r(rd.result); rd.readAsDataURL(imgB); });
+        const imgSize = pw * 0.22;
+        doc.addImage(imgD, "PNG", pw / 2 - imgSize / 2, y, imgSize, imgSize);
+        y += imgSize + 10;
+      } catch (e) { y += 5; }
+
+      // Headline
+      doc.setFont("helvetica", "bold"); doc.setFontSize(18); doc.setTextColor(...dark);
+      doc.text("Danke, dass du meinen Test gemacht hast!", pw / 2, y, { align: "center" }); y += 10;
+
+      // Subline
+      doc.setFont("helvetica", "normal"); doc.setFontSize(10); doc.setTextColor(...dark);
+      const subText = "Damit dir die Erkenntnisse aus ihm auch wirklich weiterhelfen, habe ich eine kostenlose Video-Masterclass genau f\u00FCr deinen Archetyp " + meta.label + " aufgenommen.";
+      const subL = doc.splitTextToSize(subText, 145);
+      doc.text(subL, pw / 2, y, { align: "center", lineHeightFactor: 1.6 }); y += subL.length * 5 + 12;
+
+      // QR + Button
+      const qrUrl = "https://florian-lingner.ch/kostenlose-archetyp-masterclass-anfordern/";
+      try {
+        const qrR = await fetch("/qr-code-mc-anfordern-pdf.png");
+        const qrB = await qrR.blob();
+        const qrD = await new Promise((r) => { const rd = new FileReader(); rd.onloadend = () => r(rd.result); rd.readAsDataURL(qrB); });
+        doc.addImage(qrD, "PNG", pw / 2 - 18, y, 36, 36); y += 42;
+      } catch (e) {
+        doc.setFontSize(9); doc.setTextColor(...orange);
+        doc.text(qrUrl, pw / 2, y + 4, { align: "center" }); y += 12;
       }
 
-      // ── CTA ──
-      np(70);
-      doc.setFont("helvetica", "bold"); doc.setFontSize(14); doc.setTextColor(...dark);
-      doc.text("DEINE KOSTENLOSE " + meta.labelFuer.toUpperCase() + "-MASTERCLASS", pw / 2, y, { align: "center" }); y += 7;
-      doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...gray);
-      const ctaL = doc.splitTextToSize("Hier bietet sich dir die M\u00F6glichkeit, genau deine Kernprobleme aufzul\u00F6sen. Scanne den QR-Code oder klicke den Link:", 140);
-      doc.text(ctaL, pw / 2, y, { align: "center", lineHeightFactor: 1.5 }); y += ctaL.length * 4.5 + 8;
-      const qrUrl = "https://florian-lingner.ch/kostenlose-archetyp-masterclass-anfordern/";
-      try { const qrR = await fetch("/qr-code-mc-anfordern-pdf.png"); const qrB = await qrR.blob(); const qrD = await new Promise((r) => { const rd = new FileReader(); rd.onloadend = () => r(rd.result); rd.readAsDataURL(qrB); }); doc.addImage(qrD, "PNG", pw / 2 - 16, y, 32, 32); y += 38; } catch (e) { doc.setFontSize(9); doc.setTextColor(...orange); doc.text(qrUrl, pw / 2, y + 4, { align: "center" }); y += 12; }
-      const btnW = 80, btnH = 10; doc.setFillColor(...dark); doc.rect(pw / 2 - btnW / 2, y, btnW, btnH, "F");
-      doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(245, 240, 235);
-      doc.text("Masterclass ansehen", pw / 2, y + 5.8, { align: "center" }); doc.link(pw / 2 - btnW / 2, y, btnW, btnH, { url: qrUrl }); y += btnH + 6;
+      doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(...gray);
+      doc.text("Scanne den QR-Code oder klicke den Link:", pw / 2, y, { align: "center" }); y += 8;
+
+      const btnW = 90, btnH = 11;
+      doc.setFillColor(...orange); doc.rect(pw / 2 - btnW / 2, y, btnW, btnH, "F");
+      doc.setFont("helvetica", "bold"); doc.setFontSize(10); doc.setTextColor(255, 255, 255);
+      doc.text("Kostenlose Masterclass ansehen", pw / 2, y + 6.5, { align: "center" });
+      doc.link(pw / 2 - btnW / 2, y, btnW, btnH, { url: qrUrl }); y += btnH + 6;
+
       doc.setFontSize(7); doc.setTextColor(...warmGray); doc.text(qrUrl, pw / 2, y, { align: "center" });
+
       doc.save("Persoenlichkeitstest-" + meta.label.replace(/\s+/g, "-") + ".pdf");
     } catch (err) { console.error("PDF generation failed:", err); alert("PDF-Fehler: " + (err.message || err)); }
     finally { setPdfLoading(false); }
   };
+
 
   return (
     <div className={`result-screen ${animateIn ? "visible" : ""}`}>
