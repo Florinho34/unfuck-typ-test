@@ -936,8 +936,8 @@ body, html, #root {
 
 .test-app { width: 100%; min-height: 100%; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; }
 
-.intro-screen { width: 100%; height: 100vh; height: 100dvh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem 2rem 0; text-align: center; animation: fadeUp 0.8s ease-out; position: relative; overflow: hidden; }
-.intro-content { display: flex; flex-direction: column; align-items: center; }
+.intro-screen { width: 100%; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; padding: 2rem 2rem 0; text-align: center; animation: fadeUp 0.8s ease-out; position: relative; overflow: hidden; }
+.intro-content { display: flex; flex-direction: column; align-items: center; flex: 1; justify-content: center; }
 .intro-screen h1 { font-family: 'Inter Tight', sans-serif; font-size: clamp(1.5rem, 5vw, 2.5rem); font-weight: 900; line-height: 1.2; color: var(--dark); max-width: 520px; margin-bottom: 1rem; letter-spacing: -0.01em; }
 .highlight { color: var(--orange); font-style: italic; font-weight: 900; }
 .intro-avatars { margin-bottom: 1rem; }
