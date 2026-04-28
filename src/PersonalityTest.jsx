@@ -1721,163 +1721,190 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
     setPdfLoading(true);
     try {
       const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
-      const pw = 210, ph = 297;
+      const pw = 210, ph = 297, ml = 27, mr = 27, cw = pw - ml - mr;
       const orange = [255, 77, 0], dark = [28, 28, 28], gray = [107, 101, 96], warmGray = [163, 155, 147], green = [45, 122, 58];
-      const stripHtml = (html) => html.replace(/<br\s*\/?>/gi, '\n').replace(/<[^>]+>/g, '');
       const bgResponse = await fetch("/Digitales-briefpapier.jpg");
       const bgBlob = await bgResponse.blob();
       const bgData = await new Promise((resolve) => { const reader = new FileReader(); reader.onloadend = () => resolve(reader.result); reader.readAsDataURL(bgBlob); });
       const addBg = () => doc.addImage(bgData, "JPEG", 0, 0, pw, ph);
-      const checkPage = (needed) => { if (y + needed > ph - 25) { doc.addPage(); addBg(); y = 38; } };
-      addBg();
       let y = 38;
+      const np = (need) => { if (y + need > ph - 22) { doc.addPage(); addBg(); y = 38; } };
 
-      // ─── PAGE 1: Header + Radar + Description + Pain ───
+      // Rich text renderer with <strong> support
+      const renderRich = (html, x, maxW, fontSize, lineH) => {
+        doc.setFontSize(fontSize); doc.setTextColor(...dark);
+        const segs = [];
+        let rem = html;
+        while (rem.length > 0) {
+          const si = rem.indexOf('<strong>');
+          if (si === -1) { segs.push({ t: rem, b: false }); break; }
+          if (si > 0) segs.push({ t: rem.substring(0, si), b: false });
+          const ei = rem.indexOf('</strong>', si);
+          if (ei === -1) { segs.push({ t: rem.substring(si + 8), b: true }); break; }
+          segs.push({ t: rem.substring(si + 8, ei), b: true });
+          rem = rem.substring(ei + 9);
+        }
+        let cx = x, cy = y;
+        segs.forEach(seg => {
+          doc.setFont("helvetica", seg.b ? "bold" : "normal");
+          seg.t.split(/\s+/).filter(w => w).forEach(word => {
+            const ww = doc.getTextWidth(word + " ");
+            if (cx + ww > x + maxW && cx > x) { cx = x; cy += lineH; }
+            doc.text(word, cx, cy); cx += ww;
+          });
+        });
+        doc.setFont("helvetica", "normal");
+        y = cy + lineH;
+      };
+
+      addBg();
+
+      // ── HEADER ──
       doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(...warmGray);
-      doc.text("DEIN PERSÖNLICHKEITSTEST \u2013 ERGEBNIS", pw / 2, y, { align: "center" }); y += 12;
+      doc.text("DEIN PERS\u00D6NLICHKEITSTEST \u2013 ERGEBNIS", pw / 2, y, { align: "center" }); y += 12;
       doc.setFont("helvetica", "bold"); doc.setFontSize(32); doc.setTextColor(...dark);
       doc.text(meta.label, pw / 2, y, { align: "center" }); y += 10;
       doc.setFont("helvetica", "italic"); doc.setFontSize(11); doc.setTextColor(...orange);
       const tagLines = doc.splitTextToSize("\u201E" + meta.tagline + "\u201C", 150);
       doc.text(tagLines, pw / 2, y, { align: "center" }); y += tagLines.length * 5.5 + 10;
 
-      // Radar
-      const radarCx = pw / 2, radarCy = y + 42, radarR = 36;
+      // ── RADAR ──
+      const rCx = pw / 2, rCy = y + 42, rR = 36;
       const scales = CORE_SCALES, sn = scales.length;
-      const getRadarPt = (idx, val) => { const angle = (Math.PI * 2 * idx) / sn - Math.PI / 2; const dist = (val / 100) * radarR; return { x: radarCx + dist * Math.cos(angle), y: radarCy + dist * Math.sin(angle) }; };
-      [25, 50, 75, 100].forEach(val => { const pts = scales.map((_, i) => getRadarPt(i, val)); doc.setDrawColor(...warmGray); doc.setLineWidth(0.15); pts.forEach((p, i) => { const np = pts[(i + 1) % pts.length]; doc.line(p.x, p.y, np.x, np.y); }); });
-      scales.forEach((_, i) => { const p = getRadarPt(i, 100); doc.setDrawColor(220, 215, 210); doc.setLineWidth(0.1); doc.line(radarCx, radarCy, p.x, p.y); });
-      const typeProfile = TYPE_PROFILES[scoring.resultType];
-      const typePts = scales.map((s, i) => getRadarPt(i, typeProfile[s]));
-      doc.setDrawColor(...warmGray); doc.setLineWidth(0.2); typePts.forEach((p, i) => { const np = typePts[(i + 1) % typePts.length]; doc.line(p.x, p.y, np.x, np.y); });
-      const userPts = scales.map((s, i) => getRadarPt(i, scoring.normalized[s]));
-      doc.setDrawColor(...orange); doc.setLineWidth(0.6); userPts.forEach((p, i) => { const np = userPts[(i + 1) % userPts.length]; doc.line(p.x, p.y, np.x, np.y); });
-      userPts.forEach(p => { doc.setFillColor(...orange); doc.circle(p.x, p.y, 1, "F"); });
-      const shortLabels = { REF: "Reflexion", SL: "Selbstliebe", ML: "Machtlosigk.", OL: "Orient.losigk.", ETH: "Eig. Werte", WS: "Weltschmerz", NAT: "Natur", EX: "Externalis.", EF: "Fremdbest.", HA: "Handlungskr." };
+      const gp = (idx, val) => { const a = (Math.PI * 2 * idx) / sn - Math.PI / 2; const d2 = (val / 100) * rR; return { x: rCx + d2 * Math.cos(a), y: rCy + d2 * Math.sin(a) }; };
+      [25, 50, 75, 100].forEach(v => { const pts = scales.map((_, i) => gp(i, v)); doc.setDrawColor(...warmGray); doc.setLineWidth(0.15); pts.forEach((p, i) => { const n2 = pts[(i + 1) % pts.length]; doc.line(p.x, p.y, n2.x, n2.y); }); });
+      scales.forEach((_, i) => { const p = gp(i, 100); doc.setDrawColor(220, 215, 210); doc.setLineWidth(0.1); doc.line(rCx, rCy, p.x, p.y); });
+      const tp = TYPE_PROFILES[scoring.resultType];
+      const tPts = scales.map((s, i) => gp(i, tp[s]));
+      doc.setDrawColor(...warmGray); doc.setLineWidth(0.2); tPts.forEach((p, i) => { const n2 = tPts[(i + 1) % tPts.length]; doc.line(p.x, p.y, n2.x, n2.y); });
+      const uPts = scales.map((s, i) => gp(i, scoring.normalized[s]));
+      doc.setDrawColor(...orange); doc.setLineWidth(0.6); uPts.forEach((p, i) => { const n2 = uPts[(i + 1) % uPts.length]; doc.line(p.x, p.y, n2.x, n2.y); });
+      uPts.forEach(p => { doc.setFillColor(...orange); doc.circle(p.x, p.y, 1, "F"); });
+      const sL = { REF: "Reflexion", SL: "Selbstliebe", ML: "Ment. Last", OL: "Orientierung", ETH: "Eig. Werte", WS: "Weltschmerz", NAT: "Natur", EX: "Externalis.", EF: "Ehrlichkeit", HA: "Handlungskr." };
       doc.setFontSize(6.5); doc.setFont("helvetica", "normal"); doc.setTextColor(...dark);
-      scales.forEach((s, i) => { const p = getRadarPt(i, 125); const anchor = p.x < radarCx - 5 ? "right" : p.x > radarCx + 5 ? "left" : "center"; const dy = p.y < radarCy - 5 ? -1.5 : p.y > radarCy + 5 ? 3 : 0.5; doc.text(shortLabels[s] || SCALE_LABELS[s], p.x, p.y + dy, { align: anchor }); });
-      y = radarCy + radarR + 10;
+      scales.forEach((s, i) => { const p = gp(i, 125); const anc = p.x < rCx - 5 ? "right" : p.x > rCx + 5 ? "left" : "center"; const dy = p.y < rCy - 5 ? -1.5 : p.y > rCy + 5 ? 3 : 0.5; doc.text(sL[s] || s, p.x, p.y + dy, { align: anc }); });
+      y = rCy + rR + 10;
       doc.setFontSize(6); doc.setTextColor(...orange); doc.setFillColor(...orange);
-      doc.rect(pw / 2 - 35, y - 1.2, 4, 1.2, "F"); doc.text("Dein Profil", pw / 2 - 29, y, { align: "left" });
+      doc.rect(pw / 2 - 35, y - 1.2, 4, 1.2, "F"); doc.text("Dein Profil", pw / 2 - 29, y);
       doc.setTextColor(...warmGray); doc.setDrawColor(...warmGray); doc.setLineWidth(0.3);
-      doc.line(pw / 2 + 5, y - 0.6, pw / 2 + 9, y - 0.6); doc.text(meta.label + "-Referenz", pw / 2 + 11, y, { align: "left" }); y += 18;
+      doc.line(pw / 2 + 5, y - 0.6, pw / 2 + 9, y - 0.6); doc.text(meta.label + "-Referenz", pw / 2 + 11, y); y += 16;
 
-      // Description (HTML stripped, split by paragraphs)
-      const descPlain = stripHtml(meta.description);
-      const descParas = descPlain.split('\n').filter(p => p.trim());
-      doc.setFont("helvetica", "normal"); doc.setFontSize(9.5); doc.setTextColor(...dark);
-      descParas.forEach(para => {
-        const lines = doc.splitTextToSize(para.trim(), 155);
-        checkPage(lines.length * 4.2 + 4);
-        doc.text(lines, 27, y, { lineHeightFactor: 1.55 }); y += lines.length * 4.2 + 4;
+      // ── DESCRIPTION (with bold) ──
+      meta.description.split(/<br\s*\/?>/gi).filter(p => p.trim()).forEach(para => {
+        const plain = para.replace(/<[^>]+>/g, '');
+        const est = Math.ceil(doc.splitTextToSize(plain, cw).length);
+        np(est * 4.5 + 4);
+        renderRich(para.trim(), ml, cw, 9.5, 4.3);
+        y += 2;
       });
       y += 4;
 
-      // Pain section
-      checkPage(35);
-      doc.setFillColor(...orange); doc.rect(27, y, 1.2, 28, "F");
-      doc.setFillColor(255, 240, 235); doc.rect(29, y - 1, 154, 30, "F");
+      // ── PAIN ──
+      const painL = doc.splitTextToSize(meta.pain, cw - 10);
+      const painH = painL.length * 3.8 + 14;
+      np(painH + 4);
+      doc.setFillColor(255, 240, 235); doc.rect(ml + 2, y - 1, cw - 2, painH, "F");
+      doc.setFillColor(...orange); doc.rect(ml, y - 1, 1.5, painH, "F");
       doc.setFont("helvetica", "bold"); doc.setFontSize(10); doc.setTextColor(...orange);
-      doc.text("Daran scheiterst du gerade wahrscheinlich:", 32, y + 5);
+      doc.text("Daran scheiterst du gerade wahrscheinlich:", ml + 6, y + 5);
       doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(...dark);
-      const painLines = doc.splitTextToSize(meta.pain, 148); doc.text(painLines, 32, y + 12, { lineHeightFactor: 1.55 }); y += 36;
+      doc.text(painL, ml + 6, y + 12, { lineHeightFactor: 1.5 }); y += painH + 8;
 
-      // ─── PAGE 2: Hebel + Stärken + Potenziale ───
-      doc.addPage(); addBg(); y = 38;
-
-      // Hebel
-      doc.setFont("helvetica", "bold"); doc.setFontSize(14); doc.setTextColor(...dark);
-      doc.text("Dein gr\u00F6\u00DFter Hebel:", 27, y); y += 8;
-      doc.setFillColor(245, 243, 240); doc.rect(27, y - 2, 156, 36, "F");
-      doc.setFillColor(...dark); doc.rect(27, y - 2, 1.2, 36, "F");
+      // ── HEBEL ──
+      np(50);
+      doc.setFont("helvetica", "bold"); doc.setFontSize(13); doc.setTextColor(...dark);
+      doc.text("Dein gr\u00F6\u00DFter Hebel:", ml, y); y += 8;
+      const hL = doc.splitTextToSize(meta.hebel, cw - 10);
+      const scL = doc.splitTextToSize(meta.schritt, cw - 10);
+      const hbH = hL.length * 3.8 + scL.length * 3.8 + 24;
+      doc.setFillColor(245, 243, 240); doc.rect(ml + 2, y - 2, cw - 2, hbH, "F");
+      doc.setFillColor(...dark); doc.rect(ml, y - 2, 1.5, hbH, "F");
       doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...dark);
-      const hebelLines = doc.splitTextToSize(meta.hebel, 148); doc.text(hebelLines, 32, y + 5, { lineHeightFactor: 1.5 });
-      const hebelH = hebelLines.length * 4.5;
+      doc.text(hL, ml + 6, y + 4, { lineHeightFactor: 1.5 });
+      const afterH = y + 4 + hL.length * 4 + 4;
       doc.setFont("helvetica", "bold"); doc.setFontSize(8.5); doc.setTextColor(...orange);
-      doc.text("Ein erster Schritt:", 32, y + 5 + hebelH + 3);
+      doc.text("Ein erster Schritt:", ml + 6, afterH);
       doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...dark);
-      const schrittLines = doc.splitTextToSize(meta.schritt, 148); doc.text(schrittLines, 32, y + 5 + hebelH + 9, { lineHeightFactor: 1.5 }); y += 44;
+      doc.text(scL, ml + 6, afterH + 6, { lineHeightFactor: 1.5 }); y += hbH + 10;
 
-      // Top 3 Stärken
-      y += 6;
+      // ── TOP 3 ST\u00C4RKEN ──
+      np(30);
       doc.setFont("helvetica", "bold"); doc.setFontSize(13); doc.setTextColor(...green);
-      doc.text("Deine Top 3 St\u00E4rken", 27, y); y += 8;
+      doc.text("Deine Top 3 St\u00E4rken", ml, y); y += 8;
       strengths.forEach(s => {
-        const textLines = doc.splitTextToSize(s.text, 148);
-        const cardH = 14 + textLines.length * 4;
-        checkPage(cardH + 4);
-        doc.setFillColor(240, 248, 242); doc.rect(27, y - 2, 156, cardH, "F");
-        doc.setFillColor(...green); doc.rect(27, y - 2, 1.2, cardH, "F");
+        const tl = doc.splitTextToSize(s.text, cw - 10);
+        const ch = tl.length * 3.8 + 16;
+        np(ch + 4);
+        doc.setFillColor(240, 248, 242); doc.rect(ml + 2, y - 2, cw - 2, ch, "F");
+        doc.setFillColor(...green); doc.rect(ml, y - 2, 1.5, ch, "F");
         doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...dark);
-        doc.text(s.name, 32, y + 4);
-        const barW = Math.max((s.strengthScore / 100) * 100, 5);
-        doc.setFillColor(232, 224, 216); doc.rect(32, y + 7, 100, 2.5, "F");
-        doc.setFillColor(...green); doc.rect(32, y + 7, barW, 2.5, "F");
+        doc.text(s.name, ml + 6, y + 4);
+        const bw = Math.max((s.strengthScore / 100) * (cw - 20), 5);
+        doc.setFillColor(232, 224, 216); doc.rect(ml + 6, y + 7, cw - 20, 2.5, "F");
+        doc.setFillColor(...green); doc.rect(ml + 6, y + 7, bw, 2.5, "F");
         doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(...dark);
-        doc.text(textLines, 32, y + 14, { lineHeightFactor: 1.45 }); y += cardH + 4;
+        doc.text(tl, ml + 6, y + 14, { lineHeightFactor: 1.45 }); y += ch + 4;
       });
 
-      // Top 3 Potenziale
-      y += 6;
-      checkPage(20);
+      // ── TOP 3 POTENZIALE ──
+      y += 4;
+      np(30);
       doc.setFont("helvetica", "bold"); doc.setFontSize(13); doc.setTextColor(...orange);
-      doc.text("Deine 3 gr\u00F6\u00DFten Potenziale", 27, y); y += 8;
+      doc.text("Deine 3 gr\u00F6\u00DFten Potenziale", ml, y); y += 8;
       potentials.forEach(p => {
-        const textLines = doc.splitTextToSize(p.text, 148);
-        const cardH = 14 + textLines.length * 4;
-        checkPage(cardH + 4);
-        doc.setFillColor(255, 245, 240); doc.rect(27, y - 2, 156, cardH, "F");
-        doc.setFillColor(...orange); doc.rect(27, y - 2, 1.2, cardH, "F");
+        const tl = doc.splitTextToSize(p.text, cw - 10);
+        const ch = tl.length * 3.8 + 16;
+        np(ch + 4);
+        doc.setFillColor(255, 245, 240); doc.rect(ml + 2, y - 2, cw - 2, ch, "F");
+        doc.setFillColor(...orange); doc.rect(ml, y - 2, 1.5, ch, "F");
         doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...dark);
-        doc.text(p.name, 32, y + 4);
-        const barW = Math.max(((100 - p.strengthScore) / 100) * 100, 5);
-        doc.setFillColor(232, 224, 216); doc.rect(32, y + 7, 100, 2.5, "F");
-        doc.setFillColor(...orange); doc.rect(32, y + 7, barW, 2.5, "F");
+        doc.text(p.name, ml + 6, y + 4);
+        const bw = Math.max(((100 - p.strengthScore) / 100) * (cw - 20), 5);
+        doc.setFillColor(232, 224, 216); doc.rect(ml + 6, y + 7, cw - 20, 2.5, "F");
+        doc.setFillColor(...orange); doc.rect(ml + 6, y + 7, bw, 2.5, "F");
         doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(...dark);
-        doc.text(textLines, 32, y + 14, { lineHeightFactor: 1.45 }); y += cardH + 4;
+        doc.text(tl, ml + 6, y + 14, { lineHeightFactor: 1.45 }); y += ch + 4;
       });
 
-      // ─── PAGE 3: Typ-Verteilung + Mischtyp + CTA ───
-      doc.addPage(); addBg(); y = 38;
-
-      // Typ-Verteilung
-      doc.setFont("helvetica", "bold"); doc.setFontSize(14); doc.setTextColor(...dark);
-      doc.text("Deine Typ-Verteilung", pw / 2, y, { align: "center" }); y += 12;
-      const sortedAffinities = Object.entries(scoring.affinities).sort((a, b) => b[1] - a[1]);
-      sortedAffinities.forEach(([type, pct]) => {
+      // ── TYP-VERTEILUNG ──
+      y += 6;
+      np(65);
+      doc.setFont("helvetica", "bold"); doc.setFontSize(13); doc.setTextColor(...dark);
+      doc.text("Deine Typ-Verteilung", ml, y); y += 10;
+      Object.entries(scoring.affinities).sort((a, b) => b[1] - a[1]).forEach(([type, pct]) => {
         const isMain = type === scoring.resultType;
         const isSec = type === secondaryType && showMischtyp;
-        doc.setFont("helvetica", isMain ? "bold" : "normal"); doc.setFontSize(9); doc.setTextColor(...dark); doc.text(TYPE_META[type].label, 30, y);
-        doc.setFillColor(232, 224, 216); doc.rect(80, y - 2.5, 75, 4, "F");
-        const barW = Math.max((pct / 100) * 75, 2);
+        doc.setFont("helvetica", isMain ? "bold" : "normal"); doc.setFontSize(9); doc.setTextColor(...dark); doc.text(TYPE_META[type].label, ml, y);
+        doc.setFillColor(232, 224, 216); doc.rect(ml + 55, y - 2.5, 80, 4, "F");
+        const bw = Math.max((pct / 100) * 80, 2);
         if (isMain) doc.setFillColor(...orange); else if (isSec) doc.setFillColor(...dark); else doc.setFillColor(...warmGray);
-        doc.rect(80, y - 2.5, barW, 4, "F");
-        doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.setTextColor(...gray); doc.text(pct + "%", 170, y, { align: "right" }); y += 9;
-      }); y += 10;
+        doc.rect(ml + 55, y - 2.5, bw, 4, "F");
+        doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.setTextColor(...gray); doc.text(pct + "%", ml + cw, y, { align: "right" }); y += 9;
+      }); y += 8;
 
-      // Mischtyp / Sekundär-Archetyp
+      // ── MISCHTYP ──
       if (showMischtyp) {
+        np(50);
         doc.setFont("helvetica", "bold"); doc.setFontSize(12); doc.setTextColor(...dark);
-        doc.text("Dein Sekund\u00E4r-Archetyp: " + TYPE_META[secondaryType]?.label, 27, y); y += 8;
+        doc.text("Dein Sekund\u00E4r-Archetyp: " + TYPE_META[secondaryType]?.label, ml, y); y += 7;
         doc.setFont("helvetica", "italic"); doc.setFontSize(9); doc.setTextColor(...gray);
-        const bridgeText = "Du bist nicht nur " + meta.label + ", dein Profil zeigt auch deutliche " + TYPE_META[secondaryType]?.label + "-Anteile. Und genau diese Mischung macht's spannend:";
-        const bridgeLines = doc.splitTextToSize(bridgeText, 155);
-        doc.text(bridgeLines, 27, y, { lineHeightFactor: 1.5 }); y += bridgeLines.length * 4.5 + 4;
+        const bt = "Du bist nicht nur " + meta.label + ", dein Profil zeigt auch deutliche " + TYPE_META[secondaryType]?.label + "-Anteile. Und genau diese Mischung macht's spannend:";
+        const bl = doc.splitTextToSize(bt, cw);
+        doc.text(bl, ml, y, { lineHeightFactor: 1.5 }); y += bl.length * 4.5 + 4;
         doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...dark);
-        const comboLines = doc.splitTextToSize(comboText, 155);
-        doc.text(comboLines, 27, y, { lineHeightFactor: 1.55 }); y += comboLines.length * 4.2 + 10;
+        const cl = doc.splitTextToSize(comboText, cw);
+        doc.text(cl, ml, y, { lineHeightFactor: 1.55 }); y += cl.length * 4.2 + 10;
       }
 
-      // CTA
-      checkPage(70);
+      // ── CTA ──
+      np(70);
       doc.setFont("helvetica", "bold"); doc.setFontSize(14); doc.setTextColor(...dark);
-      const ctaTitle = "DEINE KOSTENLOSE " + meta.labelFuer.toUpperCase() + "-MASTERCLASS";
-      doc.text(ctaTitle, pw / 2, y, { align: "center" }); y += 7;
+      doc.text("DEINE KOSTENLOSE " + meta.labelFuer.toUpperCase() + "-MASTERCLASS", pw / 2, y, { align: "center" }); y += 7;
       doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...gray);
-      const ctaTextPdf = doc.splitTextToSize("Hier bietet sich dir die M\u00F6glichkeit, genau deine Kernprobleme aufzul\u00F6sen. Scanne den QR-Code oder klicke den Link:", 140);
-      doc.text(ctaTextPdf, pw / 2, y, { align: "center", lineHeightFactor: 1.5 }); y += ctaTextPdf.length * 4.5 + 8;
+      const ctaL = doc.splitTextToSize("Hier bietet sich dir die M\u00F6glichkeit, genau deine Kernprobleme aufzul\u00F6sen. Scanne den QR-Code oder klicke den Link:", 140);
+      doc.text(ctaL, pw / 2, y, { align: "center", lineHeightFactor: 1.5 }); y += ctaL.length * 4.5 + 8;
       const qrUrl = "https://florian-lingner.ch/kostenlose-archetyp-masterclass-anfordern/";
-      try { const qrResponse = await fetch("/qr-code-mc-anfordern-pdf.png"); const qrBlob = await qrResponse.blob(); const qrData = await new Promise((resolve) => { const reader = new FileReader(); reader.onloadend = () => resolve(reader.result); reader.readAsDataURL(qrBlob); }); doc.addImage(qrData, "PNG", pw / 2 - 16, y, 32, 32); y += 38; } catch (qrErr) { doc.setFontSize(9); doc.setTextColor(...orange); doc.text(qrUrl, pw / 2, y + 4, { align: "center" }); y += 12; }
+      try { const qrR = await fetch("/qr-code-mc-anfordern-pdf.png"); const qrB = await qrR.blob(); const qrD = await new Promise((r) => { const rd = new FileReader(); rd.onloadend = () => r(rd.result); rd.readAsDataURL(qrB); }); doc.addImage(qrD, "PNG", pw / 2 - 16, y, 32, 32); y += 38; } catch (e) { doc.setFontSize(9); doc.setTextColor(...orange); doc.text(qrUrl, pw / 2, y + 4, { align: "center" }); y += 12; }
       const btnW = 80, btnH = 10; doc.setFillColor(...dark); doc.rect(pw / 2 - btnW / 2, y, btnW, btnH, "F");
       doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(245, 240, 235);
       doc.text("Masterclass ansehen", pw / 2, y + 5.8, { align: "center" }); doc.link(pw / 2 - btnW / 2, y, btnW, btnH, { url: qrUrl }); y += btnH + 6;
