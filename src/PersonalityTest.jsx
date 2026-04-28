@@ -602,7 +602,7 @@ const TYPE_META = {
     avatar: "/Archetypen-Zuschauer.png",
     tagline: "Du siehst mehr als die meisten – doch merkt man das an deinem Verhalten nur selten.",
     ctaText: "Du verstehst längst, was sich ändern müsste – jetzt ist der Moment, es auch zu tun. In dieser Masterclass zeige ich dir, wie du vom Erkennen ins Handeln kommst.",
-    description: "<strong>Du bist weise!</strong> Doch während andere einfach machen, <strong>denkst du zu viel.</strong> Du verstehst Zusammenhänge und analysierst Probleme, du durchschaust Muster, die andere nicht sehen. Das ist eine echte Gabe!<br/><br/>Doch ohne Umsetzung bleibt Wissen theoretisch und kann keine Effekte in der Realität entfalten. Als Zuschauer weißt du genau, was du ändern müsstest, aber zwischen <strong>Erkenntnis und Handlung</strong> liegt ein Graben, der jedes Jahr breiter wird.<br/><br/>Das Gute: Deine Klarheit ist eine echte Stärke. Du musst nur lernen, sie als <strong>Startrampe</strong> zu nutzen statt als Aussichtsplattform.",
+    description: "<strong>Du bist weise!</strong> Du verstehst Zusammenhänge, die andere nicht sehen, und analysierst Situationen mit einer Schärfe, die beeindruckend ist. Dein <strong>analytischer Verstand</strong> ist eine echte Gabe, und im richtigen Moment bist du die Person im Raum, die den Durchblick hat.<br/><br/>Doch genau hier liegt auch deine Falle: Während andere einfach machen, <strong>denkst du zu viel</strong>. Du weißt, was du ändern müsstest, aber zwischen Erkenntnis und Handlung liegt ein Graben, der jedes Jahr breiter wird. Ohne Umsetzung bleibt Wissen theoretisch und kann keine Effekte in der Realität entfalten. Du beobachtest dein eigenes Leben manchmal mehr, als dass du es aktiv gestaltest.<br/><br/>Die gute Nachricht: Deine Klarheit ist eine <strong>echte Stärke</strong>, die viele sich wünschen. Du musst das Rad nicht neu erfinden. Du musst nur lernen, deine Erkenntnisse als <strong>Startrampe</strong> zu nutzen statt als Aussichtsplattform. Und der erste Schritt ist kleiner, als du denkst.",
     pain: "Du analysierst dich im Kreis. Du weißt, was sich ändern müsste, aber du verwechselst Erkenntnis mit Fortschritt. Und jeder Tag, an dem du nicht handelst, macht den nächsten Schritt schwerer.",
     hebel: "Akzeptiere, dass Erkenntnis ohne Handlung wertlos ist. Du weißt genug. Es fehlt nicht an Wissen, sondern an Mut.",
     schritt: "Tu heute die eine Sache, die du seit Wochen aufschiebst. Nicht perfekt, einfach anfangen.",
@@ -613,7 +613,7 @@ const TYPE_META = {
     avatar: "/Archetypen-Getriebener.png",
     tagline: "Du bist ständig in Bewegung – aber wer hat eigentlich das Ziel bestimmt?",
     ctaText: "Du funktionierst – aber für wen eigentlich? In dieser Masterclass zeige ich dir, wie du deine Energie endlich für das einsetzt, was dich wirklich glücklich machen kann.",
-    description: "<strong>Du bist ein wahrer Macher!</strong> Du funktionierst, zuverlässig, produktiv, immer beschäftigt. Von außen sieht das nach <strong>Disziplin und Erfolg</strong> aus. Aber dahinter steckt eine Vermeidungsstrategie: Solange du funktionierst, musst du nicht hinschauen.<br/><br/>Manche Getriebene folgen einem Drehbuch, das andere geschrieben haben, und merken es nicht. In den ruhigen Momenten, wenn die Ablenkung wegfällt, ist da eine <strong>Unruhe</strong>, die du nicht benennen kannst. Und weil das unangenehm ist, greifst du direkt wieder zur Beschäftigung.<br/><br/>Doch keine Sorge: Dein Antrieb und deine Disziplin sind eine <strong>unersetzliche Stärke</strong>. Wenn du diese nutzt, wirst du es weit bringen, doch du brauchst ein Ziel, das wirklich deins ist.",
+    description: "<strong>Du bist ein wahrer Macher!</strong> Dein Antrieb, deine Disziplin und deine Belastbarkeit sind beeindruckend. Du funktionierst, wo andere aufgeben, und du lieferst Ergebnisse, auf die man sich verlassen kann. Das ist eine <strong>seltene Qualität</strong>, und sie hat dich in vielem weitergebracht.<br/><br/>Aber dahinter steckt meist auch eine Vermeidungsstrategie: Solange du funktionierst, musst du nicht hinschauen. Manche Getriebene folgen einem Drehbuch, das andere geschrieben haben, und merken es nicht. In den ruhigen Momenten, wenn die Ablenkung wegfällt, ist da eine <strong>Unruhe</strong>, die du nicht benennen kannst. Und weil das unangenehm ist, greifst du direkt wieder zur Beschäftigung. Mach dir keinen Vorwurf, jeder macht gern das, was er gut kann. Doch würde sich ein Blick in diese dunkle Schublade lohnen, um zu sehen, welche Gedanken hier unterbewusst zurückgehalten werden.<br/><br/>Vielen anderen gegenüber hast du einen immensen Vorteil: Dein Antrieb und deine Disziplin sind <strong>unersetzliche Stärken</strong>. Die meisten Menschen träumen davon, so konsequent umsetzen zu können wie du. Wenn du lernst, diese Kraft für ein Ziel einzusetzen, das wirklich deins ist, wirst du nicht nur funktionieren, sondern <strong>aufblühen</strong>.",
     pain: "Du bist so beschäftigt mit Funktionieren, dass du gar nicht merkst, wie weit du dich von dir selbst entfernt hast. Und die Stimme, die fragt \u201EIst das wirklich alles?\u201C, wird leiser, je mehr du sie übertönst.",
     hebel: "Verstehe, dass Leistung allein nicht zu Glück führt. Dein hohes Pensum ist in Wahrheit deine Vermeidungsstrategie, die wirklich wichtigen Themen nicht anzuschauen.",
     schritt: "Nimm dir diese Woche an einem Abend bewusst nichts vor. Kein Handy, keine Aufgaben. Setz dich auf die Couch oder leg dich in die Wiese und schau in den Himmel. Mache NICHTS. Und halte aus, was dann hochkommt.",
@@ -624,7 +624,7 @@ const TYPE_META = {
     avatar: "/Archetypen-Idealist.png",
     tagline: "Du spürst, was in der Welt schiefläuft – und es frisst dich auf.",
     ctaText: "Dein Feuer für eine bessere Welt ist echt und ehrenwert – doch es birgt die Gefahr, dich innerlich aufzufressen. In dieser Masterclass zeige ich dir, wie du für eine bessere Welt sorgst – zuerst bei dir, um anschließend auch die Kraft zu finden weiterzumachen.",
-    description: "<strong>Du willst wahrhaftig etwas verändern!</strong> Doch dein eigenes Leben und Glück steht hinten an. Ungerechtigkeit, Oberflächlichkeit, Zerstörung, du siehst es überall und es lässt dich nicht kalt. Deine <strong>Intensität ist selten und wertvoll</strong>.<br/><br/>Aber sie hat eine Schattenseite: Deine Energie fließt in Wut, Frustration und Ohnmacht über Dinge, die du nicht kontrollieren kannst, und für dein eigenes Leben bleibt am Ende zu wenig Kraft übrig, da du gelähmt bist.<br/><br/>Wahrscheinlich hast du nie gelernt, dass bei dir selbst anfangen <strong>kein Verrat an der Welt ist</strong>. Sondern die Voraussetzung, um überhaupt etwas verändern zu können.",
+    description: "<strong>Du willst wahrhaftig etwas verändern!</strong> Dein Gerechtigkeitssinn, deine Empathie und dein moralischer Kompass sind echt. In einer Welt, die oft wegschaut, bist du jemand, der <strong>hinschaut und sich betroffen fühlt</strong>. Das ist keine Schwäche, das ist eine seltene und wertvolle Haltung.<br/><br/>Doch genau diese Intensität hat eine Schattenseite: Deine Energie fließt immer wieder in Wut, Frustration und Ohnmacht über Dinge, die du nicht kontrollieren kannst. Dein eigenes Leben und Glück stehen dabei hinten an. Wahrscheinlich hast du nie gelernt, dass bei dir selbst anfangen <strong>kein Verrat an der Welt ist</strong>.<br/><br/>Die Wahrheit ist: <strong>Die Welt braucht Menschen wie dich</strong>. Deine <strong>Leidenschaft und dein Mut</strong>, unbequeme Wahrheiten auszusprechen, sind ein Geschenk. Wenn du lernst, zuerst für dich selbst zu sorgen, wirst du nicht schwächer, sondern <strong>nachhaltig stärker und handlungsfähiger</strong>. Und genau dann kannst du auch wirklich etwas bewegen.",
     pain: "Dein Gerechtigkeitssinn ist echt – aber er frisst dich auf. Du gibst so viel Energie an die Welt, dass für dich selbst nichts übrig bleibt. Und das Paradoxe: Genau dadurch veränderst du weniger, als du könntest.",
     hebel: "Erkenne, erstens, dass Selbstfürsorge kein Egoismus ist, sondern die Voraussetzung, um überhaupt etwas verändern zu können und zweitens, dass der Wunsch nach Perfektion einer positiven Entwicklung im Wege stehen kann.",
     schritt: "Tu heute eine Sache nur für dich. Ohne schlechtes Gewissen. Ohne Rechtfertigung.",
@@ -635,7 +635,7 @@ const TYPE_META = {
     avatar: "/Archetypen-Suchende.png",
     tagline: "Du weißt, dass etwas fehlt – du weißt nur noch nicht, was.",
     ctaText: "Du spürst, dass da mehr ist – aber die nächste \u201EMethode nach Guru XY\u201C wird\u2019s auch nicht richten. In dieser Masterclass zeige ich dir, wo du wirklich hinschauen musst.",
-    description: "<strong>In dir schlummert ein neugieriger Entdecker!</strong> Doch zufrieden ist er nicht. Du hast schon so vieles probiert: Bücher, Podcasts, vielleicht Seminare. Manche Dinge haben kurz resoniert, aber <strong>nichts hat wirklich gehalten</strong>.<br/><br/>Das liegt nicht daran, dass du sprunghaft bist, sondern daran, dass du intuitiv spürst, wenn etwas nicht echt ist. Das Problem ist nur: Du suchst die Antwort im Außen, während sie <strong>im Innen</strong> liegt.<br/><br/>Der erste Schritt ist nicht die nächste Methode, sondern ehrlich hinschauen, warum keine bisherige gereicht hat.",
+    description: "<strong>In dir schlummert ein neugieriger Entdecker!</strong> Dein Wissensdurst, deine Offenheit und dein Gespür für das Echte sind bemerkenswert. Du gibst dich nicht mit der Oberfläche zufrieden und du spürst intuitiv, wenn etwas nicht stimmt. Diese <strong>innere Sensibilität</strong> ist ein echtes Talent.<br/><br/>Doch zufrieden bist du trotzdem nicht. Du hast schon vieles probiert: Bücher, Podcasts, vielleicht Seminare. Manche Dinge haben kurz resoniert, aber <strong>nichts hat wirklich gehalten</strong>. Das liegt nicht daran, dass du sprunghaft bist, sondern daran, dass du die Antwort im Außen suchst, während sie im Innen liegt.<br/><br/>Deine Neugier und dein Anspruch sind <strong>keine Schwäche</strong>. Viele Menschen gehen durchs Leben, ohne jemals die Fragen zu stellen, die du dir stellst. Wenn du lernst, weniger zu suchen und mehr umzusetzen, wirst du feststellen, dass du <strong>die meisten Antworten längst in dir trägst</strong>.",
     pain: "Du springst von Impuls zu Impuls, von Methode zu Methode – und verwechselst Bewegung mit Fortschritt. Die unbequeme Wahrheit: Es liegt nicht an den Methoden. Es liegt daran, dass du nicht tief genug gräbst.",
     hebel: "Verstehe, dass die Antwort nicht im nächsten Buch oder Podcast zu finden ist. Sie liegt in der konsequenten Umsetzung dessen, was du eigentlich schon lange weißt.",
     schritt: "Nimm die eine Erkenntnis, die dich zuletzt wirklich berührt hat, und wende sie diese Woche bewusst in einer Situation deines Lebens an. Nur diese eine.",
@@ -646,7 +646,7 @@ const TYPE_META = {
     avatar: "/Archetypen-Klarsichtiger.png",
     tagline: "Du siehst klarer als die meisten – jetzt geht's darum, danach zu leben.",
     ctaText: "Du bist weiter als die meisten – doch das allein reicht nicht. In dieser Masterclass zeige ich dir, wie du dein Wissen endlich in dein Leben integrierst.",
-    description: "<strong>Du bist weiter als die meisten!</strong> Doch auch du hast blinde Flecken. Vielleicht die Tendenz, dich für weiter zu halten, als du bist? Oder die Schwierigkeit, dein Wissen konsequent in <strong>Handlung zu übersetzen</strong>?<br/><br/>Du hinterfragst, reflektierst, lebst bewusster als viele in deinem Umfeld. Man kann mit dir über tiefere Themen sprechen, ohne dass du abblocken musst.<br/><br/><strong>Klar sehen</strong> und <strong>danach leben</strong>, das sind zwei verschiedene Dinge. Du bist auf dem Weg. Aber der Weg hat noch Strecke.",
+    description: "<strong>Du bist weiter als die meisten!</strong> Dein Selbstverständnis, deine Reflexionsfähigkeit und dein bewusster Umgang mit dem Leben sind überdurchschnittlich. Man kann mit dir über tiefere Themen sprechen, ohne dass du abblocken musst. Du hinterfragst, reflektierst und lebst <strong>bewusster als die meisten in deinem Umfeld</strong>.<br/><br/>Doch auch du hast blinde Flecken. Vielleicht die Tendenz, dich für weiter zu halten, als du bist? Oder die Schwierigkeit, dein Wissen konsequent in Handlung zu übersetzen? <strong>Klar sehen</strong> und <strong>danach leben</strong>, das sind zwei verschiedene Dinge. Und das eine ist nun mal leichter als das andere.<br/><br/>Das Gute ist: Du bist auf einem Weg, den die meisten noch nicht einmal begonnen haben. Deine Klarheit ist <strong>kein Zufall, sondern das Ergebnis von echtem Hinschauen</strong>. Wenn du lernst, deiner eigenen Erkenntnis noch mehr zu vertrauen und konsequent danach zu handeln, steht dir wenig im Weg. Ja, der Weg hat noch Strecke, aber du gehst ihn bereits, und das verdient Respekt.",
     pain: "Dein Wissen ist echt – aber es kann zur Falle werden. Du hältst dich manchmal für weiter, als du bist. Der Unterschied zwischen Wissen und Weisheit: Du brauchst keine Fakten mehr, um zu spüren, was richtig oder falsch ist. Aber dieses Spüren in echtes Handeln und Vertrauen zu übersetzen – genau daran darfst du noch arbeiten.",
     hebel: "Vielleicht ist es an der Zeit, sich einzugestehen, dass du deine Weisheit und deine Erkenntnisse mit Fortschritt verwechselst. Dein Wissen ist erst etwas wert, wenn du auch wirklich danach lebst.",
     schritt: "Geh heute Abend mal in maximal ehrliche Reflektion und schreibe dir auf, wo du Erkenntnis als Fortschritt verkaufst, obwohl du weißt, dass dir die Umsetzung fehlt.",
@@ -704,6 +704,92 @@ const COMBO_TEXTS = {
   "klarsichtiger+idealist": "Statt dein Wissen f\u00fcr dein eigenes Leben zu nutzen, flie\u00dft deine Energie vielleicht oft eher in irgendeine Art der Kompensation deines Weltschmerzes. Vielleicht verstehst du nicht nur wie du, sondern auch die Welt tickt. Oder besser ticken sollte. Und diese Diskrepanz zwischen Wunschvorstellung und Realit\u00e4t frustriert dich. Verst\u00e4ndlich. Als Klarsichtiger mit einem gut ausgerichteten Wertekompass bist du schon auf einem guten Weg, doch achte darauf, dich nicht zu sehr von deinem Wunsch nach einer Ideall\u00f6sung ausbremsen zu lassen.",
   "klarsichtiger+suchender": "Vielleicht kennst du die Frage: \u201EWas, wenn das noch nicht alles war?\u201C Das kann gesund sein, solange es nicht zur Dauerschleife wird. Es gibt viele interessante Theorien, h\u00f6renswerte Reden, lesenswerte B\u00fccher. Doch verliere dich nicht in der Vielfalt deiner M\u00f6glichkeiten. Du lebst bereits reflektierter als die meisten, also lass deinen Erkenntnissen Taten folgen. Bringt die eine Richtung nach einem ordentlichen St\u00fcck auf diesem Weg noch keinen Erfolg, kannst du ihn immer noch jederzeit wechseln.",
 };
+
+
+// ─── DIMENSION STRENGTH/POTENTIAL TEXTS ────────────────────────────────
+const DIMENSION_TEXTS = {
+  REF: {
+    name: "Reflexionsfähigkeit",
+    positive: true,
+    high: "Du hinterfragst dich selbst ehrlicher als die meisten. Wo andere auf Autopilot durchs Leben gehen, nimmst du dir die Zeit, hinzuschauen und zu verstehen.",
+    low: "Du handelst oft, ohne vorher innezuhalten. Das gibt dir Tempo, aber es führt auch dazu, dass du Muster wiederholst, die dir nicht guttun. Mehr Reflexion könnte dir helfen, bessere Entscheidungen zu treffen.",
+  },
+  SL: {
+    name: "Selbstführung",
+    positive: true,
+    high: "Du triffst Entscheidungen aus dir selbst heraus, nicht weil andere es von dir erwarten. Das ist seltener, als du denkst und ein echtes Fundament für ein selbstbestimmtes Leben.",
+    low: "Du orientierst dich stark an den Erwartungen anderer oder an dem, was sich bewährt hat. Das gibt Sicherheit, aber es kann dazu führen, dass du ein Leben lebst, das sich nicht wirklich wie deins anfühlt.",
+  },
+  ETH: {
+    name: "Ethische Integrität",
+    positive: true,
+    high: "Du hast einen klaren inneren Kompass und lebst auch danach. Deine Werte sind keine Theorie, sondern beeinflussen, wie du dich verhältst und Entscheidungen triffst.",
+    low: "Du passt dich häufig an, anstatt für das einzustehen, was dir wirklich wichtig ist. Es fehlt nicht an Werten, sondern an der Konsequenz, danach zu handeln, auch wenn es unbequem wird. Ein Leben im Einklang mit seinen innersten Werten fühlt sich fantastisch authentisch an!",
+  },
+  EF: {
+    name: "Ehrlichkeit mit dir selbst",
+    positive: true,
+    high: "Du machst dir nichts vor. Auch wenn's unangenehm ist, schaust du lieber hin als weg. Diese Fähigkeit zum ehrlichen Umgang und Diskurs mit dir selbst ist die Grundlage für echte Veränderung und eine wahre Superpower.",
+    low: "Du neigst dazu, dir Dinge schönzureden oder unangenehme Wahrheiten zu vermeiden. Das schützt kurzfristig, aber langfristig blockiert es dein Wachstum. Egal ob es dir gerade an Kraft oder Mut fehlt, um dir selbst mit dieser reinen Ehrlichkeit zu begegnen, es lohnt sich, daran zu arbeiten, auch wenn es manchmal hart sein wird.",
+  },
+  HA: {
+    name: "Handlungsfähigkeit",
+    positive: true,
+    high: "Du setzt um, was du dir vornimmst. Nicht nur reden, nicht nur planen, sondern machen. Diese Fähigkeit unterscheidet dich von vielen, die ewig in der Analyse-Phase stecken bleiben.",
+    low: "Du verstehst oft, was zu tun wäre, aber die Umsetzung fällt dir häufig schwer. Der Graben zwischen Wissen und Handeln ist deine größte Baustelle. Die Devise lautet: Weniger planen und grübeln, mehr trauen.",
+  },
+  NAT: {
+    name: "Zugang zu Tiefe",
+    positive: true,
+    high: "Du hast einen natürlichen Zugang zu den tieferen Ebenen des Lebens. Ob durch Natur, Stille oder Reflexion: Du spürst, dass hinter der Oberfläche mehr ist, und du nimmst dir auch den Raum dafür.",
+    low: "Du lebst stark an der Oberfläche und kommst selten in Kontakt mit dem, was unter dem Alltag liegt. Das ist nicht schlimm, aber es fehlt dir ein Ventil für die tieferen Fragen, die irgendwann so oder so kommen werden.",
+  },
+  ML: {
+    name: "Mentale Klarheit",
+    positive: false,
+    high: "Dein Kopf arbeitet oft auf Hochtouren, auch wenn du es dir nicht anmerken lässt. Grübeln, Überdenken, Gedankenkreise. Deine mentale Last ist hoch. Du hast hier definitiv noch Luft nach oben. Und es lebt sich mit weniger Last nicht nur im wahrsten Sinne leichter, sondern du könntest deine mentale Energie auch gezielter einsetzen, statt sie dauernd im Kreis zu verbrennen.",
+    low: "Du schaffst es, deinen Kopf ruhig zu halten, wenn es darauf ankommt. Während andere in Gedankenspiralen feststecken, behältst du meist einen klaren Kopf. Das ist eine unterschätzte Stärke, die dir in schwierigen Momenten einen echten Vorteil gibt.",
+  },
+  OL: {
+    name: "Innere Orientierung",
+    positive: false,
+    high: "Du spürst, dass etwas fehlt, aber es fällt dir schwer zu benennen, was genau. Die Richtung ist unklar und das führt dazu, dass du entweder gar nicht losgehst oder ständig die Spur wechselst.",
+    low: "Du weißt dich in dieser komplizierten Welt gut zurechtzufinden. Während andere orientierungslos durchs Leben treiben, hast du eine Richtung und einen inneren Anker. Das geht den wenigsten so und es gibt dir eine Stabilität, die andere bei dir spüren und schätzen.",
+  },
+  WS: {
+    name: "Emotionale Balance",
+    positive: false,
+    high: "Die Probleme der Welt gehen dir nahe, manchmal zu nahe. Dein Gerechtigkeitssinn ist echt, aber er kann dich auch lähmen. Bedenke: Nur ein handlungsfähiges Du kann auch etwas verändern. Hier liegt Potenzial, deine Energie dorthin zu lenken, wo du wirklich etwas bewegen kannst: bei dir selbst. Der Rest kommt danach.",
+    low: "Du lässt dich nicht von den großen Problemen der Welt lähmen. Das bedeutet nicht, dass dir alles egal ist, sondern dass du wahrscheinlich einen gesünderen Umgang damit gefunden hast als viele andere. Du kannst Informationen empfangen, ohne dich davon auffressen zu lassen.",
+  },
+  EX: {
+    name: "Eigenverantwortung",
+    positive: false,
+    high: "Du neigst dazu, die Ursachen für das, was nicht läuft, eher im Außen zu suchen als bei dir. Das ist menschlich, aber es nimmt dir die Handlungsmacht. Dein Potenzial liegt darin, den Blick öfter nach innen zu richten. Diese Fähigkeit zur Reflektion lässt sich lernen und kann der Turbo für deine Entwicklung sein.",
+    low: "Du suchst die Verantwortung zuerst bei dir selbst, bevor du mit dem Finger auf andere zeigst. Das ist eine reife Haltung, die dir ermöglicht, an den Dingen zu arbeiten, die tatsächlich in deiner Kontrolle liegen.",
+  },
+};
+
+function getStrengthsAndPotentials(normalized) {
+  const items = Object.entries(DIMENSION_TEXTS).map(([key, dim]) => {
+    const score = normalized[key] || 50;
+    const strengthScore = dim.positive ? score : (100 - score);
+    const isStrength = strengthScore >= 50;
+    return {
+      key,
+      name: dim.name,
+      strengthScore,
+      rawScore: score,
+      text: isStrength ? dim.high : dim.low,
+      isStrength,
+    };
+  });
+  items.sort((a, b) => b.strengthScore - a.strengthScore);
+  return {
+    strengths: items.slice(0, 3),
+    potentials: items.slice(-3).reverse(),
+  };
+}
 
 // ─── SESSION PERSISTENCE ────────────────────────────────────────────────────
 
@@ -1040,7 +1126,7 @@ body, html, #root {
 .result-hebel { padding: 1.5rem 1.5rem; border-left: 3px solid var(--dark); background: rgba(28, 28, 28, 0.03); }
 .result-hebel p { font-size: 0.92rem; line-height: 1.65; color: var(--dark); font-weight: 400; margin: 0 0 1rem 0; }
 .result-hebel p:last-child { margin-bottom: 0; }
-.hebel-label { font-family: 'Inter Tight', sans-serif; font-size: 0.95rem; font-weight: 800; color: var(--dark); margin-bottom: 0.4rem; }
+.hebel-label { font-family: 'Inter Tight', sans-serif; font-size: clamp(1.1rem, 3vw, 1.35rem); font-weight: 800; color: var(--dark); margin-bottom: 0.75rem; letter-spacing: -0.01em; line-height: 1.3; }
 .schritt-label { font-family: 'Inter Tight', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--orange); margin-bottom: 0.3rem; letter-spacing: 0.02em; }
 
 /* ─── SHARE SECTION ─── */
@@ -1212,6 +1298,25 @@ body, html, #root {
 .result-description { font-size: 0.95rem; line-height: 1.75; color: var(--dark); font-weight: 400; }
 .result-description strong { color: var(--dark); font-weight: 700; }
 
+/* ─── STRENGTHS & POTENTIALS ─── */
+.strengths-section, .potentials-section { display: flex; flex-direction: column; gap: 1rem; }
+.sp-title { font-family: 'Inter Tight', sans-serif; font-size: clamp(1rem, 2.5vw, 1.15rem); font-weight: 800; margin-bottom: 0.25rem; letter-spacing: -0.01em; }
+.sp-title-green { color: #2d7a3a; }
+.sp-title-orange { color: var(--orange); }
+.sp-card { padding: 1.25rem 1.5rem; }
+.sp-card-strength { border-left: 3px solid #2d7a3a; background: rgba(45, 122, 58, 0.04); }
+.sp-card-potential { border-left: 3px solid var(--orange); background: var(--orange-glow); }
+.sp-card-name { font-family: 'Inter Tight', sans-serif; font-size: 0.88rem; font-weight: 700; color: var(--dark); margin-bottom: 0.4rem; }
+.sp-bar-track { height: 5px; background: var(--sand); margin-bottom: 0.6rem; overflow: hidden; }
+.sp-bar-fill-green { height: 100%; background: #2d7a3a; transition: width 1s ease; }
+.sp-bar-fill-orange { height: 100%; background: var(--orange); transition: width 1s ease; }
+.sp-card-text { font-size: 0.88rem; line-height: 1.65; color: var(--dark); font-weight: 400; }
+
+/* ─── HEBEL CTA ─── */
+.hebel-cta { font-size: 0.88rem; line-height: 1.6; color: var(--dark); margin-top: 0.75rem; font-weight: 400; }
+.hebel-cta a { color: var(--orange); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.hebel-cta a:hover { color: var(--orange-hover); }
+
 @media (max-width: 520px) {
   .question-screen { padding: 4.5rem 1.15rem 1.5rem; }
   .option-btn { padding: 0.9rem; font-size: 0.84rem; }
@@ -1259,11 +1364,12 @@ function IntroScreen({ onStart }) {
 function ProgressBar({ current, total }) {
   const pct = Math.round((current / total) * 100);
   const remaining = total - current;
-  const estMinutes = Math.ceil(remaining * 0.27); // ~16s per question avg
+  const estMinutes = Math.ceil(remaining * 0.41); // ~25s per question avg incl. follow-ups = ~12min total
   let timeLabel;
   if (remaining <= 2) timeLabel = "Fast da";
   else if (remaining <= 7) timeLabel = "Noch ~2 Min";
-  else if (remaining <= 14) timeLabel = "Noch ~4 Min";
+  else if (remaining <= 14) timeLabel = "Noch ~5 Min";
+  else if (remaining <= 22) timeLabel = "Noch ~8 Min";
   else timeLabel = `Noch ~${estMinutes} Min`;
   return (
     <div className="progress-container">
@@ -1590,6 +1696,8 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
   const comboText = comboKey ? COMBO_TEXTS[comboKey] : null;
   const showMischtyp = !scoring.isReintyp && comboText && secondaryType;
 
+  const { strengths, potentials } = getStrengthsAndPotentials(scoring.normalized);
+
   const validateEmail = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
   const handleKeyDown = (e) => { if (e.key === "Enter") handleEmailSubmit(); };
   const REINTYP_TAG_ID = 17381951;
@@ -1728,6 +1836,27 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
           <p>{meta.hebel}</p>
           <div className="schritt-label">Ein erster Schritt:</div>
           <p>{meta.schritt}</p>
+          <p className="hebel-cta">Um deine offenen Potenziale nun aktiv zu bearbeiten, trage dich jetzt einfach zur kostenlosen <a href="#masterclass-form" onClick={(e) => { e.preventDefault(); document.getElementById('masterclass-form')?.scrollIntoView({ behavior: 'smooth' }); }}>Video-Masterclass</a> speziell für deinen Archetyp ein!</p>
+        </div>
+        <div className="strengths-section">
+          <div className="sp-title sp-title-green">Deine Top 3 Stärken</div>
+          {strengths.map(s => (
+            <div className="sp-card sp-card-strength" key={s.key}>
+              <div className="sp-card-name">{s.name}</div>
+              <div className="sp-bar-track"><div className="sp-bar-fill-green" style={{ width: `${s.strengthScore}%` }} /></div>
+              <div className="sp-card-text">{s.text}</div>
+            </div>
+          ))}
+        </div>
+        <div className="potentials-section">
+          <div className="sp-title sp-title-orange">Deine 3 größten Potenziale</div>
+          {potentials.map(p => (
+            <div className="sp-card sp-card-potential" key={p.key}>
+              <div className="sp-card-name">{p.name}</div>
+              <div className="sp-bar-track"><div className="sp-bar-fill-orange" style={{ width: `${100 - p.strengthScore}%` }} /></div>
+              <div className="sp-card-text">{p.text}</div>
+            </div>
+          ))}
         </div>
         {showMischtyp && (
           <div className="mischtyp-divider">
@@ -1753,7 +1882,7 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
             <div className="mischtyp-text">{comboText}</div>
           </div>
         )}
-        <div className="postq-screen signup-solo">
+        <div className="postq-screen signup-solo" id="masterclass-form">
           {emailStatus === "success" ? (
             <div className="cta-success">
               <div className="success-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg></div>
