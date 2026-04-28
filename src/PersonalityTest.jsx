@@ -995,7 +995,7 @@ body, html, #root {
 .btn-finish { background: var(--orange); color: #fff; }
 .btn-finish:hover { background: var(--orange-hover); }
 
-.block-transition { width: 100%; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem 2rem 3.5rem; text-align: center; animation: fadeUp 0.6s ease-out; position: relative; overflow: hidden; }
+.block-transition { width: 100%; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; padding: 2rem 2rem 0; text-align: center; animation: fadeUp 0.6s ease-out; position: relative; overflow: hidden; }
 .block-transition-content { display: flex; flex-direction: column; align-items: center; flex: 1; justify-content: center; }
 .block-transition .block-num { font-family: 'Inter Tight', sans-serif; font-size: 5.5rem; color: var(--sand); margin-bottom: 0.75rem; font-weight: 900; line-height: 1; }
 .block-transition h2 { font-family: 'Inter Tight', sans-serif; font-size: clamp(1.3rem, 4vw, 1.8rem); font-weight: 900; color: var(--dark); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
