@@ -1908,7 +1908,7 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
 
       // Florian photo
       try {
-        const imgR = await fetch("https://florian-lingner.ch/wp-content/uploads/2026/04/Flo-im-Kreis-orange.png");
+        const imgR = await fetch("/Flo-im-Kreis-orange.png");
         const imgB = await imgR.blob();
         const imgD = await new Promise((r) => { const rd = new FileReader(); rd.onloadend = () => r(rd.result); rd.readAsDataURL(imgB); });
         const imgSize = pw * 0.22;
