@@ -775,12 +775,13 @@ function getStrengthsAndPotentials(normalized) {
     const score = normalized[key] || 50;
     const strengthScore = dim.positive ? score : (100 - score);
     const isStrength = strengthScore >= 50;
+    const showHighText = dim.positive ? isStrength : !isStrength;
     return {
       key,
       name: dim.name,
       strengthScore,
       rawScore: score,
-      text: isStrength ? dim.high : dim.low,
+      text: showHighText ? dim.high : dim.low,
       isStrength,
     };
   });
