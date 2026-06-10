@@ -997,7 +997,7 @@ body, html, #root {
 .progress-info { display: flex; justify-content: space-between; align-items: center; padding: 0.65rem 1.5rem; font-size: 0.68rem; letter-spacing: 0.06em; color: var(--warm-gray); font-weight: 500; }
 .progress-pct { font-variant-numeric: tabular-nums; }
 
-.question-screen { width: 100%; max-width: 680px; margin: 0 auto; padding: 5.5rem 1.5rem 2rem; display: flex; flex-direction: column; }
+.question-screen { width: 100%; max-width: 680px; margin: 0 auto; padding: 4rem 1.5rem 2rem; display: flex; flex-direction: column; }
 .question-wrapper { animation: fadeUp 0.45s ease-out; background: var(--creme); border-radius: var(--r-card); box-shadow: var(--shadow-card); padding: clamp(28px, 4vw, 48px); }
 .question-title-small { font-family: 'Inter Tight', sans-serif; font-size: 0.78rem; font-weight: 700; color: var(--orange); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 1.25rem; }
 .question-scenario { font-family: 'Inter Tight', sans-serif; font-size: clamp(1.15rem, 3.2vw, 1.35rem); color: var(--dark); line-height: 1.55; margin-bottom: 2.5rem; font-weight: 600; }
@@ -1005,7 +1005,7 @@ body, html, #root {
 .answer-label { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 0.75rem; font-weight: 500; }
 .options-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem; }
 .option-btn { width: 100%; text-align: left; background: transparent; border: 1.5px solid var(--warmgrau); border-radius: var(--r-field); padding: 1.1rem 1.25rem; font-family: 'Inter Tight', sans-serif; font-size: 0.88rem; line-height: 1.55; color: var(--ink); cursor: pointer; transition: all 0.2s ease; display: flex; align-items: flex-start; gap: 0.75rem; font-weight: 400; }
-.option-btn:not(.selected-primary):not(.selected-secondary):hover { border-color: var(--orange); background: rgba(255, 77, 0, 0.06); }
+@media (hover: hover) { .option-btn:not(.selected-primary):not(.selected-secondary):hover { border-color: var(--orange); background: rgba(255, 77, 0, 0.06); } }
 .option-btn.selected-primary { border-color: var(--orange); background: var(--orange-glow); }
 .option-btn.selected-secondary { border-color: var(--dark); background: rgba(28, 28, 28, 0.04); }
 .option-key { font-weight: 700; font-size: 0.85rem; color: var(--warm-gray); min-width: 1.2rem; flex-shrink: 0; line-height: 1.55; }
@@ -1019,7 +1019,7 @@ body, html, #root {
 .followup-question { font-size: 0.88rem; font-weight: 600; color: var(--dark); margin-bottom: 0.75rem; line-height: 1.5; }
 .followup-options { display: flex; flex-direction: column; gap: 0.5rem; }
 .followup-btn { width: 100%; text-align: left; background: transparent; border: 1.5px solid var(--warmgrau); border-radius: var(--r-field); padding: 0.75rem 1rem; font-family: 'Inter Tight', sans-serif; font-size: 0.82rem; line-height: 1.5; color: var(--ink); cursor: pointer; transition: all 0.2s ease; font-weight: 400; }
-.followup-btn:hover:not(.followup-selected) { border-color: var(--orange); background: rgba(255, 77, 0, 0.06); }
+@media (hover: hover) { .followup-btn:hover:not(.followup-selected) { border-color: var(--orange); background: rgba(255, 77, 0, 0.06); } }
 .followup-selected { border-color: var(--orange); background: var(--orange-glow); font-weight: 500; }
 
 .nav-row { display: flex; justify-content: space-between; align-items: center; padding-top: 1.5rem; padding-bottom: 2rem; }
@@ -1049,7 +1049,7 @@ body, html, #root {
 .result-header .result-eyebrow { color: var(--warmgrau); }
 .result-header .result-type-label { color: var(--creme); }
 .result-eyebrow { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 0.75rem; font-weight: 500; }
-.result-avatar-wrap { display: flex; justify-content: center; margin-bottom: 0.75rem; }
+.result-avatar-wrap { display: inline-flex; justify-content: center; align-items: center; margin-bottom: 0.75rem; background: var(--creme); border-radius: var(--r-card); padding: clamp(14px, 3vw, 22px); box-shadow: var(--shadow-card); }
 .result-avatar { height: 200px; width: auto; }
 .result-type-label { font-family: 'Inter Tight', sans-serif; font-size: clamp(2rem, 6vw, 3.2rem); font-weight: 900; color: var(--dark); letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 0.75rem; }
 .result-tagline { font-family: 'Inter Tight', sans-serif; font-size: clamp(0.95rem, 2.5vw, 1.1rem); color: var(--orange); font-style: italic; font-weight: 500; line-height: 1.5; max-width: 500px; margin: 0 auto; }
@@ -1105,13 +1105,13 @@ body, html, #root {
 
 .recognition-scale { display: flex; gap: 0.75rem; margin-bottom: 0.75rem; }
 .recognition-btn { width: 56px; height: 56px; border: 1.5px solid var(--warmgrau); border-radius: var(--r-field); background: transparent; font-family: 'Inter Tight', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--ink); cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; }
-.recognition-btn:hover:not(.recognition-selected) { border-color: var(--orange); background: rgba(255, 77, 0, 0.06); }
+@media (hover: hover) { .recognition-btn:hover:not(.recognition-selected) { border-color: var(--orange); background: rgba(255, 77, 0, 0.06); } }
 .recognition-btn.recognition-selected { border-color: var(--orange); background: var(--orange); color: var(--creme); }
 .recognition-labels { display: flex; justify-content: space-between; width: 100%; max-width: 320px; font-size: 0.72rem; color: var(--warm-gray); font-weight: 400; }
 
 .painpoint-options { display: flex; flex-direction: column; gap: 0.7rem; width: 100%; max-width: 540px; }
 .painpoint-btn { width: 100%; text-align: left; background: transparent; border: 1.5px solid var(--warmgrau); border-radius: var(--r-field); padding: 1.1rem 1.25rem; font-family: 'Inter Tight', sans-serif; font-size: 0.88rem; line-height: 1.55; color: var(--ink); cursor: pointer; transition: all 0.2s ease; font-weight: 400; }
-.painpoint-btn:hover:not(.painpoint-selected) { border-color: var(--orange); background: rgba(255, 77, 0, 0.06); }
+@media (hover: hover) { .painpoint-btn:hover:not(.painpoint-selected) { border-color: var(--orange); background: rgba(255, 77, 0, 0.06); } }
 .painpoint-btn.painpoint-selected { border-color: var(--orange); background: var(--orange-glow); font-weight: 500; }
 
 .signup-solo { padding: 3rem 1.5rem; }
@@ -1261,7 +1261,7 @@ body, html, #root {
 .hebel-cta a:hover { color: var(--orange-hover); }
 
 @media (max-width: 520px) {
-  .question-screen { padding: 4.5rem 1.15rem 1.5rem; }
+  .question-screen { padding: 3rem 1.15rem 6rem; }
   .option-btn { padding: 0.9rem; font-size: 0.84rem; }
   .progress-info { padding: 0.5rem 1rem; }
   .block-transition .answer-hint { margin-left: 0.5rem; margin-right: 0.5rem; }
@@ -1277,6 +1277,30 @@ body, html, #root {
   .result-avatar { height: 160px; }
   .intro-avatars-img { max-width: 320px; }
 }
+/* ─── #9 Akzent + #B Double-Opt-in-Hinweis ─── */
+.accent-orange { color: var(--orange); }
+
+.cta-confirm { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.55rem; padding: clamp(24px,5vw,40px) clamp(20px,4vw,32px); border-radius: var(--r-card); background: rgba(255,77,0,0.06); border: 1.5px solid rgba(255,77,0,0.35); box-shadow: var(--shadow-card); animation: fadeUp 0.5s ease-out; }
+.cta-confirm-icon { width: 56px; height: 56px; border-radius: 50%; background: var(--orange); color: var(--creme); display: flex; align-items: center; justify-content: center; margin-bottom: 0.4rem; }
+.cta-confirm-title { font-family: 'Inter Tight', sans-serif; font-size: clamp(1.3rem,4vw,1.7rem); font-weight: 800; color: var(--ink); letter-spacing: -0.01em; line-height: 1.2; }
+.cta-confirm-text { font-size: 0.95rem; line-height: 1.6; color: var(--ink); max-width: 430px; }
+.cta-confirm-text strong { color: var(--orange); font-weight: 700; }
+.cta-confirm-hint { font-size: 0.82rem; color: var(--text-muted); font-style: italic; margin-top: 0.15rem; }
+
+/* ─── #1+5 Fixe Action-Bar (vor/zurueck) nur auf Mobile ─── */
+@media (max-width: 520px) {
+  .nav-row {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 200;
+    margin: 0;
+    padding: 0.7rem 1.15rem calc(0.7rem + env(safe-area-inset-bottom));
+    background: rgba(244, 241, 235, 0.92);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 -8px 24px -16px rgba(28, 28, 28, 0.45);
+  }
+  /* Karte unten knapper halten, da die Nav jetzt eine eigene Leiste ist */
+  .question-wrapper { padding-bottom: 1.25rem; }
+}
+
 `;
 
 // ─── COMPONENTS ─────────────────────────────────────────────────────────────────
@@ -1563,7 +1587,7 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, follow
           <div className="nav-row">
             <button className="btn-back" onClick={onBack}>{questionIndex === 0 ? "" : "← Zurück"}</button>
             <button className={`btn-next ${isLast ? "btn-finish" : ""}`} disabled={!canProceed} onClick={handleNext}>
-              {teaserState?.isFinetuning ? "Jetzt zur abschließenden Frage →" : isLast ? "Test abschließen" : "Weiter →"}
+              {teaserState?.isFinetuning ? "Zur letzten Frage →" : isLast ? "Test abschließen" : "Weiter →"}
             </button>
           </div>
         )}
@@ -1912,6 +1936,13 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
           </div>
         </div>
         <div className="result-description" dangerouslySetInnerHTML={{ __html: meta.description }} />
+        <div className="recognition-box">
+          <div className="recognition-box-title">Wie gut erkennst du dich in diesem Ergebnis wieder?</div>
+          <div className="recognition-scale">
+            {[1,2,3,4,5].map(n => (<button key={n} className={`recognition-btn ${recognitionScore === n ? "recognition-selected" : ""}`} onClick={() => { setRecognitionScore(n); trackEvent("recognition_score", { score: n, archetype: scoring.resultType }); }}>{n}</button>))}
+          </div>
+          <div className="recognition-labels"><span>Gar nicht</span><span>Sehr</span></div>
+        </div>
         <div className="result-pain"><div className="pain-label">Daran scheiterst du gerade wahrscheinlich:</div><p>{meta.pain}</p></div>
         <div className="result-hebel">
           <div className="hebel-label">Dein größter Hebel:</div>
@@ -1958,7 +1989,7 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
         </div>
         {showMischtyp && (
           <div className="mischtyp-section">
-            <div className="mischtyp-eyebrow">Dein Sekundär-Archetyp</div>
+            <div className="mischtyp-eyebrow">Dein <span className="accent-orange">Sekundär</span>-Archetyp</div>
             <div className="mischtyp-secondary-label">{TYPE_META[secondaryType]?.label}</div>
             <div className="mischtyp-bridge">Du bist nicht nur {meta.label}, dein Profil zeigt auch deutliche {TYPE_META[secondaryType]?.label}-Anteile. Und genau diese Mischung macht's spannend:</div>
             <div className="mischtyp-text">{comboText}</div>
@@ -1966,17 +1997,18 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
         )}
         <div className="postq-screen signup-solo" id="masterclass-form">
           {emailStatus === "success" ? (
-            <div className="cta-success">
-              <div className="success-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg></div>
-              <div className="success-title">Drin.</div>
-              <p className="success-sub">Check deine Inbox – deine <strong>Masterclass für {meta.labelFuer}</strong> wartet auf dich.</p>
+            <div className="cta-confirm">
+              <div className="cta-confirm-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 6-10 7L2 6" /></svg></div>
+              <div className="cta-confirm-title">Fast geschafft!</div>
+              <p className="cta-confirm-text">Wir haben dir gerade eine E-Mail geschickt. <strong>Bestätige darin unbedingt deine Adresse über den Link</strong> – sonst können wir dir die Masterclass für {meta.labelFuer} nicht zusenden.</p>
+              <p className="cta-confirm-hint">Keine Mail im Posteingang? Schau kurz im Spam-Ordner nach.</p>
             </div>
           ) : (
             <>
               <div className="signup-solo-header">
                 <div className="postq-eyebrow">Dein nächster Schritt</div>
                 <div className="postq-title">Deine kostenlose<br />Masterclass für {meta.labelFuer}</div>
-                <p className="signup-solo-text">{meta.ctaText}</p>
+                <p className="signup-solo-text">Bock dein Potenzial voll auszuschöpfen? In dieser Masterclass zeige ich dir, wie du künftig besser mit deinen blind spots umgehen kannst.</p>
               </div>
               <div className="cta-email">
                 <input type="text" placeholder="Dein Vorname" className={`email-input ${emailError && !firstName.trim() ? "email-input-error" : ""}`} value={firstName} onChange={(e) => { setFirstName(e.target.value); setEmailError(""); }} disabled={emailStatus === "loading"} />
@@ -1989,13 +2021,6 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
               <p className="cta-privacy" style={{ textAlign: "center" }}>Kein Spam. Kein Bullshit. Jederzeit abmeldbar.</p>
             </>
           )}
-        </div>
-        <div className="recognition-box">
-          <div className="recognition-box-title">Wie gut erkennst du dich in diesem Ergebnis wieder?</div>
-          <div className="recognition-scale">
-            {[1,2,3,4,5].map(n => (<button key={n} className={`recognition-btn ${recognitionScore === n ? "recognition-selected" : ""}`} onClick={() => { setRecognitionScore(n); trackEvent("recognition_score", { score: n, archetype: scoring.resultType }); }}>{n}</button>))}
-          </div>
-          <div className="recognition-labels"><span>Gar nicht</span><span>Sehr</span></div>
         </div>
         <div className="pdf-save-section">
           <p className="pdf-save-hint">Speichere dein Ergebnis als PDF – inkl. Radar-Chart und personalisierten Impulsen.</p>
