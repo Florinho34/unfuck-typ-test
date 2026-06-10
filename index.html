@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="de">
   <head>
+    <!-- Consent Mode v2 – Standard: alles abgelehnt. MUSS zuoberst im <head> stehen, vor allem anderen. -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied',
+        'functionality_storage': 'granted',
+        'security_storage': 'granted',
+        'wait_for_update': 500
+      });
+    </script>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Was steht deinem Glück im Weg? | Persönlichkeitstest</title>
@@ -25,6 +40,26 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/webp" href="https://florian-lingner.ch/wp-content/uploads/2026/03/favicon-florian-lingner.webp" />
+
+    <!-- Font (auch fuer den Consent-Banner, vor React-Mount) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet" />
+
+    <!-- Globale Design-Tokens (Quelle: Website / Startseite.jsx) -->
+    <style>
+      :root{
+        --creme:#F4F1EB; --sand:#D6CBBF; --warmgrau:#AFA79D;
+        --ink:#1C1C1C; --orange:#FF4D00; --text-soft:#595854;
+        --r-pill:100px; --r-card:clamp(20px,3vw,28px);
+        --r-panel:clamp(26px,3.5vw,46px); --r-input:14px;
+        --shadow-hair:0 1px 0 rgba(28,28,28,.07);
+        --shadow-card:0 20px 50px -32px rgba(28,28,28,.30);
+        --shadow-float:0 32px 80px -55px rgba(28,28,28,.40);
+        --shadow-deep:0 44px 100px -55px rgba(28,28,28,.65);
+      }
+      html,body{ background:#F4F1EB; }
+    </style>
   </head>
   <body>
     <div id="root"></div>
