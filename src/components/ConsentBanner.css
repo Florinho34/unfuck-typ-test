@@ -1,0 +1,181 @@
+/* src/components/ConsentBanner.css
+   Consent-Banner im CI von Florian Lingner.
+   Nutzt die globalen CSS-Variablen, mit Fallback-Werten falls noch nicht geladen.
+
+   DSGVO-Hinweis: Accept- und Reject-Button sind GLEICH GROSS (gleiche Höhe,
+   gleiches Padding, gleiches Gewicht, gleiche Klickfläche) und beide als
+   vollwertige, solide Buttons gestaltet – nur farblich unterschieden
+   (orange vs. ink). Kein Ghost, kein Textlink für die Ablehnung. */
+
+.fl-consent {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: flex-start;
+  padding: clamp(12px, 4vw, 28px);
+  pointer-events: none; /* nur die Box selbst ist klickbar */
+  font-family: 'Inter Tight', system-ui, -apple-system, sans-serif;
+}
+
+.fl-consent__box {
+  pointer-events: auto;
+  width: 100%;
+  max-width: 460px;
+  background: var(--creme, #f4f1eb);
+  color: var(--ink, #1c1c1c);
+  border: 1px solid var(--sand, #d6cbbf);
+  border-radius: 14px;
+  padding: clamp(20px, 4vw, 28px);
+  box-shadow: 0 18px 50px -12px rgba(28, 28, 28, 0.28);
+}
+
+.fl-consent__title {
+  margin: 0 0 10px;
+  font-size: clamp(1.25rem, 3.6vw, 1.5rem);
+  font-weight: 800; /* Extrabold */
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.fl-consent__text {
+  margin: 0 0 18px;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ink, #1c1c1c);
+  opacity: 0.85;
+}
+
+.fl-consent__inline-link {
+  color: var(--ink, #1c1c1c);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 600;
+}
+.fl-consent__inline-link:hover { color: var(--orange, #ff4d00); }
+
+/* --- Detail-Ansicht (Kategorien) ------------------------------------------ */
+.fl-consent__details {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0 0 20px;
+  padding-top: 4px;
+  border-top: 1px solid var(--sand, #d6cbbf);
+}
+
+.fl-consent__row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 14px;
+}
+
+.fl-consent__row-text { display: flex; flex-direction: column; gap: 3px; }
+.fl-consent__row-title { font-weight: 700; font-size: 0.95rem; }
+.fl-consent__row-desc { font-size: 0.82rem; line-height: 1.4; opacity: 0.7; }
+
+/* --- Toggle --------------------------------------------------------------- */
+.fl-toggle {
+  flex: 0 0 auto;
+  position: relative;
+  width: 46px;
+  height: 26px;
+  margin-top: 2px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: var(--warmgrau, #afa79d);
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+.fl-toggle__knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.18s ease;
+  box-shadow: 0 1px 3px rgba(28, 28, 28, 0.3);
+}
+.fl-toggle.is-on { background: var(--orange, #ff4d00); }
+.fl-toggle.is-on .fl-toggle__knob { transform: translateX(20px); }
+.fl-toggle.is-locked { cursor: not-allowed; opacity: 0.55; }
+
+/* --- Buttons -------------------------------------------------------------- */
+.fl-consent__actions { display: flex; flex-direction: column; }
+
+/* Button-Reihe: beide Buttons exakt gleich breit (flex: 1) und gleich hoch. */
+.fl-consent__btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.fl-consent__btn-row .fl-consent__btn { flex: 1 1 0; }
+
+.fl-consent__btn {
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  text-align: center;
+  border-radius: 999px;
+  padding: 13px 18px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+/* Accept – solid Orange */
+.fl-consent__btn--primary {
+  background: var(--orange, #ff4d00);
+  color: var(--creme, #f4f1eb);
+}
+.fl-consent__btn--primary:hover { background: #e64500; }
+
+/* Reject – solid Ink (vollwertiger, gleich großer Button, nur andere Farbe) */
+.fl-consent__btn--secondary {
+  background: var(--ink, #1c1c1c);
+  color: var(--creme, #f4f1eb);
+}
+.fl-consent__btn--secondary:hover { background: #000; }
+
+/* "Einstellungen" – bewusst tertiär (kein Reject!), darf als Link erscheinen */
+.fl-consent__settings-link {
+  align-self: center;
+  margin-top: 14px;
+  font-family: inherit;
+  font-size: 0.86rem;
+  font-weight: 600;
+  background: none;
+  border: none;
+  padding: 6px 2px;
+  cursor: pointer;
+  color: var(--ink, #1c1c1c);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  opacity: 0.7;
+}
+.fl-consent__settings-link:hover { opacity: 1; }
+
+/* Tastatur-Fokus sichtbar halten */
+.fl-consent__btn:focus-visible,
+.fl-consent__settings-link:focus-visible,
+.fl-consent__inline-link:focus-visible,
+.fl-toggle:focus-visible {
+  outline: 2px solid var(--orange, #ff4d00);
+  outline-offset: 2px;
+}
+
+/* --- Mobile --------------------------------------------------------------- */
+@media (max-width: 520px) {
+  .fl-consent { justify-content: center; }
+  .fl-consent__box { max-width: 100%; }
+  /* Buttons gestapelt, jeder volle Breite → bleiben gleich groß */
+  .fl-consent__btn-row .fl-consent__btn { flex: 1 1 100%; }
+}
