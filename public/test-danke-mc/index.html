@@ -101,6 +101,7 @@
       --sand: #E8E0D8;
       --warm-gray: #A39B93;
       --orange: #ff4d00;
+      --orange-hover: #e64500;
       --dark: #1C1C1C;
       --text-muted: #6b6560;
       --orange-glow: rgba(255, 77, 0, 0.08);
@@ -198,9 +199,7 @@
     .mc-portrait {
       width: 104px;
       height: 104px;
-      border-radius: 50%;
       object-fit: cover;
-      border: 2px solid var(--sand);
       margin-bottom: 1.1rem;
     }
     .mc-about-headline {
@@ -225,9 +224,42 @@
     }
     .mc-inline-link:hover { border-color: var(--orange); }
 
+    /* CTA-Button – leicht schwebend */
+    .mc-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.75rem;
+      padding: 0.9rem 1.7rem;
+      background: var(--orange);
+      color: var(--cream);
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 100px;
+      box-shadow: 0 14px 30px -12px rgba(255, 77, 0, 0.55);
+      animation: mcFloat 3s ease-in-out infinite;
+      transition: background 0.2s ease, box-shadow 0.2s ease;
+      will-change: transform;
+    }
+    .mc-cta:hover {
+      background: var(--orange-hover);
+      box-shadow: 0 18px 38px -12px rgba(255, 77, 0, 0.6);
+    }
+    .mc-cta-arrow { transition: transform 0.2s ease; }
+    .mc-cta:hover .mc-cta-arrow { transform: translateX(3px); }
+
     @keyframes mcFadeUp {
       from { opacity: 0; transform: translateY(12px); }
       to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes mcFloat {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-6px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mc-card, .mc-cta { animation: none; }
     }
   </style>
 </head>
@@ -250,10 +282,10 @@
       <div class="mc-note">
         <p class="mc-note-label">So geht's weiter</p>
         <p class="mc-note-text">
-          Schau gleich in dein Postfach – die Mail mit deiner Masterclass ist
-          unterwegs. Falls sie nach ein paar Minuten nicht da ist, wirf einen
-          Blick in den Spam- oder Werbeordner und zieh sie ins Hauptpostfach.
-          Dann verpasst du auch nichts, was danach noch kommt.
+          Prüfe dein Postfach. In wenigen Momente solltest du deine Masterclass
+          per Mail erhalten. Wenn nichts ankommt: Spam oder Werbeordner checken.
+          Wenn du sie dort findst, markiere sie am besten direkt als "kein Spam",
+          damit du auch künftig keinen Mehrwert mehr verpasst.
         </p>
       </div>
 
@@ -286,6 +318,15 @@
           >meiner Website</a>.
           Und nun viel Spass mit deiner Masterclass!
         </p>
+
+        <a
+          class="mc-cta"
+          href="https://florian-lingner.ch"
+          target="_blank" rel="noopener noreferrer"
+        >
+          Lern mich kennen
+          <span class="mc-cta-arrow" aria-hidden="true">→</span>
+        </a>
       </div>
     </main>
   </div>
