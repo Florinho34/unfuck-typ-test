@@ -2112,7 +2112,7 @@ export default function PersonalityTest() {
   const handleNext = () => {
     const isLastInBlock = currentQuestionInBlock >= block.questions.length - 1;
     const isLastBlock = currentBlock >= BLOCKS.length - 1;
-    trackEvent("question_answered", { question: flatIndex + 1 });
+    trackEvent("question_answered", { question: flatIndex + 1, answer: answers[currentQuestion.id]?.primary });
     if (isLastInBlock && isLastBlock) { clearProgress(); setPhase("complete"); scrollTop(); return; }
     if (isLastInBlock) { const nb = currentBlock + 1; setCurrentBlock(nb); setCurrentQuestionInBlock(0); setPhase("block-transition"); saveProgress({ answers, followUpAnswers, currentBlock: nb, currentQuestionInBlock: 0, phase: "block-transition" }); }
     else { const nq = currentQuestionInBlock + 1; setCurrentQuestionInBlock(nq); saveProgress({ answers, followUpAnswers, currentBlock, currentQuestionInBlock: nq, phase: "question" }); }
