@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <!-- ============================================================= -->
+  <!-- Consent Mode v2 – Standard: alles abgelehnt.                   -->
+  <!-- Muss zuoberst stehen (identisch zur Haupt-index.html).         -->
+  <!-- ============================================================= -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'functionality_storage': 'granted',
+      'security_storage': 'granted',
+      'wait_for_update': 500
+    });
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Seite nicht indexieren, nirgends verlinken -->
+  <meta name="robots" content="noindex, nofollow" />
+
+  <title>Anmeldung bestätigt – Florian Lingner</title>
+
+  <!-- ============================================================= -->
+  <!-- Gespeicherte Consent-Entscheidung anwenden + GTM laden.        -->
+  <!-- Spiegelt den "Wiederkehrer"-Ablauf aus src/lib/consent.js.     -->
+  <!-- ============================================================= -->
+  <script>
+    (function () {
+      var GTM_ID = 'GTM-5XWN4F7Z';
+      var STORAGE_KEY = 'fl_consent';
+      var CONSENT_VERSION = 1;
+
+      function loadGTM() {
+        if (window.__flGtmLoaded) return;
+        window.__flGtmLoaded = true;
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+          var f = d.getElementsByTagName(s)[0],
+              j = d.createElement(s),
+              dl = l != 'dataLayer' ? '&l=' + l : '';
+          j.async = true;
+          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+          f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', GTM_ID);
+      }
+
+      var stored = null;
+      try {
+        var raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          var data = JSON.parse(raw);
+          if (data && data.version === CONSENT_VERSION) stored = data;
+        }
+      } catch (e) {}
+
+      if (stored) {
+        gtag('consent', 'update', {
+          'analytics_storage':  stored.statistik ? 'granted' : 'denied',
+          'ad_storage':         stored.marketing ? 'granted' : 'denied',
+          'ad_user_data':       stored.marketing ? 'granted' : 'denied',
+          'ad_personalization': stored.marketing ? 'granted' : 'denied'
+        });
+        loadGTM();
+      }
+      // Kein gespeicherter Consent (z. B. anderes Gerät als beim Test):
+      // GTM wird NICHT geladen, Default bleibt "denied".
+      // Das Event unten liegt trotzdem im dataLayer.
+    })();
+  </script>
+
+  <!-- ============================================================= -->
+  <!-- Conversion-Event: Double-Opt-in bestätigt. Feuert immer.       -->
+  <!-- ============================================================= -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'masterclass_confirmed',
+      funnel: 'test'
+    });
+  </script>
+
+  <!-- Schrift -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,600;0,700;0,900;1,900&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --cream: #F5F0EB;
+      --sand: #E8E0D8;
+      --warm-gray: #A39B93;
+      --orange: #ff4d00;
+      --dark: #1C1C1C;
+      --text-muted: #6b6560;
+      --orange-glow: rgba(255, 77, 0, 0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      min-height: 100%;
+      background: var(--cream);
+      color: var(--dark);
+      font-family: "Inter Tight", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .mc-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1.5rem;
+    }
+
+    .mc-card {
+      width: 100%;
+      max-width: 560px;
+      text-align: center;
+      animation: mcFadeUp 0.5s ease-out;
+    }
+
+    /* Block 1 */
+    .mc-eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      font-weight: 600;
+      margin-bottom: 0.9rem;
+    }
+    .mc-headline {
+      font-size: clamp(2rem, 6vw, 3rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .mc-highlight {
+      color: var(--orange);
+      font-style: italic;
+      font-weight: 900;
+    }
+    .mc-sub {
+      font-size: clamp(1rem, 2.6vw, 1.15rem);
+      line-height: 1.6;
+      color: var(--text-muted);
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .mc-divider {
+      border: none;
+      border-top: 1px solid var(--sand);
+      margin: 2.25rem auto;
+      width: 100%;
+    }
+
+    /* Block 2 */
+    .mc-note {
+      text-align: left;
+      border-left: 3px solid var(--orange);
+      background: var(--orange-glow);
+      padding: 1.1rem 1.35rem;
+    }
+    .mc-note-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      font-weight: 700;
+      margin-bottom: 0.55rem;
+    }
+    .mc-note-text {
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: var(--dark);
+    }
+
+    /* Block 3 */
+    .mc-about {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .mc-portrait {
+      width: 104px;
+      height: 104px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--sand);
+      margin-bottom: 1.1rem;
+    }
+    .mc-about-headline {
+      font-size: clamp(1.5rem, 4.5vw, 2rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .mc-about-text {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      max-width: 480px;
+    }
+    .mc-about-text + .mc-about-text { margin-top: 0.9rem; }
+    .mc-inline-link {
+      color: var(--orange);
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 77, 0, 0.35);
+      transition: border-color 0.2s ease;
+    }
+    .mc-inline-link:hover { border-color: var(--orange); }
+
+    @keyframes mcFadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="mc-wrap">
+    <main class="mc-card">
+      <!-- Block 1: Bestätigung -->
+      <p class="mc-eyebrow">Anmeldung bestätigt</p>
+      <h1 class="mc-headline">
+        <span class="mc-highlight">Geile Sache!</span> Das hat geklappt!
+      </h1>
+      <p class="mc-sub">
+        In wenigen Augenblicken erhältst du deine persönliche Masterclass per Mail.
+      </p>
+
+      <hr class="mc-divider" />
+
+      <!-- Block 2: Was jetzt passiert -->
+      <div class="mc-note">
+        <p class="mc-note-label">So geht's weiter</p>
+        <p class="mc-note-text">
+          Schau gleich in dein Postfach – die Mail mit deiner Masterclass ist
+          unterwegs. Falls sie nach ein paar Minuten nicht da ist, wirf einen
+          Blick in den Spam- oder Werbeordner und zieh sie ins Hauptpostfach.
+          Dann verpasst du auch nichts, was danach noch kommt.
+        </p>
+      </div>
+
+      <hr class="mc-divider" />
+
+      <!-- Block 3: Persönliches Dankeschön + Vorstellung -->
+      <div class="mc-about">
+        <img
+          class="mc-portrait"
+          src="/Flo-im-Kreis-orange.png"
+          alt="Florian Lingner"
+          width="104" height="104" loading="lazy"
+        />
+        <h2 class="mc-about-headline">Ich danke dir!</h2>
+        <p class="mc-about-text">
+          Danke dafür, dass du mit gutem Beispiel vorangehst! Dass du diesen
+          mutigen Schritt gehen willst... Du bist bereit an dir zu arbeiten und
+          damit schon weiter als 90% der meisten Menschen! Ich gratuliere dir -
+          du kannst stolz auf dich sein.
+        </p>
+        <p class="mc-about-text">
+          Und wer ist eigentlich "ich"? Ich bin Florian Lingner. Der Schöpfer
+          dieses Persönlichkeitstest und hoffentlich schon bald derjenige, der
+          dich inspiriert dein Leben endlich in die richtigen Bahnen zu lenken.
+          Mehr zu mir, meiner Geschichte und Philosophie findest du auf
+          <a
+            class="mc-inline-link"
+            href="https://florian-lingner.ch"
+            target="_blank" rel="noopener noreferrer"
+          >meiner Website</a>.
+          Und nun viel Spass mit deiner Masterclass!
+        </p>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
