@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="de">
   <head>
-    <!-- Consent Mode v2 – Standard: alles abgelehnt. MUSS zuoberst im <head> stehen, vor allem anderen. -->
+    <!-- Consent Mode v2 - Standard: alles abgelehnt. MUSS zuoberst im <head> stehen, vor allem anderen. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -18,8 +18,9 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Was steht deinem Glück im Weg? | Persönlichkeitstest</title>
-    <meta name="description" content="30 alltagsnahe Fragen, 10 Dimensionen, 5 Archetypen. Kein Schubladen-Denken, sondern ein realistischer Spiegel deines Selbst." />
+    <title>Der ehrlichste Persönlichkeitstest deines Lebens</title>
+    <meta name="description" content="Dieser Persönlichkeitstest zeigt dir dein verborgenes Entwicklungspotenzial - Kostenlos mit Sofortergebnis" />
+    <link rel="canonical" href="https://test.florian-lingner.ch/" />
 
     <!-- Open Graph (WhatsApp, Facebook, LinkedIn, Telegram) -->
     <meta property="og:type" content="website" />
@@ -38,8 +39,38 @@
     <meta name="twitter:description" content="Finde in 12 Minuten heraus, was zwischen dir und dem Leben steht, das du eigentlich willst." />
     <meta name="twitter:image" content="https://test.florian-lingner.ch/og-image.jpg" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/webp" href="https://florian-lingner.ch/wp-content/uploads/2026/03/favicon-florian-lingner.webp" />
+    <!-- Strukturierte Daten: dieselbe Person-Entitaet wie die Hauptseite (staerkt die Marke ueber beide Domains) + WebSite -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://florian-lingner.ch/#person",
+          "name": "Florian Lingner",
+          "url": "https://florian-lingner.ch/",
+          "image": "https://florian-lingner.ch/images/OG-sharing-image.jpg",
+          "jobTitle": ["Autor", "Philosoph", "Mentor"],
+          "sameAs": [
+            "https://www.instagram.com/florian.lingner",
+            "https://www.tiktok.com/@flo.lingner",
+            "https://www.facebook.com/Florinho34"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://test.florian-lingner.ch/#website",
+          "url": "https://test.florian-lingner.ch/",
+          "name": "Der ehrlichste Persönlichkeitstest deines Lebens",
+          "inLanguage": "de",
+          "publisher": { "@id": "https://florian-lingner.ch/#person" }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Favicon (dieselbe Datei wie die Hauptseite; die alte wp-content-URL war tot) -->
+    <link rel="icon" type="image/png" href="/favicon-florian-lingner.png" />
 
     <!-- Font (auch fuer den Consent-Banner, vor React-Mount) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
