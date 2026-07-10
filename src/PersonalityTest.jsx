@@ -530,7 +530,7 @@ const TYPE_META = {
     labelFuer: "Zuschauer",
     avatar: "/Archetypen-Zuschauer.png",
     tagline: "Du siehst mehr als die meisten – doch merkt man das an deinem Verhalten nur selten.",
-    ctaText: "Du verstehst längst, was sich ändern müsste – jetzt ist der Moment, es auch zu tun. In dieser Masterclass zeige ich dir, wie du vom Erkennen ins Handeln kommst.",
+    ctaText: "Du verstehst längst, was sich ändern müsste und jetzt ist der Moment, es auch zu tun. In der Zuschauer-Masterclass zeige ich dir, wie du vom Erkennen ins Handeln kommst.",
     description: "<strong>Du bist weise!</strong> Du verstehst Zusammenhänge, die andere nicht sehen, und analysierst Situationen mit einer Schärfe, die beeindruckend ist. Dein <strong>analytischer Verstand</strong> ist eine echte Gabe, und im richtigen Moment bist du die Person im Raum, die den Durchblick hat.<br/><br/>Doch genau hier liegt auch deine Falle: Während andere einfach machen, <strong>denkst du zu viel</strong>. Du weißt, was du ändern müsstest, aber zwischen Erkenntnis und Handlung liegt ein Graben, der jedes Jahr breiter wird. Ohne Umsetzung bleibt Wissen theoretisch und kann keine Effekte in der Realität entfalten. Du beobachtest dein eigenes Leben manchmal mehr, als dass du es aktiv gestaltest.<br/><br/>Die gute Nachricht: Deine Klarheit ist eine <strong>echte Stärke</strong>, die viele sich wünschen. Du musst das Rad nicht neu erfinden. Du musst nur lernen, deine Erkenntnisse als <strong>Startrampe</strong> zu nutzen statt als Aussichtsplattform. Und der erste Schritt ist kleiner, als du denkst.",
     pain: "Du analysierst dich im Kreis. Du weißt, was sich ändern müsste, aber du verwechselst Erkenntnis mit Fortschritt. Und jeder Tag, an dem du nicht handelst, macht den nächsten Schritt schwerer.",
     hebel: "Akzeptiere, dass Erkenntnis ohne Handlung wertlos ist. Du weißt genug. Es fehlt nicht an Wissen, sondern an Mut.",
@@ -541,7 +541,7 @@ const TYPE_META = {
     labelFuer: "Getriebene",
     avatar: "/Archetypen-Getriebener.png",
     tagline: "Du bist ständig in Bewegung – aber wer hat eigentlich das Ziel bestimmt?",
-    ctaText: "Du funktionierst – aber für wen eigentlich? In dieser Masterclass zeige ich dir, wie du deine Energie endlich für das einsetzt, was dich wirklich glücklich machen kann.",
+    ctaText: "Du funktionierst, aber für wen eigentlich? In dieser Masterclass zeige ich dir, wie du deine Energie endlich für das einsetzt, was dich wirklich glücklich machen kann.",
     description: "<strong>Du bist ein wahrer Macher!</strong> Dein Antrieb, deine Disziplin und deine Belastbarkeit sind beeindruckend. Du funktionierst, wo andere aufgeben, und du lieferst Ergebnisse, auf die man sich verlassen kann. Das ist eine <strong>seltene Qualität</strong>, und sie hat dich in vielem weitergebracht.<br/><br/>Aber dahinter steckt meist auch eine Vermeidungsstrategie: Solange du funktionierst, musst du nicht hinschauen. Manche Getriebene folgen einem Drehbuch, das andere geschrieben haben, und merken es nicht. In den ruhigen Momenten, wenn die Ablenkung wegfällt, ist da eine <strong>Unruhe</strong>, die du nicht benennen kannst. Und weil das unangenehm ist, greifst du direkt wieder zur Beschäftigung. Mach dir keinen Vorwurf, jeder macht gern das, was er gut kann. Doch würde sich ein Blick in diese dunkle Schublade lohnen, um zu sehen, welche Gedanken hier unterbewusst zurückgehalten werden.<br/><br/>Vielen anderen gegenüber hast du einen immensen Vorteil: Dein Antrieb und deine Disziplin sind <strong>unersetzliche Stärken</strong>. Die meisten Menschen träumen davon, so konsequent umsetzen zu können wie du. Wenn du lernst, diese Kraft für ein Ziel einzusetzen, das wirklich deins ist, wirst du nicht nur funktionieren, sondern <strong>aufblühen</strong>.",
     pain: "Du bist so beschäftigt mit Funktionieren, dass du gar nicht merkst, wie weit du dich von dir selbst entfernt hast. Und die Stimme, die fragt \u201EIst das wirklich alles?\u201C, wird leiser, je mehr du sie übertönst.",
     hebel: "Verstehe, dass Leistung allein nicht zu Glück führt. Dein hohes Pensum ist in Wahrheit deine Vermeidungsstrategie, die wirklich wichtigen Themen nicht anzuschauen.",
@@ -552,7 +552,7 @@ const TYPE_META = {
     labelFuer: "Idealisten",
     avatar: "/Archetypen-Idealist.png",
     tagline: "Du spürst, was in der Welt schiefläuft – und es frisst dich auf.",
-    ctaText: "Dein Feuer für eine bessere Welt ist echt und ehrenwert – doch es birgt die Gefahr, dich innerlich aufzufressen. In dieser Masterclass zeige ich dir, wie du für eine bessere Welt sorgst – zuerst bei dir, um anschließend auch die Kraft zu finden weiterzumachen.",
+    ctaText: "Dein Feuer für eine bessere Welt ist echt und ehrenwert! Doch es birgt die Gefahr, dich innerlich aufzufressen. In dieser Masterclass zeige ich dir, wie du die Welt besser machst. Und zwar DEINE, um anschließend auch die Kraft zu finden, überhaupt wahrhaftig etwas zu bewirken.",
     description: "<strong>Du willst wahrhaftig etwas verändern!</strong> Dein Gerechtigkeitssinn, deine Empathie und dein moralischer Kompass sind echt. In einer Welt, die oft wegschaut, bist du jemand, der <strong>hinschaut und sich betroffen fühlt</strong>. Das ist keine Schwäche, das ist eine seltene und wertvolle Haltung.<br/><br/>Doch genau diese Intensität hat eine Schattenseite: Deine Energie fließt immer wieder in Wut, Frustration und Ohnmacht über Dinge, die du nicht kontrollieren kannst. Dein eigenes Leben und Glück stehen dabei hinten an. Wahrscheinlich hast du nie gelernt, dass bei dir selbst anfangen <strong>kein Verrat an der Welt ist</strong>.<br/><br/>Die Wahrheit ist: <strong>Die Welt braucht Menschen wie dich</strong>. Deine <strong>Leidenschaft und dein Mut</strong>, unbequeme Wahrheiten auszusprechen, sind ein Geschenk. Wenn du lernst, zuerst für dich selbst zu sorgen, wirst du nicht schwächer, sondern <strong>nachhaltig stärker und handlungsfähiger</strong>. Und genau dann kannst du auch wirklich etwas bewegen.",
     pain: "Dein Gerechtigkeitssinn ist echt – aber er frisst dich auf. Du gibst so viel Energie an die Welt, dass für dich selbst nichts übrig bleibt. Und das Paradoxe: Genau dadurch veränderst du weniger, als du könntest.",
     hebel: "Erkenne, erstens, dass Selbstfürsorge kein Egoismus ist, sondern die Voraussetzung, um überhaupt etwas verändern zu können und zweitens, dass der Wunsch nach Perfektion einer positiven Entwicklung im Wege stehen kann.",
@@ -563,7 +563,7 @@ const TYPE_META = {
     labelFuer: "Suchende",
     avatar: "/Archetypen-Suchende.png",
     tagline: "Du weißt, dass etwas fehlt – du weißt nur noch nicht, was.",
-    ctaText: "Du spürst, dass da mehr ist – aber die nächste \u201EMethode nach Guru XY\u201C wird\u2019s auch nicht richten. In dieser Masterclass zeige ich dir, wo du wirklich hinschauen musst.",
+    ctaText: "Du spürst, dass da mehr ist, aber auch die letzte \u201EMethode nach Guru XY\u201C hat nichts verändert. In der Suchenden-Masterclass zeige ich dir, wo du wirklich hinschauen musst, damit sich dein Leben endlich zum Positiven verändert.",
     description: "<strong>In dir schlummert ein neugieriger Entdecker!</strong> Dein Wissensdurst, deine Offenheit und dein Gespür für das Echte sind bemerkenswert. Du gibst dich nicht mit der Oberfläche zufrieden und du spürst intuitiv, wenn etwas nicht stimmt. Diese <strong>innere Sensibilität</strong> ist ein echtes Talent.<br/><br/>Doch zufrieden bist du trotzdem nicht. Du hast schon vieles probiert: Bücher, Podcasts, vielleicht Seminare. Manche Dinge haben kurz resoniert, aber <strong>nichts hat wirklich gehalten</strong>. Das liegt nicht daran, dass du sprunghaft bist, sondern daran, dass du die Antwort im Außen suchst, während sie im Innen liegt.<br/><br/>Deine Neugier und dein Anspruch sind <strong>keine Schwäche</strong>. Viele Menschen gehen durchs Leben, ohne jemals die Fragen zu stellen, die du dir stellst. Wenn du lernst, weniger zu suchen und mehr umzusetzen, wirst du feststellen, dass du <strong>die meisten Antworten längst in dir trägst</strong>.",
     pain: "Du springst von Impuls zu Impuls, von Methode zu Methode – und verwechselst Bewegung mit Fortschritt. Die unbequeme Wahrheit: Es liegt nicht an den Methoden. Es liegt daran, dass du nicht tief genug gräbst.",
     hebel: "Verstehe, dass die Antwort nicht im nächsten Buch oder Podcast zu finden ist. Sie liegt in der konsequenten Umsetzung dessen, was du eigentlich schon lange weißt.",
@@ -574,7 +574,7 @@ const TYPE_META = {
     labelFuer: "Klarsichtige",
     avatar: "/Archetypen-Klarsichtiger.png",
     tagline: "Du siehst klarer als die meisten – jetzt geht's darum, danach zu leben.",
-    ctaText: "Du bist weiter als die meisten – doch das allein reicht nicht. In dieser Masterclass zeige ich dir, wie du dein Wissen endlich in dein Leben integrierst.",
+    ctaText: "Du bist weiter als die meisten, doch das allein reicht nicht. Und eigentlich weißt du das. In der Klarsichtigen-Masterclass zeige ich dir, wie du dein theoretisches Wissen endlich in dein Leben integrierst.",
     description: "<strong>Du bist weiter als die meisten!</strong> Dein Selbstverständnis, deine Reflexionsfähigkeit und dein bewusster Umgang mit dem Leben sind überdurchschnittlich. Man kann mit dir über tiefere Themen sprechen, ohne dass du abblocken musst. Du hinterfragst, reflektierst und lebst <strong>bewusster als die meisten in deinem Umfeld</strong>.<br/><br/>Doch auch du hast blinde Flecken. Vielleicht die Tendenz, dich für weiter zu halten, als du bist? Oder die Schwierigkeit, dein Wissen konsequent in Handlung zu übersetzen? <strong>Klar sehen</strong> und <strong>danach leben</strong>, das sind zwei verschiedene Dinge. Und das eine ist nun mal leichter als das andere.<br/><br/>Das Gute ist: Du bist auf einem Weg, den die meisten noch nicht einmal begonnen haben. Deine Klarheit ist <strong>kein Zufall, sondern das Ergebnis von echtem Hinschauen</strong>. Wenn du lernst, deiner eigenen Erkenntnis noch mehr zu vertrauen und konsequent danach zu handeln, steht dir wenig im Weg. Ja, der Weg hat noch Strecke, aber du gehst ihn bereits, und das verdient Respekt.",
     pain: "Dein Wissen ist echt – aber es kann zur Falle werden. Du hältst dich manchmal für weiter, als du bist. Der Unterschied zwischen Wissen und Weisheit: Du brauchst keine Fakten mehr, um zu spüren, was richtig oder falsch ist. Aber dieses Spüren in echtes Handeln und Vertrauen zu übersetzen – genau daran darfst du noch arbeiten.",
     hebel: "Vielleicht ist es an der Zeit, sich einzugestehen, dass du deine Weisheit und deine Erkenntnisse mit Fortschritt verwechselst. Dein Wissen ist erst etwas wert, wenn du auch wirklich danach lebst.",
@@ -1118,6 +1118,11 @@ body, html, #root {
 .signup-solo-text strong { color: var(--dark); font-weight: 700; }
 .signup-solo .cta-email { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; max-width: 380px; width: 100%; margin: 0 auto; }
 .signup-solo .cta-privacy { font-size: 0.72rem; color: var(--warm-gray); margin-top: 0.75rem; font-weight: 400; }
+.signup-solo .cta-privacy a { color: var(--warm-gray); text-decoration: underline; text-underline-offset: 2px; }
+.signup-solo-note { font-size: 0.85rem; line-height: 1.6; color: var(--warm-gray); max-width: 480px; margin: 0.7rem auto 0; }
+.mc-consent { display: flex; align-items: flex-start; gap: 0.6rem; text-align: left; font-size: 0.78rem; line-height: 1.5; color: var(--text-muted); cursor: pointer; margin-top: 0.2rem; }
+.mc-consent input { flex: none; width: 16px; height: 16px; margin-top: 2px; accent-color: var(--orange); cursor: pointer; }
+.mc-consent input:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
 
 .email-input { width: 100%; padding: 1rem 1.1rem; border: 1.5px solid var(--warmgrau); border-radius: var(--r-input); background: #fff; font-family: 'Inter Tight', sans-serif; font-size: 0.9rem; color: var(--ink); outline: none; transition: border-color 0.2s; }
 .email-input:focus { border-color: var(--orange); }
@@ -1648,6 +1653,7 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
   const [pdfLoading, setPdfLoading] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [recognitionScore, setRecognitionScore] = useState(null);
+  const [mcConsent, setMcConsent] = useState(false);
 
   const scoring = computeScoring(answers, followUpAnswers);
   const meta = TYPE_META[scoring.resultType];
@@ -1671,18 +1677,48 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
 
   const validateEmail = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
   const handleKeyDown = (e) => { if (e.key === "Enter") handleEmailSubmit(); };
-  const REINTYP_TAG_ID = 17381951;
+  const REINTYP_TAG_ID = 17381951;      // Tag "reintyp" (nur bei Margin >= 20)
+  const KIT_MC_TAG_ID = 21030382;      // Tag "mc-warteliste" - identisch zur Startseiten-Kachel
+
+  // Dokumentiert, WELCHEM Einwilligungstext die Person zugestimmt hat.
+  // Aendert sich der Text unten, wird dieser Wert hochgezaehlt.
+  // Muss mit dem Wert in Startseite.jsx uebereinstimmen, solange der Text derselbe ist.
+  const MC_CONSENT_VERSION = "mc-2026-07";
+
+  // Der Satz MUSS wortgleich in der Kit-Double-Opt-in-Mail stehen.
+  // Sie ist der Nachweis der Einwilligung, nicht dieses Formular.
+  const MC_CONSENT_TEXT =
+    "Ja, schreib mir. Ich möchte per E-Mail erfahren, wenn die Masterclass online geht, " +
+    "und ab und zu ehrliche Impulse und Angebote von dir bekommen. Abmeldung jederzeit möglich.";
 
   const handleEmailSubmit = async () => {
     if (!firstName.trim()) { setEmailError("Bitte gib deinen Vornamen ein."); return; }
     if (!validateEmail(email)) { setEmailError("Bitte gib eine gültige E-Mail-Adresse ein."); return; }
+    if (!mcConsent) { setEmailError("Setz bitte das Häkchen, damit ich dir schreiben darf."); return; }
     setEmailStatus("loading"); setEmailError("");
+    // Das Formular IST der Archetyp - Kit merkt sich, ueber welches jemand kam.
+    // Deshalb braucht es keine fuenf Archetyp-Tags, nur mc-warteliste.
     const formId = KIT_FORM_IDS[scoring.resultType];
     try {
-      const body = { api_key: KIT_API_KEY, email, first_name: firstName.trim(), fields: { recognition_score: recognitionScore !== null ? String(recognitionScore) : "", archetype: scoring.resultType } };
-      if (scoring.isReintyp) body.tags = [REINTYP_TAG_ID];
+      const body = {
+        api_key: KIT_API_KEY,
+        email,
+        first_name: firstName.trim(),
+        fields: {
+          recognition_score: recognitionScore !== null ? String(recognitionScore) : "",
+          archetype: scoring.resultType,
+          einwilligung_version: MC_CONSENT_VERSION,
+        },
+        tags: [KIT_MC_TAG_ID],
+      };
+      if (scoring.isReintyp) body.tags.push(REINTYP_TAG_ID);
       const res = await fetch(`https://api.convertkit.com/v3/forms/${formId}/subscribe`, { method: "POST", headers: { "Content-Type": "application/json; charset=utf-8" }, body: JSON.stringify(body) });
-      if (res.ok) { setEmailStatus("success"); trackEvent("email_submitted", { archetype: scoring.resultType, recognition_score: recognitionScore }); }
+      if (res.ok) {
+        setEmailStatus("success");
+        // funnel unterscheidet dieselbe Handlung nach Quelle (test | startseite).
+        // Der Meta-Lead-Tag feuert per Trigger-Bedingung nur bei funnel = test.
+        trackEvent("email_submitted", { archetype: scoring.resultType, recognition_score: recognitionScore, funnel: "test" });
+      }
       else throw new Error("API Error");
     } catch (err) { console.error("Kit subscription failed:", err); setEmailStatus("error"); setEmailError("Es gab ein Problem. Bitte versuche es erneut."); }
   };
@@ -1892,32 +1928,16 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
 
       // Subline
       doc.setFont("helvetica", "normal"); doc.setFontSize(10); doc.setTextColor(...dark);
-      const subText = "Damit dir die Erkenntnisse aus ihm auch wirklich weiterhelfen, habe ich eine kostenlose Video-Masterclass genau f\u00FCr deinen Archetyp " + meta.label + " aufgenommen.";
+      const subText = "F\u00FCr deinen Archetyp " + meta.label + " nehme ich gerade eine kostenlose Video-Masterclass auf. Wenn du dich auf der Ergebnisseite eingetragen hast, bekommst du sie, sobald sie fertig ist.";
       const subL = doc.splitTextToSize(subText, 145);
       doc.text(subL, pw / 2, y, { align: "center", lineHeightFactor: 1.6 }); y += subL.length * 5 + 12;
 
-      // QR + Button
-      const qrUrl = "https://florian-lingner.ch/kostenlose-archetyp-masterclass-anfordern/";
-      try {
-        const qrR = await fetch("/qr-code-mc-anfordern-pdf.png");
-        const qrB = await qrR.blob();
-        const qrD = await new Promise((r) => { const rd = new FileReader(); rd.onloadend = () => r(rd.result); rd.readAsDataURL(qrB); });
-        doc.addImage(qrD, "PNG", pw / 2 - 18, y, 36, 36); y += 42;
-      } catch (e) {
-        doc.setFontSize(9); doc.setTextColor(...orange);
-        doc.text(qrUrl, pw / 2, y + 4, { align: "center" }); y += 12;
-      }
-
-      doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(...gray);
-      doc.text("Scanne den QR-Code oder klicke den Link:", pw / 2, y, { align: "center" }); y += 8;
-
-      const btnW = 90, btnH = 11;
-      doc.setFillColor(...orange); doc.rect(pw / 2 - btnW / 2, y, btnW, btnH, "F");
-      doc.setFont("helvetica", "bold"); doc.setFontSize(10); doc.setTextColor(255, 255, 255);
-      doc.text("Kostenlose Masterclass ansehen", pw / 2, y + 6.5, { align: "center" });
-      doc.link(pw / 2 - btnW / 2, y, btnW, btnH, { url: qrUrl }); y += btnH + 6;
-
-      doc.setFontSize(7); doc.setTextColor(...warmGray); doc.text(qrUrl, pw / 2, y, { align: "center" });
+      // QR-Code, Button und Link wurden entfernt (Session D).
+      // Die Ziel-URL /kostenlose-archetyp-masterclass-anfordern/ existiert auf der
+      // neuen Website nicht mehr - der QR fuehrte direkt auf die 404-Seite.
+      // Die Idee kommt zurueck, sobald es eine echte Anforderungs-Seite gibt:
+      // ein Formular, auf dem man seinen Archetyp angibt und die passende MC anfordert.
+      // Damit wird auch /public/qr-code-mc-anfordern-pdf.png wieder gebraucht.
 
       doc.save("Persoenlichkeitstest-" + meta.label.replace(/\s+/g, "-") + ".pdf");
     } catch (err) { console.error("PDF generation failed:", err); alert("PDF-Fehler: " + (err.message || err)); }
@@ -1957,7 +1977,7 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
           <p>{meta.hebel}</p>
           <div className="schritt-label">Ein erster Schritt:</div>
           <p>{meta.schritt}</p>
-          <p className="hebel-cta">Um deine offenen Potenziale nun aktiv zu bearbeiten, trage dich jetzt einfach zur kostenlosen <a href="#masterclass-form" onClick={(e) => { e.preventDefault(); document.getElementById('masterclass-form')?.scrollIntoView({ behavior: 'smooth' }); }}>Video-Masterclass</a> speziell für deinen Archetyp ein!</p>
+          <p className="hebel-cta">Um deine offenen Potenziale aktiv anzugehen, trag dich unten in die <a href="#masterclass-form" onClick={(e) => { e.preventDefault(); document.getElementById('masterclass-form')?.scrollIntoView({ behavior: 'smooth' }); }}>Warteliste</a> für deine Archetyp-Masterclass ein.</p>
         </div>
         <div className="strengths-section">
           <div className="sp-title sp-title-green">Deine Top 3 Stärken</div>
@@ -2008,25 +2028,38 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
             <div className="cta-confirm">
               <div className="cta-confirm-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 6-10 7L2 6" /></svg></div>
               <div className="cta-confirm-title">Fast geschafft!</div>
-              <p className="cta-confirm-text">Wir haben dir gerade eine E-Mail geschickt. <strong>Bestätige darin unbedingt deine Adresse über den Link</strong> – sonst können wir dir die Masterclass für {meta.labelFuer} nicht zusenden.</p>
-              <p className="cta-confirm-hint">Keine Mail im Posteingang? Schau kurz im Spam-Ordner nach.</p>
+              <p className="cta-confirm-text">Ich habe dir gerade eine E-Mail geschickt. <strong>Bestätige darin kurz deine Adresse</strong> – sonst landest du nicht auf der Warteliste.</p>
+              <p className="cta-confirm-hint">Keine Mail im Posteingang? Schau im Werbe-Ordner nach, manchmal auch im Spam. Wenn du sie nach „Allgemein“ ziehst, landen meine nächsten direkt dort.</p>
             </div>
           ) : (
             <>
               <div className="signup-solo-header">
-                <div className="postq-eyebrow">Dein nächster Schritt</div>
+                <div className="postq-eyebrow">Bald verfügbar</div>
                 <div className="postq-title">Deine kostenlose<br />Masterclass für {meta.labelFuer}</div>
-                <p className="signup-solo-text">Bock dein Potenzial voll auszuschöpfen? In dieser Masterclass zeige ich dir, wie du künftig besser mit deinen blind spots umgehen kannst.</p>
+                <p className="signup-solo-text">{meta.ctaText}</p>
+                <p className="signup-solo-note">Sie ist gerade in Arbeit. Trag dich ein, dann bekommst du sie, sobald sie fertig ist.</p>
               </div>
               <div className="cta-email">
                 <input type="text" placeholder="Dein Vorname" className={`email-input ${emailError && !firstName.trim() ? "email-input-error" : ""}`} value={firstName} onChange={(e) => { setFirstName(e.target.value); setEmailError(""); }} disabled={emailStatus === "loading"} />
                 <input type="email" placeholder="Deine E-Mail-Adresse" className={`email-input ${emailError && firstName.trim() ? "email-input-error" : ""}`} value={email} onChange={(e) => { setEmail(e.target.value); setEmailError(""); }} onKeyDown={handleKeyDown} disabled={emailStatus === "loading"} />
+                <label className="mc-consent">
+                  <input
+                    type="checkbox"
+                    checked={mcConsent}
+                    onChange={(e) => { setMcConsent(e.target.checked); setEmailError(""); }}
+                    disabled={emailStatus === "loading"}
+                  />
+                  <span>{MC_CONSENT_TEXT}</span>
+                </label>
                 {emailError && <p className="email-error-msg">{emailError}</p>}
                 <button className={`btn-primary btn-cta ${emailStatus === "loading" ? "btn-loading" : ""}`} onClick={handleEmailSubmit} disabled={emailStatus === "loading"}>
-                  {emailStatus === "loading" ? (<span className="loading-dots"><span>.</span><span>.</span><span>.</span></span>) : "Masterclass freischalten"}
+                  {emailStatus === "loading" ? (<span className="loading-dots"><span>.</span><span>.</span><span>.</span></span>) : "Auf die Warteliste"}
                 </button>
               </div>
-              <p className="cta-privacy" style={{ textAlign: "center" }}>Kein Spam. Kein Bullshit. Jederzeit abmeldbar.</p>
+              <p className="cta-privacy" style={{ textAlign: "center" }}>
+                Wie ich mit deinen Daten umgehe, steht in der{" "}
+                <a href="https://florian-lingner.ch/datenschutz" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>.
+              </p>
             </>
           )}
         </div>
