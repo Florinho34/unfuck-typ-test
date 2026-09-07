@@ -721,6 +721,36 @@ function getStrengthsAndPotentials(normalized) {
   };
 }
 
+// ─── ERGEBNIS-TOKEN (fuer die Ergebnisseite florian-lingner.ch/dein-ergebnis) ─
+// Baut aus dem Scoring einen kompakten, URL-sicheren Code. Traegt NUR den
+// persoenlichen Kern (Name, Archetyp, 10 Werte, Top-3). Alle Texte liegen im
+// Seiten-Code, nicht im Token. Robuste Variante: Top-3 vorberechnet => die
+// Ergebnisseite ist reiner Anzeiger, kein Nachrechnen, kein Drift-Risiko.
+const ARCHETYPE_ORDER = ["zuschauer", "getriebener", "idealist", "suchender", "klarsichtiger"];
+
+function utf8ToBase64Url(str) {
+  const bytes = new TextEncoder().encode(str);
+  let bin = "";
+  for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+  return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+function buildResultToken(firstName, scoring, secondaryType) {
+  const { strengths, potentials } = getStrengthsAndPotentials(scoring.normalized);
+  const payload = {
+    v: 1,                                                     // Token-Version
+    n: firstName,                                             // Vorname
+    p: ARCHETYPE_ORDER.indexOf(scoring.resultType),           // Primaer 0-4
+    s: secondaryType ? ARCHETYPE_ORDER.indexOf(secondaryType) : -1, // Sekundaer 0-4 (-1 = keiner)
+    r: scoring.isReintyp ? 1 : 0,                             // Reintyp
+    t: new Date().toISOString().slice(0, 10),                // Testdatum YYYY-MM-DD
+    d: CORE_SCALES.map((k) => scoring.normalized[k] ?? 50),  // 10 Dimensionswerte (feste Reihenfolge)
+    st: strengths.map((x) => x.key),                         // Top-3 Staerken (Keys)
+    pt: potentials.map((x) => x.key),                        // Top-3 Potenziale (Keys)
+  };
+  return utf8ToBase64Url(JSON.stringify(payload));
+}
+
 // ─── SESSION PERSISTENCE ────────────────────────────────────────────────────
 
 const SESSION_KEY_PROGRESS = "unfuck-test-progress";
@@ -1699,6 +1729,9 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
     // Das Formular IST der Archetyp - Kit merkt sich, ueber welches jemand kam.
     // Deshalb braucht es keine fuenf Archetyp-Tags, nur mc-warteliste.
     const formId = KIT_FORM_IDS[scoring.resultType];
+    // Ergebnis-Token bauen: landet im Kit-Feld ergebnis_token und wird spaeter
+    // in der Ergebnis-Mail als Link auf /dein-ergebnis?d=... eingesetzt.
+    const ergebnisToken = buildResultToken(firstName.trim(), scoring, secondaryType);
     try {
       const body = {
         api_key: KIT_API_KEY,
@@ -1708,6 +1741,7 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
           recognition_score: recognitionScore !== null ? String(recognitionScore) : "",
           archetype: scoring.resultType,
           einwilligung_version: MC_CONSENT_VERSION,
+          ergebnis_token: ergebnisToken,
         },
         tags: [KIT_MC_TAG_ID],
       };
