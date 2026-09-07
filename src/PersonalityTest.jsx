@@ -515,13 +515,10 @@ const TYPE_PROFILES = {
 };
 
 const KIT_API_KEY = "ce3iKRTfk0Bz5mfbC5yCrg";
-const KIT_FORM_IDS = {
-  zuschauer: 9189289,
-  getriebener: 9190135,
-  idealist: 9190147,
-  suchender: 9190156,
-  klarsichtiger: 9190163,
-};
+// Ein einziges Optin-Formular fuer alle Archetypen. Der Archetyp reist im Feld
+// `archetype` + im Ergebnis-Token, nicht mehr ueber die Formularwahl. Die alten
+// 5 Archetyp-Forms liegen in Kit als Drafts (unbenutzt).
+const KIT_FORM_ID = 9892070;
 
 const TYPE_META = {
   zuschauer: {
@@ -1719,9 +1716,9 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
     if (!validateEmail(email)) { setEmailError("Bitte gib eine gültige E-Mail-Adresse ein."); return; }
     if (!mcConsent) { setEmailError("Setz bitte das Häkchen, damit ich dir schreiben darf."); return; }
     setEmailStatus("loading"); setEmailError("");
-    // Das Formular IST der Archetyp - Kit merkt sich, ueber welches jemand kam.
-    // Deshalb braucht es keine fuenf Archetyp-Tags, nur mc-warteliste.
-    const formId = KIT_FORM_IDS[scoring.resultType];
+    // Ein Formular fuer alle Archetypen. Tag mc-warteliste identisch fuer alle;
+    // der Archetyp steckt im Feld `archetype` und im Ergebnis-Token.
+    const formId = KIT_FORM_ID;
     // Ergebnis-Token bauen: landet im Kit-Feld ergebnis_token und wird spaeter
     // in der Ergebnis-Mail als Link auf /dein-ergebnis?d=... eingesetzt.
     const ergebnisToken = buildResultToken(firstName.trim(), scoring, secondaryType);
@@ -1895,7 +1892,7 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
             {Object.entries(scoring.distances).sort((a, b) => a[1] - b[1]).map(([type, dist]) => (<span key={type}>{TYPE_META[type].label}: {dist.toFixed(1)} {type === scoring.resultType ? "← MATCH" : ""}<br /></span>))}
             <br />Margin: {scoring.margin.toFixed(1)}<br />
             Reintyp-Tag: {scoring.isReintyp ? "JA (≥20)" : "NEIN (Mischprofil)"}<br />
-            Kit Form-ID: {KIT_FORM_IDS[scoring.resultType]}<br /><br />
+            Kit Form-ID: {KIT_FORM_ID}<br /><br />
             <strong>// Antworten</strong><br /><br />
             {QUESTIONS.map(q => { const a = answers[q.id]; const fuKey = a?.primary ? `${q.id}${a.primary}` : null; const fuAns = fuKey ? followUpAnswers[fuKey] : null; return (<span key={q.id}>F{q.id}: {a?.primary || "–"}{a?.secondary ? ` + ${a.secondary} (40%)` : ""}{fuAns ? ` → FU:${fuAns}` : ""}<br /></span>); })}
           </div>
