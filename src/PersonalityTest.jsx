@@ -1962,7 +1962,7 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
 
       // Subline
       doc.setFont("helvetica", "normal"); doc.setFontSize(10); doc.setTextColor(...dark);
-      const subText = "F\u00FCr deinen Archetyp " + meta.label + " nehme ich gerade eine kostenlose Video-Masterclass auf. Wenn du dich auf der Ergebnisseite eingetragen hast, bekommst du sie, sobald sie fertig ist.";
+      const subText = "F\u00FCr deinen Archetyp " + meta.label + " findest du in diesem Report dein vollst\u00E4ndiges Profil. Nimm es mit - und fang mit dem Punkt an, der dich am meisten trifft.";
       const subL = doc.splitTextToSize(subText, 145);
       doc.text(subL, pw / 2, y, { align: "center", lineHeightFactor: 1.6 }); y += subL.length * 5 + 12;
 
@@ -2011,7 +2011,7 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
           <p>{meta.hebel}</p>
           <div className="schritt-label">Ein erster Schritt:</div>
           <p>{meta.schritt}</p>
-          <p className="hebel-cta">Um deine offenen Potenziale aktiv anzugehen, trag dich unten in die <a href="#masterclass-form" onClick={(e) => { e.preventDefault(); document.getElementById('masterclass-form')?.scrollIntoView({ behavior: 'smooth' }); }}>Warteliste</a> für deine Archetyp-Masterclass ein.</p>
+          <p className="hebel-cta">Das ist erst die Kurzfassung. Deine ausführliche Auswertung mit allen Details schicke ich dir per Mail - <a href="#ergebnis-form" onClick={(e) => { e.preventDefault(); document.getElementById('ergebnis-form')?.scrollIntoView({ behavior: 'smooth' }); }}>gleich hier eintragen</a>.</p>
         </div>
         <div className="strengths-section">
           <div className="sp-title sp-title-green">Deine Top 3 Stärken</div>
@@ -2057,21 +2057,20 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
             <div className="mischtyp-text">{comboText}</div>
           </div>
         )}
-        <div className="postq-screen signup-solo" id="masterclass-form">
+        <div className="postq-screen signup-solo" id="ergebnis-form">
           {emailStatus === "success" ? (
             <div className="cta-confirm">
               <div className="cta-confirm-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 6-10 7L2 6" /></svg></div>
               <div className="cta-confirm-title">Fast geschafft!</div>
-              <p className="cta-confirm-text">Ich habe dir gerade eine E-Mail geschickt. <strong>Bestätige darin kurz deine Adresse</strong> – sonst landest du nicht auf der Warteliste.</p>
+              <p className="cta-confirm-text">Ich habe dir gerade eine E-Mail geschickt. <strong>Bestätige darin kurz deine Adresse</strong> – sonst kann ich dir dein Ergebnis nicht schicken.</p>
               <p className="cta-confirm-hint">Keine Mail im Posteingang? Schau im Werbe-Ordner nach, manchmal auch im Spam. Wenn du sie nach „Allgemein“ ziehst, landen meine nächsten direkt dort.</p>
             </div>
           ) : (
             <>
               <div className="signup-solo-header">
-                <div className="postq-eyebrow">Bald verfügbar</div>
-                <div className="postq-title">Deine kostenlose<br />Masterclass für {meta.labelFuer}</div>
-                <p className="signup-solo-text">{meta.ctaText}</p>
-                <p className="signup-solo-note">Sie ist gerade in Arbeit. Trag dich ein, dann bekommst du sie, sobald sie fertig ist.</p>
+                <div className="postq-eyebrow">Nur noch ein Schritt</div>
+                <div className="postq-title">Deine ausführliche<br />Auswertung</div>
+                <p className="signup-solo-text">In deiner ausführlichen Auswertung bekommst du dein vollständiges Profil über alle zehn Dimensionen, deine größten Stärken und blinden Flecken - und was das konkret für dein Leben bedeutet.</p>
               </div>
               <div className="cta-email">
                 <input type="text" placeholder="Dein Vorname" className={`email-input ${emailError && !firstName.trim() ? "email-input-error" : ""}`} value={firstName} onChange={(e) => { setFirstName(e.target.value); setEmailError(""); }} disabled={emailStatus === "loading"} />
@@ -2087,7 +2086,7 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
                 </label>
                 {emailError && <p className="email-error-msg">{emailError}</p>}
                 <button className={`btn-primary btn-cta ${emailStatus === "loading" ? "btn-loading" : ""}`} onClick={handleEmailSubmit} disabled={emailStatus === "loading"}>
-                  {emailStatus === "loading" ? (<span className="loading-dots"><span>.</span><span>.</span><span>.</span></span>) : "Auf die Warteliste"}
+                  {emailStatus === "loading" ? (<span className="loading-dots"><span>.</span><span>.</span><span>.</span></span>) : "Volles Ergebnis freischalten"}
                 </button>
               </div>
               <p className="cta-privacy" style={{ textAlign: "center" }}>
@@ -2096,10 +2095,6 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
               </p>
             </>
           )}
-        </div>
-        <div className="pdf-save-section">
-          <p className="pdf-save-hint">Speichere dein Ergebnis als PDF – inkl. Radar-Chart und personalisierten Impulsen.</p>
-          <button className="btn-pdf-download" onClick={generatePDF} disabled={pdfLoading}>{pdfLoading ? "PDF wird erstellt..." : "Ergebnis als PDF speichern"}</button>
         </div>
         <div className="share-section">
           <div className="share-title">Dir hat der Test gefallen?</div>
