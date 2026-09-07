@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { jsPDF } from "jspdf";
 
 // ─── TRACKING (GTM dataLayer) ─────────────────────────────
 // Consent/Pixel laufen jetzt zentral über GTM + den ConsentBanner (src/components).
@@ -1172,11 +1171,6 @@ body, html, #root {
 .success-sub { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; max-width: 380px; }
 .success-sub strong { color: var(--dark); font-weight: 600; }
 
-.pdf-save-section { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; padding: 1.5rem 0; }
-.pdf-save-hint { font-size: 0.82rem; color: var(--text-muted); text-align: center; line-height: 1.5; font-style: italic; max-width: 420px; }
-.btn-pdf-download { background: var(--ink); color: var(--creme); border: none; border-radius: var(--r-pill); padding: 0.85rem 2.2rem; font-family: 'Inter Tight', sans-serif; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.25s ease; letter-spacing: 0.02em; }
-.btn-pdf-download:hover { background: var(--dark-soft); transform: translateY(-1px); }
-.btn-pdf-download:disabled { opacity: 0.5; cursor: wait; transform: none; }
 
 .recognition-box { width: 100%; border: none; border-radius: var(--r-card); box-shadow: var(--shadow-card); padding: 2rem 1.5rem; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.75rem; }
 .recognition-box-title { font-family: 'Inter Tight', sans-serif; font-size: clamp(1rem, 3vw, 1.2rem); font-weight: 700; color: var(--dark); margin-bottom: 0.75rem; line-height: 1.3; }
@@ -1680,7 +1674,6 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
   const [email, setEmail] = useState("");
   const [emailStatus, setEmailStatus] = useState("idle");
   const [emailError, setEmailError] = useState("");
-  const [pdfLoading, setPdfLoading] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [recognitionScore, setRecognitionScore] = useState(null);
   const [mcConsent, setMcConsent] = useState(false);
@@ -1755,227 +1748,6 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
       }
       else throw new Error("API Error");
     } catch (err) { console.error("Kit subscription failed:", err); setEmailStatus("error"); setEmailError("Es gab ein Problem. Bitte versuche es erneut."); }
-  };
-
-  const generatePDF = async () => {
-    setPdfLoading(true);
-    try {
-      const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
-      const pw = 210, ph = 297, ml = 27, cw = pw - ml - 27;
-      const orange = [255, 77, 0], dark = [28, 28, 28], gray = [107, 101, 96], warmGray = [163, 155, 147], green = [45, 122, 58];
-      const bgResponse = await fetch("/Digitales-briefpapier.jpg");
-      const bgBlob = await bgResponse.blob();
-      const bgData = await new Promise((resolve) => { const reader = new FileReader(); reader.onloadend = () => resolve(reader.result); reader.readAsDataURL(bgBlob); });
-      const addBg = () => doc.addImage(bgData, "JPEG", 0, 0, pw, ph);
-      let y = 38;
-      const np = (need) => { if (y + need > ph - 22) { doc.addPage(); addBg(); y = 38; } };
-
-      const renderRich = (html, x, maxW, fontSize, lineH) => {
-        doc.setFontSize(fontSize); doc.setTextColor(...dark);
-        const segs = [];
-        let rem = html;
-        while (rem.length > 0) {
-          const si = rem.indexOf('<strong>');
-          if (si === -1) { segs.push({ t: rem, b: false }); break; }
-          if (si > 0) segs.push({ t: rem.substring(0, si), b: false });
-          const ei = rem.indexOf('</strong>', si);
-          if (ei === -1) { segs.push({ t: rem.substring(si + 8), b: true }); break; }
-          segs.push({ t: rem.substring(si + 8, ei), b: true });
-          rem = rem.substring(ei + 9);
-        }
-        let cx = x, cy = y;
-        segs.forEach(seg => {
-          doc.setFont("helvetica", seg.b ? "bold" : "normal");
-          seg.t.split(/\s+/).filter(w => w).forEach(word => {
-            const ww = doc.getTextWidth(word + " ");
-            if (cx + ww > x + maxW && cx > x) { cx = x; cy += lineH; }
-            doc.text(word, cx, cy); cx += ww;
-          });
-        });
-        doc.setFont("helvetica", "normal");
-        y = cy + lineH;
-      };
-
-      addBg();
-
-      // ════════════════════════════════════════════════
-      // PAGE 1: Header + Radar + Description + Pain
-      // ════════════════════════════════════════════════
-      doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(...warmGray);
-      doc.text("DEIN PERS\u00D6NLICHKEITSTEST \u2013 ERGEBNIS", pw / 2, y, { align: "center" }); y += 12;
-      doc.setFont("helvetica", "bold"); doc.setFontSize(32); doc.setTextColor(...dark);
-      doc.text(meta.label, pw / 2, y, { align: "center" }); y += 10;
-      doc.setFont("helvetica", "italic"); doc.setFontSize(11); doc.setTextColor(...orange);
-      const tagLines = doc.splitTextToSize("\u201E" + meta.tagline + "\u201C", 150);
-      doc.text(tagLines, pw / 2, y, { align: "center" }); y += tagLines.length * 5.5 + 10;
-
-      // Radar
-      const rCx = pw / 2, rCy = y + 42, rR = 36;
-      const scales = CORE_SCALES, sn = scales.length;
-      const gp = (idx, val) => { const a = (Math.PI * 2 * idx) / sn - Math.PI / 2; const d2 = (val / 100) * rR; return { x: rCx + d2 * Math.cos(a), y: rCy + d2 * Math.sin(a) }; };
-      [25, 50, 75, 100].forEach(v => { const pts = scales.map((_, i) => gp(i, v)); doc.setDrawColor(...warmGray); doc.setLineWidth(0.15); pts.forEach((p, i) => { const n2 = pts[(i + 1) % pts.length]; doc.line(p.x, p.y, n2.x, n2.y); }); });
-      scales.forEach((_, i) => { const p = gp(i, 100); doc.setDrawColor(220, 215, 210); doc.setLineWidth(0.1); doc.line(rCx, rCy, p.x, p.y); });
-      const tp = TYPE_PROFILES[scoring.resultType];
-      const tPts = scales.map((s, i) => gp(i, tp[s]));
-      doc.setDrawColor(...warmGray); doc.setLineWidth(0.2); tPts.forEach((p, i) => { const n2 = tPts[(i + 1) % tPts.length]; doc.line(p.x, p.y, n2.x, n2.y); });
-      const uPts = scales.map((s, i) => gp(i, scoring.normalized[s]));
-      doc.setDrawColor(...orange); doc.setLineWidth(0.6); uPts.forEach((p, i) => { const n2 = uPts[(i + 1) % uPts.length]; doc.line(p.x, p.y, n2.x, n2.y); });
-      uPts.forEach(p => { doc.setFillColor(...orange); doc.circle(p.x, p.y, 1, "F"); });
-      const sL = { REF: "Reflexion", SL: "Selbstliebe", ML: "Ment. Last", OL: "Orientierung", ETH: "Eig. Werte", WS: "Weltschmerz", NAT: "Natur", EX: "Externalis.", EF: "Fremdbest.", HA: "Handlungskr." };
-      doc.setFontSize(6.5); doc.setFont("helvetica", "normal"); doc.setTextColor(...dark);
-      scales.forEach((s, i) => { const p = gp(i, 125); const anc = p.x < rCx - 5 ? "right" : p.x > rCx + 5 ? "left" : "center"; const dy = p.y < rCy - 5 ? -1.5 : p.y > rCy + 5 ? 3 : 0.5; doc.text(sL[s] || s, p.x, p.y + dy, { align: anc }); });
-      y = rCy + rR + 10;
-      doc.setFontSize(6); doc.setTextColor(...orange); doc.setFillColor(...orange);
-      doc.rect(pw / 2 - 35, y - 1.2, 4, 1.2, "F"); doc.text("Dein Profil", pw / 2 - 29, y);
-      doc.setTextColor(...warmGray); doc.setDrawColor(...warmGray); doc.setLineWidth(0.3);
-      doc.line(pw / 2 + 5, y - 0.6, pw / 2 + 9, y - 0.6); doc.text(meta.label + "-Referenz", pw / 2 + 11, y); y += 16;
-
-      // Description
-      meta.description.split(/<br\s*\/?>/gi).filter(p => p.trim()).forEach(para => {
-        const plain = para.replace(/<[^>]+>/g, '');
-        const est = Math.ceil(doc.splitTextToSize(plain, cw).length);
-        np(est * 4.5 + 4);
-        renderRich(para.trim(), ml, cw, 9.5, 4.3);
-        y += 2;
-      });
-      y += 4;
-
-      // Pain
-      const painL = doc.splitTextToSize(meta.pain, cw - 10);
-      const painH = painL.length * 3.8 + 14;
-      np(painH + 4);
-      doc.setFillColor(255, 240, 235); doc.rect(ml + 2, y - 1, cw - 2, painH, "F");
-      doc.setFillColor(...orange); doc.rect(ml, y - 1, 1.5, painH, "F");
-      doc.setFont("helvetica", "bold"); doc.setFontSize(10); doc.setTextColor(...orange);
-      doc.text("Daran scheiterst du gerade wahrscheinlich:", ml + 6, y + 5);
-      doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(...dark);
-      doc.text(painL, ml + 6, y + 12, { lineHeightFactor: 1.5 }); y += painH + 8;
-
-      // ════════════════════════════════════════════════
-      // PAGE 2: Hebel + Typ-Verteilung + Sekundärtyp
-      // ════════════════════════════════════════════════
-      doc.addPage(); addBg(); y = 38;
-
-      // Hebel
-      doc.setFont("helvetica", "bold"); doc.setFontSize(13); doc.setTextColor(...dark);
-      doc.text("Dein gr\u00F6\u00DFter Hebel:", ml, y); y += 8;
-      const hL = doc.splitTextToSize(meta.hebel, cw - 10);
-      const scL = doc.splitTextToSize(meta.schritt, cw - 10);
-      const hbH = hL.length * 3.8 + scL.length * 3.8 + 24;
-      doc.setFillColor(245, 243, 240); doc.rect(ml + 2, y - 2, cw - 2, hbH, "F");
-      doc.setFillColor(...dark); doc.rect(ml, y - 2, 1.5, hbH, "F");
-      doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...dark);
-      doc.text(hL, ml + 6, y + 4, { lineHeightFactor: 1.5 });
-      const afterH = y + 4 + hL.length * 4 + 4;
-      doc.setFont("helvetica", "bold"); doc.setFontSize(8.5); doc.setTextColor(...orange);
-      doc.text("Ein erster Schritt:", ml + 6, afterH);
-      doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...dark);
-      doc.text(scL, ml + 6, afterH + 6, { lineHeightFactor: 1.5 }); y += hbH + 14;
-
-      // Typ-Verteilung
-      doc.setFont("helvetica", "bold"); doc.setFontSize(13); doc.setTextColor(...dark);
-      doc.text("Deine Typ-Verteilung", ml, y); y += 10;
-      Object.entries(scoring.affinities).sort((a, b) => b[1] - a[1]).forEach(([type, pct]) => {
-        const isMain = type === scoring.resultType;
-        const isSec = type === secondaryType && showMischtyp;
-        doc.setFont("helvetica", isMain ? "bold" : "normal"); doc.setFontSize(9); doc.setTextColor(...dark); doc.text(TYPE_META[type].label, ml, y);
-        doc.setFillColor(232, 224, 216); doc.rect(ml + 55, y - 2.5, 80, 4, "F");
-        const bw = Math.max((pct / 100) * 80, 2);
-        if (isMain) doc.setFillColor(...orange); else if (isSec) doc.setFillColor(...dark); else doc.setFillColor(...warmGray);
-        doc.rect(ml + 55, y - 2.5, bw, 4, "F");
-        doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.setTextColor(...gray); doc.text(pct + "%", ml + cw, y, { align: "right" }); y += 9;
-      }); y += 12;
-
-      // Sekundär-Archetyp
-      if (showMischtyp) {
-        doc.setFont("helvetica", "bold"); doc.setFontSize(12); doc.setTextColor(...dark);
-        doc.text("Dein Sekund\u00E4r-Archetyp: " + TYPE_META[secondaryType]?.label, ml, y); y += 7;
-        doc.setFont("helvetica", "italic"); doc.setFontSize(9); doc.setTextColor(...gray);
-        const bt = "Du bist nicht nur " + meta.label + ", dein Profil zeigt auch deutliche " + TYPE_META[secondaryType]?.label + "-Anteile. Und genau diese Mischung macht's spannend:";
-        const bl = doc.splitTextToSize(bt, cw);
-        doc.text(bl, ml, y, { lineHeightFactor: 1.5 }); y += bl.length * 4.5 + 4;
-        doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...dark);
-        const cl = doc.splitTextToSize(comboText, cw);
-        doc.text(cl, ml, y, { lineHeightFactor: 1.55 }); y += cl.length * 4.2 + 10;
-      }
-
-      // ════════════════════════════════════════════════
-      // PAGE 3: Top 3 Stärken + Top 3 Potenziale
-      // ════════════════════════════════════════════════
-      doc.addPage(); addBg(); y = 38;
-
-      // Stärken
-      doc.setFont("helvetica", "bold"); doc.setFontSize(13); doc.setTextColor(...green);
-      doc.text("Deine Top 3 St\u00E4rken", ml, y); y += 8;
-      strengths.forEach(s => {
-        const tl = doc.splitTextToSize(s.text, cw - 10);
-        const ch = tl.length * 3.8 + 16;
-        np(ch + 4);
-        doc.setFillColor(240, 248, 242); doc.rect(ml + 2, y - 2, cw - 2, ch, "F");
-        doc.setFillColor(...green); doc.rect(ml, y - 2, 1.5, ch, "F");
-        doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...dark);
-        doc.text(s.name, ml + 6, y + 4);
-        const bw = Math.max((s.strengthScore / 100) * (cw - 20), 5);
-        doc.setFillColor(232, 224, 216); doc.rect(ml + 6, y + 7, cw - 20, 2.5, "F");
-        doc.setFillColor(...green); doc.rect(ml + 6, y + 7, bw, 2.5, "F");
-        doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(...dark);
-        doc.text(tl, ml + 6, y + 14, { lineHeightFactor: 1.45 }); y += ch + 4;
-      });
-
-      // Potenziale
-      y += 6;
-      doc.setFont("helvetica", "bold"); doc.setFontSize(13); doc.setTextColor(...orange);
-      doc.text("Deine 3 gr\u00F6\u00DFten Potenziale", ml, y); y += 8;
-      potentials.forEach(p => {
-        const tl = doc.splitTextToSize(p.text, cw - 10);
-        const ch = tl.length * 3.8 + 16;
-        np(ch + 4);
-        doc.setFillColor(255, 245, 240); doc.rect(ml + 2, y - 2, cw - 2, ch, "F");
-        doc.setFillColor(...orange); doc.rect(ml, y - 2, 1.5, ch, "F");
-        doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...dark);
-        doc.text(p.name, ml + 6, y + 4);
-        const bw = Math.max(((100 - p.strengthScore) / 100) * (cw - 20), 5);
-        doc.setFillColor(232, 224, 216); doc.rect(ml + 6, y + 7, cw - 20, 2.5, "F");
-        doc.setFillColor(...orange); doc.rect(ml + 6, y + 7, bw, 2.5, "F");
-        doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(...dark);
-        doc.text(tl, ml + 6, y + 14, { lineHeightFactor: 1.45 }); y += ch + 4;
-      });
-
-      // ════════════════════════════════════════════════
-      // PAGE 4: Personal CTA with photo
-      // ════════════════════════════════════════════════
-      doc.addPage(); addBg(); y = 38;
-
-      // Florian photo
-      try {
-        const imgR = await fetch("/Flo-im-Kreis-orange.png");
-        const imgB = await imgR.blob();
-        const imgD = await new Promise((r) => { const rd = new FileReader(); rd.onloadend = () => r(rd.result); rd.readAsDataURL(imgB); });
-        const imgSize = pw * 0.22;
-        doc.addImage(imgD, "PNG", pw / 2 - imgSize / 2, y, imgSize, imgSize);
-        y += imgSize + 10;
-      } catch (e) { y += 5; }
-
-      // Headline
-      doc.setFont("helvetica", "bold"); doc.setFontSize(18); doc.setTextColor(...dark);
-      doc.text("Danke, dass du meinen Test gemacht hast!", pw / 2, y, { align: "center" }); y += 10;
-
-      // Subline
-      doc.setFont("helvetica", "normal"); doc.setFontSize(10); doc.setTextColor(...dark);
-      const subText = "F\u00FCr deinen Archetyp " + meta.label + " findest du in diesem Report dein vollst\u00E4ndiges Profil. Nimm es mit - und fang mit dem Punkt an, der dich am meisten trifft.";
-      const subL = doc.splitTextToSize(subText, 145);
-      doc.text(subL, pw / 2, y, { align: "center", lineHeightFactor: 1.6 }); y += subL.length * 5 + 12;
-
-      // QR-Code, Button und Link wurden entfernt (Session D).
-      // Die Ziel-URL /kostenlose-archetyp-masterclass-anfordern/ existiert auf der
-      // neuen Website nicht mehr - der QR fuehrte direkt auf die 404-Seite.
-      // Die Idee kommt zurueck, sobald es eine echte Anforderungs-Seite gibt:
-      // ein Formular, auf dem man seinen Archetyp angibt und die passende MC anfordert.
-      // Damit wird auch /public/qr-code-mc-anfordern-pdf.png wieder gebraucht.
-
-      doc.save("Persoenlichkeitstest-" + meta.label.replace(/\s+/g, "-") + ".pdf");
-    } catch (err) { console.error("PDF generation failed:", err); alert("PDF-Fehler: " + (err.message || err)); }
-    finally { setPdfLoading(false); }
   };
 
 
