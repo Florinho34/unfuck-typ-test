@@ -1,4 +1,17 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { ARCHETYPE_CORE, ARCHETYPE_ORDER, CORE_SCALES } from "./data/archetypeCore";
+
+/*  ZWILLINGSDATEI: Archetyp-Name, Tagline, unbequeme Wahrheit und Falle kommen
+    aus src/data/archetypeCore.js. Dieselbe Datei liegt byte-gleich im Haupt-Repo
+    (Website-FL-Personenmarke/src/data/archetypeCore.js) und speist dort die
+    Detailseite /dein-ergebnis. Textaenderungen IMMER in beiden Repos. */
+
+/*  Rendert **fett**-Marker als <strong>. Dieselbe Funktion wie auf der
+    Detailseite, damit die gemeinsamen Texte hier und dort gleich aussehen. */
+function RichText({ text }) {
+  const parts = String(text).split(/\*\*([^*]+)\*\*/g);
+  return parts.map((p, i) => (i % 2 === 1 ? <strong key={i}>{p}</strong> : p));
+}
 
 // ─── TRACKING (GTM dataLayer) ─────────────────────────────
 // Consent/Pixel laufen jetzt zentral über GTM + den ConsentBanner (src/components).
@@ -498,8 +511,12 @@ const MILESTONES = {
 
 // ─── SCORING ENGINE ─────────────────────────────────────────────────────────
 
-const CORE_SCALES = ["REF", "SL", "ML", "OL", "ETH", "WS", "NAT", "EX", "EF", "HA"];
+// CORE_SCALES kommt aus der Zwillingsdatei (oben importiert) - die Reihenfolge
+// muss mit der Ergebnisseite uebereinstimmen, weil der Token die zehn Werte als
+// Array in genau dieser Reihenfolge kodiert.
 
+// SCALE_LABELS bleibt lokal: Die Kurznamen sieht nur noch das Debug-Panel.
+// Auf dem Ergebnis-Screen ist das Radar seit dem Teaser-Umbau unbeschriftet.
 const SCALE_LABELS = {
   REF: "Reflexion", SL: "Selbstliebe", ML: "Mentale Last", OL: "Orient.losigk.",
   ETH: "Eig. Werte", WS: "Weltschmerz", NAT: "Naturverb.",
@@ -520,118 +537,58 @@ const KIT_API_KEY = "ce3iKRTfk0Bz5mfbC5yCrg";
 // 5 Archetyp-Forms liegen in Kit als Drafts (unbenutzt).
 const KIT_FORM_ID = 9892070;
 
-const TYPE_META = {
+/*  Was NUR der Test braucht: die Kurzlabels (Radar-Legende, Debug) und der
+    archetypspezifische Satz ueber dem Formular.
+    Name, Tagline, unbequeme Wahrheit und Falle stehen in der Zwillingsdatei
+    src/data/archetypeCore.js und werden unten dazugemischt.
+    pain / hebel / schritt / description sind ersatzlos entfallen (08.09.2026):
+    Der Screen ist ein Teaser, das Wie ist Masterclass-Material.  */
+const TYPE_EXTRA = {
   zuschauer: {
     label: "Zuschauer",
     labelFuer: "Zuschauer",
-    avatar: "/Archetypen-Zuschauer.png",
-    tagline: "Du siehst mehr als die meisten – doch merkt man das an deinem Verhalten nur selten.",
     ctaText: "Du verstehst längst, was sich ändern müsste und jetzt ist der Moment, es auch zu tun. In der Zuschauer-Masterclass zeige ich dir, wie du vom Erkennen ins Handeln kommst.",
-    description: "<strong>Du bist weise!</strong> Du verstehst Zusammenhänge, die andere nicht sehen, und analysierst Situationen mit einer Schärfe, die beeindruckend ist. Dein <strong>analytischer Verstand</strong> ist eine echte Gabe, und im richtigen Moment bist du die Person im Raum, die den Durchblick hat.<br/><br/>Doch genau hier liegt auch deine Falle: Während andere einfach machen, <strong>denkst du zu viel</strong>. Du weißt, was du ändern müsstest, aber zwischen Erkenntnis und Handlung liegt ein Graben, der jedes Jahr breiter wird. Ohne Umsetzung bleibt Wissen theoretisch und kann keine Effekte in der Realität entfalten. Du beobachtest dein eigenes Leben manchmal mehr, als dass du es aktiv gestaltest.<br/><br/>Die gute Nachricht: Deine Klarheit ist eine <strong>echte Stärke</strong>, die viele sich wünschen. Du musst das Rad nicht neu erfinden. Du musst nur lernen, deine Erkenntnisse als <strong>Startrampe</strong> zu nutzen statt als Aussichtsplattform. Und der erste Schritt ist kleiner, als du denkst.",
-    pain: "Du analysierst dich im Kreis. Du weißt, was sich ändern müsste, aber du verwechselst Erkenntnis mit Fortschritt. Und jeder Tag, an dem du nicht handelst, macht den nächsten Schritt schwerer.",
-    hebel: "Akzeptiere, dass Erkenntnis ohne Handlung wertlos ist. Du weißt genug. Es fehlt nicht an Wissen, sondern an Mut.",
-    schritt: "Tu heute die eine Sache, die du seit Wochen aufschiebst. Nicht perfekt, einfach anfangen.",
   },
   getriebener: {
     label: "Getrieben",
     labelFuer: "Getriebene",
-    avatar: "/Archetypen-Getriebener.png",
-    tagline: "Du bist ständig in Bewegung – aber wer hat eigentlich das Ziel bestimmt?",
     ctaText: "Du funktionierst, aber für wen eigentlich? In dieser Masterclass zeige ich dir, wie du deine Energie endlich für das einsetzt, was dich wirklich glücklich machen kann.",
-    description: "<strong>Du bist ein wahrer Macher!</strong> Dein Antrieb, deine Disziplin und deine Belastbarkeit sind beeindruckend. Du funktionierst, wo andere aufgeben, und du lieferst Ergebnisse, auf die man sich verlassen kann. Das ist eine <strong>seltene Qualität</strong>, und sie hat dich in vielem weitergebracht.<br/><br/>Aber dahinter steckt meist auch eine Vermeidungsstrategie: Solange du funktionierst, musst du nicht hinschauen. Manche Getriebene folgen einem Drehbuch, das andere geschrieben haben, und merken es nicht. In den ruhigen Momenten, wenn die Ablenkung wegfällt, ist da eine <strong>Unruhe</strong>, die du nicht benennen kannst. Und weil das unangenehm ist, greifst du direkt wieder zur Beschäftigung. Mach dir keinen Vorwurf, jeder macht gern das, was er gut kann. Doch würde sich ein Blick in diese dunkle Schublade lohnen, um zu sehen, welche Gedanken hier unterbewusst zurückgehalten werden.<br/><br/>Vielen anderen gegenüber hast du einen immensen Vorteil: Dein Antrieb und deine Disziplin sind <strong>unersetzliche Stärken</strong>. Die meisten Menschen träumen davon, so konsequent umsetzen zu können wie du. Wenn du lernst, diese Kraft für ein Ziel einzusetzen, das wirklich deins ist, wirst du nicht nur funktionieren, sondern <strong>aufblühen</strong>.",
-    pain: "Du bist so beschäftigt mit Funktionieren, dass du gar nicht merkst, wie weit du dich von dir selbst entfernt hast. Und die Stimme, die fragt \u201EIst das wirklich alles?\u201C, wird leiser, je mehr du sie übertönst.",
-    hebel: "Verstehe, dass Leistung allein nicht zu Glück führt. Dein hohes Pensum ist in Wahrheit deine Vermeidungsstrategie, die wirklich wichtigen Themen nicht anzuschauen.",
-    schritt: "Nimm dir diese Woche an einem Abend bewusst nichts vor. Kein Handy, keine Aufgaben. Setz dich auf die Couch oder leg dich in die Wiese und schau in den Himmel. Mache NICHTS. Und halte aus, was dann hochkommt.",
   },
   idealist: {
     label: "Idealist",
     labelFuer: "Idealisten",
-    avatar: "/Archetypen-Idealist.png",
-    tagline: "Du spürst, was in der Welt schiefläuft – und es frisst dich auf.",
     ctaText: "Dein Feuer für eine bessere Welt ist echt und ehrenwert! Doch es birgt die Gefahr, dich innerlich aufzufressen. In dieser Masterclass zeige ich dir, wie du die Welt besser machst. Und zwar DEINE, um anschließend auch die Kraft zu finden, überhaupt wahrhaftig etwas zu bewirken.",
-    description: "<strong>Du willst wahrhaftig etwas verändern!</strong> Dein Gerechtigkeitssinn, deine Empathie und dein moralischer Kompass sind echt. In einer Welt, die oft wegschaut, bist du jemand, der <strong>hinschaut und sich betroffen fühlt</strong>. Das ist keine Schwäche, das ist eine seltene und wertvolle Haltung.<br/><br/>Doch genau diese Intensität hat eine Schattenseite: Deine Energie fließt immer wieder in Wut, Frustration und Ohnmacht über Dinge, die du nicht kontrollieren kannst. Dein eigenes Leben und Glück stehen dabei hinten an. Wahrscheinlich hast du nie gelernt, dass bei dir selbst anfangen <strong>kein Verrat an der Welt ist</strong>.<br/><br/>Die Wahrheit ist: <strong>Die Welt braucht Menschen wie dich</strong>. Deine <strong>Leidenschaft und dein Mut</strong>, unbequeme Wahrheiten auszusprechen, sind ein Geschenk. Wenn du lernst, zuerst für dich selbst zu sorgen, wirst du nicht schwächer, sondern <strong>nachhaltig stärker und handlungsfähiger</strong>. Und genau dann kannst du auch wirklich etwas bewegen.",
-    pain: "Dein Gerechtigkeitssinn ist echt – aber er frisst dich auf. Du gibst so viel Energie an die Welt, dass für dich selbst nichts übrig bleibt. Und das Paradoxe: Genau dadurch veränderst du weniger, als du könntest.",
-    hebel: "Erkenne, erstens, dass Selbstfürsorge kein Egoismus ist, sondern die Voraussetzung, um überhaupt etwas verändern zu können und zweitens, dass der Wunsch nach Perfektion einer positiven Entwicklung im Wege stehen kann.",
-    schritt: "Tu heute eine Sache nur für dich. Ohne schlechtes Gewissen. Ohne Rechtfertigung.",
   },
   suchender: {
     label: "Suchend",
     labelFuer: "Suchende",
-    avatar: "/Archetypen-Suchende.png",
-    tagline: "Du weißt, dass etwas fehlt – du weißt nur noch nicht, was.",
     ctaText: "Du spürst, dass da mehr ist, aber auch die letzte \u201EMethode nach Guru XY\u201C hat nichts verändert. In der Suchenden-Masterclass zeige ich dir, wo du wirklich hinschauen musst, damit sich dein Leben endlich zum Positiven verändert.",
-    description: "<strong>In dir schlummert ein neugieriger Entdecker!</strong> Dein Wissensdurst, deine Offenheit und dein Gespür für das Echte sind bemerkenswert. Du gibst dich nicht mit der Oberfläche zufrieden und du spürst intuitiv, wenn etwas nicht stimmt. Diese <strong>innere Sensibilität</strong> ist ein echtes Talent.<br/><br/>Doch zufrieden bist du trotzdem nicht. Du hast schon vieles probiert: Bücher, Podcasts, vielleicht Seminare. Manche Dinge haben kurz resoniert, aber <strong>nichts hat wirklich gehalten</strong>. Das liegt nicht daran, dass du sprunghaft bist, sondern daran, dass du die Antwort im Außen suchst, während sie im Innen liegt.<br/><br/>Deine Neugier und dein Anspruch sind <strong>keine Schwäche</strong>. Viele Menschen gehen durchs Leben, ohne jemals die Fragen zu stellen, die du dir stellst. Wenn du lernst, weniger zu suchen und mehr umzusetzen, wirst du feststellen, dass du <strong>die meisten Antworten längst in dir trägst</strong>.",
-    pain: "Du springst von Impuls zu Impuls, von Methode zu Methode – und verwechselst Bewegung mit Fortschritt. Die unbequeme Wahrheit: Es liegt nicht an den Methoden. Es liegt daran, dass du nicht tief genug gräbst.",
-    hebel: "Verstehe, dass die Antwort nicht im nächsten Buch oder Podcast zu finden ist. Sie liegt in der konsequenten Umsetzung dessen, was du eigentlich schon lange weißt.",
-    schritt: "Nimm die eine Erkenntnis, die dich zuletzt wirklich berührt hat, und wende sie diese Woche bewusst in einer Situation deines Lebens an. Nur diese eine.",
   },
   klarsichtiger: {
     label: "Klarsichtig",
     labelFuer: "Klarsichtige",
-    avatar: "/Archetypen-Klarsichtiger.png",
-    tagline: "Du siehst klarer als die meisten – jetzt geht's darum, danach zu leben.",
     ctaText: "Du bist weiter als die meisten, doch das allein reicht nicht. Und eigentlich weißt du das. In der Klarsichtigen-Masterclass zeige ich dir, wie du dein theoretisches Wissen endlich in dein Leben integrierst.",
-    description: "<strong>Du bist weiter als die meisten!</strong> Dein Selbstverständnis, deine Reflexionsfähigkeit und dein bewusster Umgang mit dem Leben sind überdurchschnittlich. Man kann mit dir über tiefere Themen sprechen, ohne dass du abblocken musst. Du hinterfragst, reflektierst und lebst <strong>bewusster als die meisten in deinem Umfeld</strong>.<br/><br/>Doch auch du hast blinde Flecken. Vielleicht die Tendenz, dich für weiter zu halten, als du bist? Oder die Schwierigkeit, dein Wissen konsequent in Handlung zu übersetzen? <strong>Klar sehen</strong> und <strong>danach leben</strong>, das sind zwei verschiedene Dinge. Und das eine ist nun mal leichter als das andere.<br/><br/>Das Gute ist: Du bist auf einem Weg, den die meisten noch nicht einmal begonnen haben. Deine Klarheit ist <strong>kein Zufall, sondern das Ergebnis von echtem Hinschauen</strong>. Wenn du lernst, deiner eigenen Erkenntnis noch mehr zu vertrauen und konsequent danach zu handeln, steht dir wenig im Weg. Ja, der Weg hat noch Strecke, aber du gehst ihn bereits, und das verdient Respekt.",
-    pain: "Dein Wissen ist echt – aber es kann zur Falle werden. Du hältst dich manchmal für weiter, als du bist. Der Unterschied zwischen Wissen und Weisheit: Du brauchst keine Fakten mehr, um zu spüren, was richtig oder falsch ist. Aber dieses Spüren in echtes Handeln und Vertrauen zu übersetzen – genau daran darfst du noch arbeiten.",
-    hebel: "Vielleicht ist es an der Zeit, sich einzugestehen, dass du deine Weisheit und deine Erkenntnisse mit Fortschritt verwechselst. Dein Wissen ist erst etwas wert, wenn du auch wirklich danach lebst.",
-    schritt: "Geh heute Abend mal in maximal ehrliche Reflektion und schreibe dir auf, wo du Erkenntnis als Fortschritt verkaufst, obwohl du weißt, dass dir die Umsetzung fehlt.",
   },
 };
 
-const PAIN_POINTS = {
-  zuschauer: [
-    "Ich weiß genau was ich ändern müsste – aber komme einfach nicht ins Handeln.",
-    "Ich hab zwar das Gefühl vieles zu verstehen, aber bin dennoch ratlos wie ich mein Leben verbessern kann.",
-    "Es fällt mir schwer mich ehrlich mit meinen inneren eigenen Themen auseinanderzusetzen.",
-  ],
-  getriebener: [
-    "Ich funktioniere nur noch – und es fühlt sich sinnlos / leer an.",
-    "Ich weiß nicht mehr, ob meine Ziele wirklich richtig für mich sind.",
-    "Ich kann gefühlt nie abschalten, selbst wenn ich gern würde – das laugt mich aus.",
-  ],
-  idealist: [
-    "Ich verspüre einen starken Weltschmerz und diese unterschwellige Frustration frisst mich langsam auf.",
-    "Ich hab das Gefühl, dass meine Werte und mein Alltag nicht zusammenpassen.",
-    "Ich fühle mich ohnmächtig und machtlos gegenüber all dem, was falsch läuft.",
-  ],
-  suchender: [
-    "Ich springe von Ding zu Ding und finde nicht, wo ich hingehöre oder hin will.",
-    "Ich bin vielfältig interessiert, doch irgendwie fehlt mir eine klare Richtung im Leben.",
-    "Ich habe das Gefühl, nicht das Leben zu leben, dass tatsächlich zu mir passen würde – weiß aber auch nicht, wie ich das ändern könnte.",
-  ],
-  klarsichtiger: [
-    "Ich spüre, dass da noch etwas Tieferes wartet – aber ich komme alleine nicht ran.",
-    "Es fühlt sich an, als würde ich vieles verstehen, aber ich kann nicht konsequent danach handeln.",
-    "Mein Wissen und Erlerntes führte bisher nicht zu echtem Frieden – das frustriert mich.",
-  ],
-};
+/*  Zusammenfuehrung. Der Bildpfad wird hier gesetzt - die Zwillingsdatei kennt
+    nur den Dateinamen, weil dieses Repo seine Bilder direkt unter "/" ablegt,
+    das Haupt-Repo dagegen unter "/images/". */
+const TYPE_META = Object.fromEntries(
+  Object.entries(ARCHETYPE_CORE).map(([key, core]) => [
+    key,
+    { ...core, ...TYPE_EXTRA[key], avatar: `/${core.avatarFile}` },
+  ])
+);
 
-// ─── MISCHTYP COMBO TEXTS (Margin < 20) ──────────────────────────────────
-const COMBO_TEXTS = {
-  "zuschauer+getriebener": "Wahrscheinlich ist dein Kalender genauso voll wie dein Kopf. Du bist fast st\u00e4ndig in Bewegung und kommst selten zur Ruhe. Dein analytischer Zuschauer-Anteil erkennt bereits vieles, doch du bist \u201Ezu besch\u00e4ftigt\u201C, um auch wirklich aktiv in der Praxis Vorteile aus deinen theoretischen Erkenntnissen zu ziehen und mit ihnen zu arbeiten.",
-  "zuschauer+idealist": "Du gr\u00fcbelst wahrscheinlich nicht nur \u00fcber dich selbst, sondern auch \u00fcber Dinge, die du nicht kontrollieren kannst. Die Welt, die Ungerechtigkeit, das gro\u00dfe Ganze. Das eine f\u00fcttert das andere. Und beides zusammen erzeugt eine Art Weltschmerz. Eine Art L\u00e4hmung. Und diese macht es dir schwerer, \u00fcberhaupt bei dir selbst anzufangen.",
-  "zuschauer+suchender": "Statt ins Handeln zu kommen, suchst du vermutlich eher weiter: das n\u00e4chste Buch, den n\u00e4chsten Podcast, die n\u00e4chste Erkenntnis. Du hoffst, dass irgendwann der entscheidende Impuls kommt. Aber vielleicht ist mehr Wissen gar nicht die L\u00f6sung, sondern der Moment, in dem du mit dem anf\u00e4ngst, was du schon wei\u00dft.",
-  "zuschauer+klarsichtiger": "Du bist wahrscheinlich n\u00e4her dran, als du denkst. Dein Verst\u00e4ndnis f\u00fcr dich selbst ist weiter als bei den meisten. Aber vielleicht kennst du das: Zwischen \u201EIch k\u00f6nnte\u201C und \u201EIch tue es\u201C liegt bei dir noch eine L\u00fccke, die du lieber nicht zu genau anschaust.",
-  "getriebener+zuschauer": "Vielleicht kennst du das: In ruhigen Momenten taucht ein subtiles Gef\u00fchl auf, dass hinter deinem hohen Pensum etwas wartet, dem du dich nicht so gerne stellst. Und statt hinzuschauen, drehst du die Geschwindigkeit meist dann doch wieder hoch. Dein analytischer Verstand erkennt das vermutlich sogar. Aber das Erkennen allein \u00e4ndert noch nichts.",
-  "getriebener+idealist": "Du gibst wahrscheinlich viel Energie f\u00fcr andere und f\u00fcr eine \u201Egute Sache\u201C, w\u00e4hrend deine eigenen Bed\u00fcrfnisse oft hinten anstehen. Vielleicht tust du sie sogar als egoistisch ab. Du funktionierst und k\u00e4mpfst gleichzeitig und wunderst dich manchmal, warum du dich trotzdem noch nicht angekommen oder erf\u00fcllt f\u00fchlst.",
-  "getriebener+suchender": "Du gibst Vollgas und bist irgendwie auch stolz drauf. Doch dann kommen, nicht st\u00e4ndig, doch immer wieder, Zweifel ob du eigentlich in die richtige Richtung rennst. Mal funktionierst du wie eine Maschine, dann fragst du dich pl\u00f6tzlich: \u201EWof\u00fcr eigentlich?\u201C Aber bevor du wirklich auf die Suche nach der Antwort gehst, st\u00fcrzt du dich schon in den n\u00e4chsten Sprint.",
-  "getriebener+klarsichtiger": "Entweder du bist bereits voll im Selbstoptimierungswahn, denn du siehst deine Potenziale und Schw\u00e4chen genau so klar wie die anderer, oder du nutzt dieses Wissen durch Selbstreflektion manchmal, um dein Funktionieren zu rechtfertigen. \u201EIch wei\u00df ja, warum ich so bin.\u201C Und dann machst du so weiter. Nicht blind f\u00fcr deine Muster, aber ziemlich gut darin, sie zu rationalisieren und dir selbst vorzumachen, weshalb die wirklich unangenehme Ver\u00e4nderung gerade nicht n\u00f6tig ist.",
-  "idealist+zuschauer": "Vielleicht merkst du, dass sich dein Weltschmerz manchmal mit Selbstanalyse vermischt. Du w\u00fcnschst dir tief in deinem Inneren eine utopische Optimall\u00f6sung f\u00fcr die Welt, doch erkennst in deinem Leben, aber auch in deinem Umfeld zu viel, das diesem Wunsch entgegenwirkt. Das f\u00fchrt zu Frustration und L\u00e4hmung. Du verurteilst dich selbst, Teil des Problems zu sein, doch es f\u00fchlt sich an, als w\u00e4ren dir die H\u00e4nde gebunden dein Leben entsprechend zu ver\u00e4ndern.",
-  "idealist+getriebener": "Dein Idealismus gibt dir vermutlich eine Richtung. Einen moralischen Kompass. Dein Getriebener-Anteil gibt dir zus\u00e4tzlich Antrieb. Das kann produktiv sein. Aber vielleicht verwechselst du manchmal Aktivismus mit echtem Fortschritt und bist so besch\u00e4ftigt, gegen das Falsche zu k\u00e4mpfen, dass f\u00fcr den Aufbau von etwas Eigenem wenig Raum und Energie bleibt. Vielleicht lohnt es sich ja mehr, langfristig zu denken und zu handeln, um am Ende wahre Ver\u00e4nderung zu bewirken. Verbrenne dich nicht selbst im Namen der Sache, die Welt braucht Menschen wie dich.",
-  "idealist+suchender": "Du suchst nicht nur nach M\u00f6glichkeiten die Welt besser zu machen, sondern auch nach der richtigen Richtung f\u00fcr dich. Du willst ein guter Mensch sein. Ein hoher Anspruch. Und vielleicht f\u00fchrt genau das dazu, dass nichts wirklich gen\u00fcgt. Jede Methode, jeder Ansatz f\u00e4llt irgendwann durch dein Raster. Vielleicht liegt es nicht am Raster der Welt, sondern daran, dass deins etwas zu eng ist. Zu eng dir auch mal selbst zu verzeihen. Zu eng, auch mal die 80-20-L\u00f6sung als Erfolg zu sehen. Manchmal ist auch kleiner Fortschritt besser als eine theoretische Optimall\u00f6sung, die nie Realit\u00e4t wird.",
-  "idealist+klarsichtiger": "Du hast echte Reflexionsf\u00e4higkeit und einen klaren Blick auf vieles. Aber vielleicht ist f\u00fcr deinen Idealisten-Anteil diese Klarheit eher Treibstoff f\u00fcr Frustration statt f\u00fcr Ver\u00e4nderung. Du erkennst ziemlich scharf, was falsch l\u00e4uft, und vergisst dabei manchmal, dass Klarheit ohne Selbstf\u00fcrsorge auf Dauer nicht tr\u00e4gt.",
-  "suchender+zuschauer": "Vielleicht kennst du das: Du merkst, dass du springst, und du ahnst sogar warum. Aber dieses Meta-Wissen hilft dir nicht unbedingt, es zu \u00e4ndern. Im Gegenteil: Es gibt dir das Gef\u00fchl von Neugier, Horizont-Erweitern und Fortschritt. Doch in Wahrheit drehst du dich im Kreis, da du nicht wirklich wei\u00dft, wohin es f\u00fcr dich gehen soll.",
-  "suchender+getriebener": "W\u00e4hrend andere Suchende eher gr\u00fcbeln, springst du vermutlich immer wieder zum n\u00e4chsten Ding. Neues Projekt, neues Hobby, neuer Ansatz. Von au\u00dfen sieht das nach Energie, Neugier, Entwicklung aus. Doch wenn du mal genau hinschaust, f\u00fchlt es sich vielleicht eher an, als w\u00fcrdest du vor etwas davonlaufen, das dich einholt, sobald du stehen bleibst. Ein Zeichen, weniger im Au\u00dfen nach neuen Wahrheiten zu suchen und stattdessen in dein Inneres zu schauen.",
-  "suchender+idealist": "Du willst wahrscheinlich nicht nur dich selbst finden, sondern auch den Sinn im gro\u00dfen Ganzen. Klingt tiefgr\u00fcndig, f\u00fchlt sich aber f\u00fcr viele h\u00e4ufig schnell ersch\u00f6pfend an. Vielleicht liegt es nicht am Raster der Welt, sondern daran, dass der Anspruch, beides gleichzeitig und optimal zu l\u00f6sen, dich eher blockiert als befl\u00fcgelt.",
-  "suchender+klarsichtiger": "Vielleicht kennst du den Moment: Du bist einen Schritt weiter, und dann kommt die Frage: \u201EAber was, wenn das noch nicht das Richtige ist?\u201C Gesunde Neugier und Sprunghaftigkeit liegen manchmal nah beieinander. Vielleicht ist es manchmal besser erstmal bei Themen mit denen du in Resonanz gehst oder du profitierst zu bleiben und auf deine Entwicklung zu vertrauen, statt st\u00e4ndig in einer Art Selbstoptimierungswahn von einem zu n\u00e4chsten zu springen.",
-  "klarsichtiger+zuschauer": "Vielleicht genie\u00dft du die Erkenntnis manchmal fast zu sehr. Du durchschaust vieles, bei dir und bei anderen. Aber vielleicht nutzt du diese Klarheit gelegentlich als Ausrede zur Bequemlichkeit? Eine Ausrede, um nichts ver\u00e4ndern zu m\u00fcssen, weil \u201EIch hab's ja durchschaut\u201C sich anf\u00fchlt wie Fortschritt, es aber nicht immer ist.",
-  "klarsichtiger+getriebener": "Du erkennst vieles und dazu geh\u00f6rt wahrscheinlich auch, wo du langsamer machen solltest. Aber dein innerer Getriebener kann das nicht so gut aushalten. Vielleicht reflektierst du abends, was du tags\u00fcber eigentlich schon wusstest, und am n\u00e4chsten Morgen funktionierst du trotzdem wieder gleich. Die Frage ist weniger, ob du es siehst. Sondern ob du es dir erlaubst, danach zu leben.",
-  "klarsichtiger+idealist": "Statt dein Wissen f\u00fcr dein eigenes Leben zu nutzen, flie\u00dft deine Energie vielleicht oft eher in irgendeine Art der Kompensation deines Weltschmerzes. Vielleicht verstehst du nicht nur wie du, sondern auch die Welt tickt. Oder besser ticken sollte. Und diese Diskrepanz zwischen Wunschvorstellung und Realit\u00e4t frustriert dich. Verst\u00e4ndlich. Als Klarsichtiger mit einem gut ausgerichteten Wertekompass bist du schon auf einem guten Weg, doch achte darauf, dich nicht zu sehr von deinem Wunsch nach einer Ideall\u00f6sung ausbremsen zu lassen.",
-  "klarsichtiger+suchender": "Vielleicht kennst du die Frage: \u201EWas, wenn das noch nicht alles war?\u201C Das kann gesund sein, solange es nicht zur Dauerschleife wird. Es gibt viele interessante Theorien, h\u00f6renswerte Reden, lesenswerte B\u00fccher. Doch verliere dich nicht in der Vielfalt deiner M\u00f6glichkeiten. Du lebst bereits reflektierter als die meisten, also lass deinen Erkenntnissen Taten folgen. Bringt die eine Richtung nach einem ordentlichen St\u00fcck auf diesem Weg noch keinen Erfolg, kannst du ihn immer noch jederzeit wechseln.",
-};
+/*  Entfernt am 08.09.2026:
+    - PAIN_POINTS  (war definiert, wurde nirgends gerendert)
+    - COMBO_TEXTS  (die 20 Mischtyp-Volltexte)
+    Beide gehoeren zur ausfuehrlichen Auswertung und stehen jetzt ausschliesslich
+    in DeinErgebnis.jsx im Haupt-Repo. Sie hier stehen zu lassen haette bedeutet,
+    dieselben Texte an zwei Orten zu pflegen - und genau daraus entstehen
+    auseinanderlaufende Staende. Der Screen zeigt nur noch den Teaser.  */
 
-
-// ─── DIMENSION STRENGTH/POTENTIAL TEXTS ────────────────────────────────
 const DIMENSION_TEXTS = {
   REF: {
     name: "Reflexionsfähigkeit",
@@ -722,7 +679,8 @@ function getStrengthsAndPotentials(normalized) {
 // persoenlichen Kern (Name, Archetyp, 10 Werte, Top-3). Alle Texte liegen im
 // Seiten-Code, nicht im Token. Robuste Variante: Top-3 vorberechnet => die
 // Ergebnisseite ist reiner Anzeiger, kein Nachrechnen, kein Drift-Risiko.
-const ARCHETYPE_ORDER = ["zuschauer", "getriebener", "idealist", "suchender", "klarsichtiger"];
+// ARCHETYPE_ORDER kommt aus der Zwillingsdatei. Reihenfolge NIE aendern -
+// bereits verschickte Ergebnis-Links wuerden falsche Archetypen anzeigen.
 
 function utf8ToBase64Url(str) {
   const bytes = new TextEncoder().encode(str);
@@ -897,7 +855,11 @@ function computeScoring(answers, followUpAnswers = {}) {
 
 // ─── RADAR CHART (SVG) ──────────────────────────────────────────────────────
 
-function RadarChart({ normalized, resultType }) {
+/*  showLabels=false blendet die Dimensionsnamen aus und setzt stattdessen die
+    Ziffern 1 bis 10 an die Achsen. Die Person sieht ihre eigene Zackenform,
+    erfaehrt aber nicht, welche Dimension welche ist - das ist der Teaser.
+    Welche Achse welche Nummer traegt, verraet der Screen bewusst nicht. */
+function RadarChart({ normalized, resultType, showLabels = true }) {
   const cx = 160, cy = 160, r = 120;
   const scales = CORE_SCALES;
   const n = scales.length;
@@ -934,19 +896,78 @@ function RadarChart({ normalized, resultType }) {
       ))}
       {scales.map((s, i) => {
         const p = getPoint(i, 128);
-        const anchor = p.x < cx - 10 ? "end" : p.x > cx + 10 ? "start" : "middle";
+        const anchor = showLabels ? (p.x < cx - 10 ? "end" : p.x > cx + 10 ? "start" : "middle") : "middle";
         const dy = p.y < cy - 10 ? -6 : p.y > cy + 10 ? 14 : 4;
         return (
           <text key={s} x={p.x} y={p.y + dy} textAnchor={anchor}
-            fontSize="9.5" fontFamily="'Inter Tight', sans-serif" fontWeight="600"
-            fill="var(--dark)" opacity="0.7">
-            {SCALE_LABELS[s]}
+            fontSize={showLabels ? "9.5" : "10.5"} fontFamily="'Inter Tight', sans-serif" fontWeight={showLabels ? "600" : "700"}
+            fill={showLabels ? "var(--dark)" : "var(--warm-gray)"} opacity={showLabels ? "0.7" : "0.85"}>
+            {showLabels ? SCALE_LABELS[s] : i + 1}
           </text>
         );
       })}
     </svg>
   );
 }
+
+/* ─── DYNAMISCHE RADAR-ZEILE (Teaser unter dem unbeschrifteten Radar) ────────
+   Beschreibt die FORM des Profils, ohne zu verraten, welche Dimension welche
+   ist. Gezaehlt wird auf strengthScore, nicht auf dem Rohwert: ML, OL, EX, EF
+   und WS sind invers gerichtet, ein hoher Rohwert ist dort eine Schwaeche.
+   getStrengthsAndPotentials() rechnet das bereits um.
+
+   Die Schwellen 70 und 35 sind gesetzt, aber geraten. Nach den ersten rund 100
+   echten Durchlaeufen pruefen, wie sich die fuenf Varianten verteilen; deckt
+   eine mehr als 60 Prozent der Faelle ab, nachziehen. Bei einer Aenderung gilt
+   "neue Zeitrechnung": Aenderungsdatum festhalten, aeltere Daten getrennt
+   betrachten. */
+const RADAR_SCHWELLE_STAERKE = 70;
+const RADAR_SCHWELLE_POTENZIAL = 35;
+
+function radarTeaserText(normalized) {
+  // Ueber ALLE zehn Dimensionen zaehlen, nicht nur die Top-3 und Bottom-3:
+  // Die Aussage lautet "so viele sind ausgepraegt", nicht "das sind die drei".
+  const werte = Object.keys(DIMENSION_TEXTS).map((key) => {
+    const score = normalized[key] ?? 50;
+    return DIMENSION_TEXTS[key].positive ? score : 100 - score;
+  });
+
+  const s = werte.filter((v) => v >= RADAR_SCHWELLE_STAERKE).length;
+  const p = werte.filter((v) => v <= RADAR_SCHWELLE_POTENZIAL).length;
+
+  // Singular/Plural. "1 Dimensionen sind" waere ein Amateurfehler an einer
+  // Stelle, an der jemand gerade zum ersten Mal etwas ueber sich liest.
+  const sindS = s === 1 ? "1 Dimension ist" : `${s} Dimensionen sind`;
+  const liegenP = p === 1 ? "1 Dimension liegt" : `${p} Dimensionen liegen`;
+  const stechenS = s === 1 ? "1 Dimension heraus" : `${s} Dimensionen heraus`;
+  const zurueckP = p === 1 ? "1 liegt" : `${p} liegen`;
+
+  let text;
+  if (s <= 1 && p <= 1) {
+    text = "Dein Profil ist ungewöhnlich ausgeglichen. Keine einzelne Dimension sticht heraus, und das ist seltener, als du denkst.";
+  } else if (s >= 3 && p >= 3) {
+    text = `Dein Profil hat starke Ausschläge in beide Richtungen. ${sindS} bei dir deutlich ausgeprägt, ${p === 1 ? "1 liegt" : `${p} liegen`} fast brach.`;
+  } else if (s >= 3 && p <= 1) {
+    text = `${sindS} bei dir deutlich ausgeprägt. Auffällig wenig liegt bei dir brach.`;
+  } else if (s <= 1 && p >= 3) {
+    text = `${liegenP} bei dir fast brach. Genau dort steckt dein größter ungenutzter Anteil.`;
+  } else {
+    text = `Bei dir stechen ${stechenS}, ${zurueckP} deutlich zurück. Ein schmales, dafür klares Profil.`;
+  }
+  return `${text} Welche das sind und was sie über dich sagen: in deiner ausführlichen Auswertung.`;
+}
+
+/* ─── MISCH-/REINTYP-TEASER ──────────────────────────────────────────────────
+   Fixer Text, bewusst NICHT archetypspezifisch. Die 20 Combo-Texte und die
+   fuenf Reintyp-Texte bleiben ausschliesslich auf der Detailseite. */
+const TEASER_MISCHTYP = {
+  divider: "Da ist noch was in dir…",
+  text: "In dir steckt noch ein zweiter Archetyp. Er erklärt, warum sich dein Muster anders anfühlt als bei anderen deines Typs. Welcher es ist und was er über dich sagt, steht in deiner ausführlichen Auswertung.",
+};
+const TEASER_REINTYP = {
+  divider: "Und da ist noch etwas Seltenes…",
+  text: "Dein Profil ist ungewöhnlich eindeutig. Bei den meisten mischt sich ein zweiter Archetyp ein. Bei dir nicht. Was das bedeutet, steht in deiner ausführlichen Auswertung.",
+};
 
 // ─── CSS ─────────────────────────────────────────────────────────────────────
 
@@ -1171,6 +1192,47 @@ body, html, #root {
 
 .recognition-box { width: 100%; border: none; border-radius: var(--r-card); box-shadow: var(--shadow-card); padding: 2rem 1.5rem; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.75rem; }
 .recognition-box-title { font-family: 'Inter Tight', sans-serif; font-size: clamp(1rem, 3vw, 1.2rem); font-weight: 700; color: var(--dark); margin-bottom: 0.75rem; line-height: 1.3; }
+
+/* ── Teaser-Screen (Umbau 08.09.2026) ─────────────────────────────────────── */
+
+/* Unbequeme Wahrheit */
+.truth-block { width: 100%; text-align: left; }
+.truth-block p { font-size: 1rem; line-height: 1.75; color: var(--text-muted); margin: 0 0 1rem; }
+.truth-block p:last-child { margin-bottom: 0; }
+.truth-block strong { color: var(--dark); font-weight: 700; }
+
+/* Falle: Header scharf, Koerper unscharf und nach unten ausgefadet.
+   pointer-events:none + user-select:none, damit niemand versehentlich
+   markiert und dabei den Text im Klartext sieht. */
+.falle-box { position: relative; width: 100%; border-left: 4px solid var(--orange);
+  background: rgba(255, 77, 0, 0.06); border-radius: 14px; padding: 18px 22px 22px;
+  text-align: left; overflow: hidden; }
+.falle-label { display: flex; align-items: center; gap: 0.5rem; font-family: 'Inter Tight', sans-serif;
+  font-weight: 800; color: var(--orange); font-size: 0.86rem; letter-spacing: 0.04em;
+  text-transform: uppercase; margin-bottom: 0.6rem; }
+.falle-body { filter: blur(6px); opacity: 0.75; user-select: none; pointer-events: none;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 45%, rgba(0,0,0,0.25) 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 45%, rgba(0,0,0,0.25) 100%); }
+.falle-body p { margin: 0; font-size: 1rem; line-height: 1.7; color: var(--dark); }
+.falle-lock { margin-top: 0.9rem; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+  font-weight: 700; color: var(--orange); opacity: 0.85; }
+
+/* Zeile unter dem unbeschrifteten Radar */
+.radar-teaser { margin: 1.1rem auto 0; max-width: 46ch; font-size: 0.95rem; line-height: 1.65;
+  color: var(--text-muted); text-align: center; }
+
+/* Misch-/Reintyp-Teaser */
+.teaser-text { width: 100%; max-width: 46ch; margin: 0 auto; font-size: 1rem; line-height: 1.7;
+  color: var(--text-muted); text-align: center; }
+
+/* Brueckensatz vor dem Formular */
+.bridge-line { width: 100%; max-width: 44ch; margin: 0 auto; font-size: 1.05rem; line-height: 1.65;
+  color: var(--dark); text-align: center; font-weight: 500; }
+.bridge-line strong em { font-weight: 800; font-style: italic; color: var(--orange); }
+
+@media (prefers-reduced-motion: reduce) {
+  .falle-body { filter: blur(6px); }
+}
 
 .debug-toggle { background: none; border: none; font-family: monospace; font-size: 0.72rem; color: var(--warm-gray); cursor: pointer; padding: 0.5rem 0; text-align: left; transition: color 0.2s; }
 .debug-toggle:hover { color: var(--dark); }
@@ -1672,7 +1734,6 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
   const [emailStatus, setEmailStatus] = useState("idle");
   const [emailError, setEmailError] = useState("");
   const [firstName, setFirstName] = useState("");
-  const [recognitionScore, setRecognitionScore] = useState(null);
   const [mcConsent, setMcConsent] = useState(false);
 
   const scoring = computeScoring(answers, followUpAnswers);
@@ -1684,16 +1745,14 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
     saveResult({ answers, followUpAnswers, resultType: scoring.resultType });
   }, []);
 
-  const sortedTypes = Object.entries(scoring.affinities).sort((a, b) => b[1] - a[1]);
 
   // Mischtyp: find second-place type and combo text
   const sortedDistances = Object.entries(scoring.distances).sort((a, b) => a[1] - b[1]);
   const secondaryType = sortedDistances.length >= 2 ? sortedDistances[1][0] : null;
-  const comboKey = secondaryType ? `${scoring.resultType}+${secondaryType}` : null;
-  const comboText = comboKey ? COMBO_TEXTS[comboKey] : null;
-  const showMischtyp = !scoring.isReintyp && comboText && secondaryType;
-
-  const { strengths, potentials } = getStrengthsAndPotentials(scoring.normalized);
+  // Mischtyp heisst: Margin unter 20 UND es gibt einen Zweitplatzierten.
+  // Der Combo-Volltext lebt nur noch auf der Detailseite, hier zaehlt allein,
+  // WELCHER der beiden Teaser gezeigt wird.
+  const showMischtyp = !scoring.isReintyp && !!secondaryType;
 
   const validateEmail = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
   const handleKeyDown = (e) => { if (e.key === "Enter") handleEmailSubmit(); };
@@ -1728,7 +1787,12 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
         email,
         first_name: firstName.trim(),
         fields: {
-          recognition_score: recognitionScore !== null ? String(recognitionScore) : "",
+          // recognition_score wird hier NICHT mehr gesetzt: Der Slider steht seit
+          // dem 08.09.2026 am Ende von /dein-ergebnis. Die Seite kennt die
+          // E-Mail-Adresse nicht (bewusst nicht im Token), kann den Abonnenten in
+          // Kit also nicht nachtraeglich aktualisieren. Der Wert lebt ab jetzt nur
+          // noch in GA4 - dort mit archetype, was die eigentliche Frage
+          // beantwortet: Welches Profil erkennt sich am staerksten wieder?
           archetype: scoring.resultType,
           einwilligung_version: MC_CONSENT_VERSION,
           ergebnis_token: ergebnisToken,
@@ -1741,7 +1805,7 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
         setEmailStatus("success");
         // funnel unterscheidet dieselbe Handlung nach Quelle (test | startseite).
         // Der Meta-Lead-Tag feuert per Trigger-Bedingung nur bei funnel = test.
-        trackEvent("email_submitted", { archetype: scoring.resultType, recognition_score: recognitionScore, funnel: "test" });
+        trackEvent("email_submitted", { archetype: scoring.resultType, funnel: "test" });
       }
       else throw new Error("API Error");
     } catch (err) { console.error("Kit subscription failed:", err); setEmailStatus("error"); setEmailError("Es gab ein Problem. Bitte versuche es erneut."); }
@@ -1759,73 +1823,50 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
           <div className="result-type-label">{meta.label}</div>
           <div className="result-tagline">{meta.tagline}</div>
         </div>
+        {/* ── UNBEQUEME WAHRHEIT (Absatz 1 + 2, voll sichtbar) ───────────── */}
+        <div className="truth-block">
+          {meta.wahrheit.map((t, i) => <p key={i}><RichText text={t} /></p>)}
+        </div>
+
+        {/* ── FALLE, GEBLURRT ─────────────────────────────────────────────────
+            Der Header bleibt scharf lesbar, der Textkoerper ist unscharf.
+            GENAU EINE geblurrte Stelle im ganzen Screen. Mehrfacher Blur kippt
+            von "neugierig" nach "Paywall" und beisst sich mit der Haltung.
+            Hinweis: CSS-Blur heisst, der Text steht weiterhin im Quelltext.
+            In der Vorlaufphase unkritisch - hinter dem Gate liegt die kostenlose
+            Auswertung. Sobald dort Bezahlinhalte haengen, serverseitig loesen. */}
+        <div className="falle-box">
+          <div className="falle-label">⚠ Deine Falle</div>
+          <div className="falle-body" aria-hidden="true">
+            <p><RichText text={meta.falle} /></p>
+          </div>
+          <div className="falle-lock">In deiner ausführlichen Auswertung</div>
+        </div>
+
+        {/* ── RADAR OHNE ACHSENBESCHRIFTUNG + dynamische Zeile ────────────── */}
         <div className="radar-container">
-          <RadarChart normalized={scoring.normalized} resultType={scoring.resultType} />
+          <RadarChart normalized={scoring.normalized} resultType={scoring.resultType} showLabels={false} />
           <div className="radar-legend">
             <div className="legend-item"><span className="legend-dot user" /> Dein Profil</div>
             <div className="legend-item"><span className="legend-dot type" /> {meta.label}-Referenz</div>
           </div>
+          <p className="radar-teaser">{radarTeaserText(scoring.normalized)}</p>
         </div>
-        <div className="result-description" dangerouslySetInnerHTML={{ __html: meta.description }} />
-        <div className="recognition-box">
-          <div className="recognition-box-title">Wie gut erkennst du dich in diesem Ergebnis wieder?</div>
-          <div className="recognition-scale">
-            {[1,2,3,4,5].map(n => (<button key={n} className={`recognition-btn ${recognitionScore === n ? "recognition-selected" : ""}`} onClick={() => { setRecognitionScore(n); trackEvent("recognition_score", { score: n, archetype: scoring.resultType }); }}>{n}</button>))}
-          </div>
-          <div className="recognition-labels"><span>Gar nicht</span><span>Sehr</span></div>
+
+        {/* ── MISCH- ODER REINTYP-TEASER (fixer Text, verraet nichts) ─────── */}
+        <div className="mischtyp-divider">
+          <div className="mischtyp-icon">❗</div>
+          <div className="mischtyp-divider-text">{showMischtyp ? TEASER_MISCHTYP.divider : TEASER_REINTYP.divider}</div>
         </div>
-        <div className="result-pain"><div className="pain-label">Daran scheiterst du gerade wahrscheinlich:</div><p>{meta.pain}</p></div>
-        <div className="result-hebel">
-          <div className="hebel-label">Dein größter Hebel:</div>
-          <p>{meta.hebel}</p>
-          <div className="schritt-label">Ein erster Schritt:</div>
-          <p>{meta.schritt}</p>
-          <p className="hebel-cta">Das ist erst die Kurzfassung. Deine ausführliche Auswertung mit allen Details schicke ich dir per Mail - <a href="#ergebnis-form" onClick={(e) => { e.preventDefault(); document.getElementById('ergebnis-form')?.scrollIntoView({ behavior: 'smooth' }); }}>gleich hier eintragen</a>.</p>
-        </div>
-        <div className="strengths-section">
-          <div className="sp-title sp-title-green">Deine Top 3 Stärken</div>
-          {strengths.map(s => (
-            <div className="sp-card sp-card-strength" key={s.key}>
-              <div className="sp-card-name">{s.name}</div>
-              <div className="sp-bar-track"><div className="sp-bar-fill-green" style={{ width: `${s.strengthScore}%` }} /></div>
-              <div className="sp-card-text">{s.text}</div>
-            </div>
-          ))}
-        </div>
-        <div className="potentials-section">
-          <div className="sp-title sp-title-orange">Deine 3 größten Potenziale</div>
-          {potentials.map(p => (
-            <div className="sp-card sp-card-potential" key={p.key}>
-              <div className="sp-card-name">{p.name}</div>
-              <div className="sp-bar-track"><div className="sp-bar-fill-orange" style={{ width: `${100 - p.strengthScore}%` }} /></div>
-              <div className="sp-card-text">{p.text}</div>
-            </div>
-          ))}
-        </div>
-        {showMischtyp && (
-          <div className="mischtyp-divider">
-            <div className="mischtyp-icon">❗</div>
-            <div className="mischtyp-divider-text">Da ist noch was in dir...</div>
-          </div>
-        )}
-        <div className="result-affinities">
-          <div className="affinities-label">Deine Typ-Verteilung</div>
-          {sortedTypes.map(([type, pct]) => (
-            <div className="affinity-row" key={type}>
-              <span className="affinity-name">{TYPE_META[type].label}</span>
-              <div className="affinity-bar-track"><div className="affinity-bar-fill" style={{ width: `${pct}%`, background: type === scoring.resultType ? "var(--orange)" : type === secondaryType && showMischtyp ? "var(--dark)" : "var(--warm-gray)" }} /></div>
-              <span className="affinity-pct">{pct}%</span>
-            </div>
-          ))}
-        </div>
-        {showMischtyp && (
-          <div className="mischtyp-section">
-            <div className="mischtyp-eyebrow">Dein <span className="accent-orange">Sekundär</span>-Archetyp</div>
-            <div className="mischtyp-secondary-label">{TYPE_META[secondaryType]?.label}</div>
-            <div className="mischtyp-bridge">Du bist nicht nur {meta.label}, dein Profil zeigt auch deutliche {TYPE_META[secondaryType]?.label}-Anteile. Und genau diese Mischung macht's spannend:</div>
-            <div className="mischtyp-text">{comboText}</div>
-          </div>
-        )}
+        <p className="teaser-text">{showMischtyp ? TEASER_MISCHTYP.text : TEASER_REINTYP.text}</p>
+
+        {/* ── BRÜCKENSATZ direkt vor dem Formular ──────────────────────────── */}
+        <p className="bridge-line">
+          Das ist die eine Hälfte. Die andere: was aus dir werden könnte, wenn das,
+          was dich heute bremst, <strong><em>für</em></strong> dich arbeitet.
+          Die steht in deiner ausführlichen Auswertung.
+        </p>
+
         <div className="postq-screen signup-solo" id="ergebnis-form">
           {emailStatus === "success" ? (
             <div className="cta-confirm">
@@ -1865,26 +1906,17 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
             </>
           )}
         </div>
-        <div className="share-section">
-          <div className="share-title">Dir hat der Test gefallen?</div>
-          <div className="share-sub">Teile ihn mit deinen Freunden:</div>
-          <div className="share-buttons">
-            <a className="share-btn share-whatsapp" href={`https://wa.me/?text=${encodeURIComponent("Ich habe grade diesen Persönlichkeitstest gemacht und war echt beeindruckt! Kann ihn nur empfehlen, wenn man mal genauer hinsehen möchte!\n\nhttps://test.florian-lingner.ch")}`} target="_blank" rel="noopener noreferrer">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              WhatsApp
-            </a>
-            <a className="share-btn share-telegram" href={`https://t.me/share/url?url=${encodeURIComponent("https://test.florian-lingner.ch")}&text=${encodeURIComponent("Ich habe grade diesen Persönlichkeitstest gemacht und war echt beeindruckt! Kann ihn nur empfehlen, wenn man mal genauer hinsehen möchte!")}`} target="_blank" rel="noopener noreferrer">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-              Telegram
-            </a>
-            <button className="share-btn share-copy" onClick={() => { navigator.clipboard.writeText("Ich habe grade diesen Persönlichkeitstest gemacht und war echt beeindruckt! Kann ihn nur empfehlen, wenn man mal genauer hinsehen möchte!\n\nhttps://test.florian-lingner.ch"); const btn = document.querySelector('.share-copy'); const orig = btn.textContent; btn.textContent = "✓ Kopiert!"; setTimeout(() => btn.textContent = orig, 2000); }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-              Link kopieren
-            </button>
-          </div>
-        </div>
-        <button className="debug-toggle" onClick={() => setShowDebug(!showDebug)}>{showDebug ? "Debug ausblenden" : "// Debug anzeigen"}</button>
-        {showDebug && (
+        {/* Share-Sektion entfernt (08.09.2026): Sie lenkt vom einzigen Ziel des
+            Screens ab, der Eintragung. Virale Verbreitung passiert jetzt auf
+            /dein-ergebnis - wer sein Detailergebnis gesehen hat, ist der
+            bessere Multiplikator. Das CSS bleibt vorerst stehen. */}
+        {/* Debug-Panel nur lokal. import.meta.env.DEV ist im Produktions-Build
+            false, Vite entfernt den Block dann komplett - er liegt also nicht
+            einmal im ausgelieferten JavaScript. */}
+        {import.meta.env.DEV && (
+          <button className="debug-toggle" onClick={() => setShowDebug(!showDebug)}>{showDebug ? "Debug ausblenden" : "// Debug anzeigen"}</button>
+        )}
+        {import.meta.env.DEV && showDebug && (
           <div className="score-debug">
             <strong>// Normalisierte Werte (0–100)</strong><br /><br />
             {CORE_SCALES.map(s => (<span key={s}>{s}: {scoring.normalized[s]}<br /></span>))}
