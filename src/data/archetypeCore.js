@@ -16,7 +16,7 @@
    NICHT hier hinein gehoeren:
    - Potenzial-Analyse, Reintyp-Texte, Mischtyp-Texte, Dimensionstexte
      → nur auf der Detailseite, also nur im Haupt-Repo
-   - ctaText, label, labelFuer
+   - label (Kurzlabel)
      → nur im Test
    - der Bildpfad
      → die Repos legen ihre Bilder unterschiedlich ab. Hier steht nur der
@@ -24,13 +24,19 @@
        Hauptseite "/images/").
 
    Fettungen als **doppelte Sternchen**. Beide Seiten rendern sie identisch.
+
+   SPRACHREGEL TYPNAMEN (genderneutral, entschieden 11.09.2026):
+   name ist das Kurzlabel OHNE Artikel (Zuschauer, Getrieben, Idealist,
+   Suchend, Klarsichtig). Keine Person gendern, Du-Form statt "ein
+   Getriebener, der ...". Die Code-Keys (getriebener usw.) bleiben technisch
+   wie sie sind - sie stecken im Token und in Kit.
    ═══════════════════════════════════════════════════════════════════════════ */
 
-export const ARCHETYPE_COPY_VERSION = "2026-09-08";
+export const ARCHETYPE_COPY_VERSION = "2026-09-11";
 
 export const ARCHETYPE_CORE = {
   zuschauer: {
-    name: "Der Zuschauer",
+    name: "Zuschauer",
     dativ: "Zuschauer",
     avatarFile: "Archetypen-Zuschauer.png",
     tagline: "Dein scharfer Verstand ist ein Segen - und genau der steht dir im Weg.",
@@ -42,22 +48,22 @@ export const ARCHETYPE_CORE = {
   },
 
   getriebener: {
-    name: "Der Getriebene",
+    name: "Getrieben",
     dativ: "Getriebenen",
     avatarFile: "Archetypen-Getriebener.png",
     tagline: "Deine Power ist beeindruckend - nur setzt du sie aktuell wahrscheinlich für das Erreichen von Zielen ein, die du dir nicht wirklich unbeeinflusst selbst gesetzt hast.",
     wahrheit: [
-      "Du bist ein Macher. Wo andere zögern, lieferst du. Deine Disziplin, deine Belastbarkeit, dein Durchhaltevermögen, das ist selten, und es hat dich weit gebracht. **Auf dich ist Verlass**.",
+      "Du packst an. Wo andere zögern, lieferst du. Deine Disziplin, deine Belastbarkeit, dein Durchhaltevermögen, das ist selten, und es hat dich weit gebracht. **Auf dich ist Verlass**.",
       "Nur: **Bewegung ist nicht dasselbe wie Richtung**. Du funktionierst, aber irgendwann hat sich die Frage verschoben von „Will ich das?“ zu „Wie schaffe ich das?“. Und solange du in Bewegung bleibst, musst du dir die erste Frage nicht stellen.",
     ],
     falle: "Du bist so beschäftigt mit Funktionieren, dass du gar nicht merkst, wie weit du dich von dir selbst entfernt hast. Noch mehr Leistung bringt dich diesem Punkt nicht näher, **sie bringt dich weiter weg**.",
   },
 
   idealist: {
-    name: "Der Idealist",
+    name: "Idealist",
     dativ: "Idealisten",
     avatarFile: "Archetypen-Idealist.png",
-    tagline: "Du willst die Welt besser machen - und vergisst dabei den Einen, der dich am dringendsten braucht: dich.",
+    tagline: "Du willst die Welt besser machen - und vergisst dabei den Menschen, der dich am dringendsten braucht: dich.",
     wahrheit: [
       "Du spürst, was auf der Welt schiefläuft. Ungerechtigkeit, Oberflächlichkeit, der Zustand der Welt, das perlt an dir nicht ab, das geht dir nah. Dieser Wertekompass ist echt und tief, und ehrlich gesagt **bräuchte die Welt mehr Menschen wie dich**.",
       "Dein Weltschmerz erzeugt ein Gewicht auf deinen Schultern, das dich langsam auffrisst. Du gibst deine Energie nach außen, an Themen, an andere, an das große Ganze, bis für dich selbst nichts mehr übrig ist. Das Paradoxe: Du hast ein gutes Gespür dafür, wie man Umstände besser machen kann, **außer bei deinem eigenen Leben**.",
@@ -66,7 +72,7 @@ export const ARCHETYPE_CORE = {
   },
 
   suchender: {
-    name: "Der Suchende",
+    name: "Suchend",
     dativ: "Suchenden",
     avatarFile: "Archetypen-Suchende.png",
     tagline: "Deine Neugier ist ein Geschenk - nur suchst du im Außen, was längst in dir liegt.",
@@ -78,7 +84,7 @@ export const ARCHETYPE_CORE = {
   },
 
   klarsichtiger: {
-    name: "Der Klarsichtige",
+    name: "Klarsichtig",
     dativ: "Klarsichtigen",
     avatarFile: "Archetypen-Klarsichtiger.png",
     tagline: "Du bist weiter als die meisten - und genau das ist dein blinder Fleck.",

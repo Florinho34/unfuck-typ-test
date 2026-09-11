@@ -199,8 +199,8 @@ const QUESTIONS = [
     scenario: "Wie viel von deinem Alltag basiert auf bewussten Entscheidungen, wie viel läuft auf Autopilot?",
     options: [
       { key: "A", text: "Vieles läuft automatisch, aber ich habe das bewusst so eingerichtet.", scoring: { REF: 1, SL: 1, HA: 1 } },
-      { key: "B", text: "Ich mache mir darüber ehrlich gesagt wenig Gedanken. Mein Alltag ist halt wie er ist.", scoring: { REF: -1, EF: 2 } },
-      { key: "C", text: "Ich hinterfrage regelmäßig, ob mein Alltag noch zu mir passt. Wenn nicht versuche ich, es zu ändern.", scoring: { REF: 2, SL: 1, HA: 2 } },
+      { key: "B", text: "Ich mache mir darüber ehrlich gesagt wenig Gedanken. Mein Alltag ist halt, wie er ist.", scoring: { REF: -1, EF: 2 } },
+      { key: "C", text: "Ich hinterfrage regelmäßig, ob mein Alltag noch zu mir passt. Wenn nicht, versuche ich, es zu ändern.", scoring: { REF: 2, SL: 1, HA: 2 } },
       { key: "D", text: "Vieles läuft auf Autopilot. Das stört mich, aber ich weiß nicht, wie ich es ändere.", scoring: { REF: 1, ML: 2, OL: 1, HA: -1 } },
     ],
   },
@@ -256,7 +256,7 @@ const QUESTIONS = [
     options: [
       { key: "A", text: "Ehrliches Feedback, auch wenn es nicht das ist, was die Person hören will.", scoring: { REF: 2, SL: 1, ETH: 1, HA: 1 } },
       { key: "B", text: "Ich bin da, halte mich aber mit Ratschlägen zurück. Nicht übergriffig sein.", scoring: { REF: 1, ML: 1, ETH: 1, HA: -1 } },
-      { key: "C", text: "Ich helfe gerne und proaktiv. Manchmal schieße ich dabei evtl. über's Ziel hinaus.", scoring: { ETH: 1, WS: 1, HA: 2 } },
+      { key: "C", text: "Ich helfe gerne und proaktiv. Manchmal schieße ich dabei evtl. übers Ziel hinaus.", scoring: { ETH: 1, WS: 1, HA: 2 } },
       { key: "D", text: "Ich will helfen, merke aber, dass mir selbst die Stabilität fehlt, andere aufzufangen.", scoring: { SL: -1, ML: 1, HA: -1 } },
     ],
   },
@@ -321,7 +321,7 @@ const QUESTIONS = [
     title: "🤫 DIE STILLE",
     scenario: "Komplett freier Tag. Keine Verpflichtungen, keine Pläne. Was passiert?",
     options: [
-      { key: "A", text: "Ich genieße es und mache worauf ich Lust habe oder auch einfach nichts.", scoring: { SL: 2, NAT: 1 } },
+      { key: "A", text: "Ich genieße es und mache, worauf ich Lust habe, oder auch einfach nichts.", scoring: { SL: 2, NAT: 1 } },
       { key: "B", text: "Ich erledige Liegengebliebenes. Freizeit fühlt sich unproduktiv an.", scoring: { SL: -1, EF: 2, HA: 1 } },
       { key: "C", text: "Zeit in der Natur, meditieren oder etwas, das mich erdet.", scoring: { ETH: 1, NAT: 3 } },
       { key: "D", text: "Schnell fällt mir die Decke auf den Kopf. Ich suche mir was zum Tun oder Gesellschaft.", scoring: { SL: -1, EF: 1 } },
@@ -382,7 +382,7 @@ const FOLLOW_UPS = {
     question: "Bezüglich deiner Antwort: Wie gehst du danach mit solchem Feedback um?",
     options: [
       { key: "1", text: "Ich nehme mir Zeit, das ehrlich zu reflektieren – und wenn was dran ist, versuche ich aktiv daran zu arbeiten.", scoring: { REF: 2, SL: 1, HA: 1 } },
-      { key: "2", text: "Es beschäftigt mich lange, aber am Ende fällt es mir schwer etwas daran zu ändern.", scoring: { REF: 1, ML: 2, HA: -2 } },
+      { key: "2", text: "Es beschäftigt mich lange, aber am Ende fällt es mir schwer, etwas daran zu ändern.", scoring: { REF: 1, ML: 2, HA: -2 } },
     ],
   },
   // F2 C → Differenzierung: Vermeidung vs. bewusstes Ritual
@@ -537,38 +537,21 @@ const KIT_API_KEY = "ce3iKRTfk0Bz5mfbC5yCrg";
 // 5 Archetyp-Forms liegen in Kit als Drafts (unbenutzt).
 const KIT_FORM_ID = 9892070;
 
-/*  Was NUR der Test braucht: die Kurzlabels (Radar-Legende, Debug) und der
-    archetypspezifische Satz ueber dem Formular.
+/*  Was NUR der Test braucht: die Kurzlabels. Sie sind zugleich die
+    genderneutralen Typnamen (Sprachregel 11.09.2026) und werden gebraucht fuer
+    Teaser-Ueberschrift, Avatar-Alt, Radar-Legende, Debug und den Event-Parameter
+    archetype_label - deshalb hier NICHT umbenennen.
     Name, Tagline, unbequeme Wahrheit und Falle stehen in der Zwillingsdatei
     src/data/archetypeCore.js und werden unten dazugemischt.
-    pain / hebel / schritt / description sind ersatzlos entfallen (08.09.2026):
-    Der Screen ist ein Teaser, das Wie ist Masterclass-Material.  */
+    Entfallen: pain / hebel / schritt / description (08.09.2026, der Screen ist
+    ein Teaser, das Wie ist Masterclass-Material) sowie ctaText und labelFuer
+    (11.09.2026, wurden nirgends mehr gerendert und waren inhaltlich ueberholt). */
 const TYPE_EXTRA = {
-  zuschauer: {
-    label: "Zuschauer",
-    labelFuer: "Zuschauer",
-    ctaText: "Du verstehst längst, was sich ändern müsste und jetzt ist der Moment, es auch zu tun. In der Zuschauer-Masterclass zeige ich dir, wie du vom Erkennen ins Handeln kommst.",
-  },
-  getriebener: {
-    label: "Getrieben",
-    labelFuer: "Getriebene",
-    ctaText: "Du funktionierst, aber für wen eigentlich? In dieser Masterclass zeige ich dir, wie du deine Energie endlich für das einsetzt, was dich wirklich glücklich machen kann.",
-  },
-  idealist: {
-    label: "Idealist",
-    labelFuer: "Idealisten",
-    ctaText: "Dein Feuer für eine bessere Welt ist echt und ehrenwert! Doch es birgt die Gefahr, dich innerlich aufzufressen. In dieser Masterclass zeige ich dir, wie du die Welt besser machst. Und zwar DEINE, um anschließend auch die Kraft zu finden, überhaupt wahrhaftig etwas zu bewirken.",
-  },
-  suchender: {
-    label: "Suchend",
-    labelFuer: "Suchende",
-    ctaText: "Du spürst, dass da mehr ist, aber auch die letzte \u201EMethode nach Guru XY\u201C hat nichts verändert. In der Suchenden-Masterclass zeige ich dir, wo du wirklich hinschauen musst, damit sich dein Leben endlich zum Positiven verändert.",
-  },
-  klarsichtiger: {
-    label: "Klarsichtig",
-    labelFuer: "Klarsichtige",
-    ctaText: "Du bist weiter als die meisten, doch das allein reicht nicht. Und eigentlich weißt du das. In der Klarsichtigen-Masterclass zeige ich dir, wie du dein theoretisches Wissen endlich in dein Leben integrierst.",
-  },
+  zuschauer:     { label: "Zuschauer" },
+  getriebener:   { label: "Getrieben" },
+  idealist:      { label: "Idealist" },
+  suchender:     { label: "Suchend" },
+  klarsichtiger: { label: "Klarsichtig" },
 };
 
 /*  Zusammenfuehrung. Der Bildpfad wird hier gesetzt - die Zwillingsdatei kennt
@@ -589,83 +572,34 @@ const TYPE_META = Object.fromEntries(
     dieselben Texte an zwei Orten zu pflegen - und genau daraus entstehen
     auseinanderlaufende Staende. Der Screen zeigt nur noch den Teaser.  */
 
+/*  Nur noch Name und Richtung der zehn Dimensionen.
+    positive: true  -> hoher Rohwert ist eine Staerke
+    positive: false -> hoher Rohwert ist eine Schwaeche (invers)
+    Gebraucht fuer Top-3 im Token und fuer die Radar-Zeile.
+    Die Stärke-/Potenzialtexte (frueher high/low) stehen ausschliesslich auf der
+    Detailseite (DeinErgebnis.jsx). Hier entfernt am 11.09.2026 - sie waren eine
+    veraltete dritte Textquelle, die nirgends mehr gerendert wurde.
+    Reihenfolge der Schluessel NICHT aendern: Die Sortierung in
+    getStrengthsAndPotentials() ist stabil, bei Gleichstand entscheidet diese
+    Reihenfolge - und damit, was im Token landet. */
 const DIMENSION_TEXTS = {
-  REF: {
-    name: "Reflexionsfähigkeit",
-    positive: true,
-    high: "Du hinterfragst dich selbst ehrlicher als die meisten. Wo andere auf Autopilot durchs Leben gehen, nimmst du dir die Zeit, hinzuschauen und zu verstehen.",
-    low: "Du handelst oft, ohne vorher innezuhalten. Das gibt dir Tempo, aber es führt auch dazu, dass du Muster wiederholst, die dir nicht guttun. Mehr Reflexion könnte dir helfen, bessere Entscheidungen zu treffen.",
-  },
-  SL: {
-    name: "Selbstführung",
-    positive: true,
-    high: "Du triffst Entscheidungen aus dir selbst heraus, nicht weil andere es von dir erwarten. Das ist seltener, als du denkst und ein echtes Fundament für ein selbstbestimmtes Leben.",
-    low: "Du orientierst dich stark an den Erwartungen anderer oder an dem, was sich bewährt hat. Das gibt Sicherheit, aber es kann dazu führen, dass du ein Leben lebst, das sich nicht wirklich wie deins anfühlt.",
-  },
-  ETH: {
-    name: "Ethische Integrität",
-    positive: true,
-    high: "Du hast einen klaren inneren Kompass und lebst auch danach. Deine Werte sind keine Theorie, sondern beeinflussen, wie du dich verhältst und Entscheidungen triffst.",
-    low: "Du passt dich häufig an, anstatt für das einzustehen, was dir wirklich wichtig ist. Es fehlt nicht an Werten, sondern an der Konsequenz, danach zu handeln, auch wenn es unbequem wird. Ein Leben im Einklang mit seinen innersten Werten fühlt sich fantastisch authentisch an!",
-  },
-  EF: {
-    name: "Selbstbestimmung",
-    positive: false,
-    high: "Du richtest dich stark danach aus, was andere von dir erwarten oder was sich bewährt hat. Das gibt Sicherheit, aber es führt dazu, dass du dich eher anpasst, als dich wirklich zu entfalten. Vieles in deinem Leben folgt fremden Maßstäben statt deinen eigenen.",
-    low: "Du lebst nach deinen eigenen Maßstäben statt nach den Erwartungen anderer. Wo viele sich anpassen und funktionieren, gehst du deinen Weg und entfaltest dich aus dir selbst heraus. Diese Eigenständigkeit ist seltener, als du denkst, und ein echtes Fundament für ein selbstbestimmtes Leben.",
-  },
-  HA: {
-    name: "Handlungsfähigkeit",
-    positive: true,
-    high: "Du setzt um, was du dir vornimmst. Nicht nur reden, nicht nur planen, sondern machen. Diese Fähigkeit unterscheidet dich von vielen, die ewig in der Analyse-Phase stecken bleiben.",
-    low: "Du verstehst oft, was zu tun wäre, aber die Umsetzung fällt dir häufig schwer. Der Graben zwischen Wissen und Handeln ist deine größte Baustelle. Die Devise lautet: Weniger planen und grübeln, mehr trauen.",
-  },
-  NAT: {
-    name: "Zugang zu Tiefe",
-    positive: true,
-    high: "Du hast einen natürlichen Zugang zu den tieferen Ebenen des Lebens. Ob durch Natur, Stille oder Reflexion: Du spürst, dass hinter der Oberfläche mehr ist, und du nimmst dir auch den Raum dafür.",
-    low: "Du lebst stark an der Oberfläche und kommst selten in Kontakt mit dem, was unter dem Alltag liegt. Das ist nicht schlimm, aber es fehlt dir ein Ventil für die tieferen Fragen, die irgendwann so oder so kommen werden.",
-  },
-  ML: {
-    name: "Mentale Klarheit",
-    positive: false,
-    high: "Dein Kopf arbeitet oft auf Hochtouren, auch wenn du es dir nicht anmerken lässt. Grübeln, Überdenken, Gedankenkreise. Deine mentale Last ist hoch. Du hast hier definitiv noch Luft nach oben. Und es lebt sich mit weniger Last nicht nur im wahrsten Sinne leichter, sondern du könntest deine mentale Energie auch gezielter einsetzen, statt sie dauernd im Kreis zu verbrennen.",
-    low: "Du schaffst es, deinen Kopf ruhig zu halten, wenn es darauf ankommt. Während andere in Gedankenspiralen feststecken, behältst du meist einen klaren Kopf. Das ist eine unterschätzte Stärke, die dir in schwierigen Momenten einen echten Vorteil gibt.",
-  },
-  OL: {
-    name: "Innere Orientierung",
-    positive: false,
-    high: "Du spürst, dass etwas fehlt, aber es fällt dir schwer zu benennen, was genau. Die Richtung ist unklar und das führt dazu, dass du entweder gar nicht losgehst oder ständig die Spur wechselst.",
-    low: "Du weißt dich in dieser komplizierten Welt gut zurechtzufinden. Während andere orientierungslos durchs Leben treiben, hast du eine Richtung und einen inneren Anker. Das geht den wenigsten so und es gibt dir eine Stabilität, die andere bei dir spüren und schätzen.",
-  },
-  WS: {
-    name: "Emotionale Balance",
-    positive: false,
-    high: "Die Probleme der Welt gehen dir nahe, manchmal zu nahe. Dein Gerechtigkeitssinn ist echt, aber er kann dich auch lähmen. Bedenke: Nur ein handlungsfähiges Du kann auch etwas verändern. Hier liegt Potenzial, deine Energie dorthin zu lenken, wo du wirklich etwas bewegen kannst: bei dir selbst. Der Rest kommt danach.",
-    low: "Du lässt dich nicht von den großen Problemen der Welt lähmen. Das bedeutet nicht, dass dir alles egal ist, sondern dass du wahrscheinlich einen gesünderen Umgang damit gefunden hast als viele andere. Du kannst Informationen empfangen, ohne dich davon auffressen zu lassen.",
-  },
-  EX: {
-    name: "Eigenverantwortung",
-    positive: false,
-    high: "Du neigst dazu, die Ursachen für das, was nicht läuft, eher im Außen zu suchen als bei dir. Das ist menschlich, aber es nimmt dir die Handlungsmacht. Dein Potenzial liegt darin, den Blick öfter nach innen zu richten. Diese Fähigkeit zur Reflektion lässt sich lernen und kann der Turbo für deine Entwicklung sein.",
-    low: "Du suchst die Verantwortung zuerst bei dir selbst, bevor du mit dem Finger auf andere zeigst. Das ist eine reife Haltung, die dir ermöglicht, an den Dingen zu arbeiten, die tatsächlich in deiner Kontrolle liegen.",
-  },
+  REF: { name: "Reflexionsfähigkeit", positive: true },
+  SL:  { name: "Selbstführung", positive: true },
+  ETH: { name: "Ethische Integrität", positive: true },
+  EF:  { name: "Selbstbestimmung", positive: false },
+  HA:  { name: "Handlungsfähigkeit", positive: true },
+  NAT: { name: "Zugang zu Tiefe", positive: true },
+  ML:  { name: "Mentale Klarheit", positive: false },
+  OL:  { name: "Innere Orientierung", positive: false },
+  WS:  { name: "Emotionale Balance", positive: false },
+  EX:  { name: "Eigenverantwortung", positive: false },
 };
 
 function getStrengthsAndPotentials(normalized) {
   const items = Object.entries(DIMENSION_TEXTS).map(([key, dim]) => {
     const score = normalized[key] || 50;
     const strengthScore = dim.positive ? score : (100 - score);
-    const isStrength = strengthScore >= 50;
-    const showHighText = dim.positive ? isStrength : !isStrength;
-    return {
-      key,
-      name: dim.name,
-      strengthScore,
-      rawScore: score,
-      text: showHighText ? dim.high : dim.low,
-      isStrength,
-    };
+    return { key, name: dim.name, strengthScore };
   });
   items.sort((a, b) => b.strengthScore - a.strengthScore);
   return {
@@ -917,7 +851,7 @@ function RadarChart({ normalized, resultType, showLabels = true }) {
    getStrengthsAndPotentials() rechnet das bereits um.
 
    Die Schwellen 70 und 35 sind gesetzt, aber geraten. Nach den ersten rund 100
-   echten Durchlaeufen pruefen, wie sich die fuenf Varianten verteilen; deckt
+   echten Durchlaeufen pruefen, wie sich die sieben Varianten verteilen; deckt
    eine mehr als 60 Prozent der Faelle ab, nachziehen. Bei einer Aenderung gilt
    "neue Zeitrechnung": Aenderungsdatum festhalten, aeltere Daten getrennt
    betrachten. */
@@ -951,7 +885,14 @@ function radarTeaserText(normalized) {
     text = `${sindS} bei dir deutlich ausgeprägt. Auffällig wenig liegt bei dir brach.`;
   } else if (s <= 1 && p >= 3) {
     text = `${liegenP} bei dir fast brach. Genau dort steckt dein größter ungenutzter Anteil.`;
+  } else if (s === 2 && p === 0) {
+    // neu 11.09.2026 - landete vorher in "sonst" ("…, 0 liegen deutlich zurück")
+    text = "2 Dimensionen stechen bei dir deutlich heraus, nichts liegt brach. Ein schmales, dafür klares Profil.";
+  } else if (s <= 1 && p === 2) {
+    // neu 11.09.2026 - landete vorher in "sonst" ("Bei dir stechen 1 Dimension heraus" / "0 Dimensionen")
+    text = "2 Dimensionen liegen bei dir deutlich zurück, kaum etwas sticht heraus. Genau dort steckt dein ungenutzter Anteil.";
   } else {
+    // erreicht seit 11.09.2026 nur noch s >= 2 und p >= 1
     text = `Bei dir stechen ${stechenS}, ${zurueckP} deutlich zurück. Ein schmales, dafür klares Profil.`;
   }
   return `${text} Welche das sind und was sie über dich sagen: in deiner ausführlichen Auswertung.`;
@@ -1400,7 +1341,7 @@ function IntroScreen({ onStart }) {
         <div className="intro-avatars">
           <img src="/Archetypen-nebeneinander.png" alt="5 Archetypen" className="intro-avatars-img" />
         </div>
-        <p className="intro-meta">Sofortergebnis · anonym · 100% kostenlos</p>
+        <p className="intro-meta">Erstes Ergebnis sofort · 100% kostenlos</p>
         <button className="btn-primary btn-float" onClick={onStart}>TEST STARTEN</button>
       </div>
       <div className="fullscreen-footer">
@@ -1848,7 +1789,7 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
           <RadarChart normalized={scoring.normalized} resultType={scoring.resultType} showLabels={false} />
           <div className="radar-legend">
             <div className="legend-item"><span className="legend-dot user" /> Dein Profil</div>
-            <div className="legend-item"><span className="legend-dot type" /> {meta.label}-Referenz</div>
+            <div className="legend-item"><span className="legend-dot type" /> Referenz: {meta.label}</div>
           </div>
           <p className="radar-teaser">{radarTeaserText(scoring.normalized)}</p>
         </div>
