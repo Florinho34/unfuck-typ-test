@@ -32,12 +32,11 @@
    wie sie sind - sie stecken im Token und in Kit.
    ═══════════════════════════════════════════════════════════════════════════ */
 
-export const ARCHETYPE_COPY_VERSION = "2026-09-11";
+export const ARCHETYPE_COPY_VERSION = "2026-09-11b";
 
 export const ARCHETYPE_CORE = {
   zuschauer: {
     name: "Zuschauer",
-    dativ: "Zuschauer",
     avatarFile: "Archetypen-Zuschauer.png",
     tagline: "Dein scharfer Verstand ist ein Segen - und genau der steht dir im Weg.",
     wahrheit: [
@@ -49,7 +48,6 @@ export const ARCHETYPE_CORE = {
 
   getriebener: {
     name: "Getrieben",
-    dativ: "Getriebenen",
     avatarFile: "Archetypen-Getriebener.png",
     tagline: "Deine Power ist beeindruckend - nur setzt du sie aktuell wahrscheinlich für das Erreichen von Zielen ein, die du dir nicht wirklich unbeeinflusst selbst gesetzt hast.",
     wahrheit: [
@@ -61,7 +59,6 @@ export const ARCHETYPE_CORE = {
 
   idealist: {
     name: "Idealist",
-    dativ: "Idealisten",
     avatarFile: "Archetypen-Idealist.png",
     tagline: "Du willst die Welt besser machen - und vergisst dabei den Menschen, der dich am dringendsten braucht: dich.",
     wahrheit: [
@@ -73,7 +70,6 @@ export const ARCHETYPE_CORE = {
 
   suchender: {
     name: "Suchend",
-    dativ: "Suchenden",
     avatarFile: "Archetypen-Suchende.png",
     tagline: "Deine Neugier ist ein Geschenk - nur suchst du im Außen, was längst in dir liegt.",
     wahrheit: [
@@ -85,7 +81,6 @@ export const ARCHETYPE_CORE = {
 
   klarsichtiger: {
     name: "Klarsichtig",
-    dativ: "Klarsichtigen",
     avatarFile: "Archetypen-Klarsichtiger.png",
     tagline: "Du bist weiter als die meisten - und genau das ist dein blinder Fleck.",
     wahrheit: [
