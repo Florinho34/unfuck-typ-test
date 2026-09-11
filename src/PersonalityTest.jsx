@@ -51,9 +51,9 @@ const QUESTIONS = [
     title: "🌙 DIE NACHT",
     scenario: "Es ist spät, du liegst im Bett, aber dein Kopf hört nicht auf zu arbeiten. Was kreist in deinem Kopf?",
     options: [
-      { key: "A", text: "Ich analysiere den Tag – was lief gut, was hätte ich besser machen können.", scoring: { REF: 3, ML: 3, HA: -1 } },
+      { key: "A", text: "Ich analysiere den Tag - was lief gut, was hätte ich besser machen können.", scoring: { REF: 3, ML: 3, HA: -1 } },
       { key: "B", text: "Ich grüble über eine Situation vom Tag, in der ich mit meiner Reaktion unzufrieden war. Dass ich daran nichts mehr ändern kann, hilft mir leider nicht, das Grübeln sein zu lassen.", scoring: { REF: 1, SL: -1, ML: 3, HA: -1 } },
-      { key: "C", text: "Ich brauche meistens irgendeinen Input – Podcast, Serie, Social Media – bis ich einschlafe.", scoring: { ML: 1, EF: 1 } },
+      { key: "C", text: "Ich brauche meistens irgendeinen Input - Podcast, Serie, Social Media - bis ich einschlafe.", scoring: { ML: 1, EF: 1 } },
       { key: "D", text: "Ich liege abends selten rastlos im Bett und schlafe häufig auch ohne irgendeinen Input einfach ein.", scoring: { SL: 2, ML: -1 } },
     ],
   },
@@ -72,12 +72,12 @@ const QUESTIONS = [
     id: 4,
     title: "⚖️ DIE ENTSCHEIDUNG",
     isCore: true,
-    scenario: "Du stehst vor einer Entscheidung, die dein Leben verändern könnte – neuer Job, Umzug, Trennung. Wie gehst du damit um?",
+    scenario: "Du stehst vor einer Entscheidung, die dein Leben verändern könnte - neuer Job, Umzug, Trennung. Wie gehst du damit um?",
     options: [
-      { key: "A", text: "Ich recherchiere und analysiere alle Optionen, bis ich mir sicher bin – auch wenn es lange dauert.", scoring: { REF: 2, ML: 3, HA: -2 } },
+      { key: "A", text: "Ich recherchiere und analysiere alle Optionen, bis ich mir sicher bin - auch wenn es lange dauert.", scoring: { REF: 2, ML: 3, HA: -2 } },
       { key: "B", text: "Ich folge meinem Bauchgefühl und mache einfach. Langes Nachdenken macht es meistens nur komplizierter.", scoring: { NAT: 1, HA: 2 } },
-      { key: "C", text: "Ich höre auf mein Bauchgefühl und gleiche es mit relevanten Fakten ab – und dann entscheide ich, ohne ewig zu zögern.", scoring: { REF: 1, SL: 1, NAT: 1, HA: 2 } },
-      { key: "D", text: "Meist spüre ich eigentlich schon länger, was richtig wäre – aber die Umsetzung ist das Problem.", scoring: { REF: 1, ML: 2, HA: -2 } },
+      { key: "C", text: "Ich höre auf mein Bauchgefühl und gleiche es mit relevanten Fakten ab - und dann entscheide ich, ohne ewig zu zögern.", scoring: { REF: 1, SL: 1, NAT: 1, HA: 2 } },
+      { key: "D", text: "Meist spüre ich eigentlich schon länger, was richtig wäre - aber die Umsetzung ist das Problem.", scoring: { REF: 1, ML: 2, HA: -2 } },
     ],
   },
   {
@@ -97,7 +97,7 @@ const QUESTIONS = [
     scenario: "Wenn du an die letzten fünf Jahre zurückdenkst: Was überwiegt?",
     options: [
       { key: "A", text: "Ich habe viel gelernt, aber an der Umsetzung scheitert es aktuell noch.", scoring: { REF: 2, ML: 3, HA: -2 } },
-      { key: "B", text: "Overall habe ich das getan, was von mir erwartet wurde – und es lief ganz gut.", scoring: { EF: 2, HA: 1 } },
+      { key: "B", text: "Overall habe ich das getan, was von mir erwartet wurde - und es lief ganz gut.", scoring: { EF: 2, HA: 1 } },
       { key: "C", text: "Ich habe viel ausprobiert, aber den richtigen Weg noch nicht gefunden.", scoring: { OL: 3, SL: -1 } },
       { key: "D", text: "Bewusste Entscheidungen, dazugelernt, entwickelt. Zufriedener als vorher.", scoring: { REF: 1, SL: 2, HA: 2 } },
     ],
@@ -132,7 +132,7 @@ const QUESTIONS = [
     scenario: "Eine Diskussion über ein kontroverses Thema. Was beschreibt dich am besten?",
     options: [
       { key: "A", text: "Ich habe klare Überzeugungen und vertrete sie auch.", scoring: { ETH: 2, WS: 1, EX: 1, HA: 1 } },
-      { key: "B", text: "Ich halte mich meistens raus – Diskussionen ändern selten etwas.", scoring: { ML: 2, HA: -2 } },
+      { key: "B", text: "Ich halte mich meistens raus - Diskussionen ändern selten etwas.", scoring: { ML: 2, HA: -2 } },
       { key: "C", text: "Beide Seiten verstehen, eigene Meinung bilden, dazu stehen.", scoring: { REF: 2, SL: 1, ETH: 1, HA: 1 } },
       { key: "D", text: "Ich passe meine Position manchmal an, je nachdem, mit wem ich rede.", scoring: { SL: -1, EF: 2 } },
     ],
@@ -176,7 +176,7 @@ const QUESTIONS = [
     scenario: "Du bist allein in der Natur. Kein Handy, keine Ablenkung. Was passiert mit dir?",
     options: [
       { key: "A", text: "Ich komme zur Ruhe. Natur ist für mich einer der wenigen Orte, wo ich wirklich abschalte.", scoring: { SL: 1, NAT: 2, HA: 1 } },
-      { key: "B", text: "Es weckt etwas Tieferes in mir – eine Art Verbindung zu etwas Größerem, die im Alltag zu kurz kommt.", scoring: { ETH: 1, WS: 1, NAT: 3 } },
+      { key: "B", text: "Es weckt etwas Tieferes in mir - eine Art Verbindung zu etwas Größerem, die im Alltag zu kurz kommt.", scoring: { ETH: 1, WS: 1, NAT: 3 } },
       { key: "C", text: "Ich genieße es kurz, aber nach einer Weile kommen die Gedanken wieder hoch.", scoring: { REF: 1, ML: 2, NAT: 1, HA: -1 } },
       { key: "D", text: "Ehrlich? Ich kann damit nicht so viel anfangen. Natur ist schön, aber ich brauche eher Action.", scoring: { NAT: -2, EF: 1 } },
     ],
@@ -186,10 +186,10 @@ const QUESTIONS = [
     title: "🏛️ DAS SYSTEM",
     scenario: "Stell dir vor, du könntest ein Gesellschaftssystem komplett neu gestalten. Was ist dir am wichtigsten?",
     options: [
-      { key: "A", text: "Gerechtigkeit. Jeder sollte die gleichen Chancen haben – unabhängig von Herkunft.", scoring: { ETH: 2, WS: 2, EX: 1 } },
+      { key: "A", text: "Gerechtigkeit. Jeder sollte die gleichen Chancen haben - unabhängig von Herkunft.", scoring: { ETH: 2, WS: 2, EX: 1 } },
       { key: "B", text: "Freiheit. Menschen sollten selbst entscheiden dürfen, wie sie leben, ohne bevormundet zu werden.", scoring: { SL: 1, ETH: 1, HA: 1 } },
-      { key: "C", text: "Transparenz. Ein System, in dem nichts verschleiert wird – wo jeder sehen kann, wer profitiert und wer nicht.", scoring: { REF: 2, ETH: 1, WS: 2, HA: 1 } },
-      { key: "D", text: "Gemeinschaft. Weniger Ego, mehr Miteinander – die Gesellschaft muss zusammenhalten.", scoring: { ETH: 1, WS: 1, NAT: 1 } },
+      { key: "C", text: "Transparenz. Ein System, in dem nichts verschleiert wird - wo jeder sehen kann, wer profitiert und wer nicht.", scoring: { REF: 2, ETH: 1, WS: 2, HA: 1 } },
+      { key: "D", text: "Gemeinschaft. Weniger Ego, mehr Miteinander - die Gesellschaft muss zusammenhalten.", scoring: { ETH: 1, WS: 1, NAT: 1 } },
     ],
   },
   // ── BLOCK 3: Handlung, Antrieb & Stillstand ──
@@ -277,10 +277,10 @@ const QUESTIONS = [
     title: "🎉 DIE PARTY",
     scenario: 'Jemand fragt: „Was machst du so?" (beruflich gemeint). Was fühlst du?',
     options: [
-      { key: "A", text: 'Ich antworte routiniert – aber die Antwort fühlt sich nicht wie „ich" an, sondern mehr auswendig gelernt.', scoring: { REF: 1, OL: 1, EF: 1 } },
-      { key: "B", text: "Ich erzähle gerne davon – da bin ich in meinem Element.", scoring: { SL: 1, EF: 1 } },
-      { key: "C", text: "Ich finde die Frage oberflächlich – als wäre der Job das Einzige, was zählt.", scoring: { REF: 1, ETH: 1, WS: 1, EX: 1 } },
-      { key: "D", text: "Ich antworte ehrlich – und wenn mein aktueller Job nicht mein Ding ist, sage ich das auch. Mein Beruf definiert mich nicht.", scoring: { REF: 1, SL: 2, HA: 1 } },
+      { key: "A", text: 'Ich antworte routiniert - aber die Antwort fühlt sich nicht wie „ich" an, sondern mehr auswendig gelernt.', scoring: { REF: 1, OL: 1, EF: 1 } },
+      { key: "B", text: "Ich erzähle gerne davon - da bin ich in meinem Element.", scoring: { SL: 1, EF: 1 } },
+      { key: "C", text: "Ich finde die Frage oberflächlich - als wäre der Job das Einzige, was zählt.", scoring: { REF: 1, ETH: 1, WS: 1, EX: 1 } },
+      { key: "D", text: "Ich antworte ehrlich - und wenn mein aktueller Job nicht mein Ding ist, sage ich das auch. Mein Beruf definiert mich nicht.", scoring: { REF: 1, SL: 2, HA: 1 } },
     ],
   },
   {
@@ -381,7 +381,7 @@ const FOLLOW_UPS = {
   "1A": {
     question: "Bezüglich deiner Antwort: Wie gehst du danach mit solchem Feedback um?",
     options: [
-      { key: "1", text: "Ich nehme mir Zeit, das ehrlich zu reflektieren – und wenn was dran ist, versuche ich aktiv daran zu arbeiten.", scoring: { REF: 2, SL: 1, HA: 1 } },
+      { key: "1", text: "Ich nehme mir Zeit, das ehrlich zu reflektieren - und wenn was dran ist, versuche ich aktiv daran zu arbeiten.", scoring: { REF: 2, SL: 1, HA: 1 } },
       { key: "2", text: "Es beschäftigt mich lange, aber am Ende fällt es mir schwer, etwas daran zu ändern.", scoring: { REF: 1, ML: 2, HA: -2 } },
     ],
   },
@@ -390,31 +390,31 @@ const FOLLOW_UPS = {
     question: "Bezüglich deiner Antwort: Warum brauchst du den Input zum Einschlafen?",
     options: [
       { key: "1", text: "Ohne Ablenkung kommen Gedanken hoch, die ich lieber vermeide.", scoring: { ML: 2, SL: -1, HA: -1 } },
-      { key: "2", text: "Ich nutze das bewusst zum Runterkommen – es ist mein Ritual, kein Vermeiden.", scoring: { SL: 1 } },
+      { key: "2", text: "Ich nutze das bewusst zum Runterkommen - es ist mein Ritual, kein Vermeiden.", scoring: { SL: 1 } },
     ],
   },
   // F4 C → Ehrlichkeits-Check: Entscheidungsstärke
   "4C": {
     question: "Du sagst, du entscheidest relativ zügig. Wie sieht das in der Praxis wirklich aus?",
     options: [
-      { key: "1", text: "Ja, das beschreibt mich wirklich – ich entscheide zügig und kann gut damit leben, auch wenn es mal nicht perfekt läuft.", scoring: { SL: 2, HA: 2 } },
-      { key: "2", text: "Ehrlich gesagt weiß ich, wie ich entscheiden sollte – aber in der Praxis schiebe ich wichtige Entscheidungen doch länger vor mir her als nötig.", scoring: { HA: -3, ML: 3, OL: 1 } },
+      { key: "1", text: "Ja, das beschreibt mich wirklich - ich entscheide zügig und kann gut damit leben, auch wenn es mal nicht perfekt läuft.", scoring: { SL: 2, HA: 2 } },
+      { key: "2", text: "Ehrlich gesagt weiß ich, wie ich entscheiden sollte - aber in der Praxis schiebe ich wichtige Entscheidungen doch länger vor mir her als nötig.", scoring: { HA: -3, ML: 3, OL: 1 } },
     ],
   },
   // F8 D → Differenzierung: Gleichgültigkeit vs. pragmatische Akzeptanz
   "8D": {
     question: "Bezüglich deiner Antwort: Wie triffst du diese Entscheidung?",
     options: [
-      { key: "1", text: "Ehrlich gesagt denke ich darüber nicht groß nach – ist halt so.", scoring: { REF: -1, EF: 2, HA: -1 } },
-      { key: "2", text: "Ich sehe den Widerspruch, aber ich treffe die Entscheidung trotzdem bewusst – perfekt geht halt nicht.", scoring: { REF: 1, HA: 1 } },
+      { key: "1", text: "Ehrlich gesagt denke ich darüber nicht groß nach - ist halt so.", scoring: { REF: -1, EF: 2, HA: -1 } },
+      { key: "2", text: "Ich sehe den Widerspruch, aber ich treffe die Entscheidung trotzdem bewusst - perfekt geht halt nicht.", scoring: { REF: 1, HA: 1 } },
     ],
   },
   // F9 C → Ehrlichkeits-Check: Meinungsstärke
   "9C": {
     question: "Du sagst, du bildest dir eine Meinung und stehst dazu. Wie sieht das in Diskussionen konkret aus?",
     options: [
-      { key: "1", text: "Ja – ich kann in Diskussionen meine Meinung vertreten, auch wenn die Mehrheit anders denkt.", scoring: { SL: 2, HA: 2 } },
-      { key: "2", text: "Wenn ich ehrlich bin: Ich verstehe meistens beide Seiten so gut, dass ich mich am Ende gar nicht festlegen kann – oder will.", scoring: { HA: -3, ML: 3, REF: 1 } },
+      { key: "1", text: "Ja - ich kann in Diskussionen meine Meinung vertreten, auch wenn die Mehrheit anders denkt.", scoring: { SL: 2, HA: 2 } },
+      { key: "2", text: "Wenn ich ehrlich bin: Ich verstehe meistens beide Seiten so gut, dass ich mich am Ende gar nicht festlegen kann - oder will.", scoring: { HA: -3, ML: 3, REF: 1 } },
     ],
   },
   // F19 D → Ehrlichkeits-Check: Selten leer/orientierungslos
@@ -429,15 +429,15 @@ const FOLLOW_UPS = {
   "20A": {
     question: "Du sagst, du gibst ehrliches Feedback. Wie reagieren die Menschen in deinem Umfeld darauf?",
     options: [
-      { key: "1", text: "Ja – ich bekomme auch regelmäßig das Feedback, dass meine Ehrlichkeit geschätzt wird, auch wenn sie unbequem ist.", scoring: { SL: 2, HA: 2 } },
-      { key: "2", text: "Wenn ich ehrlich bin: Ich weiß zwar, was ich sagen sollte, aber oft sage ich dann doch eher das, was die Person hören will – um niemanden zu verletzen.", scoring: { SL: -2, HA: -3, EF: 2, ML: 2 } },
+      { key: "1", text: "Ja - ich bekomme auch regelmäßig das Feedback, dass meine Ehrlichkeit geschätzt wird, auch wenn sie unbequem ist.", scoring: { SL: 2, HA: 2 } },
+      { key: "2", text: "Wenn ich ehrlich bin: Ich weiß zwar, was ich sagen sollte, aber oft sage ich dann doch eher das, was die Person hören will - um niemanden zu verletzen.", scoring: { SL: -2, HA: -3, EF: 2, ML: 2 } },
     ],
   },
   // F28 C → Ehrlichkeits-Check: Selbstkenntnis
   "28C": {
     question: "Du sagst, du kennst dich gut genug für gute Entscheidungen. Wie zeigt sich das in deinem Alltag?",
     options: [
-      { key: "1", text: "Ja – und das zeigt sich auch darin, dass ich mit meinen Entscheidungen im Großen und Ganzen zufrieden bin.", scoring: { SL: 2, HA: 2 } },
+      { key: "1", text: "Ja - und das zeigt sich auch darin, dass ich mit meinen Entscheidungen im Großen und Ganzen zufrieden bin.", scoring: { SL: 2, HA: 2 } },
       { key: "2", text: "Ich glaube mich gut zu kennen, aber es passiert schon öfter, dass mich mein eigenes Verhalten überrascht oder enttäuscht.", scoring: { SL: -3, OL: 2, ML: 3 } },
     ],
   },
@@ -446,43 +446,43 @@ const FOLLOW_UPS = {
 // ─── MICRO-FEEDBACKS ──────────────────────────────────────────────────────
 const MICRO_FEEDBACKS = [
   { afterQ: 3, trigger: (ans) => ans[3]?.primary === "A",
-    emoji: "🪞", text: "Du siehst, was andere übersehen – und schluckst es trotzdem runter. Das kostet mehr Energie, als du vielleicht denkst. Studien zeigen: Wer regelmäßig eigene Wahrnehmungen unterdrückt, erhöht messbar das Risiko für chronischen Stress und emotionale Erschöpfung.",
+    emoji: "🪞", text: "Du siehst, was andere übersehen, und schluckst es trotzdem runter. Das kostet mehr Energie, als du vielleicht denkst. Studien zeigen: Wer regelmäßig eigene Wahrnehmungen unterdrückt, erhöht messbar das Risiko für chronischen Stress und emotionale Erschöpfung.",
     footnote: "*Gross & Levenson (1997), Journal of Personality and Social Psychology" },
   { afterQ: 3, trigger: (ans) => ans[3]?.primary === "B",
-    emoji: "🪞", text: "Du gehst dahin, wo's unbequem wird – das können die wenigsten. Respekt! Aber Mut zur Konfrontation ist nicht dasselbe wie gute Konfrontation. Die Frage ist nicht ob du es ansprichst, sondern warum. Aus echtem Verantwortungsgefühl? Oder weil Schweigen sich für dich noch unangenehmer anfühlt? Lass uns noch mehr deines wahren Charakters freilegen...",
+    emoji: "🪞", text: "Du gehst dahin, wo's unbequem wird. Das können die wenigsten. Respekt! Aber Mut zur Konfrontation ist nicht dasselbe wie gute Konfrontation. Die Frage ist nicht ob du es ansprichst, sondern warum. Aus echtem Verantwortungsgefühl? Oder weil Schweigen sich für dich noch unangenehmer anfühlt? Lass uns noch mehr deines wahren Charakters freilegen...",
     footnote: null },
   { afterQ: 3, trigger: (ans) => ans[3]?.primary === "C",
-    emoji: "🪞", text: "Du ziehst eine klare Grenze zwischen deiner Verantwortung und der anderer. Das kann Weisheit sein – oder eine bequeme Ausrede. Der Unterschied? Ob du dich danach wirklich frei fühlst, oder ob es dich dennoch weiterhin beschäftigt.",
+    emoji: "🪞", text: "Du ziehst eine klare Grenze zwischen deiner Verantwortung und der anderer. Das kann Weisheit sein. Oder eine bequeme Ausrede. Der Unterschied? Ob du dich danach wirklich frei fühlst, oder ob es dich dennoch weiterhin beschäftigt.",
     footnote: null },
   { afterQ: 3, trigger: (ans) => ans[3]?.primary === "D",
     emoji: "🪞", text: "Du prüfst zuerst, ob dein Impuls wirklich der Situation gilt oder dir selbst. Das ist seltener als du denkst! Die meisten Menschen reagieren auf äußere Probleme, ohne zu merken, dass eigentlich ein eigenes inneres Thema getriggert wurde. Dass du diesen Schritt machst, zeigt echte Reflexionstiefe.",
     footnote: null },
   { afterQ: 2, trigger: (ans) => ans[2]?.primary === "A" || ans[2]?.primary === "B",
-    emoji: "💭", text: "Du bist nicht allein damit. Rund 88% unserer täglichen Handlungen laufen auf Autopilot* – aber nachts, wenn der Autopilot pausiert, holt uns das Unverarbeitete ein.",
-    footnote: "*Rebar et al. (2025), Psychology & Health – University of South Carolina" },
+    emoji: "💭", text: "Du bist nicht allein damit. Rund 88% unserer täglichen Handlungen laufen auf Autopilot.* Aber nachts, wenn der Autopilot pausiert, holt uns das Unverarbeitete ein.",
+    footnote: "*Rebar et al. (2025), Psychology & Health, University of South Carolina" },
   { afterQ: 5, trigger: (ans) => ans[5]?.primary === "A" || ans[5]?.primary === "C",
-    emoji: "🪞", text: "Ehrliche Selbsteinschätzung ist seltener als man denkt. 95% der Menschen halten sich für selbstreflektiert – tatsächlich sind es nur 10–15%.*",
-    footnote: "*Dr. Tasha Eurich (2017), Organisationspsychologin – mehrjährige Forschung" },
+    emoji: "🪞", text: "Ehrliche Selbsteinschätzung ist seltener als man denkt. 95% der Menschen halten sich für selbstreflektiert. Tatsächlich sind es nur 10 bis 15%.*",
+    footnote: "*Dr. Tasha Eurich (2017), Organisationspsychologin, mehrjährige Forschung" },
   { afterQ: 10, trigger: (ans) => ans[10]?.primary === "C",
-    emoji: "📵", text: "Du bemerkst deine eigene Abstumpfung – das allein ist schon mehr Bewusstsein als die meisten aufbringen. Weltweit vermeiden mittlerweile 39% der Menschen aktiv die Nachrichten – ein Rekordwert.* Abschalten ist manchmal Selbstschutz.",
-    footnote: "*Reuters Institute Digital News Report 2024, Oxford University – 95.000 Befragte, 47 Länder" },
+    emoji: "📵", text: "Du bemerkst deine eigene Abstumpfung. Das allein ist schon mehr Bewusstsein, als die meisten aufbringen. Weltweit vermeiden mittlerweile 39% der Menschen aktiv die Nachrichten, ein Rekordwert.* Abschalten ist manchmal Selbstschutz.",
+    footnote: "*Reuters Institute Digital News Report 2024, Oxford University, 95.000 Befragte, 47 Länder" },
   { afterQ: 10, trigger: (ans) => ans[10]?.primary === "B",
-    emoji: "🌍", text: "Dein Gerechtigkeitssinn ist ausgeprägt. Das kann ein Antrieb sein – oder eine Last. 36% der unter 35-Jährigen sagen, Nachrichten drücken ihre Stimmung.* Wer trotzdem hinschaut und etwas empfindet, statt abzuschalten, ist nicht nur in der Minderheit, sondern setzt sich somit auch höherer mentaler Belastung aus.",
+    emoji: "🌍", text: "Dein Gerechtigkeitssinn ist ausgeprägt. Das kann ein Antrieb sein. Oder eine Last. 36% der unter 35-Jährigen sagen, Nachrichten drücken ihre Stimmung.* Wer trotzdem hinschaut und etwas empfindet, statt abzuschalten, ist nicht nur in der Minderheit, sondern setzt sich somit auch höherer mentaler Belastung aus.",
     footnote: "*Reuters Institute Digital News Report 2024, Oxford University" },
   { afterQ: 13, trigger: (ans) => ans[13]?.primary === "A" || ans[13]?.primary === "B",
     emoji: "🌿", text: "Dein Verhältnis zur Natur sagt mehr über dich aus, als du vielleicht denkst. Schon 10 Minuten in der Natur reduzieren messbar Stress, Angst und depressive Symptome.*",
-    footnote: "*Bettmann et al. (2024), University of Utah – Meta-Analyse, 78 Studien, ~5.000 Teilnehmer" },
+    footnote: "*Bettmann et al. (2024), University of Utah, Meta-Analyse, 78 Studien, ~5.000 Teilnehmer" },
   { afterQ: 17, trigger: (ans) => ans[17]?.primary === "A" || ans[17]?.primary === "B",
-    emoji: "🧠", text: "Viele Menschen spüren genau das. Psychologen nennen es \u201EStatus-quo-Bias\u201C: Die Tendenz, am Vertrauten festzuhalten \u2013 selbst wenn wir wissen, dass Veränderung besser wäre. Klingt erst mal wie Selbstbetrug \u2013 doch am Ende ist es ein tief eingebranntes neurologisches Muster.*",
+    emoji: "🧠", text: "Viele Menschen spüren genau das. Psychologen nennen es \u201EStatus-quo-Bias\u201C: Die Tendenz, am Vertrauten festzuhalten, selbst wenn wir wissen, dass Veränderung besser wäre. Klingt erst mal wie Selbstbetrug, ist am Ende aber ein tief eingebranntes neurologisches Muster.*",
     footnote: "*Samuelson & Zeckhauser (1988), Journal of Risk and Uncertainty" },
   { afterQ: 21, trigger: (ans) => ans[21]?.primary === "B",
     emoji: "💼", text: "Spannend: Dein erster Impuls geht Richtung Sicherheit. Weltweit sind nur 21% aller Arbeitnehmer wirklich engagiert bei dem was sie tun. 62% funktionieren. Vielleicht weil die meisten irgendwann angefangen haben, Sicherheit über Erfüllung zu stellen.*",
-    footnote: "*Gallup State of the Global Workplace 2025 – 160+ Länder, Daten aus 2024" },
+    footnote: "*Gallup State of the Global Workplace 2025, 160+ Länder, Daten aus 2024" },
   { afterQ: 21, trigger: (ans) => ans[21]?.primary === "A",
-    emoji: "✈️", text: "Du bevorzugst Freiheit und Erfahrungen über Absicherung – ein gutes Zeichen? Weltweit sind nur 21% der Arbeitnehmer tatsächlich engagiert in ihrem Job. 62% funktionieren nur.* Vielleicht, weil zu viele die Sicherheit über die persönliche Erfüllung gestellt haben.",
-    footnote: "*Gallup State of the Global Workplace 2025 – 160+ Länder, Daten aus 2024" },
+    emoji: "✈️", text: "Du bevorzugst Freiheit und Erfahrungen über Absicherung. Ein gutes Zeichen? Weltweit sind nur 21% der Arbeitnehmer tatsächlich engagiert in ihrem Job. 62% funktionieren nur.* Vielleicht, weil zu viele die Sicherheit über die persönliche Erfüllung gestellt haben.",
+    footnote: "*Gallup State of the Global Workplace 2025, 160+ Länder, Daten aus 2024" },
   { afterQ: 24, trigger: (ans) => ans[24]?.primary === "A",
-    emoji: "🎭", text: "Sich nicht zu zeigen ist oft kein Zeichen von Schwäche \u2013 sondern ein gelernter Schutzmechanismus. Forschung zeigt: Selbstbewusste Menschen mit hoher interner Selbstwahrnehmung sind kreativer, treffen bessere Entscheidungen und sind nachweislich zufriedener.* Der erste Schritt zu einem \u201Eechteren\u201C Leben? Ehrlich hinschauen \u2013 und genau das tust du gerade.",
+    emoji: "🎭", text: "Sich nicht zu zeigen ist oft kein Zeichen von Schwäche, sondern ein gelernter Schutzmechanismus. Forschung zeigt: Selbstbewusste Menschen mit hoher interner Selbstwahrnehmung sind kreativer, treffen bessere Entscheidungen und sind nachweislich zufriedener.* Der erste Schritt zu einem \u201Eechteren\u201C Leben? Ehrlich hinschauen. Und genau das tust du gerade.",
     footnote: "*Eurich (2017) / Korn Ferry International" },
   { afterQ: 24, trigger: (ans) => ans[24]?.primary === "D",
     emoji: "🔍", text: "Diese Unsicherheit ist ehrlicher als jede schnelle Antwort. Die meisten Menschen haben nie gelernt, sich diese Frage überhaupt zu stellen. Dass du es tust, zeigt mehr Bewusstsein, als du dir vielleicht zugestehst.",
@@ -496,17 +496,17 @@ function getMicroFeedback(questionId, answers) {
 
 // ─── NARRATIVE BLOCK-TRANSITIONS ─────────────────────────────────────────
 const BLOCK_NARRATIVES = {
-  1: { headline: "Wie gut kennst du dich wirklich?", sub: "Die nächsten Fragen zeigen, wie du denkst, fühlst und mit dir umgehst – wenn niemand zuschaut." },
-  2: { headline: "Was glaubst du wirklich?", sub: "Jetzt wird's unbequemer. Die nächsten Fragen zeigen, woran du festhältst – und ob deine Werte mehr sind als schöne Worte." },
-  3: { headline: "Tust du, was du weißt?", sub: "Erkenntnis ohne Handlung ist Unterhaltung. Hier zeigt sich, ob du ins Machen kommst – oder ob etwas dich bremst." },
-  4: { headline: "Wer bist du, wenn alles wegfällt?", sub: "Die letzten Fragen gehen tiefer. Hier geht's nicht mehr um Verhalten – sondern um das, was darunter liegt." },
+  1: { headline: "Wie gut kennst du dich wirklich?", sub: "Die nächsten Fragen zeigen, wie du denkst, fühlst und mit dir umgehst, wenn niemand zuschaut." },
+  2: { headline: "Was glaubst du wirklich?", sub: "Jetzt wird's unbequemer. Die nächsten Fragen zeigen, woran du festhältst und ob deine Werte mehr sind als schöne Worte." },
+  3: { headline: "Tust du, was du weißt?", sub: "Erkenntnis ohne Handlung ist Unterhaltung. Hier zeigt sich, ob du ins Machen kommst oder ob etwas dich bremst." },
+  4: { headline: "Wer bist du, wenn alles wegfällt?", sub: "Die letzten Fragen gehen tiefer. Hier geht's nicht mehr um Verhalten, sondern um das, was darunter liegt." },
 };
 
 // ─── PROGRESS MILESTONES ────────────────────────────────────────────────
 const MILESTONES = {
-  25: "Viertel geschafft. Bleib ehrlich – es lohnt sich.",
+  25: "Viertel geschafft. Bleib ehrlich, es lohnt sich.",
   50: "Halbzeit. Wenn du bis hier ehrlich warst, wird das Ergebnis unbequem gut.",
-  75: "Fast da. Die letzten Fragen gehen tiefer – genau da wird's spannend.",
+  75: "Fast da. Die letzten Fragen gehen tiefer. Genau da wird's spannend.",
 };
 
 // ─── SCORING ENGINE ─────────────────────────────────────────────────────────
@@ -1391,13 +1391,13 @@ function BlockTransition({ block, onContinue, isFirst }) {
             <div className="hint-bullets">
               <div className="hint-title">So funktioniert's</div>
               <div className="hint-item"><span className="hint-icon">🎯</span><span>Wähle pro Frage die Antwort, die <strong>am besten zu dir passt</strong>.</span></div>
-              <div className="hint-item"><span className="hint-icon">🔄</span><span>Optional: Wähle eine <strong>zweite Antwort</strong> – sie wird schwächer gewichtet, macht dein Ergebnis aber genauer.</span></div>
+              <div className="hint-item"><span className="hint-icon">🔄</span><span>Optional: Wähle eine <strong>zweite Antwort</strong>. Sie wird schwächer gewichtet, macht dein Ergebnis aber genauer.</span></div>
               <div className="hint-item"><span className="hint-icon">💡</span><span>Wenn nur eine Antwort passt, <strong>reicht das völlig</strong>.</span></div>
-              <div className="hint-item"><span className="hint-icon">⚡</span><span>Folge deinem <strong>ersten Impuls</strong> – nicht zu lange nachdenken. Die ehrlichste Antwort ist meistens die erste.</span></div>
+              <div className="hint-item"><span className="hint-icon">⚡</span><span>Folge deinem <strong>ersten Impuls</strong> und denk nicht zu lange nach. Die ehrlichste Antwort ist meistens die erste.</span></div>
             </div>
           ) : (
             <>
-              Weiterhin gilt: Wähle die Antwort, die <strong>am ehesten auf dich zutrifft</strong>. Folge deinem <strong>ersten Impuls</strong>. Eine optionale Zweitantwort verfeinert dein Ergebnis – ist aber kein Muss.
+              Weiterhin gilt: Wähle die Antwort, die <strong>am ehesten auf dich zutrifft</strong>. Folge deinem <strong>ersten Impuls</strong>. Eine optionale Zweitantwort verfeinert dein Ergebnis, ist aber kein Muss.
             </>
           )}
         </div>
@@ -1537,8 +1537,8 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, follow
   let teaserState = null;
   if (qNum === 25) teaserState = { activePoints: 2, showContour: false, title: "Dein Profil nimmt Form an...", sub: `Noch ${remaining} Fragen bis zu deinem Ergebnis` };
   else if (qNum === 26) teaserState = { activePoints: 4, showContour: true, title: "Dein Profil nimmt Form an...", sub: `Noch ${remaining} Fragen bis zu deinem Ergebnis` };
-  else if (qNum === 27) teaserState = { activePoints: 6, showContour: true, title: "Dein Profil wird deutlicher...", sub: `Noch ${remaining} Fragen – gleich siehst du dein Ergebnis` };
-  else if (qNum === 28) teaserState = { activePoints: 8, showContour: true, title: "Dein Profil wird deutlicher...", sub: `Noch ${remaining} Fragen – gleich siehst du dein Ergebnis` };
+  else if (qNum === 27) teaserState = { activePoints: 6, showContour: true, title: "Dein Profil wird deutlicher...", sub: `Noch ${remaining} Fragen, gleich siehst du dein Ergebnis` };
+  else if (qNum === 28) teaserState = { activePoints: 8, showContour: true, title: "Dein Profil wird deutlicher...", sub: `Noch ${remaining} Fragen, gleich siehst du dein Ergebnis` };
   else if (qNum === 29) teaserState = { activePoints: 10, showContour: true, title: "Letztes Feintuning...", sub: null, isFinetuning: true };
 
   const handleOptionClick = (key) => {
@@ -1605,7 +1605,7 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, follow
         )}
         {currentAnswer.secondary && (
           <div className="secondary-section">
-            <p className="secondary-hint">Zweitantwort gewählt – wird schwächer gewichtet</p>
+            <p className="secondary-hint">Zweitantwort gewählt, wird schwächer gewichtet</p>
           </div>
         )}
         {followUp && hasPrimary && (
@@ -1641,7 +1641,7 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, follow
           </div>
         )}
       </div>
-      <div className="keyboard-legend">Tastatur: 1–4 = Antwort wählen · Leertaste = Weiter</div>
+      <div className="keyboard-legend">Tastatur: 1-4 = Antwort wählen · Leertaste = Weiter</div>
       <div className="save-hint">Antworten werden automatisch gespeichert.</div>
     </div>
   );
@@ -1803,9 +1803,8 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
 
         {/* ── BRÜCKENSATZ direkt vor dem Formular ──────────────────────────── */}
         <p className="bridge-line">
-          Das ist die eine Hälfte. Die andere: was aus dir werden könnte, wenn das,
-          was dich heute bremst, <strong><em>für</em></strong> dich arbeitet.
-          Die steht in deiner ausführlichen Auswertung.
+          Das ist noch nicht alles. Der spannendere Teil fehlt noch: was aus dir
+          werden könnte, wenn das, was dich heute bremst, <strong><em>für</em></strong> dich arbeitet.
         </p>
 
         <div className="postq-screen signup-solo" id="ergebnis-form">
@@ -1813,15 +1812,15 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
             <div className="cta-confirm">
               <div className="cta-confirm-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 6-10 7L2 6" /></svg></div>
               <div className="cta-confirm-title">Fast geschafft!</div>
-              <p className="cta-confirm-text">Ich habe dir gerade eine E-Mail geschickt. <strong>Bestätige darin kurz deine Adresse</strong> – sonst kann ich dir dein Ergebnis nicht schicken.</p>
+              <p className="cta-confirm-text">Ich habe dir gerade eine E-Mail geschickt. <strong>Bestätige darin kurz deine Adresse</strong>, sonst kann ich dir dein Ergebnis nicht schicken.</p>
               <p className="cta-confirm-hint">Keine Mail im Posteingang? Schau im Werbe-Ordner nach, manchmal auch im Spam. Wenn du sie nach „Allgemein“ ziehst, landen meine nächsten direkt dort.</p>
             </div>
           ) : (
             <>
               <div className="signup-solo-header">
                 <div className="postq-eyebrow">Nur noch ein Schritt</div>
-                <div className="postq-title">Deine ausführliche<br />Auswertung</div>
-                <p className="signup-solo-text">In deiner ausführlichen Auswertung bekommst du dein vollständiges Profil über alle zehn Dimensionen, deine größten Stärken und blinden Flecken - und was das konkret für dein Leben bedeutet.</p>
+                <div className="postq-title">Die restlichen 80{"\u00A0"}%<br />deines Ergebnisses</div>
+                <p className="signup-solo-text">Darin auch deine Falle: das Muster, das dich immer wieder an derselben Stelle ausbremst. Dazu dein Profil über alle zehn Dimensionen, deine Stärken und blinden Flecken.</p>
               </div>
               <div className="cta-email">
                 <input type="text" placeholder="Dein Vorname" className={`email-input ${emailError && !firstName.trim() ? "email-input-error" : ""}`} value={firstName} onChange={(e) => { setFirstName(e.target.value); setEmailError(""); }} disabled={emailStatus === "loading"} />
@@ -1859,7 +1858,7 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
         )}
         {import.meta.env.DEV && showDebug && (
           <div className="score-debug">
-            <strong>// Normalisierte Werte (0–100)</strong><br /><br />
+            <strong>// Normalisierte Werte (0-100)</strong><br /><br />
             {CORE_SCALES.map(s => (<span key={s}>{s}: {scoring.normalized[s]}<br /></span>))}
             <br /><strong>// Distanzen zu Typen</strong><br /><br />
             {Object.entries(scoring.distances).sort((a, b) => a[1] - b[1]).map(([type, dist]) => (<span key={type}>{TYPE_META[type].label}: {dist.toFixed(1)} {type === scoring.resultType ? "← MATCH" : ""}<br /></span>))}
@@ -1867,7 +1866,7 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
             Reintyp-Tag: {scoring.isReintyp ? "JA (≥20)" : "NEIN (Mischprofil)"}<br />
             Kit Form-ID: {KIT_FORM_ID}<br /><br />
             <strong>// Antworten</strong><br /><br />
-            {QUESTIONS.map(q => { const a = answers[q.id]; const fuKey = a?.primary ? `${q.id}${a.primary}` : null; const fuAns = fuKey ? followUpAnswers[fuKey] : null; return (<span key={q.id}>F{q.id}: {a?.primary || "–"}{a?.secondary ? ` + ${a.secondary} (40%)` : ""}{fuAns ? ` → FU:${fuAns}` : ""}<br /></span>); })}
+            {QUESTIONS.map(q => { const a = answers[q.id]; const fuKey = a?.primary ? `${q.id}${a.primary}` : null; const fuAns = fuKey ? followUpAnswers[fuKey] : null; return (<span key={q.id}>F{q.id}: {a?.primary || "-"}{a?.secondary ? ` + ${a.secondary} (40%)` : ""}{fuAns ? ` → FU:${fuAns}` : ""}<br /></span>); })}
           </div>
         )}
       </div>

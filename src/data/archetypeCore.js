@@ -16,6 +16,10 @@
    NICHT hier hinein gehoeren:
    - Potenzial-Analyse, Reintyp-Texte, Mischtyp-Texte, Dimensionstexte
      → nur auf der Detailseite, also nur im Haupt-Repo
+   - Wahrheit Absatz 3+4 (wahrheitDetail)
+     → nur auf der Detailseite, liegt in DeinErgebnis.jsx. Hier stehen nur
+       Absatz 1+2, weil der Teaser genau diese beiden zeigt. So kann der
+       Teaser 3+4 gar nicht versehentlich anzeigen.
    - label (Kurzlabel)
      → nur im Test
    - der Bildpfad
@@ -32,7 +36,7 @@
    wie sie sind - sie stecken im Token und in Kit.
    ═══════════════════════════════════════════════════════════════════════════ */
 
-export const ARCHETYPE_COPY_VERSION = "2026-09-11b";
+export const ARCHETYPE_COPY_VERSION = "2026-09-11c";
 
 export const ARCHETYPE_CORE = {
   zuschauer: {
@@ -41,7 +45,7 @@ export const ARCHETYPE_CORE = {
     tagline: "Dein scharfer Verstand ist ein Segen - und genau der steht dir im Weg.",
     wahrheit: [
       "Deine Beobachtungsgabe ist messerscharf. Du durchschaust Situationen, Menschen und Zusammenhänge, während andere noch nicht mal wissen, welche Frage sie zuerst stellen sollen. **Diese Klarheit ist wertvoll und selten**.",
-      "Aber Erkennen ist nicht Handeln. Genau da liegt dein Haken: Du siehst Dinge, die andere übersehen, und hast dadurch einen Vorsprung, theoretisch. Denn solange die Erkenntnis nur in deinem Kopf bleibt, **verändert sie in deinem Leben genau nichts**.",
+      "Aber Erkennen ist nicht Handeln. Genau da liegt dein Haken: Du siehst Dinge, die andere übersehen, und hast dadurch einen Vorsprung, theoretisch. Denn solange die Erkenntnis nur in deinem Kopf bleibt, **verändert sie in deinem Leben genau nichts**. Du weißt seit Monaten, welches Gespräch fällig wäre. Die Argumente könntest du im Schlaf aufsagen. Geführt hast du es trotzdem nicht.",
     ],
     falle: "Du analysierst im Kreis und **verwechselst Erkenntnis mit Fortschritt**. Jeder Tag, an dem du nur verstehst statt zu handeln, macht den nächsten Schritt nicht leichter, sondern schwerer.",
   },
@@ -52,7 +56,7 @@ export const ARCHETYPE_CORE = {
     tagline: "Deine Power ist beeindruckend - nur setzt du sie aktuell wahrscheinlich für das Erreichen von Zielen ein, die du dir nicht wirklich unbeeinflusst selbst gesetzt hast.",
     wahrheit: [
       "Du packst an. Wo andere zögern, lieferst du. Deine Disziplin, deine Belastbarkeit, dein Durchhaltevermögen, das ist selten, und es hat dich weit gebracht. **Auf dich ist Verlass**.",
-      "Nur: **Bewegung ist nicht dasselbe wie Richtung**. Du funktionierst, aber irgendwann hat sich die Frage verschoben von „Will ich das?“ zu „Wie schaffe ich das?“. Und solange du in Bewegung bleibst, musst du dir die erste Frage nicht stellen.",
+      "Nur: **Bewegung ist nicht dasselbe wie Richtung**. Du funktionierst, aber irgendwann hat sich die Frage verschoben von „Will ich das?“ zu „Wie schaffe ich das?“. Und solange du in Bewegung bleibst, musst du dir die erste Frage nicht stellen. Der Urlaub, in dem du am dritten Tag wieder Mails checkst. Der freie Sonntag, der sich anfühlt wie verschwendete Zeit.",
     ],
     falle: "Du bist so beschäftigt mit Funktionieren, dass du gar nicht merkst, wie weit du dich von dir selbst entfernt hast. Noch mehr Leistung bringt dich diesem Punkt nicht näher, **sie bringt dich weiter weg**.",
   },
@@ -63,9 +67,9 @@ export const ARCHETYPE_CORE = {
     tagline: "Du willst die Welt besser machen - und vergisst dabei den Menschen, der dich am dringendsten braucht: dich.",
     wahrheit: [
       "Du spürst, was auf der Welt schiefläuft. Ungerechtigkeit, Oberflächlichkeit, der Zustand der Welt, das perlt an dir nicht ab, das geht dir nah. Dieser Wertekompass ist echt und tief, und ehrlich gesagt **bräuchte die Welt mehr Menschen wie dich**.",
-      "Dein Weltschmerz erzeugt ein Gewicht auf deinen Schultern, das dich langsam auffrisst. Du gibst deine Energie nach außen, an Themen, an andere, an das große Ganze, bis für dich selbst nichts mehr übrig ist. Das Paradoxe: Du hast ein gutes Gespür dafür, wie man Umstände besser machen kann, **außer bei deinem eigenen Leben**.",
+      "Dein Weltschmerz erzeugt ein Gewicht auf deinen Schultern, das dich langsam auffrisst. Du gibst deine Energie nach außen, an Themen, an andere, an das große Ganze, bis für dich selbst nichts mehr übrig ist. Das Paradoxe: Du hast ein gutes Gespür dafür, wie man Umstände besser machen kann, **außer bei deinem eigenen Leben**. Du scrollst abends durch Nachrichten, bis es wehtut, und legst das Handy weg mit dem Gefühl, mehr tun zu müssen. Für dich selbst hast du an dem Tag nichts getan.",
     ],
-    falle: "Dein Gerechtigkeitssinn ist ehrenvoll, aber wenn du dich von ihm zu unbewusst antreiben lässt, kann er sich gegen dich richten. **Großes ändern beginnt dennoch im Kleinen. Bei dir**.",
+    falle: "Du trägst Probleme, die du nicht lösen kannst, und lässt dabei die liegen, die du lösen könntest: **deine eigenen**. Je mehr die Welt dich beschäftigt, desto weniger bleibt für dein Leben, und genau das nährt am Ende das Gefühl, nichts zu bewirken.",
   },
 
   suchender: {
@@ -74,9 +78,9 @@ export const ARCHETYPE_CORE = {
     tagline: "Deine Neugier ist ein Geschenk - nur suchst du im Außen, was längst in dir liegt.",
     wahrheit: [
       "Du gibst dich nicht mit der Oberfläche zufrieden. Dein Wissensdurst, deine Offenheit, dein Gespür dafür, wenn etwas nicht stimmt, **das ist ein echtes Talent**. Die meisten stellen die Fragen gar nicht erst, die du dir längst stellst.",
-      "Nur: Zufrieden macht es dich nicht. Du hast schon vieles probiert, Bücher, Podcasts, Methoden, Ansätze. Manches hat kurz resoniert, aber nichts hat wirklich gehalten. Das liegt nicht daran, dass du sprunghaft bist. Es liegt daran, dass die Antwort, die du im nächsten Impuls suchst, **dort gar nicht warten kann**.",
+      "Nur: Zufrieden macht es dich nicht. Du hast schon vieles probiert, Bücher, Podcasts, Methoden, Ansätze. Manches hat kurz resoniert, aber nichts hat wirklich gehalten. Vielleicht kennst du das: Du stürzt dich mit voller Begeisterung in ein neues Thema, kaufst gleich drei Bücher dazu und erzählst allen davon. Ein paar Wochen später ist die Luft raus, alles liegt halb gelesen herum, und irgendwie war es dann doch nicht das. Und du brennst längst für das nächste, fest überzeugt, **dass es diesmal das Richtige ist**.",
     ],
-    falle: "Du verwechselst Bewegung mit Fortschritt. Es liegt nicht an den Methoden. Es liegt daran, dass du nie lange genug an einer Stelle gräbst, um auf Gold zu stoßen. Es gibt hierfür eine Lösung, doch **sie liegt nicht im Außen, sondern in dir**.",
+    falle: "**Du verwechselst Bewegung mit Fortschritt**. Die Methoden waren oft gar nicht schlecht. Du hast nur nie lange genug an einer Stelle gegraben, um auf Gold zu stoßen.",
   },
 
   klarsichtiger: {
@@ -85,7 +89,7 @@ export const ARCHETYPE_CORE = {
     tagline: "Du bist weiter als die meisten - und genau das ist dein blinder Fleck.",
     wahrheit: [
       "Machen wir uns nichts vor: Du hast an dir gearbeitet wie kaum jemand. Du reflektierst, du führst dich selbst, du kommst ins Handeln, und du erkennst Muster, bei dir und bei anderen, mit einer Klarheit, die beeindruckend ist. Du bist bereits weiter gekommen, **als die meisten je werden**.",
-      "Und genau da liegt die versteckte Gefahr. Denn wer viel verstanden hat, hört irgendwann auf, sich zu hinterfragen: „das ist mir schon bewusst“. Zwischen Klarsehen und konsequent-danach-leben bleibt eine letzte Lücke. **Klein, aber hartnäckig**.",
+      "Und genau da liegt die versteckte Gefahr. Denn wer viel verstanden hat, hört irgendwann auf, sich zu hinterfragen: „das ist mir schon bewusst“. Zwischen Klarsehen und konsequent-danach-leben bleibt eine letzte Lücke. **Klein, aber hartnäckig**. Du erklärst einer Freundin in drei Sätzen ihr Muster, präzise und liebevoll. Am nächsten Tag machst du bei dir genau das, was du ihr ausgeredet hast.",
     ],
     falle: "Klarsehen fühlt sich für dich an wie Ankommen. Zu wissen, wie es geht, ist nicht dasselbe, wie es zu leben, und die letzten Meter gehen die wenigsten, **gerade weil sie sich schon am Ziel wähnen**.",
   },
