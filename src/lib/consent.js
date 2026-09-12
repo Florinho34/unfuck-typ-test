@@ -82,6 +82,42 @@ export function applyConsent({ statistik, marketing }) {
     ad_personalization: marketing ? 'granted' : 'denied',
   });
   loadGTM();
+
+  // Ab hier gilt die Entscheidung als gefallen. Wer darauf gewartet hat,
+  // darf jetzt in den dataLayer schreiben (siehe onConsentReady unten).
+  consentApplied = true;
+  window.__flConsentApplied = true;
+  window.dispatchEvent(new Event('fl:consent-applied'));
+}
+
+// --- Signal: die Einwilligungs-Entscheidung ist gefallen ---------------------
+// WARUM ES DAS GIBT (gefunden am 12.09.2026 im GTM-Vorschaumodus):
+// Seiten, die ihr Ereignis SOFORT beim Laden melden (/dein-ergebnis, /mc-danke),
+// schrieben es bisher in den dataLayer, bevor der Nutzer im Banner geklickt
+// hatte. GTM arbeitet den dataLayer beim Start von oben nach unten ab - an der
+// Position des Ereignisses stand die Einwilligung noch auf "denied", also
+// verwarf GTM den Tag. Regelkonform und trotzdem falsch.
+//
+// Das traf JEDEN Besucher, auch Wiederkehrer mit gespeicherter Zustimmung:
+// Der ConsentBanner steht in App.jsx hinter den <Routes>, sein Effekt laeuft
+// deshalb NACH dem Effekt der Seite.
+//
+// onConsentReady() sorgt dafuer, dass ein Push immer HINTER dem
+// "consent update" landet - unabhaengig von der Reihenfolge der React-Effekte.
+// Gibt eine Abmeldefunktion zurueck, direkt als useEffect-Cleanup verwendbar.
+//
+// Nicht noetig fuer Ereignisse, die eine Nutzerhandlung brauchen (Klick auf den
+// Recognition-Slider, Formular abschicken) - die passieren ohnehin spaeter.
+let consentApplied = false;
+
+export function onConsentReady(callback) {
+  if (typeof window === 'undefined') return () => {};
+  if (consentApplied || window.__flConsentApplied) {
+    callback();
+    return () => {};
+  }
+  window.addEventListener('fl:consent-applied', callback, { once: true });
+  return () => window.removeEventListener('fl:consent-applied', callback);
 }
 
 // --- Footer-Link "Cookie-Einstellungen" --------------------------------------
