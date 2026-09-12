@@ -36,7 +36,7 @@
    wie sie sind - sie stecken im Token und in Kit.
    ═══════════════════════════════════════════════════════════════════════════ */
 
-export const ARCHETYPE_COPY_VERSION = "2026-09-11c";
+export const ARCHETYPE_COPY_VERSION = "2026-09-12d";
 
 export const ARCHETYPE_CORE = {
   zuschauer: {

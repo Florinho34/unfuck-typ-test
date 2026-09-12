@@ -381,40 +381,40 @@ const FOLLOW_UPS = {
   "1A": {
     question: "Bezüglich deiner Antwort: Wie gehst du danach mit solchem Feedback um?",
     options: [
-      { key: "1", text: "Ich nehme mir Zeit, das ehrlich zu reflektieren - und wenn was dran ist, versuche ich aktiv daran zu arbeiten.", scoring: { REF: 2, SL: 1, HA: 1 } },
-      { key: "2", text: "Es beschäftigt mich lange, aber am Ende fällt es mir schwer, etwas daran zu ändern.", scoring: { REF: 1, ML: 2, HA: -2 } },
+      { key: "1", text: "Ich nehme mir Zeit, das ehrlich zu reflektieren - und wenn was dran ist, versuche ich aktiv daran zu arbeiten.", scoring: { REF: 2, SL: 2, HA: 1 } },
+      { key: "2", text: "Es beschäftigt mich lange, aber am Ende fällt es mir schwer, etwas daran zu ändern.", scoring: { REF: 1, SL: -1, ML: 2, HA: -1 } },
     ],
   },
   // F2 C → Differenzierung: Vermeidung vs. bewusstes Ritual
   "2C": {
     question: "Bezüglich deiner Antwort: Warum brauchst du den Input zum Einschlafen?",
     options: [
-      { key: "1", text: "Ohne Ablenkung kommen Gedanken hoch, die ich lieber vermeide.", scoring: { ML: 2, SL: -1, HA: -1 } },
-      { key: "2", text: "Ich nutze das bewusst zum Runterkommen - es ist mein Ritual, kein Vermeiden.", scoring: { SL: 1 } },
+      { key: "1", text: "Ohne Ablenkung kommen Gedanken hoch, die ich lieber vermeide.", scoring: { ML: 3, SL: -1, EF: 1, HA: -1 } },
+      { key: "2", text: "Ich nutze das bewusst zum Runterkommen - es ist mein Ritual, kein Vermeiden.", scoring: { SL: 1, ML: -1 } },
     ],
   },
   // F4 C → Ehrlichkeits-Check: Entscheidungsstärke
   "4C": {
     question: "Du sagst, du entscheidest relativ zügig. Wie sieht das in der Praxis wirklich aus?",
     options: [
-      { key: "1", text: "Ja, das beschreibt mich wirklich - ich entscheide zügig und kann gut damit leben, auch wenn es mal nicht perfekt läuft.", scoring: { SL: 2, HA: 2 } },
-      { key: "2", text: "Ehrlich gesagt weiß ich, wie ich entscheiden sollte - aber in der Praxis schiebe ich wichtige Entscheidungen doch länger vor mir her als nötig.", scoring: { HA: -3, ML: 3, OL: 1 } },
+      { key: "1", text: "Ja, das beschreibt mich wirklich - ich entscheide zügig und kann gut damit leben, auch wenn es mal nicht perfekt läuft.", scoring: { REF: 2, SL: 1, NAT: 1, HA: 2 } },
+      { key: "2", text: "Ehrlich gesagt weiß ich, wie ich entscheiden sollte - aber in der Praxis schiebe ich wichtige Entscheidungen doch länger vor mir her als nötig.", scoring: { REF: 1, ML: 3, NAT: 1, HA: -2 } },
     ],
   },
   // F8 D → Differenzierung: Gleichgültigkeit vs. pragmatische Akzeptanz
   "8D": {
     question: "Bezüglich deiner Antwort: Wie triffst du diese Entscheidung?",
     options: [
-      { key: "1", text: "Ehrlich gesagt denke ich darüber nicht groß nach - ist halt so.", scoring: { REF: -1, EF: 2, HA: -1 } },
-      { key: "2", text: "Ich sehe den Widerspruch, aber ich treffe die Entscheidung trotzdem bewusst - perfekt geht halt nicht.", scoring: { REF: 1, HA: 1 } },
+      { key: "1", text: "Ehrlich gesagt denke ich darüber nicht groß nach - ist halt so.", scoring: { SL: 1, EF: 1, HA: -1 } },
+      { key: "2", text: "Ich sehe den Widerspruch, aber ich treffe die Entscheidung trotzdem bewusst - perfekt geht halt nicht.", scoring: { REF: 1, SL: 1, ETH: 1, HA: 1 } },
     ],
   },
   // F9 C → Ehrlichkeits-Check: Meinungsstärke
   "9C": {
     question: "Du sagst, du bildest dir eine Meinung und stehst dazu. Wie sieht das in Diskussionen konkret aus?",
     options: [
-      { key: "1", text: "Ja - ich kann in Diskussionen meine Meinung vertreten, auch wenn die Mehrheit anders denkt.", scoring: { SL: 2, HA: 2 } },
-      { key: "2", text: "Wenn ich ehrlich bin: Ich verstehe meistens beide Seiten so gut, dass ich mich am Ende gar nicht festlegen kann - oder will.", scoring: { HA: -3, ML: 3, REF: 1 } },
+      { key: "1", text: "Ja - ich kann in Diskussionen meine Meinung vertreten, auch wenn die Mehrheit anders denkt.", scoring: { REF: 2, SL: 1, ETH: 2, HA: 1 } },
+      { key: "2", text: "Wenn ich ehrlich bin: Ich verstehe meistens beide Seiten so gut, dass ich mich am Ende gar nicht festlegen kann - oder will.", scoring: { REF: 2, SL: -1, ML: 2, HA: -2 } },
     ],
   },
   // F19 D → Ehrlichkeits-Check: Selten leer/orientierungslos
@@ -427,18 +427,18 @@ const FOLLOW_UPS = {
   },
   // F20 A → Ehrlichkeits-Check: Ehrlichkeit gegenüber anderen
   "20A": {
-    question: "Du sagst, du gibst ehrliches Feedback. Wie reagieren die Menschen in deinem Umfeld darauf?",
+    question: "Du sagst, du gibst ehrliches Feedback. Wie kommt das bei den Leuten an?",
     options: [
-      { key: "1", text: "Ja - ich bekomme auch regelmäßig das Feedback, dass meine Ehrlichkeit geschätzt wird, auch wenn sie unbequem ist.", scoring: { SL: 2, HA: 2 } },
-      { key: "2", text: "Wenn ich ehrlich bin: Ich weiß zwar, was ich sagen sollte, aber oft sage ich dann doch eher das, was die Person hören will - um niemanden zu verletzen.", scoring: { SL: -2, HA: -3, EF: 2, ML: 2 } },
+      { key: "1", text: "Meistens gut - einige kommen sogar genau deswegen zu mir.", scoring: { REF: 2, SL: 1, ETH: 1, HA: 2 } },
+      { key: "2", text: "Ehrlich gesagt gemischt - und wenn ich merke, dass es nicht ankommt, schwäche ich beim nächsten Mal doch wieder ab.", scoring: { REF: 2, SL: -1, ML: 1, EF: 2, HA: -1 } },
     ],
   },
   // F28 C → Ehrlichkeits-Check: Selbstkenntnis
   "28C": {
     question: "Du sagst, du kennst dich gut genug für gute Entscheidungen. Wie zeigt sich das in deinem Alltag?",
     options: [
-      { key: "1", text: "Ja - und das zeigt sich auch darin, dass ich mit meinen Entscheidungen im Großen und Ganzen zufrieden bin.", scoring: { SL: 2, HA: 2 } },
-      { key: "2", text: "Ich glaube mich gut zu kennen, aber es passiert schon öfter, dass mich mein eigenes Verhalten überrascht oder enttäuscht.", scoring: { SL: -3, OL: 2, ML: 3 } },
+      { key: "1", text: "Ja - und das zeigt sich auch darin, dass ich mit meinen Entscheidungen im Großen und Ganzen zufrieden bin.", scoring: { REF: 2, SL: 2, HA: 1 } },
+      { key: "2", text: "Ich glaube mich gut zu kennen, aber es passiert schon öfter, dass mich mein eigenes Verhalten überrascht oder enttäuscht.", scoring: { REF: 1, OL: 1, ML: 3 } },
     ],
   },
 };
@@ -789,10 +789,19 @@ function computeScoring(answers, followUpAnswers = {}) {
 
 // ─── RADAR CHART (SVG) ──────────────────────────────────────────────────────
 
-/*  showLabels=false blendet die Dimensionsnamen aus und setzt stattdessen die
-    Ziffern 1 bis 10 an die Achsen. Die Person sieht ihre eigene Zackenform,
-    erfaehrt aber nicht, welche Dimension welche ist - das ist der Teaser.
-    Welche Achse welche Nummer traegt, verraet der Screen bewusst nicht. */
+/*  WICHTIG (12.09.2026): Gezeichnet wird der strengthScore, nicht der rohe
+    Normwert. Bei den fuenf invers gerichteten Dimensionen (ML, OL, WS, EX, EF)
+    bedeutet ein hoher Rohwert eine SCHWAECHE. Vorher schlug das Radar dort nach
+    aussen aus, obwohl es der schwaechste Bereich der Person war - und die Zeile
+    darunter, die schon immer auf strengthScore zaehlt, widersprach dem Bild.
+    Jetzt gilt auf allen zehn Achsen: weiter aussen = staerker. Nur so stimmen
+    Bild, Zeile und die Top-3 der Detailseite ueberein. Das Idealprofil wird
+    identisch umgerechnet.
+
+    showLabels=false ist der Teaser: Nur die ZWEI am weitesten aussen liegenden
+    Achsen tragen ihren Klartext-Namen, die uebrigen acht ein Fragezeichen.
+    Das erzeugt mehr Sog als zehn nichtssagende Ziffern. Bei Gleichstand
+    entscheidet die Reihenfolge in CORE_SCALES. */
 function RadarChart({ normalized, resultType, showLabels = true }) {
   const cx = 160, cy = 160, r = 120;
   const scales = CORE_SCALES;
@@ -804,12 +813,24 @@ function RadarChart({ normalized, resultType, showLabels = true }) {
     return { x: cx + dist * Math.cos(angle), y: cy + dist * Math.sin(angle) };
   };
 
+  // Rohwert -> Staerke-Richtung (hoch = gut) fuer alle zehn Achsen
+  const toStrength = (key, val) => (DIMENSION_TEXTS[key].positive ? val : 100 - val);
+
+  /*  Die zwei Achsen mit dem hoechsten strengthScore - also die beiden Punkte,
+      die im Bild am weitesten aussen liegen. Stabiler Tiebreak ueber den Index,
+      damit bei Gleichstand immer dieselbe Achse gewinnt. */
+  const top2 = scales
+    .map((s, i) => ({ s, i, v: toStrength(s, normalized[s]) }))
+    .sort((a, b) => (b.v - a.v) || (a.i - b.i))
+    .slice(0, 2)
+    .map((o) => o.s);
+
   const rings = [25, 50, 75, 100];
-  const profilePoints = scales.map((s, i) => getPoint(i, normalized[s]));
+  const profilePoints = scales.map((s, i) => getPoint(i, toStrength(s, normalized[s])));
   const profilePath = profilePoints.map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" ") + " Z";
 
   const typeProfile = TYPE_PROFILES[resultType];
-  const typePoints = scales.map((s, i) => getPoint(i, typeProfile[s]));
+  const typePoints = scales.map((s, i) => getPoint(i, toStrength(s, typeProfile[s])));
   const typePath = typePoints.map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" ") + " Z";
 
   return (
@@ -830,13 +851,15 @@ function RadarChart({ normalized, resultType, showLabels = true }) {
       ))}
       {scales.map((s, i) => {
         const p = getPoint(i, 128);
-        const anchor = showLabels ? (p.x < cx - 10 ? "end" : p.x > cx + 10 ? "start" : "middle") : "middle";
+        const named = showLabels || top2.includes(s);
+        const anchor = named ? (p.x < cx - 10 ? "end" : p.x > cx + 10 ? "start" : "middle") : "middle";
         const dy = p.y < cy - 10 ? -6 : p.y > cy + 10 ? 14 : 4;
         return (
           <text key={s} x={p.x} y={p.y + dy} textAnchor={anchor}
-            fontSize={showLabels ? "9.5" : "10.5"} fontFamily="'Inter Tight', sans-serif" fontWeight={showLabels ? "600" : "700"}
-            fill={showLabels ? "var(--dark)" : "var(--warm-gray)"} opacity={showLabels ? "0.7" : "0.85"}>
-            {showLabels ? SCALE_LABELS[s] : i + 1}
+            fontSize={named ? "9.5" : "11"} fontFamily="'Inter Tight', sans-serif" fontWeight="700"
+            fill={!named ? "var(--warm-gray)" : showLabels ? "var(--dark)" : "var(--orange)"}
+            opacity={named ? "0.95" : "0.8"}>
+            {named ? DIMENSION_TEXTS[s].name : "?"}
           </text>
         );
       })}
@@ -871,26 +894,30 @@ function radarTeaserText(normalized) {
 
   // Singular/Plural. "1 Dimensionen sind" waere ein Amateurfehler an einer
   // Stelle, an der jemand gerade zum ersten Mal etwas ueber sich liest.
-  const sindS = s === 1 ? "1 Dimension ist" : `${s} Dimensionen sind`;
-  const liegenP = p === 1 ? "1 Dimension liegt" : `${p} Dimensionen liegen`;
-  const stechenS = s === 1 ? "1 Dimension heraus" : `${s} Dimensionen heraus`;
-  const zurueckP = p === 1 ? "1 liegt" : `${p} liegen`;
+  /*  Fettungen (12.09.2026): pro Variante genau ZWEI Stellen, immer die
+      dynamischen Mengen- und Wertungsaussagen - also das, was sich von Person
+      zu Person aendert. Der Rest bleibt normal. Die Zeile wird deshalb ueber
+      <RichText> gerendert, nicht als reiner String. */
+  const sindS = s === 1 ? "**1 Dimension** ist" : `**${s} Dimensionen** sind`;
+  const liegenP = p === 1 ? "**1 Dimension** liegt" : `**${p} Dimensionen** liegen`;
+  const stechenS = s === 1 ? "**1 Dimension** heraus" : `**${s} Dimensionen** heraus`;
+  const zurueckP = p === 1 ? "**1 liegt**" : `**${p} liegen**`;
 
   let text;
   if (s <= 1 && p <= 1) {
-    text = "Dein Profil ist ungewöhnlich ausgeglichen. Keine einzelne Dimension sticht heraus, und das ist seltener, als du denkst.";
+    text = "Dein Profil ist **ungewöhnlich ausgeglichen**. **Keine einzelne Dimension** sticht heraus, und das ist seltener, als du denkst.";
   } else if (s >= 3 && p >= 3) {
-    text = `Dein Profil hat starke Ausschläge in beide Richtungen. ${sindS} bei dir deutlich ausgeprägt, ${p === 1 ? "1 liegt" : `${p} liegen`} fast brach.`;
+    text = `Dein Profil hat starke Ausschläge in beide Richtungen. ${sindS} bei dir deutlich ausgeprägt, ${p === 1 ? "**1 liegt**" : `**${p} liegen**`} fast brach.`;
   } else if (s >= 3 && p <= 1) {
-    text = `${sindS} bei dir deutlich ausgeprägt. Auffällig wenig liegt bei dir brach.`;
+    text = `${sindS} bei dir deutlich ausgeprägt. **Auffällig wenig** liegt bei dir brach.`;
   } else if (s <= 1 && p >= 3) {
-    text = `${liegenP} bei dir fast brach. Genau dort steckt dein größter ungenutzter Anteil.`;
+    text = `${liegenP} bei dir fast brach. Genau dort steckt **dein größter ungenutzter Anteil**.`;
   } else if (s === 2 && p === 0) {
     // neu 11.09.2026 - landete vorher in "sonst" ("…, 0 liegen deutlich zurück")
-    text = "2 Dimensionen stechen bei dir deutlich heraus, nichts liegt brach. Ein schmales, dafür klares Profil.";
+    text = "**2 Dimensionen** stechen bei dir deutlich heraus, **nichts liegt brach**. Ein schmales, dafür klares Profil.";
   } else if (s <= 1 && p === 2) {
     // neu 11.09.2026 - landete vorher in "sonst" ("Bei dir stechen 1 Dimension heraus" / "0 Dimensionen")
-    text = "2 Dimensionen liegen bei dir deutlich zurück, kaum etwas sticht heraus. Genau dort steckt dein ungenutzter Anteil.";
+    text = "**2 Dimensionen** liegen bei dir deutlich zurück, **kaum etwas sticht heraus**. Genau dort steckt dein ungenutzter Anteil.";
   } else {
     // erreicht seit 11.09.2026 nur noch s >= 2 und p >= 1
     text = `Bei dir stechen ${stechenS}, ${zurueckP} deutlich zurück. Ein schmales, dafür klares Profil.`;
@@ -901,6 +928,22 @@ function radarTeaserText(normalized) {
 /* ─── MISCH-/REINTYP-TEASER ──────────────────────────────────────────────────
    Fixer Text, bewusst NICHT archetypspezifisch. Die 20 Combo-Texte und die
    fuenf Reintyp-Texte bleiben ausschliesslich auf der Detailseite. */
+/* ─── ANRISS (die EINE verschleierte Stelle auf dem Teaser) ──────────────────
+   Ersetzt seit 12.09.2026 die frueher hier stehende geblurrte Falle-Box.
+   Eigenstaendige Texte, bewusst KEINE Kopie aus Wahrheit Absatz 3 - der
+   existiert in diesem Repo nicht und soll hier auch nicht landen.
+   Die Saetze brechen mitten im Satz ab: erste Zeile scharf, zweite fadet
+   vertikal gegen Null (CSS-Maske, kein Blur). Vertikal, weil ein horizontaler
+   Verlauf auf dem Handy bricht, sobald der Satz umbricht.
+   Kein Satzzeichen am Ende - der Abbruch IST die Aussage. */
+const ANRISS = {
+  zuschauer: "Das bleibt nicht in deinem Kopf. Es zeigt sich an drei Stellen in deinem Alltag, und die erste davon ist dein",
+  getriebener: "Das Tempo hört nicht bei der Arbeit auf. Es prägt auch, wie du mit Menschen umgehst, und vor allem, wie du mit",
+  idealist: "Das bleibt nicht beim Blick in die Nachrichten. Es entscheidet mit, wie du arbeitest, wie du liebst und was du dir selbst",
+  suchender: "Die Suche macht nicht am Feierabend halt. Sie bestimmt, welche Jobs du annimmst, welche Menschen du an dich heranlässt und wie lange du",
+  klarsichtiger: "Deine Klarheit hat eine Kehrseite. Sie zeigt sich nicht in deinem Denken, sondern in deinem Alltag: im Job, bei den Menschen um dich herum und",
+};
+
 const TEASER_MISCHTYP = {
   divider: "Da ist noch was in dir…",
   text: "In dir steckt noch ein zweiter Archetyp. Er erklärt, warum sich dein Muster anders anfühlt als bei anderen deines Typs. Welcher es ist und was er über dich sagt, steht in deiner ausführlichen Auswertung.",
@@ -1142,21 +1185,33 @@ body, html, #root {
 .truth-block p:last-child { margin-bottom: 0; }
 .truth-block strong { color: var(--dark); font-weight: 700; }
 
-/* Falle: Header scharf, Koerper unscharf und nach unten ausgefadet.
-   pointer-events:none + user-select:none, damit niemand versehentlich
-   markiert und dabei den Text im Klartext sieht. */
-.falle-box { position: relative; width: 100%; border-left: 4px solid var(--orange);
-  background: rgba(255, 77, 0, 0.06); border-radius: 14px; padding: 18px 22px 22px;
-  text-align: left; overflow: hidden; }
-.falle-label { display: flex; align-items: center; gap: 0.5rem; font-family: 'Inter Tight', sans-serif;
-  font-weight: 800; color: var(--orange); font-size: 0.86rem; letter-spacing: 0.04em;
-  text-transform: uppercase; margin-bottom: 0.6rem; }
-.falle-body { filter: blur(6px); opacity: 0.75; user-select: none; pointer-events: none;
-  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 45%, rgba(0,0,0,0.25) 100%);
-  mask-image: linear-gradient(180deg, #000 0%, #000 45%, rgba(0,0,0,0.25) 100%); }
-.falle-body p { margin: 0; font-size: 1rem; line-height: 1.7; color: var(--dark); }
-.falle-lock { margin-top: 0.9rem; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
-  font-weight: 700; color: var(--orange); opacity: 0.85; }
+/* Anriss: erste Zeile voll lesbar, dann vertikaler Verlauf gegen Null.
+   Kein Blur - der Text soll oben scharf sein und nach unten verschwinden.
+   Vertikal statt horizontal, weil ein horizontaler Verlauf auf dem Handy
+   bricht, sobald der Satz umbricht. Der Test wird ueberwiegend mobil gemacht.
+   pointer-events:none + user-select:none, damit niemand markiert und dabei
+   den abgeschnittenen Rest sucht. Die Falle-Box (frueher hier) ist am
+   12.09.2026 vom Teaser entfernt worden - samt CSS. */
+.anriss-block { width: 100%; text-align: left; }
+.anriss-text { margin: 0; font-size: 1.05rem; line-height: 1.75; color: var(--dark);
+  font-weight: 500; user-select: none; pointer-events: none;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 48%, rgba(0,0,0,0) 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 48%, rgba(0,0,0,0) 100%); }
+.anriss-lock { margin-top: 0.35rem; font-size: 0.78rem; letter-spacing: 0.08em;
+  text-transform: uppercase; font-weight: 700; color: var(--orange); opacity: 0.9; }
+.anriss-link { color: inherit; font: inherit; letter-spacing: inherit; text-decoration: underline;
+  text-underline-offset: 3px; cursor: pointer; }
+.anriss-link:hover { color: var(--orange-hover); opacity: 1; }
+
+/* Inhaltsverzeichnis direkt ueber dem Formular */
+.toc-block { width: 100%; max-width: 520px; margin: 0 auto; text-align: left; }
+.toc-eyebrow { font-family: 'Inter Tight', sans-serif; font-size: 0.72rem; letter-spacing: 0.12em;
+  text-transform: uppercase; font-weight: 700; color: var(--warm-gray); margin-bottom: 0.85rem; }
+.toc-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+.toc-list li { position: relative; padding-left: 1.5rem; font-size: 0.93rem; line-height: 1.6;
+  color: var(--dark); font-weight: 400; }
+.toc-list li::before { content: ""; position: absolute; left: 0.15rem; top: 0.62em;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--orange); opacity: 0.85; }
 
 /* Zeile unter dem unbeschrifteten Radar */
 .radar-teaser { margin: 1.1rem auto 0; max-width: 46ch; font-size: 0.95rem; line-height: 1.65;
@@ -1172,7 +1227,7 @@ body, html, #root {
 .bridge-line strong em { font-weight: 800; font-style: italic; color: var(--orange); }
 
 @media (prefers-reduced-motion: reduce) {
-  .falle-body { filter: blur(6px); }
+  .anriss-text { transition: none; }
 }
 
 .debug-toggle { background: none; border: none; font-family: monospace; font-size: 0.72rem; color: var(--warm-gray); cursor: pointer; padding: 0.5rem 0; text-align: left; transition: color 0.2s; }
@@ -1287,6 +1342,19 @@ body, html, #root {
 .hebel-cta { font-size: 0.88rem; line-height: 1.6; color: var(--dark); margin-top: 0.75rem; font-weight: 400; }
 .hebel-cta a { color: var(--orange); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 .hebel-cta a:hover { color: var(--orange-hover); }
+
+/*  Desktop-Kompaktierung (12.09.2026): Ziel ist, dass Frage, Antworten und der
+    Weiter-Button auf einem normalen Laptop-Viewport ohne Scrollen zusammen
+    sichtbar sind. Gespart werden rund 70px, verteilt auf Aussenabstand,
+    Kastenpolster und die Abstaende zwischen den Bloecken. Bewusst nur ab 521px,
+    damit die mobile Ansicht unveraendert bleibt - dort ist Scrollen normal. */
+@media (min-width: 521px) {
+  .question-screen { padding-top: 3.1rem; padding-bottom: 1.25rem; }
+  .question-wrapper { padding: clamp(28px, 3.2vw, 40px); }
+  .question-title-small { margin-bottom: 0.9rem; }
+  .question-scenario { margin-bottom: 1.9rem; }
+  .options-list { margin-bottom: 1.4rem; }
+}
 
 @media (max-width: 520px) {
   .question-screen { padding: 3rem 1.15rem 6rem; }
@@ -1499,6 +1567,16 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, follow
   const [showCalculating, setShowCalculating] = useState(false);
   const [feedbackShown, setFeedbackShown] = useState({});
   const followupRef = useRef(null);
+
+  /*  Bei jeder neuen Frage zurueck an den Seitenanfang. Ohne das landet man
+      nach einer Frage, bei der man scrollen musste, mitten in der naechsten.
+      Bewusst hart ("auto") statt "smooth": ein weicher Flug nach oben bei
+      jedem Klick wirkt wie ein Fahrstuhl. Gilt fuer Desktop und Mobile. */
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, [question.id]);
+
   useEffect(() => {
     if (followUp && hasPrimary && followupRef.current) {
       const t = setTimeout(() => {
@@ -1695,6 +1773,19 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
   // WELCHER der beiden Teaser gezeigt wird.
   const showMischtyp = !scoring.isReintyp && !!secondaryType;
 
+  /*  Sprung von der Einordnungszeile unter dem Anriss zum Anmeldeformular.
+      Das Ziel #ergebnis-form existiert weiter unten auf demselben Screen.
+      prefers-reduced-motion wird respektiert: dann springt es hart. */
+  const scrollToForm = (e) => {
+    if (e) e.preventDefault();
+    if (typeof document === "undefined") return;
+    const el = document.getElementById("ergebnis-form");
+    if (!el) return;
+    const reduce = typeof window !== "undefined" && window.matchMedia
+      && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+  };
+
   const validateEmail = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
   const handleKeyDown = (e) => { if (e.key === "Enter") handleEmailSubmit(); };
   const REINTYP_TAG_ID = 17381951;      // Tag "reintyp" (nur bei Margin >= 20)
@@ -1769,19 +1860,21 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
           {meta.wahrheit.map((t, i) => <p key={i}><RichText text={t} /></p>)}
         </div>
 
-        {/* ── FALLE, GEBLURRT ─────────────────────────────────────────────────
-            Der Header bleibt scharf lesbar, der Textkoerper ist unscharf.
-            GENAU EINE geblurrte Stelle im ganzen Screen. Mehrfacher Blur kippt
-            von "neugierig" nach "Paywall" und beisst sich mit der Haltung.
-            Hinweis: CSS-Blur heisst, der Text steht weiterhin im Quelltext.
-            In der Vorlaufphase unkritisch - hinter dem Gate liegt die kostenlose
-            Auswertung. Sobald dort Bezahlinhalte haengen, serverseitig loesen. */}
-        <div className="falle-box">
-          <div className="falle-label">⚠ Deine Falle</div>
-          <div className="falle-body" aria-hidden="true">
-            <p><RichText text={meta.falle} /></p>
+        {/* ── ANRISS ───────────────────────────────────────────────────────────
+            Ersetzt seit 12.09.2026 die geblurrte Falle-Box. Die Falle taucht auf
+            dem Teaser gar nicht mehr auf; sie ist im Inhaltsverzeichnis ueber dem
+            Formular namentlich genannt, das Versprechen geht also nicht verloren.
+            GENAU EINE verschleierte Stelle im ganzen Screen - mehr kippt von
+            "neugierig" nach "Paywall" und beisst sich mit der Haltung.
+            Nur der Anriss steht im DOM, nicht der Volltext mit einem Filter
+            darueber. Der vertikale Verlauf ist eine CSS-Maske: erste Zeile
+            scharf, zweite fadet nach unten gegen Null. */}
+        <div className="anriss-block">
+          <p className="anriss-text" aria-hidden="true">{ANRISS[scoring.resultType]}</p>
+          <div className="anriss-lock">
+            In deiner{" "}
+            <a href="#ergebnis-form" className="anriss-link" onClick={scrollToForm}>ausführlichen Auswertung</a>
           </div>
-          <div className="falle-lock">In deiner ausführlichen Auswertung</div>
         </div>
 
         {/* ── RADAR OHNE ACHSENBESCHRIFTUNG + dynamische Zeile ────────────── */}
@@ -1791,7 +1884,7 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
             <div className="legend-item"><span className="legend-dot user" /> Dein Profil</div>
             <div className="legend-item"><span className="legend-dot type" /> Referenz: {meta.label}</div>
           </div>
-          <p className="radar-teaser">{radarTeaserText(scoring.normalized)}</p>
+          <p className="radar-teaser"><RichText text={radarTeaserText(scoring.normalized)} /></p>
         </div>
 
         {/* ── MISCH- ODER REINTYP-TEASER (fixer Text, verraet nichts) ─────── */}
@@ -1803,9 +1896,25 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
 
         {/* ── BRÜCKENSATZ direkt vor dem Formular ──────────────────────────── */}
         <p className="bridge-line">
-          Das ist noch nicht alles. Der spannendere Teil fehlt noch: was aus dir
-          werden könnte, wenn das, was dich heute bremst, <strong><em>für</em></strong> dich arbeitet.
+          Doch der spannendere Teil fehlt noch: was aus dir werden könnte, wenn
+          das, was dich heute bremst, <strong><em>für</em></strong> dich arbeitet.
         </p>
+
+        {/* ── INHALTSVERZEICHNIS direkt ueber dem Formular ────────────────────
+            Macht das Versprechen konkret, statt es nur zu behaupten. Die vorletzte
+            Zeile ist dynamisch: Reintyp und Mischtyp bekommen je ihre eigene. */}
+        <div className="toc-block">
+          <div className="toc-eyebrow">Was im vollen Ergebnis steht</div>
+          <ul className="toc-list">
+            <li>Deine unbequeme Wahrheit zu Ende gelesen: wo dein Muster im Job, in Beziehungen und bei dir selbst auftaucht</li>
+            <li>Deine Falle: das Muster, das dich immer wieder an derselben Stelle ausbremst</li>
+            <li>Die Lücke zwischen deiner Erkenntnis und deiner Umsetzung, als Zahl</li>
+            <li>Dein Profil über alle zehn Dimensionen, alle mit Namen statt Fragezeichen</li>
+            <li>Deine drei stärksten und deine drei dünnsten Bereiche, einzeln erklärt</li>
+            <li>{showMischtyp ? "Welcher zweite Archetyp in dir steckt" : "Was es bedeutet, dass dein Profil so eindeutig ist"}</li>
+            <li>So könnte dein Leben aussehen, wenn das Muster für dich arbeitet</li>
+          </ul>
+        </div>
 
         <div className="postq-screen signup-solo" id="ergebnis-form">
           {emailStatus === "success" ? (
@@ -1820,7 +1929,6 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
               <div className="signup-solo-header">
                 <div className="postq-eyebrow">Nur noch ein Schritt</div>
                 <div className="postq-title">Die restlichen 80{"\u00A0"}%<br />deines Ergebnisses</div>
-                <p className="signup-solo-text">Darin auch deine Falle: das Muster, das dich immer wieder an derselben Stelle ausbremst. Dazu dein Profil über alle zehn Dimensionen, deine Stärken und blinden Flecken.</p>
               </div>
               <div className="cta-email">
                 <input type="text" placeholder="Dein Vorname" className={`email-input ${emailError && !firstName.trim() ? "email-input-error" : ""}`} value={firstName} onChange={(e) => { setFirstName(e.target.value); setEmailError(""); }} disabled={emailStatus === "loading"} />
