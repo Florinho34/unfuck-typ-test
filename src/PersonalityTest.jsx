@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useLayoutEffect, useRef, useCallback } from "react";
 import { ARCHETYPE_CORE, ARCHETYPE_ORDER, CORE_SCALES } from "./data/archetypeCore";
 
 /*  ZWILLINGSDATEI: Archetyp-Name, Tagline, unbequeme Wahrheit und Falle kommen
@@ -217,7 +217,7 @@ const QUESTIONS = [
   },
   {
     id: 17,
-    title: "🐴 EIN GUTES PFERD...",
+    title: "🧱 DIE UNSICHTBARE WAND",
     isCore: true,
     scenario: "Was hält dich am ehesten davon ab, dein Leben zu verändern?",
     options: [
@@ -280,7 +280,7 @@ const QUESTIONS = [
       { key: "A", text: 'Ich antworte routiniert - aber die Antwort fühlt sich nicht wie „ich" an, sondern mehr auswendig gelernt.', scoring: { REF: 1, OL: 1, EF: 1 } },
       { key: "B", text: "Ich erzähle gerne davon - da bin ich in meinem Element.", scoring: { SL: 1, EF: 1 } },
       { key: "C", text: "Ich finde die Frage oberflächlich - als wäre der Job das Einzige, was zählt.", scoring: { REF: 1, ETH: 1, WS: 1, EX: 1 } },
-      { key: "D", text: "Ich antworte ehrlich - und wenn mein aktueller Job nicht mein Ding ist, sage ich das auch. Mein Beruf definiert mich nicht.", scoring: { REF: 1, SL: 2, HA: 1 } },
+      { key: "D", text: "Ich antworte ehrlich - und wenn mein aktueller Job nicht mein Ding ist, sage ich das auch. Mein Beruf definiert mich aber nicht.", scoring: { REF: 1, SL: 2, HA: 1 } },
     ],
   },
   {
@@ -458,11 +458,11 @@ const MICRO_FEEDBACKS = [
     emoji: "🪞", text: "Du prüfst zuerst, ob dein Impuls wirklich der Situation gilt oder dir selbst. Das ist seltener als du denkst! Die meisten Menschen reagieren auf äußere Probleme, ohne zu merken, dass eigentlich ein eigenes inneres Thema getriggert wurde. Dass du diesen Schritt machst, zeigt echte Reflexionstiefe.",
     footnote: null },
   { afterQ: 2, trigger: (ans) => ans[2]?.primary === "A" || ans[2]?.primary === "B",
-    emoji: "💭", text: "Du bist nicht allein damit. Rund 88% unserer täglichen Handlungen laufen auf Autopilot.* Aber nachts, wenn der Autopilot pausiert, holt uns das Unverarbeitete ein.",
-    footnote: "*Rebar et al. (2025), Psychology & Health, University of South Carolina" },
+    emoji: "💭", text: "Du bist nicht allein damit. Rund 88% unserer täglichen Handlungen laufen ab, ohne dass wir sie bewusst steuern* - aber nachts, wenn der Autopilot pausiert, holt uns das Unverarbeitete ein.",
+    footnote: "*Rebar et al. (2025), Psychology & Health - University of South Carolina / Surrey / CQU, 105 Teilnehmende, Echtzeit-Abfragen über eine Woche" },
   { afterQ: 5, trigger: (ans) => ans[5]?.primary === "A" || ans[5]?.primary === "C",
-    emoji: "🪞", text: "Ehrliche Selbsteinschätzung ist seltener als man denkt. 95% der Menschen halten sich für selbstreflektiert. Tatsächlich sind es nur 10 bis 15%.*",
-    footnote: "*Dr. Tasha Eurich (2017), Organisationspsychologin, mehrjährige Forschung" },
+    emoji: "👥", text: "Ob man es dir ansieht oder nicht - innen arbeitet es weiter. Das ist keine dünne Haut: Negatives wiegt psychologisch deutlich schwerer als Positives, und vor versammeltem Team kommt die Frage dazu, wie du jetzt dastehst.* Die interessantere Frage ist deshalb, was genau getroffen wurde. Deine Arbeit - oder dein Bild von dir in den Augen der anderen?",
+    footnote: "*Baumeister et al. (2001), Review of General Psychology - Übersichtsarbeit „Bad is stronger than good“" },
   { afterQ: 10, trigger: (ans) => ans[10]?.primary === "C",
     emoji: "📵", text: "Du bemerkst deine eigene Abstumpfung. Das allein ist schon mehr Bewusstsein, als die meisten aufbringen. Weltweit vermeiden mittlerweile 39% der Menschen aktiv die Nachrichten, ein Rekordwert.* Abschalten ist manchmal Selbstschutz.",
     footnote: "*Reuters Institute Digital News Report 2024, Oxford University, 95.000 Befragte, 47 Länder" },
@@ -476,11 +476,11 @@ const MICRO_FEEDBACKS = [
     emoji: "🧠", text: "Viele Menschen spüren genau das. Psychologen nennen es \u201EStatus-quo-Bias\u201C: Die Tendenz, am Vertrauten festzuhalten, selbst wenn wir wissen, dass Veränderung besser wäre. Klingt erst mal wie Selbstbetrug, ist am Ende aber ein tief eingebranntes neurologisches Muster.*",
     footnote: "*Samuelson & Zeckhauser (1988), Journal of Risk and Uncertainty" },
   { afterQ: 21, trigger: (ans) => ans[21]?.primary === "B",
-    emoji: "💼", text: "Spannend: Dein erster Impuls geht Richtung Sicherheit. Weltweit sind nur 21% aller Arbeitnehmer wirklich engagiert bei dem was sie tun. 62% funktionieren. Vielleicht weil die meisten irgendwann angefangen haben, Sicherheit über Erfüllung zu stellen.*",
-    footnote: "*Gallup State of the Global Workplace 2025, 160+ Länder, Daten aus 2024" },
+    emoji: "💼", text: "Dein erster Impuls geht Richtung Absichern. Das ist seltener eine Rechnung als ein Reflex: Verluste wiegen für uns rund doppelt so schwer wie gleich große Gewinne - auch bei Geld, das wir vorher gar nicht hatten.* Besonnen und ängstlich fühlen sich von innen fast identisch an. Nur eines davon ist eine Entscheidung.",
+    footnote: "*Tversky & Kahneman (1992), Journal of Risk and Uncertainty - Verlustaversion, Faktor rund 2,25" },
   { afterQ: 21, trigger: (ans) => ans[21]?.primary === "A",
-    emoji: "✈️", text: "Du bevorzugst Freiheit und Erfahrungen über Absicherung. Ein gutes Zeichen? Weltweit sind nur 21% der Arbeitnehmer tatsächlich engagiert in ihrem Job. 62% funktionieren nur.* Vielleicht, weil zu viele die Sicherheit über die persönliche Erfüllung gestellt haben.",
-    footnote: "*Gallup State of the Global Workplace 2025, 160+ Länder, Daten aus 2024" },
+    emoji: "✈️", text: "Dein erster Gedanke geht zu dem, was möglich wäre. Fun Fact: Unerwartetes Geld landet im Kopf auf einem eigenen Konto - wir geben es deutlich lockerer aus als verdientes Geld, obwohl es exakt dasselbe Geld ist.* Die ehrliche Frage ist nicht, ob du dir das wünschst. Sondern ob du dieselbe Liste auch von deinem Ersparten bezahlen würdest.",
+    footnote: "*Thaler (1999), Mental Accounting Matters - Journal of Behavioral Decision Making" },
   { afterQ: 24, trigger: (ans) => ans[24]?.primary === "A",
     emoji: "🎭", text: "Sich nicht zu zeigen ist oft kein Zeichen von Schwäche, sondern ein gelernter Schutzmechanismus. Forschung zeigt: Selbstbewusste Menschen mit hoher interner Selbstwahrnehmung sind kreativer, treffen bessere Entscheidungen und sind nachweislich zufriedener.* Der erste Schritt zu einem \u201Eechteren\u201C Leben? Ehrlich hinschauen. Und genau das tust du gerade.",
     footnote: "*Eurich (2017) / Korn Ferry International" },
@@ -802,6 +802,14 @@ function computeScoring(answers, followUpAnswers = {}) {
     Achsen tragen ihren Klartext-Namen, die uebrigen acht ein Fragezeichen.
     Das erzeugt mehr Sog als zehn nichtssagende Ziffern. Bei Gleichstand
     entscheidet die Reihenfolge in CORE_SCALES. */
+/*  Zeichenflaeche (14.09.2026 korrigiert): Sie lief von -90 bis 370, das
+    Radar steht aber bei cx=160 - also 250px Rand links, 210px rechts. Das
+    Radar sass dadurch sichtbar zu weit rechts. Schlimmer: Die Beschriftung
+    der rechtesten Achse beginnt bei x=282 und braucht rund 100px, endet also
+    bei ~382 und wurde bei 370 abgeschnitten ("Innere Orientie"). Jetzt laeuft
+    die Flaeche von -75 bis 395, exakt symmetrisch um cx=160, mit Platz fuer
+    das laengste Wort ("Reflexionsfaehigkeit"). overflow:visible als zweites
+    Netz, falls ein kuenftiger Name noch laenger wird. */
 function RadarChart({ normalized, resultType, showLabels = true }) {
   const cx = 160, cy = 160, r = 120;
   const scales = CORE_SCALES;
@@ -834,7 +842,7 @@ function RadarChart({ normalized, resultType, showLabels = true }) {
   const typePath = typePoints.map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" ") + " Z";
 
   return (
-    <svg viewBox="-90 -15 460 360" className="radar-svg">
+    <svg viewBox="-75 -15 470 360" style={{ overflow: "visible" }} className="radar-svg">
       {rings.map(val => {
         const pts = scales.map((_, i) => getPoint(i, val));
         const d = pts.map((p, i) => `${i === 0 ? "M" : "L"}${p.x},${p.y}`).join(" ") + " Z";
@@ -1192,16 +1200,28 @@ body, html, #root {
    pointer-events:none + user-select:none, damit niemand markiert und dabei
    den abgeschnittenen Rest sucht. Die Falle-Box (frueher hier) ist am
    12.09.2026 vom Teaser entfernt worden - samt CSS. */
-.anriss-block { width: 100%; text-align: left; }
+.anriss-block { position: relative; width: 100%; text-align: left; padding-bottom: 1.9rem; }
 .anriss-text { margin: 0; font-size: 1.05rem; line-height: 1.75; color: var(--dark);
   font-weight: 500; user-select: none; pointer-events: none;
-  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 48%, rgba(0,0,0,0) 100%);
-  mask-image: linear-gradient(180deg, #000 0%, #000 48%, rgba(0,0,0,0) 100%); }
-.anriss-lock { margin-top: 0.35rem; font-size: 0.78rem; letter-spacing: 0.08em;
-  text-transform: uppercase; font-weight: 700; color: var(--orange); opacity: 0.9; }
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 40%, rgba(0,0,0,0) 95%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 40%, rgba(0,0,0,0) 95%); }
+
+/* Die Einordnungszeile liegt als halbtransparente Box UEBER dem unteren Teil
+   des ausfadenden Textes - der Text verschwindet sichtbar dahinter. Das ist
+   der Sog. backdrop-filter ist Zuckerguss; wo er fehlt, traegt die
+   Hintergrundfarbe allein. */
+.anriss-lock { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%);
+  box-sizing: border-box; max-width: 100%; display: flex; flex-direction: column;
+  align-items: center; gap: 0.2rem; text-align: center;
+  padding: 0.75rem 1.5rem; border-radius: 14px;
+  background: rgba(244, 241, 235, 0.78);
+  -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+  font-size: 0.78rem; letter-spacing: 0.08em; line-height: 1.45;
+  text-transform: uppercase; font-weight: 700; color: var(--orange); }
+.anriss-lock-line { opacity: 0.85; }
 .anriss-link { color: inherit; font: inherit; letter-spacing: inherit; text-decoration: underline;
   text-underline-offset: 3px; cursor: pointer; }
-.anriss-link:hover { color: var(--orange-hover); opacity: 1; }
+.anriss-link:hover { color: var(--orange-hover); }
 
 /* Inhaltsverzeichnis direkt ueber dem Formular */
 .toc-block { width: 100%; max-width: 520px; margin: 0 auto; text-align: left; }
@@ -1210,6 +1230,7 @@ body, html, #root {
 .toc-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.6rem; }
 .toc-list li { position: relative; padding-left: 1.5rem; font-size: 0.93rem; line-height: 1.6;
   color: var(--dark); font-weight: 400; }
+.toc-list li strong { font-weight: 700; color: var(--ink); }
 .toc-list li::before { content: ""; position: absolute; left: 0.15rem; top: 0.62em;
   width: 6px; height: 6px; border-radius: 50%; background: var(--orange); opacity: 0.85; }
 
@@ -1570,12 +1591,37 @@ function QuestionCard({ question, questionIndex, totalQuestions, answers, follow
 
   /*  Bei jeder neuen Frage zurueck an den Seitenanfang. Ohne das landet man
       nach einer Frage, bei der man scrollen musste, mitten in der naechsten.
-      Bewusst hart ("auto") statt "smooth": ein weicher Flug nach oben bei
-      jedem Klick wirkt wie ein Fahrstuhl. Gilt fuer Desktop und Mobile. */
-  useEffect(() => {
+
+      Am 13.09.2026 hat das bei Frage 28 auf dem iPhone nicht gegriffen, und
+      die Ursache liess sich nicht eindeutig festnageln. Statt zu raten deckt
+      diese Fassung alle vier plausiblen Ursachen ab:
+
+      1. useLayoutEffect statt useEffect - der Sprung passiert VOR dem Zeichnen.
+         Vorher konnte die neue Frage einen Frame lang an der alten Scroll-
+         position stehen, und auf dem Handy reicht ein Frame zum Sehen.
+      2. behavior "instant" statt "auto". Laut Spec bedeutet "auto" nicht
+         "sofort", sondern "nimm, was CSS scroll-behavior sagt". "instant"
+         erzwingt es.
+      3. Zusaetzlich direkt scrollTop setzen - falls nicht das Fenster scrollt,
+         sondern documentElement oder body.
+      4. Eine Wiederholung im naechsten Frame, falls sich die Hoehe nach dem
+         Umschalten noch verschiebt (Countdown-Teaser, Schriften, Bilder) und
+         der Browser dabei die Position nachkorrigiert.
+
+      Bewusst hart statt weich: ein Flug nach oben bei jedem Klick wirkt wie
+      ein Fahrstuhl. Gilt fuer Desktop und Mobile. */
+  useLayoutEffect(() => {
     if (typeof window === "undefined") return;
-    window.scrollTo({ top: 0, behavior: "auto" });
-  }, [question.id]);
+    const toTop = () => {
+      try { window.scrollTo({ top: 0, left: 0, behavior: "instant" }); }
+      catch { window.scrollTo(0, 0); }
+      if (document.documentElement) document.documentElement.scrollTop = 0;
+      if (document.body) document.body.scrollTop = 0;
+    };
+    toTop();
+    const raf = window.requestAnimationFrame(toTop);
+    return () => window.cancelAnimationFrame(raf);
+  }, [question.id, questionIndex]);
 
   useEffect(() => {
     if (followUp && hasPrimary && followupRef.current) {
@@ -1872,7 +1918,7 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
         <div className="anriss-block">
           <p className="anriss-text" aria-hidden="true">{ANRISS[scoring.resultType]}</p>
           <div className="anriss-lock">
-            In deiner{" "}
+            <span className="anriss-lock-line">Mehr dazu in deiner</span>
             <a href="#ergebnis-form" className="anriss-link" onClick={scrollToForm}>ausführlichen Auswertung</a>
           </div>
         </div>
@@ -1906,13 +1952,15 @@ function CompleteScreen({ answers, followUpAnswers = {} }) {
         <div className="toc-block">
           <div className="toc-eyebrow">Was im vollen Ergebnis steht</div>
           <ul className="toc-list">
-            <li>Deine unbequeme Wahrheit zu Ende gelesen: wo dein Muster im Job, in Beziehungen und bei dir selbst auftaucht</li>
-            <li>Deine Falle: das Muster, das dich immer wieder an derselben Stelle ausbremst</li>
-            <li>Die Lücke zwischen deiner Erkenntnis und deiner Umsetzung, als Zahl</li>
-            <li>Dein Profil über alle zehn Dimensionen, alle mit Namen statt Fragezeichen</li>
-            <li>Deine drei stärksten und deine drei dünnsten Bereiche, einzeln erklärt</li>
-            <li>{showMischtyp ? "Welcher zweite Archetyp in dir steckt" : "Was es bedeutet, dass dein Profil so eindeutig ist"}</li>
-            <li>So könnte dein Leben aussehen, wenn das Muster für dich arbeitet</li>
+            <li>Deine <strong>unbequeme Wahrheit</strong> zu Ende gelesen: wo dein Muster im Job, in Beziehungen und bei dir selbst auftaucht</li>
+            <li><strong>Deine Falle</strong>: das Muster, das dich immer wieder an derselben Stelle ausbremst</li>
+            <li><strong>Die Lücke</strong> zwischen deiner Erkenntnis und deiner Umsetzung, als Zahl</li>
+            <li>Dein Profil über <strong>alle zehn Dimensionen</strong>, alle mit Namen statt Fragezeichen</li>
+            <li>Deine <strong>drei stärksten</strong> und deine <strong>drei dünnsten Bereiche</strong>, einzeln erklärt</li>
+            <li>{showMischtyp
+              ? <><strong>Welcher zweite Archetyp</strong> in dir steckt</>
+              : <><strong>Was es bedeutet</strong>, dass dein Profil so eindeutig ist</>}</li>
+            <li><strong>So könnte dein Leben aussehen</strong>, wenn das Muster für dich arbeitet</li>
           </ul>
         </div>
 
